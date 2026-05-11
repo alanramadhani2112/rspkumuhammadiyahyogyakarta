@@ -2,15 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Rspku\Fields;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
-final class DoctorFields
+/**
+ * Doctor meta box + structured post meta registration. Moved from the
+ * theme in M6. Provides the "Detail Dokter" admin meta box with schedule
+ * editor and registers the underlying _rspku_* post meta with the REST
+ * API.
+ *
+ * Text domain kept as "rspku-theme" so existing translations continue to
+ * apply without re-generating the .pot file.
+ */
+final class RSPKU_CPT_DoctorFields
 {
     public static function register(): void
     {
         add_action('add_meta_boxes', [self::class, 'registerMetaBox']);
         add_action('save_post_dokter', [self::class, 'save']);
-        add_action('admin_enqueue_scripts', [self::class, 'enqueueAssets']);
 
         self::registerPostMeta();
     }
@@ -25,19 +35,6 @@ final class DoctorFields
             'normal',
             'high'
         );
-    }
-
-    public static function enqueueAssets(): void
-    {
-        $screen = function_exists('get_current_screen') ? get_current_screen() : null;
-        if (!$screen || $screen->post_type !== 'dokter') {
-            return;
-        }
-
-        $assetPath = RSPKU_THEME_PATH . '/public/build/manifest.json';
-        if (!file_exists($assetPath)) {
-            return;
-        }
     }
 
     public static function renderMetaBox(\WP_Post $post): void
@@ -374,7 +371,7 @@ final class DoctorFields
     }
 
     /**
-     * @param array<string,mixed> $rows
+     * @param array<mixed> $rows
      * @return array<int,array<string,mixed>>
      */
     private static function sanitizeSchedule(array $rows): array
@@ -464,7 +461,6 @@ final class DoctorFields
     }
 
     /**
-     * @param array<int,mixed> $schedule
      * @return array<int,array<string,mixed>>
      */
     private static function scheduleValue(int $postId): array

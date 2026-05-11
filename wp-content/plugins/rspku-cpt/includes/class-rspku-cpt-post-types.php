@@ -2,9 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Rspku\PostTypes;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
-final class Registry
+/**
+ * Registers the custom post types used across RS PKU (dokter, poliklinik,
+ * layanan, jurnal, cabang-rs, manajemen-rs, rawat-inap). Moved from the
+ * theme in M6 so content remains accessible even if the active theme is
+ * swapped out.
+ */
+final class RSPKU_CPT_PostTypes
 {
     public static function register(): void
     {

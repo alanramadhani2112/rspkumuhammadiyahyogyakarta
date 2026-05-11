@@ -2,9 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Rspku\Taxonomies;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
-final class Registry
+/**
+ * Registers the taxonomies tied to RS PKU post types and keeps the old
+ * /kategori-layanan/ rewrite rules alive so existing backlinks do not
+ * 404. Moved from the theme in M6.
+ */
+final class RSPKU_CPT_Taxonomies
 {
     public static function register(): void
     {

@@ -39,10 +39,11 @@ wp-config-sample.php
 /wp-content/themes/*
 !/wp-content/themes/rspku-theme/
 
-# Plugins: whitelist hanya rspku-core + rspku-schema
+# Plugins: whitelist hanya rspku-core + rspku-schema + rspku-cpt
 /wp-content/plugins/*
 !/wp-content/plugins/rspku-core/
 !/wp-content/plugins/rspku-schema/
+!/wp-content/plugins/rspku-cpt/
 
 # ---------- Build artefact & dependency di theme ----------
 wp-content/themes/rspku-theme/node_modules/
