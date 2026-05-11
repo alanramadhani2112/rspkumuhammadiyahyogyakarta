@@ -77,20 +77,44 @@ final class RSPKU_Core {
     }
 
     public static function register_rest_api(): void {
-        register_rest_field(
-            self::HEADLESS_POST_TYPES,
-            'rspku_acf',
-            [
-                'get_callback' => static function (array $object): array {
-                    return self::get_normalized_acf_fields((int) $object['id']);
-                },
-                'schema' => [
-                    'description' => 'Normalized ACF fields for headless frontend usage.',
-                    'type' => 'object',
-                    'context' => ['view', 'edit'],
-                ],
-            ]
-        );
+        /*
+         * rspku_acf exposes a normalized dump of ACF fields for headless
+         * consumers. This can leak internal or unvetted meta (private notes,
+         * draft copy, reference IDs) that was not meant for public output.
+         *
+         * Disabled by default since M3 (security hardening). Consumers that
+         * actually need it can opt in per post type via filter:
+         *
+         *     add_filter( 'rspku/rest/expose_acf', '__return_true' );
+         *     add_filter( 'rspku/rest/expose_acf/dokter', '__return_true' );
+         *
+         * The normalizers (normalize_doctor, normalize_service, ...) still
+         * expose the curated, non-sensitive subset via the collection
+         * endpoints.
+         */
+        foreach (self::HEADLESS_POST_TYPES as $postType) {
+            $expose = (bool) apply_filters('rspku/rest/expose_acf', false, $postType);
+            $expose = (bool) apply_filters('rspku/rest/expose_acf/' . $postType, $expose);
+
+            if (!$expose) {
+                continue;
+            }
+
+            register_rest_field(
+                $postType,
+                'rspku_acf',
+                [
+                    'get_callback' => static function (array $object): array {
+                        return self::get_normalized_acf_fields((int) $object['id']);
+                    },
+                    'schema' => [
+                        'description' => 'Normalized ACF fields for headless frontend usage. Disabled by default.',
+                        'type' => 'object',
+                        'context' => ['view', 'edit'],
+                    ],
+                ]
+            );
+        }
 
         register_rest_field(
             self::HEADLESS_POST_TYPES,
@@ -349,6 +373,35 @@ final class RSPKU_Core {
         global $wpdb;
 
         $query = trim((string) ($request->get_param('q') ?: $request->get_param('search')));
+
+        /*
+         * M3 hardening: validate query length before doing expensive
+         * LIKE '%...%' queries that JOIN postmeta. Both empty-but-present
+         * queries and overly long queries are rejected early.
+         */
+        if ($query !== '') {
+            $queryLength = function_exists('mb_strlen') ? mb_strlen($query) : strlen($query);
+            if ($queryLength < 2 || $queryLength > 100) {
+                $error = new WP_REST_Response([
+                    'code' => 'rspku_invalid_query',
+                    'message' => 'Search query must be between 2 and 100 characters.',
+                    'data' => ['status' => 400, 'length' => $queryLength],
+                ], 400);
+
+                return $error;
+            }
+        }
+
+        /*
+         * Rate limit per client IP. 60 requests / 60 seconds is generous for
+         * interactive use but slams the door on scripted abuse that would
+         * otherwise chew through DB cycles.
+         */
+        $rateLimitResponse = self::enforce_rate_limit('search', 60, 60);
+        if ($rateLimitResponse instanceof WP_REST_Response) {
+            return $rateLimitResponse;
+        }
+
         $postTypes = self::parse_search_post_types($request->get_param('post_type') ?: $request->get_param('types'));
         $perPage = min(max((int) $request->get_param('per_page'), 1), 50);
         $page = max((int) $request->get_param('page'), 1);
@@ -1305,6 +1358,77 @@ final class RSPKU_Core {
         return (bool) $urlHost
             && (bool) $homeHost
             && strtolower((string) $urlHost) !== strtolower((string) $homeHost);
+    }
+
+    /*
+     * -------------------------------------------------------------------
+     * Security helpers (added in M3 — REST API hardening).
+     * -------------------------------------------------------------------
+     */
+
+    /**
+     * Throttle a public REST endpoint per client IP using transients.
+     *
+     * Returns a WP_REST_Response (HTTP 429 + Retry-After) if the caller
+     * has exceeded $limit requests in the last $windowSeconds. Returns
+     * null when the caller is still within budget.
+     */
+    private static function enforce_rate_limit(string $bucket, int $limit, int $windowSeconds): ?WP_REST_Response {
+        if ($limit <= 0 || $windowSeconds <= 0) {
+            return null;
+        }
+
+        $ip = self::client_ip();
+        $key = 'rspku_rl_' . sanitize_key($bucket) . '_' . md5($ip);
+        $count = (int) get_transient($key);
+
+        if ($count >= $limit) {
+            $response = new WP_REST_Response([
+                'code' => 'rspku_rate_limited',
+                'message' => 'Too many requests. Please slow down.',
+                'data' => ['status' => 429],
+            ], 429);
+            $response->header('Retry-After', (string) $windowSeconds);
+            $response->header('X-RateLimit-Limit', (string) $limit);
+            $response->header('X-RateLimit-Remaining', '0');
+
+            return $response;
+        }
+
+        set_transient($key, $count + 1, $windowSeconds);
+
+        return null;
+    }
+
+    /**
+     * Best-effort resolution of the client IP. Trusts common CDN/proxy
+     * headers when present and validates each candidate before use.
+     *
+     * Falls back to 0.0.0.0 so transient keys stay deterministic even
+     * when upstream did not provide a usable address.
+     */
+    private static function client_ip(): string {
+        $candidates = [
+            'HTTP_CF_CONNECTING_IP',
+            'HTTP_X_FORWARDED_FOR',
+            'HTTP_X_REAL_IP',
+            'REMOTE_ADDR',
+        ];
+
+        foreach ($candidates as $header) {
+            if (empty($_SERVER[$header])) {
+                continue;
+            }
+
+            $raw = sanitize_text_field((string) wp_unslash((string) $_SERVER[$header]));
+            $first = trim((string) explode(',', $raw)[0]);
+
+            if ($first !== '' && filter_var($first, FILTER_VALIDATE_IP) !== false) {
+                return $first;
+            }
+        }
+
+        return '0.0.0.0';
     }
 }
 

@@ -20,6 +20,13 @@ final class DoctorSearch
 
     public static function ajax(): void
     {
+        if (self::isRateLimited('doctor_search_ajax', 60, 60)) {
+            wp_send_json_error(
+                ['message' => __('Terlalu banyak permintaan. Coba lagi sebentar.', 'rspku-theme')],
+                429
+            );
+        }
+
         $nonce = sanitize_text_field(wp_unslash($_POST['nonce'] ?? ''));
         if (!wp_verify_nonce($nonce, 'rspku_doctor_search')) {
             wp_send_json_error(['message' => __('Sesi pencarian tidak valid.', 'rspku-theme')], 403);
@@ -43,6 +50,17 @@ final class DoctorSearch
             'methods' => 'GET',
             'permission_callback' => '__return_true',
             'callback' => static function (WP_REST_Request $request): WP_REST_Response {
+                if (self::isRateLimited('doctor_search_rest', 60, 60)) {
+                    $response = new WP_REST_Response([
+                        'code' => 'rspku_rate_limited',
+                        'message' => 'Too many requests. Please slow down.',
+                        'data' => ['status' => 429],
+                    ], 429);
+                    $response->header('Retry-After', '60');
+
+                    return $response;
+                }
+
                 return new WP_REST_Response(self::search([
                     'q' => sanitize_text_field((string) $request->get_param('q')),
                     'specialization' => sanitize_title((string) $request->get_param('specialization')),
@@ -100,5 +118,55 @@ final class DoctorSearch
         ]);
 
         return is_string($links) ? $links : '';
+    }
+
+    /**
+     * Per-IP throttle via WP transients. Returns true when the caller has
+     * exceeded $limit requests in the last $windowSeconds and should be
+     * rejected. Added in M3 to protect both AJAX and REST doctor-search
+     * endpoints from scripted abuse.
+     */
+    private static function isRateLimited(string $bucket, int $limit, int $windowSeconds): bool
+    {
+        if ($limit <= 0 || $windowSeconds <= 0) {
+            return false;
+        }
+
+        $ip = self::clientIp();
+        $key = 'rspku_rl_' . sanitize_key($bucket) . '_' . md5($ip);
+        $count = (int) get_transient($key);
+
+        if ($count >= $limit) {
+            return true;
+        }
+
+        set_transient($key, $count + 1, $windowSeconds);
+
+        return false;
+    }
+
+    private static function clientIp(): string
+    {
+        $candidates = [
+            'HTTP_CF_CONNECTING_IP',
+            'HTTP_X_FORWARDED_FOR',
+            'HTTP_X_REAL_IP',
+            'REMOTE_ADDR',
+        ];
+
+        foreach ($candidates as $header) {
+            if (empty($_SERVER[$header])) {
+                continue;
+            }
+
+            $raw = sanitize_text_field((string) wp_unslash((string) $_SERVER[$header]));
+            $first = trim((string) explode(',', $raw)[0]);
+
+            if ($first !== '' && filter_var($first, FILTER_VALIDATE_IP) !== false) {
+                return $first;
+            }
+        }
+
+        return '0.0.0.0';
     }
 }
