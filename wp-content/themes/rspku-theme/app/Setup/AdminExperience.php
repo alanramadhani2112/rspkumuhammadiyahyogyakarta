@@ -118,12 +118,37 @@ final class AdminExperience
 
         $ids = [];
         foreach ($titles as $title) {
-            $group = get_page_by_title($title, OBJECT, 'acf-field-group');
+            $group = self::findAcfFieldGroupByTitle($title);
             if ($group instanceof \WP_Post) {
                 $ids[] = 'acf-' . $group->post_name;
             }
         }
 
         return $ids;
+    }
+
+    /**
+     * Lookup an ACF field group post by exact title.
+     *
+     * Replacement for the deprecated WordPress 6.2+ `get_page_by_title()`.
+     * Uses WP_Query's `title` argument which performs an exact match on
+     * `post_title` and is available since WP 4.4.
+     */
+    private static function findAcfFieldGroupByTitle(string $title): ?\WP_Post
+    {
+        $query = new \WP_Query([
+            'post_type' => 'acf-field-group',
+            'title' => $title,
+            'post_status' => 'any',
+            'posts_per_page' => 1,
+            'no_found_rows' => true,
+            'update_post_meta_cache' => false,
+            'update_post_term_cache' => false,
+            'ignore_sticky_posts' => true,
+        ]);
+
+        $post = $query->posts[0] ?? null;
+
+        return $post instanceof \WP_Post ? $post : null;
     }
 }
