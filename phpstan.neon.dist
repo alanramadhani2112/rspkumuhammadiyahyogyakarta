@@ -11,6 +11,7 @@ parameters:
         - wp-content/themes/rspku-theme/functions.php
         - wp-content/themes/rspku-theme/index.php
         - wp-content/plugins/rspku-core
+        - wp-content/plugins/rspku-schema
 
     # Paths that should not be analysed at all. Note: we still want
     # Timber's src scanned (see scanDirectories below) so we don't blanket-
