@@ -1,0 +1,47 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  {% if management_single %}
+    <section class="rspku-section pb-10">
+      <div class="rspku-container space-y-10">
+        {% include 'partials/breadcrumb.twig' with {
+          items: [
+            { title: 'Home', url: site.url },
+            { title: 'Manajemen RS', url: site.url ~ '/manajemen-rs/' },
+            { title: management_single.name|default(management_single.title), current: true }
+          ]
+        } only %}
+
+        <div class="grid gap-10 xl:grid-cols-[18rem_minmax(0,1fr)] xl:items-start">
+          <aside class="space-y-5 xl:sticky xl:top-28 xl:self-start">
+            <div class="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-100">
+              {% if management_single.photo and management_single.photo.url %}
+                <img src="{{ management_single.photo.url }}" alt="{{ management_single.name|default(management_single.title) }}" class="aspect-[4/5] w-full object-cover">
+              {% else %}
+                <div class="grid aspect-[4/5] place-items-center bg-[#f7faf7] text-4xl font-semibold text-hospital-700">{{ (management_single.name|default(management_single.title))|slice(0, 1) }}</div>
+              {% endif %}
+            </div>
+            {% if management_single.position %}
+              <section class="rspku-side-panel">
+                <p class="text-sm font-medium text-slate-500">Jabatan</p>
+                <p class="mt-3 text-[1rem] font-semibold leading-7 text-slate-950">{{ management_single.position }}</p>
+              </section>
+            {% endif %}
+          </aside>
+
+          <article class="space-y-8">
+            <header class="space-y-5">
+              <span class="rspku-eyebrow">Manajemen RS</span>
+              <h1 class="max-w-4xl text-[2.25rem] font-semibold leading-[1.06] text-slate-950 sm:text-[2.85rem] xl:text-[3.35rem]">{{ management_single.name|default(management_single.title) }}</h1>
+              {% if management_single.position %}
+                <p class="max-w-3xl text-lg leading-8 text-slate-600">{{ management_single.position }}</p>
+              {% endif %}
+            </header>
+
+            <div class="rspku-prose max-w-none">{{ management_single.content|raw }}</div>
+          </article>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

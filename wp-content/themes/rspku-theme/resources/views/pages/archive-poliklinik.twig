@@ -1,0 +1,111 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  {% if polyclinic_archive is defined %}
+    {% set lead = polyclinic_archive.lead %}
+    <section class="rspku-section pb-8">
+      <div class="rspku-container space-y-12">
+        {% include 'partials/breadcrumb.twig' with {
+          items: [
+            { title: 'Home', url: site.url },
+            { title: 'Poliklinik', current: true }
+          ]
+        } only %}
+
+        <div class="grid gap-10 xl:grid-cols-[0.95fr_1.05fr] xl:items-end">
+          <div class="space-y-6">
+            <span class="rspku-eyebrow">Dengan penuh profesionalisme</span>
+            <h1 class="rspku-page-title max-w-4xl font-semibold text-slate-950">Layanan Prima Poliklinik</h1>
+            <p class="max-w-2xl text-base leading-8 text-slate-600">Beragam layanan PKU Jogja untuk Anda, disusun lebih rapi agar pasien dan keluarga lebih mudah menemukan poliklinik yang tepat.</p>
+            <div class="flex flex-wrap gap-3">
+              <span class="rspku-chip">{{ polyclinic_archive.total }} poliklinik aktif</span>
+              <a href="{{ site.url }}/jadwal-dokter/" class="rspku-chip">Jadwal dokter</a>
+              <a href="{{ site.url }}/dokter/" class="rspku-chip">Cari dokter</a>
+            </div>
+          </div>
+
+          <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-100">
+            {% if lead and lead.image and lead.image.url %}
+              <img src="{{ lead.image.url }}" alt="{{ lead.title }}" class="aspect-[16/10] w-full object-cover">
+            {% else %}
+              <div class="grid aspect-[16/10] place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(159,212,91,0.22),_transparent_35%),linear-gradient(135deg,#edf4ef_0%,#f8fbf8_100%)] p-8 text-center">
+                <div class="space-y-4">
+                  <div class="mx-auto grid h-16 w-16 place-items-center rounded-2xl border border-hospital-200 bg-white text-hospital-700">
+                    {{ icon('hospital', { class: 'h-8 w-8' }) }}
+                  </div>
+                  <p class="text-lg font-semibold text-slate-700">Layanan poliklinik RS PKU Muhammadiyah Yogyakarta</p>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="rspku-divider"></div>
+
+        {% if polyclinic_archive.groups %}
+          <div class="flex flex-wrap gap-3">
+            {% for group in polyclinic_archive.groups %}
+              {% set first_item = group.items|first %}
+              {% if first_item %}
+                <a href="{{ first_item.url }}" class="rspku-chip">{{ group.title }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if polyclinic_archive.items %}
+          <div class="grid gap-x-8 gap-y-12 md:grid-cols-2 xl:grid-cols-3">
+            {% for item in polyclinic_archive.items %}
+              <article class="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white">
+                <a href="{{ item.url }}" class="block overflow-hidden bg-slate-100">
+                  {% if item.image and item.image.url %}
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="aspect-[16/8] w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                  {% else %}
+                    <div class="grid aspect-[16/8] place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(159,212,91,0.18),_transparent_32%),linear-gradient(180deg,#f8fbf8_0%,#eef6f0_100%)] p-8 text-center">
+                      <div class="space-y-5">
+                        <div class="mx-auto grid h-16 w-16 place-items-center rounded-2xl border border-hospital-200 bg-white text-hospital-700">
+                          {{ icon('stethoscope', { class: 'h-7 w-7' }) }}
+                        </div>
+                        <div>
+                          <p class="text-sm font-medium text-hospital-700">{{ item.group }}</p>
+                          <p class="mt-3 text-lg font-semibold leading-8 text-slate-700">{{ item.title }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
+                </a>
+
+                <div class="flex flex-1 items-start gap-4 p-6">
+                  <div class="min-w-0 flex-1 space-y-4">
+                    <p class="text-sm font-medium text-hospital-700">{{ item.group }}</p>
+                    <h2 class="text-[1.1rem] font-semibold leading-7 text-slate-950">
+                      <a href="{{ item.url }}" class="transition hover:text-hospital-700">{{ item.title }}</a>
+                    </h2>
+                    {% if item.excerpt %}
+                      <p class="text-[15px] leading-7 text-slate-600">{{ item.excerpt }}</p>
+                    {% endif %}
+                  </div>
+                  <a href="{{ item.url }}" class="rspku-icon-button mt-1 h-12 w-12 shrink-0" aria-label="Buka {{ item.title }}">
+                    {{ icon('arrow-up-right', { class: 'h-5 w-5' }) }}
+                  </a>
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% include 'partials/pagination.twig' with {
+          pagination: pagination|default(''),
+          class: 'pt-2',
+          label: 'Pagination poliklinik',
+          total: pagination_meta.total|default(0),
+          per_page: pagination_meta.per_page|default(10),
+          current_page: pagination_meta.current_page|default(1),
+          total_pages: pagination_meta.total_pages|default(1),
+          show_single: pagination_meta.total|default(0) > 0,
+          item_label: pagination_meta.item_label|default('poliklinik')
+        } only %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

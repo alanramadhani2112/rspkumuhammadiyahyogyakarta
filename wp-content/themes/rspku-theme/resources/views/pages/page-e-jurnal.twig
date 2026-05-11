@@ -1,0 +1,111 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  {% if journal_landing is defined %}
+    {% set featured = journal_landing.featured %}
+    <section class="rspku-section pb-8">
+      <div class="rspku-container space-y-12">
+        {% include 'partials/breadcrumb.twig' with {
+          items: [
+            { title: 'Home', url: site.url },
+            { title: journal_landing.title, current: true }
+          ]
+        } only %}
+
+        <div class="grid gap-10 xl:grid-cols-[1fr_0.9fr] xl:items-end">
+          <div class="space-y-6">
+            <span class="rspku-eyebrow">Jurnal</span>
+            <h1 class="max-w-4xl text-[2.35rem] font-semibold leading-[1.06] text-slate-950 sm:text-[2.9rem] xl:text-[3.4rem]">{{ journal_landing.title }}</h1>
+            <p class="max-w-3xl text-base leading-8 text-slate-600">{{ journal_landing.description }}</p>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="border border-slate-200 bg-[#f8fbf8] p-6">
+              <p class="text-sm font-medium text-hospital-700">Publikasi aktif</p>
+              <p class="mt-3 text-[2rem] font-semibold leading-none text-slate-950">{{ journal_landing.total }}</p>
+              <p class="mt-3 text-[15px] leading-7 text-slate-600">Arsip jurnal tersusun rapi untuk dibaca ulang dan dibagikan kembali.</p>
+            </div>
+            <div class="border border-slate-200 bg-white p-6">
+              <p class="text-sm font-medium text-hospital-700">Dokumen siap unduh</p>
+              <p class="mt-3 text-[2rem] font-semibold leading-none text-slate-950">{{ journal_landing.documents }}</p>
+              <p class="mt-3 text-[15px] leading-7 text-slate-600">Tautan PDF akan tetap muncul langsung pada kartu ketika tersedia.</p>
+            </div>
+          </div>
+        </div>
+
+        {% if featured %}
+          <div class="rspku-divider pt-8">
+            <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+              <div class="space-y-4">
+                <span class="rspku-eyebrow">Sorotan terbaru</span>
+                <h2 class="max-w-3xl text-[1.75rem] font-semibold leading-tight text-slate-950">{{ featured.title }}</h2>
+                {% if featured.excerpt %}
+                  <p class="max-w-2xl text-[15px] leading-8 text-slate-600">{{ featured.excerpt }}</p>
+                {% endif %}
+              </div>
+              <div class="flex flex-wrap gap-3 lg:justify-end">
+                {% include 'components/button.twig' with {
+                  text: 'Baca jurnal',
+                  url: featured.url,
+                  variant: 'primary'
+                } only %}
+                {% if featured.file and featured.file.url %}
+                  {% include 'components/button.twig' with {
+                    text: 'Unduh PDF',
+                    url: featured.file.url,
+                    variant: 'secondary',
+                    target: '_blank',
+                    icon: 'download'
+                  } only %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if journal_landing.items %}
+          <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {% for item in journal_landing.items %}
+              <article class="rspku-journal-card flex h-full flex-col">
+                <div class="flex items-start justify-between gap-4">
+                  <span class="rspku-eyebrow">Jurnal</span>
+                  {% if item.date %}
+                    <span class="text-sm text-slate-500">{{ item.date }}</span>
+                  {% endif %}
+                </div>
+
+                <div class="mt-6 flex-1 space-y-4">
+                  <h2 class="text-[1.25rem] font-semibold leading-7 text-slate-950">
+                    <a href="{{ item.url }}" class="transition hover:text-hospital-700">{{ item.title }}</a>
+                  </h2>
+                  {% if item.excerpt %}
+                    <p class="text-[15px] leading-8 text-slate-600">{{ item.excerpt }}</p>
+                  {% endif %}
+                </div>
+
+                <div class="mt-8 flex flex-col gap-3">
+                  {% include 'components/button.twig' with {
+                    text: 'Baca',
+                    url: item.url,
+                    variant: 'primary',
+                    full_width: true
+                  } only %}
+                  {% if item.file and item.file.url %}
+                    {% include 'components/button.twig' with {
+                      text: 'Unduh PDF',
+                      url: item.file.url,
+                      variant: 'secondary',
+                      target: '_blank',
+                      icon: 'download',
+                      full_width: true
+                    } only %}
+                  {% endif %}
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

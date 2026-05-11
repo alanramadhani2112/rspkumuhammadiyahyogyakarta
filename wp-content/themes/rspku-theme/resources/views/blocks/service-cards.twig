@@ -1,0 +1,16 @@
+<section class="rspku-section">
+  <div class="rspku-container space-y-8">
+    <div>
+      <p class="text-sm font-bold uppercase tracking-[0.24em] text-hospital-700">Layanan</p>
+      <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">Layanan rumah sakit dalam struktur card yang reusable</h2>
+    </div>
+
+    {% if services %}
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {% for item in services %}
+          {% include 'components/content-card.twig' with { item: item } %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>

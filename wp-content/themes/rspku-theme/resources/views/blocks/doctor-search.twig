@@ -1,0 +1,47 @@
+{% set filters = selected_filters|default({}) %}
+
+<section class="rounded-lg border border-slate-200 bg-white p-5 sm:p-6" x-data="doctorSearch" data-ajax-url="{{ ajax_url }}" data-nonce="{{ nonce }}" data-per-page="{{ attributes.limit|default(8) }}">
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <div>
+      <span class="rspku-eyebrow">Filter lanjutan</span>
+      <h2 class="rspku-section-title mt-4 font-semibold text-slate-950">Sesuaikan pencarian berdasarkan spesialisasi dan jadwal</h2>
+    </div>
+    <p class="max-w-xl text-base leading-7 text-slate-600">Gunakan filter ini saat pasien sudah punya kebutuhan yang lebih spesifik, seperti jadwal praktik tertentu, spesialisasi, atau layanan terkait.</p>
+  </div>
+
+  <form class="mt-8 grid gap-3 xl:grid-cols-[1.45fr_repeat(3,1fr)]" x-ref="form" @submit.prevent="submit">
+    <input type="hidden" name="page" value="{{ filters.page|default(1) }}">
+    <label for="doctor-name-search" class="sr-only">Nama dokter</label>
+    <input id="doctor-name-search" type="search" name="q" value="{{ filters.q|default('') }}" placeholder="Nama dokter" class="rspku-input xl:col-span-1">
+
+    <select name="specialization" class="rspku-select">
+      <option value="">Semua spesialisasi</option>
+      {% for specialization in filter_options.specializations %}
+        <option value="{{ specialization.slug }}" {{ filters.specialization|default('') == specialization.slug ? 'selected' : '' }}>{{ specialization.name }}</option>
+      {% endfor %}
+    </select>
+
+    <select name="day" class="rspku-select">
+      <option value="">Semua hari</option>
+      {% for dayKey, dayLabel in filter_options.days %}
+        <option value="{{ dayKey }}" {{ filters.day|default('') == dayKey ? 'selected' : '' }}>{{ dayLabel }}</option>
+      {% endfor %}
+    </select>
+
+    <select name="service" class="rspku-select">
+      <option value="">Semua layanan</option>
+      {% for service in filter_options.services %}
+        <option value="{{ service.id }}" {{ filters.service|default('') == service.id ? 'selected' : '' }}>{{ service.title }}</option>
+      {% endfor %}
+    </select>
+
+    <div class="xl:col-span-4 flex flex-wrap gap-3 pt-2">
+      <button type="submit" class="rspku-button rspku-button-primary gap-2.5" :disabled="loading">{{ icon('search', { class: 'h-4 w-4' }) }}<span>Terapkan filter</span></button>
+      <button type="button" class="rspku-button rspku-button-secondary" @click="resetFilters">Reset filter</button>
+    </div>
+  </form>
+
+  <div class="mt-8" x-ref="results">
+    {% include 'partials/doctor-search-results.twig' with { doctors: doctors, pagination: pagination|default('') } %}
+  </div>
+</section>

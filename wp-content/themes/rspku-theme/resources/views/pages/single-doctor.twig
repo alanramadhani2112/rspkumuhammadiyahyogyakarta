@@ -1,0 +1,170 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  {% if doctor %}
+    {% set specialization = doctor.primary_specialization ?: doctor.specializations|first %}
+    <article class="rspku-doctor-detail rspku-section pb-8">
+      <div class="rspku-container space-y-10">
+        {% include 'partials/breadcrumb.twig' with {
+          items: [
+            { title: 'Home', url: site.url },
+            { title: 'Cari dokter', url: site.url ~ '/dokter' },
+            { title: doctor.name, current: true }
+          ]
+        } only %}
+
+        <div class="rspku-doctor-hero">
+          <div class="rspku-doctor-identity">
+            <div class="rspku-doctor-avatar">
+              {% if doctor.photo.url %}
+                <img src="{{ doctor.photo.url }}" alt="{{ doctor.name }}" class="h-full w-full object-cover">
+              {% else %}
+                <div class="rspku-doctor-avatar-fallback">{{ doctor.name|slice(0, 1) }}</div>
+              {% endif %}
+            </div>
+            <div class="min-w-0 flex-1 space-y-4">
+              <div class="rspku-doctor-tags">
+                <span class="rspku-eyebrow">{{ specialization.name|default('Dokter') }}</span>
+                {% if doctor.specialization_category %}
+                  <span class="rspku-chip">{{ doctor.specialization_category }}</span>
+                {% endif %}
+                {% if doctor.sub_specialization %}
+                  <span class="rspku-chip">{{ doctor.sub_specialization }}</span>
+                {% endif %}
+              </div>
+              <h1 class="rspku-page-title font-semibold text-slate-950">{{ doctor.name }}</h1>
+              <div class="rspku-doctor-meta">
+                {% if doctor.license %}
+                  <span>SIP {{ doctor.license }}</span>
+                {% endif %}
+                {% if doctor.consultation_type %}
+                  <span>{{ doctor.consultation_type }}</span>
+                {% endif %}
+                {% if doctor.degree and doctor.degree not in doctor.name %}
+                  <span>{{ doctor.degree }}</span>
+                {% endif %}
+              </div>
+              {% if doctor.services %}
+                <div class="rspku-doctor-service-list">
+                  {% for service in doctor.services|slice(0, 4) %}
+                    <a href="{{ service.url }}" class="rspku-chip">{{ service.title }}</a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          {% if doctor.social_links %}
+            <nav class="rspku-doctor-social" aria-label="Sosial media dokter">
+              {% for social in doctor.social_links %}
+                <a href="{{ social.url }}" target="_blank" rel="noopener" class="rspku-icon-button" aria-label="{{ social.platform|title }}">
+                  {% if social.platform == 'instagram' %}
+                    {{ icon('instagram', { class: 'h-5 w-5' }) }}
+                  {% elseif social.platform == 'facebook' %}
+                    {{ icon('facebook', { class: 'h-5 w-5' }) }}
+                  {% elseif social.platform == 'linkedin' %}
+                    {{ icon('linkedin', { class: 'h-5 w-5' }) }}
+                  {% else %}
+                    {{ icon('message-circle', { class: 'h-5 w-5' }) }}
+                  {% endif %}
+                </a>
+              {% endfor %}
+            </nav>
+          {% endif %}
+        </div>
+
+        <div class="rspku-divider"></div>
+
+        <div class="grid gap-8 xl:grid-cols-[minmax(0,1fr)_20rem]">
+          <div class="min-w-0 space-y-10">
+            <section class="rspku-profile-story">
+              <div class="rspku-profile-block-heading">
+                <span class="rspku-profile-block-icon">
+                  {{ icon('user-round', { class: 'h-5 w-5' }) }}
+                </span>
+                <div>
+                  <p class="rspku-profile-block-kicker">Tentang dokter</p>
+                  <h2 class="rspku-profile-block-title">Profil</h2>
+                </div>
+              </div>
+              <div class="rspku-profile-copy rspku-prose">{{ doctor.profile|raw }}</div>
+            </section>
+
+            {% include 'partials/doctor-credential-section.twig' with {
+              title: 'Pendidikan',
+              kicker: 'Riwayat akademik',
+              icon_name: 'graduation-cap',
+              items: doctor.education_items
+            } only %}
+
+            {% include 'partials/doctor-credential-section.twig' with {
+              title: 'Pengalaman',
+              kicker: 'Praktik dan organisasi',
+              icon_name: 'briefcase-medical',
+              items: doctor.experience_items
+            } only %}
+
+            {% include 'partials/doctor-credential-section.twig' with {
+              title: 'Pelatihan',
+              kicker: 'Kompetensi tambahan',
+              icon_name: 'badge-check',
+              items: doctor.training_items
+            } only %}
+          </div>
+
+          <aside class="space-y-5 xl:sticky xl:top-28 xl:self-start">
+            <section class="rounded-lg border border-slate-200 bg-white p-6 space-y-4">
+              <h2 class="text-xl font-semibold text-slate-950">Buat janji</h2>
+              <p class="text-sm leading-relaxed text-slate-600">Jadwalkan pertemuan dengan dokter untuk mendukung kesehatan Anda lebih baik.</p>
+              <div class="pt-2">
+                {% include 'components/button.twig' with {
+                  text: 'Buat janji',
+                  url: doctor.appointment_url ?: site.url ~ '/kontak',
+                  variant: 'primary',
+                  full_width: true
+                } only %}
+              </div>
+            </section>
+
+            <section class="rounded-lg border border-slate-200 bg-white p-6 space-y-4">
+              <h2 class="text-xl font-semibold text-slate-950">Jadwal praktik</h2>
+              {% if doctor.schedule %}
+                <div class="divide-y divide-slate-100">
+                  {% for row in doctor.schedule %}
+                    <div class="grid grid-cols-[1fr_auto] gap-4 py-3 first:pt-0 last:pb-0">
+                      <div>
+                        <p class="text-sm font-semibold text-slate-950">{{ row.day_label|default(row.day) }}</p>
+                        {% if row.branch or row.room %}
+                          <p class="mt-1 text-xs leading-relaxed text-slate-500">{{ row.branch|default('RS PKU Muhammadiyah Yogyakarta') }}{% if row.room %} - {{ row.room }}{% endif %}</p>
+                        {% endif %}
+                      </div>
+                      <p class="text-sm leading-relaxed text-slate-600">{{ row.start_time }}{% if row.end_time %} - {{ row.end_time }}{% endif %}</p>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% else %}
+                <p class="text-sm text-slate-600">Jadwal praktik belum tersedia.</p>
+              {% endif %}
+            </section>
+
+            {% if doctor.branches %}
+              <section class="rounded-lg border border-slate-200 bg-white p-6 space-y-4">
+                <div class="grid h-11 w-11 place-items-center rounded-lg border border-hospital-200 bg-white text-hospital-700">
+                  {{ icon('map-pinned', { class: 'h-6 w-6' }) }}
+                </div>
+                <div>
+                  <h2 class="text-xl font-semibold text-slate-950">Lokasi rumah sakit</h2>
+                  <div class="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
+                    {% for branch in doctor.branches %}
+                      <a href="{{ branch.url }}" class="block transition hover:text-hospital-700">{{ branch.title }}</a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </section>
+            {% endif %}
+          </aside>
+        </div>
+      </div>
+    </article>
+  {% endif %}
+{% endblock %}

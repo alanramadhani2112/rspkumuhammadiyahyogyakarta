@@ -1,0 +1,99 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  {% if service_single %}
+    {% set primary_category = service_single.primary_category %}
+    {% set eyebrow = primary_category ? primary_category.name : 'Layanan medis' %}
+    {% set breadcrumb_items = [
+      { title: 'Home', url: site.url },
+      { title: 'Semua layanan medis', url: site.url ~ '/layanan/' }
+    ] %}
+    {% if primary_category %}
+      {% set breadcrumb_items = breadcrumb_items|merge([{ title: primary_category.name, url: primary_category.url }]) %}
+    {% endif %}
+    {% set breadcrumb_items = breadcrumb_items|merge([{ title: service_single.title, current: true }]) %}
+    <section class="rspku-section pb-10">
+      <div class="rspku-container space-y-10">
+        {% include 'partials/breadcrumb.twig' with { items: breadcrumb_items } only %}
+
+        <div class="grid gap-10 xl:grid-cols-[minmax(0,1fr)_21rem] xl:items-start">
+          <div class="space-y-8">
+            <header class="space-y-5">
+              <span class="rspku-eyebrow">{{ eyebrow }}</span>
+              <h1 class="rspku-page-title max-w-4xl font-semibold text-slate-950">{{ service_single.title }}</h1>
+              {% if service_single.excerpt %}
+                <p class="rspku-section-lead max-w-3xl">{{ service_single.excerpt }}</p>
+              {% endif %}
+            </header>
+
+            {% if service_single.image and service_single.image.url %}
+              <div class="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-100">
+                <img src="{{ service_single.image.url }}" alt="{{ service_single.title }}" class="aspect-[16/9] w-full object-cover">
+              </div>
+            {% endif %}
+
+            {% if service_single.content %}
+              <div class="rspku-prose max-w-none">{{ service_single.content|raw }}</div>
+            {% endif %}
+          </div>
+
+          <aside class="space-y-5 xl:sticky xl:top-28 xl:self-start">
+            <section class="rspku-side-panel">
+              <p class="text-sm font-medium text-slate-500">Ringkasan layanan</p>
+              <div class="mt-5 space-y-4">
+                <div>
+                  <p class="text-[13px] font-medium uppercase tracking-[0.06em] text-slate-500">Kategori</p>
+                  <p class="mt-2 text-[15px] font-semibold text-slate-950">{{ eyebrow }}</p>
+                </div>
+                <div>
+                  <p class="text-[13px] font-medium uppercase tracking-[0.06em] text-slate-500">Aksi cepat</p>
+                  <div class="mt-3 flex flex-col gap-3">
+                    {% include 'components/button.twig' with {
+                      text: 'Cari dokter',
+                      url: site.url ~ '/dokter/',
+                      variant: 'primary',
+                      full_width: true
+                    } only %}
+                    {% include 'components/button.twig' with {
+                      text: 'Hubungi rumah sakit',
+                      url: site.url ~ '/kontak/',
+                      variant: 'secondary',
+                      full_width: true
+                    } only %}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {% include 'partials/related-doctors-panel.twig' with {
+              doctors: service_doctors,
+              eyebrow: 'Dokter terkait',
+              title: 'Jadwal dan profil dokter',
+              description: 'Data dokter mengikuti sinkronisasi jadwal praktik resmi.'
+            } only %}
+          </aside>
+        </div>
+
+        {% if service_related %}
+          <div class="rspku-divider"></div>
+          <section class="space-y-8">
+            <div>
+              <span class="rspku-eyebrow">Layanan lain</span>
+              <h2 class="mt-4 text-[2rem] font-semibold leading-tight text-slate-950 sm:text-[2.5rem]">Layanan yang masih berkaitan</h2>
+            </div>
+            <div class="grid gap-8 xl:grid-cols-3">
+              {% for item in service_related %}
+                {% include 'components/content-card.twig' with {
+                  item: item|merge({
+                    badge: 'Layanan medis',
+                    show_link: false
+                  })
+                } %}
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

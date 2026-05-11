@@ -1,0 +1,63 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  {% if management_archive is defined %}
+    <section class="rspku-section pb-8">
+      <div class="rspku-container space-y-10">
+        {% include 'partials/breadcrumb.twig' with {
+          items: [
+            { title: 'Home', url: site.url },
+            { title: management_archive.title, current: true }
+          ]
+        } only %}
+
+        <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div class="space-y-6">
+            <span class="rspku-eyebrow">Arsip</span>
+            <h1 class="max-w-3xl text-[2.25rem] font-semibold leading-[1.08] text-slate-950 sm:text-[2.75rem] xl:text-[3.25rem]">{{ management_archive.title }}</h1>
+            <p class="max-w-2xl text-base leading-8 text-slate-600">{{ management_archive.description }}</p>
+          </div>
+          <div class="flex flex-wrap gap-3 lg:justify-end">
+            <a href="{{ site.url }}/kontak/" class="rspku-chip">Hubungi rumah sakit</a>
+            <a href="{{ site.url }}/sejarah-kami/" class="rspku-chip">Tentang kami</a>
+          </div>
+        </div>
+
+        {% if posts %}
+          <div class="rspku-divider"></div>
+
+          <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {% for item in posts %}
+              {% include 'components/content-card.twig' with {
+                item: {
+                  title: item.title,
+                  url: item.link,
+                  excerpt: item.preview.length(18),
+                  image: item.thumbnail ? {
+                    url: item.thumbnail.src('rspku-card'),
+                    alt: item.title
+                  } : null,
+                  date: item.date,
+                  badge: 'Manajemen RS',
+                  show_link: false
+                }
+              } %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% include 'partials/pagination.twig' with {
+          pagination: pagination|default(''),
+          class: 'pt-2',
+          label: 'Pagination manajemen',
+          total: pagination_meta.total|default(0),
+          per_page: pagination_meta.per_page|default(10),
+          current_page: pagination_meta.current_page|default(1),
+          total_pages: pagination_meta.total_pages|default(1),
+          show_single: pagination_meta.total|default(0) > 0,
+          item_label: pagination_meta.item_label|default('profil')
+        } only %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

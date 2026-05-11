@@ -1,0 +1,27 @@
+{#
+  Check List Component
+  
+  Usage:
+  {% include 'components/check-list.twig' with {
+    items: ['AC', 'TV', 'Kulkas'],
+    spacing: 'default'
+  } only %}
+  
+  Props:
+  - items (required): Array of strings
+  - spacing (optional): 'compact' | 'default' | 'relaxed' (default: 'default')
+#}
+
+{% set spacing = spacing|default('default') %}
+{% set space_class = spacing == 'compact' ? 'space-y-2' : (spacing == 'relaxed' ? 'space-y-4' : 'space-y-3') %}
+
+<ul class="{{ space_class }} text-[15px] leading-7 text-slate-600">
+  {% for item in items %}
+    <li class="flex items-start gap-2.5">
+      <div class="mt-1 grid h-5 w-5 shrink-0 place-items-center text-hospital-600">
+        {{ icon('check', { class: 'h-4 w-4' }) }}
+      </div>
+      <span>{{ item }}</span>
+    </li>
+  {% endfor %}
+</ul>

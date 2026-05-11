@@ -1,0 +1,174 @@
+{#
+  Hero Component - Reusable hero section for all pages
+  
+  Parameters:
+  - variant: 'home' | 'page' | 'archive' | 'single' (default: 'page')
+  - eyebrow: Badge text (optional)
+  - eyebrow_icon: Icon name for eyebrow (optional)
+  - title: Main heading (required)
+  - description: Subtitle/description text (optional)
+  - image: Image object with url and alt (optional)
+  - image_aspect: Aspect ratio class (default: 'aspect-[16/9]')
+  - actions: Array of button objects (optional)
+  - metrics: Array of metric objects with value and label (optional)
+  - search_form: Search form HTML (optional)
+  - quick_links: Array of link objects (optional)
+  - floating_card: Floating card content (optional)
+  - gradient: Enable green gradient background (default: false)
+  - container: 'default' | 'narrow' (default: 'default')
+#}
+
+{% set variant = variant|default('page') %}
+{% set container_class = container == 'narrow' ? 'rspku-container-narrow' : 'rspku-container' %}
+{% set gradient = gradient|default(false) %}
+{% set image_aspect = image_aspect|default('aspect-[16/9]') %}
+
+{# Hero Section #}
+<section class="relative overflow-hidden {{ gradient ? 'bg-gradient-to-br from-hospital-100/40 via-hospital-50/30 to-white' : '' }} {{ variant == 'home' ? 'pb-12 pt-8' : 'rspku-section pb-8' }}">
+  <div class="{{ container_class }}">
+    
+    {# HOME VARIANT - Two columns with image #}
+    {% if variant == 'home' %}
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        {# Hero Content #}
+        <div class="space-y-8">
+          {% if eyebrow %}
+            <div class="inline-flex items-center gap-2 rounded-full bg-hospital-50 px-4 py-2 text-sm font-medium text-hospital-700">
+              {% if eyebrow_icon %}
+                {{ icon(eyebrow_icon, { class: 'h-4 w-4' }) }}
+              {% endif %}
+              <span>{{ eyebrow }}</span>
+            </div>
+          {% endif %}
+          
+          <div class="space-y-6">
+            <h1 class="text-4xl font-bold leading-tight text-slate-950 sm:text-5xl lg:text-6xl">{{ title|raw }}</h1>
+            {% if description %}
+              <p class="max-w-xl text-lg leading-relaxed text-slate-600">{{ description }}</p>
+            {% endif %}
+          </div>
+
+          {# Primary CTAs #}
+          {% if actions %}
+            <div class="flex flex-wrap gap-3">
+              {% for action in actions %}
+                {% include 'components/button.twig' with action only %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {# Key Metrics #}
+          {% if metrics %}
+            <div class="grid gap-8 border-t border-slate-200 pt-8 sm:grid-cols-3">
+              {% for metric in metrics %}
+                <div>
+                  <p class="text-3xl font-bold text-slate-950">{{ metric.value }}</p>
+                  <p class="mt-2 text-sm text-slate-600">{{ metric.label }}</p>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        {# Hero Visual #}
+        <div class="relative">
+          <div class="overflow-hidden rounded-2xl bg-slate-100">
+            {% if image and image.url %}
+              <img src="{{ image.url }}" alt="{{ image.alt|default(title) }}" class="{{ image_aspect }} w-full object-cover">
+            {% else %}
+              <div class="grid {{ image_aspect }} place-items-center bg-hospital-50/30 p-8 text-center text-lg font-semibold text-slate-500">{{ image.placeholder|default('Visual layanan rumah sakit') }}</div>
+            {% endif %}
+          </div>
+          
+          {# Floating Card #}
+          {% if floating_card %}
+            <div class="absolute -bottom-4 left-6 right-6 rounded-xl bg-white p-4 shadow-md">
+              {{ floating_card|raw }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    
+    {# ARCHIVE VARIANT - Two columns with search #}
+    {% elseif variant == 'archive' %}
+      <div class="space-y-10">
+        <div class="grid gap-10 xl:grid-cols-[1fr_0.95fr] xl:items-end">
+          <div class="space-y-6">
+            {% if eyebrow %}
+              <span class="rspku-eyebrow">{{ eyebrow }}</span>
+            {% endif %}
+            <h1 class="max-w-3xl text-[2.25rem] font-semibold leading-[1.08] text-slate-950 sm:text-[2.75rem] xl:text-[3.25rem]">{{ title }}</h1>
+            {% if description %}
+              <p class="max-w-2xl text-base leading-8 text-slate-600">{{ description }}</p>
+            {% endif %}
+
+            {# Search Form #}
+            {% if search_form %}
+              {{ search_form|raw }}
+            {% endif %}
+
+            {# Quick Links #}
+            {% if quick_links %}
+              <div class="flex flex-wrap gap-3">
+                {% for link in quick_links %}
+                  <a href="{{ link.url }}" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-hospital-200 hover:bg-hospital-50/30">
+                    <span>{{ link.title }}</span>
+                    {{ icon('arrow-right', { class: 'h-3 w-3' }) }}
+                  </a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          {# Hero Visual #}
+          <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-100">
+            {% if image and image.url %}
+              <img src="{{ image.url }}" alt="{{ image.alt|default(title) }}" class="{{ image_aspect }} w-full object-cover">
+            {% else %}
+              <div class="grid {{ image_aspect }} place-items-center bg-[#edf4ef] p-8 text-center text-lg font-semibold text-slate-500">{{ image.placeholder|default(title) }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    
+    {# SINGLE VARIANT - Simple header with optional image below #}
+    {% elseif variant == 'single' %}
+      <div class="space-y-8">
+        <div class="space-y-5">
+          {% if eyebrow %}
+            <div class="flex flex-wrap items-center gap-3 text-[15px] text-slate-500">
+              <span class="font-medium text-hospital-700">{{ eyebrow }}</span>
+              {% if meta %}
+                <span class="text-slate-300">&bull;</span>
+                <span>{{ meta }}</span>
+              {% endif %}
+            </div>
+          {% endif %}
+          <h1 class="max-w-4xl text-[2.25rem] font-semibold leading-[1.08] text-slate-950 sm:text-[2.75rem] xl:text-[3.25rem]">{{ title }}</h1>
+          {% if description %}
+            <p class="rspku-section-lead max-w-3xl">{{ description }}</p>
+          {% endif %}
+        </div>
+
+        {# Image below title #}
+        {% if image and image.url %}
+          <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-100">
+            <img src="{{ image.url }}" alt="{{ image.alt|default(title) }}" class="{{ image_aspect }} w-full object-cover">
+          </div>
+        {% endif %}
+      </div>
+    
+    {# PAGE VARIANT - Simple header (default) #}
+    {% else %}
+      <div class="space-y-4">
+        {% if eyebrow %}
+          <span class="rspku-eyebrow">{{ eyebrow }}</span>
+        {% endif %}
+        <h1 class="text-4xl font-black leading-tight text-slate-950 sm:text-5xl">{{ title }}</h1>
+        {% if description %}
+          <p class="max-w-3xl text-lg leading-relaxed text-slate-600">{{ description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>

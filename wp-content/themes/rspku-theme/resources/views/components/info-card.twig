@@ -1,0 +1,34 @@
+{#
+  Info Card Component
+  
+  Usage:
+  {% include 'components/info-card.twig' with {
+    icon: 'tag',
+    label: 'Kategori',
+    value: 'VIP',
+    size: 'default'
+  } only %}
+  
+  Props:
+  - icon (required): Icon name
+  - label (required): Label text
+  - value (required): Value text
+  - size (optional): 'small' | 'default' (default: 'default')
+#}
+
+{% set size = size|default('default') %}
+{% set icon_size = size == 'small' ? 'h-9 w-9' : 'h-10 w-10' %}
+{% set icon_rounded = size == 'small' ? 'rounded-[0.65rem]' : 'rounded-[0.75rem]' %}
+{% set icon_class = size == 'small' ? 'h-4 w-4' : 'h-5 w-5' %}
+{% set label_size = size == 'small' ? 'text-[13px]' : 'text-[12px]' %}
+{% set value_size = 'text-[15px]' %}
+
+<div class="flex items-start gap-3 rounded-lg border border-slate-200 bg-white p-4">
+  <div class="grid {{ icon_size }} shrink-0 place-items-center {{ icon_rounded }} border border-hospital-200 bg-[#f8fbf8] text-hospital-700">
+    {{ icon(icon, { class: icon_class }) }}
+  </div>
+  <div class="min-w-0">
+    <p class="{{ label_size }} font-medium uppercase tracking-[0.06em] text-slate-500">{{ label }}</p>
+    <p class="mt-1 {{ value_size }} font-semibold text-slate-950">{{ value }}</p>
+  </div>
+</div>

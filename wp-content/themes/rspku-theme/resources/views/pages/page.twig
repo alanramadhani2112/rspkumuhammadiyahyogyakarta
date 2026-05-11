@@ -1,0 +1,24 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  <section class="rspku-section">
+    <div class="rspku-container-narrow space-y-8">
+      {% if post %}
+        {% include 'partials/breadcrumb.twig' with {
+          items: [
+            { title: 'Home', url: site.url },
+            { title: post.title, current: true }
+          ]
+        } only %}
+
+        <div class="space-y-4">
+          <span class="rspku-eyebrow">Informasi</span>
+          <h1 class="text-4xl font-black leading-tight text-slate-950 sm:text-5xl">{{ post.title }}</h1>
+        </div>
+        <div class="rspku-divider pt-8">
+          <div class="rspku-prose">{{ post.content|raw }}</div>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}

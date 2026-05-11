@@ -1,0 +1,95 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  {% if article_single is defined %}
+    {% set primary_category = article_single.primary_category %}
+    {% set breadcrumb_items = [{ title: 'Home', url: site.url }] %}
+    {% if primary_category %}
+      {% set breadcrumb_items = breadcrumb_items|merge([{ title: primary_category.name, url: primary_category.url }]) %}
+    {% endif %}
+    {% set breadcrumb_items = breadcrumb_items|merge([{ title: post.title, current: true }]) %}
+    <article class="rspku-section pb-10">
+      <div class="rspku-container-narrow space-y-8">
+        {% include 'partials/breadcrumb.twig' with {
+          items: breadcrumb_items
+        } only %}
+
+        <div class="space-y-5">
+          <div class="flex flex-wrap items-center gap-3 text-[15px] text-slate-500">
+            {% if primary_category %}
+              <span class="font-medium text-hospital-700">{{ primary_category.name }}</span>
+              <span class="text-slate-300">&bull;</span>
+            {% endif %}
+            <span>{{ post.date('j M Y') }}</span>
+          </div>
+          <h1 class="max-w-4xl text-[2.25rem] font-semibold leading-[1.08] text-slate-950 sm:text-[2.75rem] xl:text-[3.25rem]">{{ post.title }}</h1>
+        </div>
+
+        {% if post.thumbnail %}
+          <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-100">
+            <img src="{{ post.thumbnail.src('rspku-hero') }}" alt="{{ post.title }}" class="aspect-[16/9] w-full object-cover">
+          </div>
+        {% endif %}
+
+        <div class="rspku-divider pt-8">
+          <div class="rspku-prose">{{ post.content|raw }}</div>
+        </div>
+      </div>
+    </article>
+
+    {% if article_single.related_articles %}
+      <section class="rspku-section pt-0">
+        <div class="rspku-container space-y-10">
+          <div class="flex items-end justify-between gap-6">
+            <div>
+              <span class="rspku-eyebrow">Info update</span>
+              <h2 class="mt-4 text-[2.5rem] font-semibold leading-tight text-slate-950 sm:text-[3rem]">Berita terbaru</h2>
+            </div>
+            {% if primary_category %}
+              <a href="{{ primary_category.url }}" class="rspku-icon-button hidden lg:inline-flex" aria-label="Lihat semua artikel">
+                {{ icon('arrow-up-right', { class: 'h-6 w-6' }) }}
+              </a>
+            {% endif %}
+          </div>
+
+          <div class="grid gap-x-8 gap-y-10 xl:grid-cols-3">
+            {% for item in article_single.related_articles %}
+              {% include 'components/content-card.twig' with {
+                item: item|merge({
+                  badge: 'Berita',
+                  show_link: false
+                })
+              } %}
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  {% else %}
+    <article class="rspku-section">
+      <div class="rspku-container-narrow space-y-8">
+        {% include 'partials/breadcrumb.twig' with {
+          items: [
+            { title: 'Home', url: site.url },
+            { title: post.title, current: true }
+          ]
+        } only %}
+
+        {% if post.thumbnail %}
+          <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-100">
+            <img src="{{ post.thumbnail.src('rspku-hero') }}" alt="{{ post.title }}" class="aspect-[16/9] w-full object-cover">
+          </div>
+        {% endif %}
+
+        <div class="space-y-4">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-hospital-700">{{ post.date('j M Y') }}</p>
+          <h1 class="max-w-4xl text-[2.25rem] font-black leading-tight text-slate-950 sm:text-[2.75rem] xl:text-[3.25rem]">{{ post.title }}</h1>
+        </div>
+
+        <div class="rspku-divider pt-8">
+          <div class="rspku-prose">{{ post.content|raw }}</div>
+        </div>
+      </div>
+    </article>
+  {% endif %}
+{% endblock %}

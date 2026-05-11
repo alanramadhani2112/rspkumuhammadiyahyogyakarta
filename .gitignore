@@ -1,0 +1,103 @@
+# =========================================================
+# RSPKU Jogja – Clean Repository (Opsi A)
+# Hanya melacak kode custom: theme rspku-theme, plugin rspku-core,
+# spec Kiro, skills agent, dan dokumentasi proyek.
+# =========================================================
+
+# ---------- WordPress Core ----------
+/wp-admin/
+/wp-includes/
+/index.php
+/wp-*.php
+/xmlrpc.php
+/license.txt
+/readme.html
+/llms.txt
+
+# ---------- File verifikasi & web server ----------
+/.htaccess
+/.user
+/.user.ini
+/wordfence-waf.php
+/google*.html
+
+# ---------- File mencurigakan / tidak dikenal ----------
+/file-manager.php
+/clear-cache.php
+/fix-project.ps1
+
+# ---------- Konfigurasi dengan secret ----------
+wp-config.php
+wp-config-sample.php
+
+# ---------- wp-content: whitelist hanya theme+plugin custom ----------
+/wp-content/*
+!/wp-content/themes/
+!/wp-content/plugins/
+
+# Themes: whitelist hanya rspku-theme
+/wp-content/themes/*
+!/wp-content/themes/rspku-theme/
+
+# Plugins: whitelist hanya rspku-core
+/wp-content/plugins/*
+!/wp-content/plugins/rspku-core/
+
+# ---------- Build artefact & dependency di theme ----------
+wp-content/themes/rspku-theme/node_modules/
+wp-content/themes/rspku-theme/vendor/
+wp-content/themes/rspku-theme/public/build/
+wp-content/themes/rspku-theme/.playwright-cli/
+wp-content/themes/rspku-theme/output/
+
+# ---------- Arsip (berisi SQL dump produksi - SENSITIF) ----------
+/archive/
+
+# ---------- Output / artefak lokal ----------
+/output/
+/.playwright-cli/
+/skills-lock.json
+
+# ---------- Next.js lama (sudah tidak digunakan) ----------
+/frontend/
+/_archived-frontend/
+
+# ---------- Logs ----------
+*.log
+debug.log
+error_log
+
+# ---------- OS ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- IDE ----------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---------- Node / PHP deps ----------
+node_modules/
+vendor/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---------- Build generik ----------
+dist/
+build/
+.next/
+out/
+
+# ---------- Env ----------
+.env
+.env.local
+.env.*.local
+
+# ---------- Temp / cache ----------
+*.tmp
+*.temp
+.cache/

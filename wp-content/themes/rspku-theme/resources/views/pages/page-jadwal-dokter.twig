@@ -1,0 +1,157 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  <section class="rspku-section pb-10 rspku-schedule-page" x-data="scheduleTable">
+    <div class="rspku-container space-y-10">
+      {% include 'partials/breadcrumb.twig' with {
+        items: [
+          { title: 'Home', url: site.url },
+          { title: post.title, current: true }
+        ]
+      } only %}
+
+      <div class="grid gap-10 xl:grid-cols-[1.05fr_0.95fr] xl:items-end">
+        <div class="space-y-6">
+          <span class="rspku-eyebrow">Jadwal layanan</span>
+          <h1 class="rspku-page-title max-w-3xl font-semibold text-slate-950">{{ post.title }}</h1>
+          <p class="rspku-section-lead max-w-2xl">Jadwal praktik dokter diambil langsung dari tabel operasional resmi. Saat data sumber diperbarui, daftar dokter, spesialisasi, dan detail jadwal akan ikut tersinkron secara otomatis.</p>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="rspku-schedule-metric">
+            <div class="flex items-start gap-4">
+              <div class="grid h-11 w-11 shrink-0 place-items-center rounded-[0.9rem] bg-white text-hospital-700">
+                {{ icon('calendar-days', { class: 'h-5 w-5' }) }}
+              </div>
+              <div>
+                <p class="rspku-stat-label">Dokter terjadwal</p>
+                <p class="rspku-stat-value mt-3" x-text="visibleRows">{{ schedule_page.summary.doctor_count|default(0) }}</p>
+                <p class="mt-3 text-[14px] leading-6 text-slate-600">Jumlah dokter yang tampil setelah pencarian dan filter spesialisasi diterapkan.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="rspku-schedule-metric">
+            <div class="flex items-start gap-4">
+              <div class="grid h-11 w-11 shrink-0 place-items-center rounded-[0.9rem] bg-white text-hospital-700">
+                {{ icon('filter', { class: 'h-5 w-5' }) }}
+              </div>
+              <div>
+                <p class="rspku-stat-label">Kategori spesialisasi</p>
+                <p class="rspku-stat-value mt-3">{{ schedule_page.summary.specialization_count|default(0) }}</p>
+                <p class="mt-3 text-[14px] leading-6 text-slate-600">Semua spesialisasi diturunkan langsung dari tabel jadwal dokter.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rspku-divider"></div>
+
+      <div class="grid gap-4 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.8fr)_auto] lg:items-end">
+        <div class="space-y-2">
+          <label for="schedule-search" class="block text-sm font-medium text-slate-600">Cari dokter atau spesialisasi</label>
+          <input id="schedule-search" x-model.debounce.250ms="query" @input="filterRows" type="search" placeholder="Contoh: dr. H. Zamroni, Penyakit Saraf" class="rspku-schedule-input">
+        </div>
+
+        <div class="space-y-2">
+          <label for="schedule-specialization" class="block text-sm font-medium text-slate-600">Filter spesialisasi</label>
+          <select id="schedule-specialization" x-model="specialization" x-ref="specialization" @change="filterRows" class="rspku-schedule-select">
+            <option value="">Semua spesialisasi</option>
+            {% for group in schedule_page.specialization_groups|default([]) %}
+              <optgroup label="{{ group.title }}">
+                {% for item in group.items %}
+                  <option value="{{ item.slug }}">{{ item.name }}</option>
+                {% endfor %}
+              </optgroup>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="flex gap-3 lg:justify-end">
+          <button type="button" class="rspku-button rspku-button-primary px-6" @click="filterRows">
+            {{ icon('search', { class: 'h-4 w-4' }) }}
+            <span>Cari</span>
+          </button>
+          <button type="button" class="rspku-button rspku-button-secondary px-5" @click="reset">Reset</button>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3 text-[15px] text-slate-600 lg:flex-row lg:items-center lg:justify-between">
+        <p>Data jadwal bersumber dari tabel resmi dan hanya menggunakan satu lokasi rumah sakit, sehingga tidak ada filter cabang.</p>
+        <div class="inline-flex min-h-11 items-center gap-2 rounded-full border border-slate-200 bg-[#f7faf7] px-4 text-sm">
+          {{ icon('calendar-days', { class: 'h-4 w-4 text-hospital-600' }) }}
+          <span>Geser tabel ke samping pada layar kecil</span>
+        </div>
+      </div>
+
+      {% if schedule_page.rows %}
+        <div class="rspku-schedule-table-shell">
+          <div class="rspku-schedule-table-wrap">
+            <table class="rspku-schedule-table" aria-label="Jadwal Pelayanan Poliklinik">
+              <thead>
+                <tr>
+                  <th class="column-doctor">Dokter</th>
+                  <th class="column-specialization">Spesialisasi</th>
+                  {% for day in schedule_page.day_headers %}
+                    <th>{{ day.label }}</th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in schedule_page.rows %}
+                  <tr
+                    data-schedule-row
+                    data-schedule-name="{{ row.name|lower|e('html_attr') }}"
+                    data-schedule-specialization="{{ row.specialization_slug|e('html_attr') }}"
+                    data-schedule-category="{{ row.specialization_category_slug|e('html_attr') }}"
+                  >
+                    <th scope="row" class="column-doctor">
+                      <div class="space-y-1">
+                        <p class="text-[14px] font-semibold leading-6 text-slate-950">{{ row.name }}</p>
+                        <p class="text-[12px] leading-5 text-slate-500">{{ row.specialization_category }}</p>
+                      </div>
+                    </th>
+                    <td class="column-specialization">
+                      <span class="rspku-schedule-badge">{{ row.specialization }}</span>
+                    </td>
+                    {% for day in schedule_page.day_headers %}
+                      {% set dayCell = row.days[day.key] %}
+                      <td>
+                        {% if dayCell and dayCell.slots %}
+                          <div class="space-y-2">
+                            {% for slot in dayCell.slots %}
+                              <div class="rspku-schedule-slot">{{ slot.label }}</div>
+                            {% endfor %}
+                          </div>
+                        {% else %}
+                          <span class="rspku-schedule-empty">-</span>
+                        {% endif %}
+                      </td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="rspku-pagination-shell pt-5" x-show="visibleRows > 0">
+          <p class="rspku-pagination-summary" x-text="`Menampilkan ${pageStart()}-${pageEnd()} dari ${visibleRows} dokter`">Menampilkan data dokter.</p>
+          <nav class="rspku-pagination-links rspku-table-pagination" aria-label="Pagination jadwal dokter">
+            <button type="button" class="rspku-pagination-button" x-show="totalPages() > 1" :disabled="currentPage <= 1" @click="goToPage(currentPage - 1)">Sebelumnya</button>
+            <template x-for="page in pages()" :key="page">
+              <button type="button" class="rspku-pagination-button" :class="page === currentPage ? 'is-active' : ''" @click="goToPage(page)" x-text="page"></button>
+            </template>
+            <button type="button" class="rspku-pagination-button" x-show="totalPages() > 1" :disabled="currentPage >= totalPages()" @click="goToPage(currentPage + 1)">Berikutnya</button>
+          </nav>
+        </div>
+        <p class="rspku-pagination-summary pt-5" x-show="visibleRows === 0">Tidak ada dokter yang cocok dengan filter.</p>
+      {% else %}
+        <div class="rounded-[1.5rem] border border-dashed border-slate-300 bg-white p-8 text-center">
+          <p class="text-lg font-semibold text-slate-950">Jadwal dokter belum tersedia.</p>
+          <p class="mt-2 text-[15px] leading-7 text-slate-600">Silakan periksa kembali data tabel jadwal dokter di sumber utama.</p>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endblock %}

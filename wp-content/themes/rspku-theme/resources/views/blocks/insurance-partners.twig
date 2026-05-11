@@ -1,0 +1,21 @@
+{% if items %}
+  <section class="rspku-section">
+    <div class="rspku-container space-y-8">
+      <div>
+        <p class="text-sm font-bold uppercase tracking-[0.24em] text-hospital-700">Partner Asuransi</p>
+        <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">Dukungan penjamin dan mitra</h2>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {% for item in items %}
+          <div class="rspku-card grid min-h-28 place-items-center rounded-3xl p-5 text-center font-extrabold text-slate-700">
+            {% if item.logo %}
+              <img src="{{ item.logo }}" alt="{{ item.name }}" class="max-h-14 object-contain">
+            {% else %}
+              {{ item.name }}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}

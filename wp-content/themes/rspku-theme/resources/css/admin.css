@@ -1,0 +1,202 @@
+body.rspku-admin-structured {
+  background: #f5f7f8;
+}
+
+.rspku-admin-structured #wpcontent,
+.rspku-admin-structured #wpbody-content {
+  background: #f5f7f8;
+}
+
+.rspku-admin-structured #poststuff {
+  max-width: 1180px;
+  padding-top: 18px;
+}
+
+.rspku-admin-structured #post-body.columns-2 {
+  margin-right: 320px;
+}
+
+.rspku-admin-structured #post-body.columns-2 #postbox-container-1 {
+  margin-right: -320px;
+  width: 300px;
+}
+
+.rspku-admin-structured #post-body-content {
+  margin-bottom: 22px;
+}
+
+.rspku-admin-structured #titlediv {
+  margin-bottom: 18px;
+  border: 1px solid #dfe7eb;
+  border-radius: 4px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+.rspku-admin-structured #titlewrap {
+  margin: 0;
+}
+
+.rspku-admin-structured #titlediv #title {
+  min-height: 58px;
+  border: 1px solid #dfe7eb;
+  border-radius: 3px;
+  background: #f9fbfa;
+  padding: 0 18px;
+  color: #16212f;
+  font-size: 24px;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  box-shadow: none;
+}
+
+.rspku-admin-structured #titlediv #title:focus {
+  border-color: #0c8f45;
+  box-shadow: 0 0 0 3px rgba(12, 143, 69, 0.12);
+}
+
+.rspku-admin-structured .postbox {
+  border: 1px solid #dfe7eb;
+  border-radius: 4px;
+  background: #ffffff;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.rspku-admin-structured .postbox-header {
+  border-bottom: 1px solid #edf2f4;
+  background: #ffffff;
+  padding: 0 14px;
+}
+
+.rspku-admin-structured .postbox .hndle,
+.rspku-admin-structured .postbox h2 {
+  color: #16212f;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.rspku-admin-structured .postbox .inside {
+  margin: 0;
+  padding: 18px;
+}
+
+.rspku-admin-structured .acf-postbox > .inside {
+  padding: 0;
+}
+
+.rspku-admin-structured .acf-fields > .acf-field {
+  border-top: 1px solid #edf2f4;
+  padding: 22px 24px;
+}
+
+.rspku-admin-structured .acf-fields > .acf-field:first-child {
+  border-top: 0;
+}
+
+.rspku-admin-structured .acf-label label {
+  color: #16212f;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.rspku-admin-structured .acf-label .description {
+  color: #667085;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.rspku-admin-structured .acf-input input[type='text'],
+.rspku-admin-structured .acf-input input[type='number'],
+.rspku-admin-structured .acf-input input[type='url'],
+.rspku-admin-structured .acf-input input[type='email'],
+.rspku-admin-structured .acf-input select,
+.rspku-admin-structured .acf-input textarea {
+  min-height: 44px;
+  border-color: #d8e2e7;
+  border-radius: 3px;
+  background: #ffffff;
+  color: #16212f;
+  font-size: 14px;
+  box-shadow: none;
+}
+
+.rspku-admin-structured .acf-input textarea {
+  min-height: 120px;
+  line-height: 1.6;
+  padding: 12px 14px;
+}
+
+.rspku-admin-structured .acf-input input:focus,
+.rspku-admin-structured .acf-input select:focus,
+.rspku-admin-structured .acf-input textarea:focus {
+  border-color: #0c8f45;
+  box-shadow: 0 0 0 3px rgba(12, 143, 69, 0.12);
+}
+
+.rspku-admin-structured .acf-image-uploader .image-wrap,
+.rspku-admin-structured .acf-gallery {
+  border-radius: 4px;
+  border-color: #dfe7eb;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.rspku-admin-structured .acf-button,
+.rspku-admin-structured .button {
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.rspku-admin-structured .button-primary {
+  border-color: #08733a;
+  background: #0c8f45;
+}
+
+.rspku-admin-structured .button-primary:hover,
+.rspku-admin-structured .button-primary:focus {
+  border-color: #086d35;
+  background: #08733a;
+}
+
+.rspku-admin-structured #side-sortables .postbox {
+  border-radius: 4px;
+}
+
+.rspku-admin-structured #major-publishing-actions {
+  border-top-color: #edf2f4;
+  background: #f9fbfa;
+}
+
+.rspku-admin-structured #wpseo_meta {
+  margin-top: 22px;
+}
+
+.rspku-admin-structured #wpseo_meta.closed .inside {
+  display: none;
+}
+
+.rspku-admin-structured .rspku-doctor-fields p {
+  margin: 0 0 18px;
+}
+
+.rspku-admin-structured .rspku-doctor-fields input.widefat,
+.rspku-admin-structured .rspku-doctor-fields textarea.widefat,
+.rspku-admin-structured .rspku-doctor-fields select {
+  border-color: #d8e2e7;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+@media (max-width: 960px) {
+  .rspku-admin-structured #post-body.columns-2 {
+    margin-right: 0;
+  }
+
+  .rspku-admin-structured #post-body.columns-2 #postbox-container-1 {
+    margin-right: 0;
+    width: 100%;
+  }
+}

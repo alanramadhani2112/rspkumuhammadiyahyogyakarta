@@ -1,0 +1,109 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  {% if room_landing is defined %}
+    {% set featured = room_landing.featured %}
+    <section class="rspku-section pb-8">
+      <div class="rspku-container space-y-10">
+        {% include 'partials/breadcrumb.twig' with {
+          items: [
+            { title: 'Home', url: site.url },
+            { title: room_landing.title, current: true }
+          ]
+        } only %}
+
+        <div class="grid gap-10 xl:grid-cols-[0.95fr_1.05fr] xl:items-end">
+          <div class="space-y-6">
+            <span class="rspku-eyebrow">Fasilitas</span>
+            <h1 class="max-w-3xl text-[2.35rem] font-semibold leading-[1.06] text-slate-950 sm:text-[2.9rem] xl:text-[3.4rem]">{{ room_landing.title }}</h1>
+            <p class="max-w-2xl text-base leading-8 text-slate-600">{{ room_landing.description }}</p>
+
+            <div class="flex flex-wrap gap-3">
+              <span class="rspku-chip">{{ room_landing.total }} tipe kamar</span>
+              <a href="{{ site.url }}/kontak/" class="rspku-chip">Hubungi admisi</a>
+            </div>
+          </div>
+
+          <div class="overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
+            {% if featured and featured.image and featured.image.url %}
+              <img src="{{ featured.image.url }}" alt="{{ featured.title }}" class="aspect-[16/10] w-full object-cover">
+            {% else %}
+              <div class="grid aspect-[16/10] place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(159,212,91,0.18),_transparent_35%),linear-gradient(180deg,#f8fbf8_0%,#eef6f0_100%)] p-8 text-center">
+                <div class="space-y-4">
+                  <div class="mx-auto grid h-16 w-16 place-items-center rounded-lg border border-hospital-200 bg-white text-hospital-700">
+                    {{ icon('hospital', { class: 'h-8 w-8' }) }}
+                  </div>
+                  <p class="text-lg font-semibold text-slate-700">Pilihan ruang rawat inap yang nyaman untuk pasien dan keluarga</p>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        {% if room_landing.items %}
+          <div class="rspku-divider"></div>
+
+          <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {% for item in room_landing.items %}
+              <article class="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white">
+                <a href="{{ item.url }}" class="block overflow-hidden bg-slate-100">
+                  {% if item.image and item.image.url %}
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                  {% else %}
+                    <div class="grid aspect-[16/11] place-items-center bg-[linear-gradient(180deg,#f8fbf8_0%,#eef6f0_100%)] p-8 text-center">
+                      <div class="space-y-4">
+                        <div class="mx-auto grid h-14 w-14 place-items-center rounded-[1rem] border border-hospital-200 bg-white text-hospital-700">
+                          {{ icon('building-2', { class: 'h-7 w-7' }) }}
+                        </div>
+                        <p class="text-base font-semibold text-slate-700">{{ item.title }}</p>
+                      </div>
+                    </div>
+                  {% endif %}
+                </a>
+
+                <div class="flex flex-1 flex-col gap-4 p-6">
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <p class="text-sm font-medium text-hospital-700">Rawat inap</p>
+                      <h2 class="mt-3 text-[1.15rem] font-semibold leading-7 text-slate-950">
+                        <a href="{{ item.url }}" class="transition hover:text-hospital-700">{{ item.title }}</a>
+                      </h2>
+                    </div>
+                    {% if item.rate %}
+                      <span class="rspku-badge text-hospital-700">Rp {{ item.rate }}</span>
+                    {% endif %}
+                  </div>
+
+                  {% if item.excerpt %}
+                    <p class="text-[15px] leading-7 text-slate-600">{{ item.excerpt }}</p>
+                  {% endif %}
+
+                  <div class="mt-auto pt-2">
+                    {% include 'components/button.twig' with {
+                      text: 'Lihat detail kamar',
+                      url: item.url,
+                      variant: 'secondary',
+                      full_width: true
+                    } only %}
+                  </div>
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+
+          {% include 'partials/pagination.twig' with {
+            pagination: room_landing.pagination|default(''),
+            class: 'pt-2',
+            label: 'Pagination fasilitas rawat inap',
+            total: room_landing.total|default(0),
+            per_page: room_landing.per_page|default(9),
+            current_page: room_landing.current_page|default(1),
+            total_pages: room_landing.total_pages|default(1),
+            show_single: true,
+            item_label: 'kamar'
+          } only %}
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

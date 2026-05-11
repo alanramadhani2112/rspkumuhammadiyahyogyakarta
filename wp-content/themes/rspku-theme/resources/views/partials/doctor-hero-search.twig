@@ -1,0 +1,53 @@
+{% set filters = filters|default({}) %}
+{% set action = action|default(site.url ~ '/dokter/') %}
+{% set button_label = button_label|default('Cari dokter') %}
+{% set placeholder = placeholder|default('Cari nama dokter atau spesialisasi') %}
+{% set quick_links = quick_links|default([]) %}
+{% set title = title|default('Cari dokter berdasarkan jadwal praktik resmi') %}
+{% set description = description|default('Gunakan nama dokter, spesialisasi, atau jadwal praktik dari data operasional resmi rumah sakit.') %}
+{% set title_class = title_class|default('rspku-section-title font-semibold text-inherit') %}
+{% set description_class = description_class|default('max-w-2xl text-base leading-7 text-slate-600') %}
+{% set should_show_header = show_header is defined ? show_header : true %}
+
+<div class="{{ wrapper_class|default('space-y-5') }}">
+  {% if should_show_header %}
+    <div class="space-y-3">
+      <h2 class="{{ title_class }}">{{ title }}</h2>
+      <p class="{{ description_class }}">{{ description }}</p>
+    </div>
+  {% endif %}
+
+  <form action="{{ action }}" method="get" class="grid gap-3 lg:grid-cols-[minmax(0,1fr)_16rem_auto]">
+    <label class="sr-only" for="{{ id_prefix|default('doctor-search') }}-query">Cari dokter</label>
+    <input
+      id="{{ id_prefix|default('doctor-search') }}-query"
+      type="search"
+      name="q"
+      value="{{ filters.q|default('') }}"
+      placeholder="{{ placeholder }}"
+      class="rspku-input"
+    >
+
+    <label class="sr-only" for="{{ id_prefix|default('doctor-search') }}-specialization">Spesialisasi</label>
+    <select
+      id="{{ id_prefix|default('doctor-search') }}-specialization"
+      name="specialization"
+      class="rspku-select"
+    >
+      <option value="">Semua spesialisasi</option>
+      {% for specialization in filter_options.specializations|default([]) %}
+        <option value="{{ specialization.slug }}" {{ filters.specialization|default('') == specialization.slug ? 'selected' : '' }}>{{ specialization.name }}</option>
+      {% endfor %}
+    </select>
+
+    <button type="submit" class="rspku-button rspku-button-primary min-w-[11rem]">{{ button_label }}</button>
+  </form>
+
+  {% if quick_links %}
+    <div class="flex flex-wrap gap-2">
+      {% for link in quick_links %}
+        <a href="{{ link.url }}" class="rspku-chip">{{ link.title }}</a>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

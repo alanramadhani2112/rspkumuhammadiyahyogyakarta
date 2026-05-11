@@ -1,0 +1,74 @@
+{#
+  Button Component
+  
+  Usage:
+  {% include 'components/button.twig' with {
+    text: 'Hubungi admisi',
+    url: site.url ~ '/kontak/',
+    variant: 'primary',
+    size: 'default',
+    icon: 'phone',
+    icon_position: 'left',
+    full_width: false,
+    target: '_self'
+  } only %}
+  
+  Props:
+  - text (required): Button text
+  - url (optional): Link URL (if not provided, renders as <button>)
+  - variant (optional): 'primary' | 'secondary' | 'ghost' | 'white' (default: 'primary')
+  - size (optional): 'sm' | 'default' | 'lg' (default: 'default')
+  - icon (optional): Icon name
+  - icon_position (optional): 'left' | 'right' (default: 'left')
+  - full_width (optional): boolean (default: false)
+  - target (optional): '_self' | '_blank' (default: '_self')
+  - type (optional): 'button' | 'submit' | 'reset' (default: 'button', only for <button> tag)
+  - disabled (optional): boolean (default: false)
+  - class (optional): Additional CSS classes
+#}
+
+{% set variant = variant|default('primary') %}
+{% set size = size|default('default') %}
+{% set icon_position = icon_position|default('left') %}
+{% set full_width = full_width|default(false) %}
+{% set target = target|default('_self') %}
+{% set type = type|default('button') %}
+{% set disabled = disabled|default(false) %}
+
+{# Build CSS classes #}
+{% set base_class = 'rspku-button' %}
+{% set variant_class = 'rspku-button-' ~ variant %}
+{% set size_class = size == 'sm' ? 'rspku-button-sm' : (size == 'lg' ? 'rspku-button-lg' : '') %}
+{% set width_class = full_width ? 'w-full' : '' %}
+{% set icon_gap = icon ? 'gap-2' : '' %}
+{% set additional_class = class|default('') %}
+
+{% set all_classes = [base_class, variant_class, size_class, width_class, icon_gap, additional_class]|filter(class_name => class_name is not empty)|join(' ') %}
+
+{# Render button or link #}
+{% if url %}
+  <a href="{{ url }}" 
+     class="{{ all_classes }}"
+     {% if target == '_blank' %}target="_blank" rel="noopener"{% endif %}
+     {% if disabled %}aria-disabled="true" style="pointer-events: none; opacity: 0.5;"{% endif %}>
+    {% if icon and icon_position == 'left' %}
+      {{ icon(icon, { class: 'h-4 w-4' }) }}
+    {% endif %}
+    <span>{{ text }}</span>
+    {% if icon and icon_position == 'right' %}
+      {{ icon(icon, { class: 'h-4 w-4' }) }}
+    {% endif %}
+  </a>
+{% else %}
+  <button type="{{ type }}" 
+          class="{{ all_classes }}"
+          {% if disabled %}disabled{% endif %}>
+    {% if icon and icon_position == 'left' %}
+      {{ icon(icon, { class: 'h-4 w-4' }) }}
+    {% endif %}
+    <span>{{ text }}</span>
+    {% if icon and icon_position == 'right' %}
+      {{ icon(icon, { class: 'h-4 w-4' }) }}
+    {% endif %}
+  </button>
+{% endif %}

@@ -1,0 +1,21 @@
+<article class="rspku-review-card snap-start">
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <div class="rspku-star-row">
+        {% for _ in 1..5 %}
+          {{ icon('star', { class: 'rspku-star' }) }}
+        {% endfor %}
+      </div>
+      <h3 class="mt-2 text-[1rem] font-semibold leading-6 text-slate-950">{{ review.name }}</h3>
+      <p class="mt-1 text-[13px] leading-5 text-slate-500">{{ review.date_label }}</p>
+    </div>
+    <span class="rspku-chip min-h-[2rem] min-w-[4.65rem] whitespace-nowrap px-3 text-[12px] font-semibold text-hospital-700">{{ review.rating }}.0 / 5</span>
+  </div>
+
+  <p class="mt-4 text-[14px] leading-7 text-slate-600">{{ review.excerpt }}</p>
+
+  <a href="{{ review.source_url }}" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-2 text-[14px] font-medium text-slate-900 transition hover:text-hospital-700">
+    {{ icon('arrow-up-right', { class: 'h-4 w-4' }) }}
+    <span>{{ review.source_label }}</span>
+  </a>
+</article>

@@ -1,0 +1,41 @@
+{#
+  Section Header Component with Icon
+  
+  Usage:
+  {% include 'components/section-header.twig' with {
+    icon: 'check-circle',
+    title: 'Fasilitas kamar',
+    size: 'default'
+  } only %}
+  
+  Props:
+  - icon (required): Icon name
+  - title (required): Section title
+  - size (optional): 'small' | 'default' | 'large' (default: 'default')
+#}
+
+{% set size = size|default('default') %}
+
+{% if size == 'large' %}
+  {% set icon_container = 'h-12 w-12' %}
+  {% set icon_rounded = 'rounded-lg' %}
+  {% set icon_class = 'h-6 w-6' %}
+  {% set title_class = 'text-xl' %}
+{% elseif size == 'small' %}
+  {% set icon_container = 'h-10 w-10' %}
+  {% set icon_rounded = 'rounded-lg' %}
+  {% set icon_class = 'h-5 w-5' %}
+  {% set title_class = 'text-base' %}
+{% else %}
+  {% set icon_container = 'h-11 w-11' %}
+  {% set icon_rounded = 'rounded-lg' %}
+  {% set icon_class = 'h-5 w-5' %}
+  {% set title_class = 'text-lg' %}
+{% endif %}
+
+<div class="flex items-center gap-3">
+  <div class="grid {{ icon_container }} place-items-center {{ icon_rounded }} border border-hospital-200 bg-[#f8fbf8] text-hospital-700">
+    {{ icon(icon, { class: icon_class }) }}
+  </div>
+  <h2 class="{{ title_class }} font-semibold text-slate-950">{{ title }}</h2>
+</div>

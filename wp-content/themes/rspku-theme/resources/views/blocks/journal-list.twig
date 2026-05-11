@@ -1,0 +1,17 @@
+{% if journals %}
+  <section class="rspku-section">
+    <div class="rspku-container space-y-8">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.24em] text-hospital-700">E-Journal</p>
+          <h2 class="mt-2 text-3xl font-black tracking-tight text-slate-950">Publikasi dan jurnal terbaru</h2>
+        </div>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {% for item in journals %}
+          {% include 'components/content-card.twig' with { item: item } %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}

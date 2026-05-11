@@ -1,0 +1,73 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  {% if journal is defined and journal %}
+    <article class="rspku-section pb-10">
+      <div class="rspku-container space-y-10">
+        {% include 'partials/breadcrumb.twig' with {
+          items: [
+            { title: 'Home', url: site.url },
+            { title: 'E Jurnal RS PKU', url: site.url ~ '/e-journal/' },
+            { title: journal.title, current: true }
+          ]
+        } only %}
+
+        <div class="grid gap-10 xl:grid-cols-[1fr_20rem] xl:items-start">
+          <div class="space-y-8">
+            <div class="space-y-5">
+              <span class="rspku-eyebrow">Jurnal</span>
+              <h1 class="max-w-4xl text-[2.25rem] font-semibold leading-[1.08] text-slate-950 sm:text-[2.85rem] xl:text-[3.35rem]">{{ journal.title }}</h1>
+              {% if journal.excerpt %}
+                <p class="max-w-3xl text-xl leading-9 text-slate-600">{{ journal.excerpt }}</p>
+              {% endif %}
+              {% if journal.date %}
+                <p class="text-[15px] text-slate-500">{{ journal.date }}</p>
+              {% endif %}
+            </div>
+
+            {% if journal.content %}
+              <div class="rspku-divider pt-8">
+                <div class="rspku-prose max-w-none">{{ journal.content|raw }}</div>
+              </div>
+            {% endif %}
+
+            {% if journal.file and journal.file.url %}
+              <div class="rspku-document-frame">
+                <iframe src="{{ journal.file.url }}" title="{{ journal.title }}" class="h-[48rem] w-full bg-white"></iframe>
+              </div>
+            {% else %}
+              <div class="rounded-[1.75rem] border border-dashed border-slate-300 bg-[#f8fbf8] p-8">
+                <h2 class="text-[1.25rem] font-semibold text-slate-950">Dokumen belum tersedia</h2>
+                <p class="mt-3 max-w-2xl text-[15px] leading-7 text-slate-600">Metadata jurnal sudah tampil, tetapi file dokumen belum terhubung dengan media library. Struktur halaman ini sudah siap menerima PDF saat file diunggah kembali.</p>
+              </div>
+            {% endif %}
+          </div>
+
+          <aside>
+            <div class="sticky top-28 rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(180deg,#f8fbf8_0%,#ffffff_100%)] p-6">
+              <p class="text-sm font-medium uppercase tracking-[0.08em] text-hospital-700">Aksi cepat</p>
+              <div class="mt-5 flex flex-col gap-3">
+                {% if journal.file and journal.file.url %}
+                  {% include 'components/button.twig' with {
+                    text: 'Unduh PDF',
+                    url: journal.file.url,
+                    variant: 'primary',
+                    target: '_blank',
+                    icon: 'download',
+                    full_width: true
+                  } only %}
+                {% endif %}
+                {% include 'components/button.twig' with {
+                  text: 'Kembali ke arsip',
+                  url: site.url ~ '/e-journal/',
+                  variant: 'secondary',
+                  full_width: true
+                } only %}
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </article>
+  {% endif %}
+{% endblock %}

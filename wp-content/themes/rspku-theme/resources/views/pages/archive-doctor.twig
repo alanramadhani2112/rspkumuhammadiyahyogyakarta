@@ -1,0 +1,61 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  {% set lead_doctor = doctor_archive.doctors|first %}
+  <section class="rspku-section pb-8">
+    <div class="rspku-container space-y-10">
+      {% include 'partials/breadcrumb.twig' with {
+        items: [
+          { title: 'Home', url: site.url },
+          { title: 'Cari dokter', current: true }
+        ]
+      } only %}
+
+      <div class="grid gap-10 xl:grid-cols-[1fr_0.9fr] xl:items-end">
+        {% include 'partials/doctor-hero-search.twig' with {
+          id_prefix: 'archive-doctor',
+          filter_options: doctor_archive.filter_options,
+          filters: doctor_archive.filters,
+          action: site.url ~ '/dokter/',
+          title: 'Cari dokter berdasarkan jadwal praktik',
+          description: 'Temukan dokter, spesialisasi, jadwal praktik, dan layanan terkait dari data resmi yang terus tersinkron.',
+          placeholder: 'Ketik nama dokter atau spesialisasi',
+          button_label: 'Cari dokter',
+          quick_links: [
+            { title: 'Jadwal dokter', url: site.url ~ '/jadwal-dokter/' },
+            { title: 'Poliklinik', url: site.url ~ '/poliklinik/' }
+          ]
+        } only %}
+
+        <div class="overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+          {% if lead_doctor and lead_doctor.photo and lead_doctor.photo.url %}
+            <img src="{{ lead_doctor.photo.url }}" alt="{{ lead_doctor.name }}" class="aspect-[16/10] w-full object-cover">
+          {% else %}
+            <div class="grid aspect-[16/10] place-items-center bg-[#edf4ef] p-8 text-center text-lg font-semibold text-slate-500">Direktori dokter RS PKU Muhammadiyah Yogyakarta</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="rspku-divider"></div>
+
+      <section class="space-y-6">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <span class="rspku-eyebrow">Direktori dokter</span>
+            <h2 class="rspku-section-title mt-4 font-semibold text-slate-950">Dokter yang tersedia dari jadwal resmi</h2>
+          </div>
+          <p class="max-w-xl text-base leading-7 text-slate-600">Gunakan kolom pencarian di atas untuk mencari nama dokter atau spesialisasi. Hasil di bawah tetap mengikuti data jadwal praktik resmi.</p>
+        </div>
+
+        {% include 'partials/doctor-search-results.twig' with {
+          doctors: doctor_archive.doctors,
+          pagination: doctor_archive.pagination|default(''),
+          total: doctor_archive.pagination_meta.total|default(0),
+          per_page: doctor_archive.pagination_meta.per_page|default(12),
+          current_page: doctor_archive.pagination_meta.current_page|default(1),
+          total_pages: doctor_archive.pagination_meta.total_pages|default(1)
+        } %}
+      </section>
+    </div>
+  </section>
+{% endblock %}

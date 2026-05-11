@@ -1,0 +1,35 @@
+{% set share_url = url|default('') %}
+{% set share_title = title|default('') %}
+{% set whatsapp_text = (share_title ~ ' ' ~ share_url)|url_encode %}
+
+{% if share_url %}
+  <section class="space-y-3">
+    <div class="flex items-center gap-2 text-sm font-medium text-slate-500">
+      {{ icon('share-2', { class: 'h-4 w-4 text-hospital-700' }) }}
+      <span>Bagikan artikel</span>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      {% include 'components/button.twig' with {
+        text: 'WhatsApp',
+        url: 'https://wa.me/?text=' ~ whatsapp_text,
+        variant: 'secondary',
+        size: 'sm',
+        target: '_blank'
+      } only %}
+      {% include 'components/button.twig' with {
+        text: 'Facebook',
+        url: 'https://www.facebook.com/sharer/sharer.php?u=' ~ (share_url|url_encode),
+        variant: 'secondary',
+        size: 'sm',
+        target: '_blank'
+      } only %}
+      {% include 'components/button.twig' with {
+        text: 'X',
+        url: 'https://twitter.com/intent/tweet?url=' ~ (share_url|url_encode) ~ '&text=' ~ (share_title|url_encode),
+        variant: 'secondary',
+        size: 'sm',
+        target: '_blank'
+      } only %}
+    </div>
+  </section>
+{% endif %}

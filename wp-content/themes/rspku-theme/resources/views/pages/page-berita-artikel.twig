@@ -1,0 +1,87 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  {% if article_landing is defined %}
+    {% set featured = article_landing.featured %}
+    <section class="rspku-section pb-8">
+      <div class="rspku-container space-y-10">
+        {% include 'partials/breadcrumb.twig' with {
+          items: [
+            { title: 'Home', url: site.url },
+            { title: article_landing.title, current: true }
+          ]
+        } only %}
+
+        <div class="grid gap-10 xl:grid-cols-[1fr_0.95fr] xl:items-end">
+          <div class="space-y-6">
+            <span class="rspku-eyebrow">Informasi</span>
+            <h1 class="max-w-3xl text-[2.25rem] font-semibold leading-[1.08] text-slate-950 sm:text-[2.75rem] xl:text-[3.25rem]">{{ article_landing.title }}</h1>
+            <p class="max-w-2xl text-base leading-8 text-slate-600">{{ article_landing.description }}</p>
+
+            <div class="flex flex-wrap gap-3">
+              <span class="rspku-chip">{{ article_landing.total }} artikel terbit</span>
+              <a href="{{ site.url }}/jadwal-dokter/" class="rspku-chip">Jadwal dokter</a>
+              <a href="{{ site.url }}/kontak/" class="rspku-chip">Kontak rumah sakit</a>
+            </div>
+
+            <form action="{{ article_landing.search_action }}" method="get" class="max-w-3xl">
+              <input type="hidden" name="post_type" value="post">
+              <div class="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+                <label for="news-search" class="sr-only">Cari berita, artikel, atau edukasi kesehatan</label>
+                <input id="news-search" type="search" name="s" placeholder="Cari berita, artikel, atau edukasi kesehatan" class="rspku-input">
+                {% include 'components/button.twig' with {
+                  text: 'Cari Artikel',
+                  type: 'submit',
+                  variant: 'primary',
+                  class: 'min-w-[10rem]'
+                } only %}
+              </div>
+            </form>
+          </div>
+
+          <div class="overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
+            {% if featured and featured.image and featured.image.url %}
+              <img src="{{ featured.image.url }}" alt="{{ featured.title }}" class="aspect-[16/10] w-full object-cover">
+            {% else %}
+              <div class="grid aspect-[16/10] place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(159,212,91,0.18),_transparent_32%),linear-gradient(180deg,#f8fbf8_0%,#eef6f0_100%)] p-8 text-center">
+                <div class="space-y-4">
+                  <div class="mx-auto grid h-16 w-16 place-items-center rounded-lg border border-hospital-200 bg-white text-hospital-700">
+                    {{ icon('newspaper', { class: 'h-8 w-8' }) }}
+                  </div>
+                  <p class="text-lg font-semibold text-slate-700">Kabar terbaru dan edukasi kesehatan RS PKU Muhammadiyah Yogyakarta</p>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        {% if article_landing.items %}
+          <div class="rspku-divider"></div>
+
+          <div class="grid gap-x-8 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
+            {% for item in article_landing.items %}
+              {% include 'components/content-card.twig' with {
+                item: item|merge({
+                  badge: 'Berita & Artikel',
+                  show_link: false
+                })
+              } %}
+            {% endfor %}
+          </div>
+
+          {% include 'partials/pagination.twig' with {
+            pagination: article_landing.pagination|default(''),
+            class: 'pt-2',
+            label: 'Pagination berita dan artikel',
+            total: article_landing.total|default(0),
+            per_page: article_landing.per_page|default(9),
+            current_page: article_landing.current_page|default(1),
+            total_pages: article_landing.total_pages|default(1),
+            show_single: true,
+            item_label: 'artikel'
+          } only %}
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

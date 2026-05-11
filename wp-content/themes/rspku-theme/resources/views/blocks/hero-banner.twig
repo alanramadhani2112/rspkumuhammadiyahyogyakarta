@@ -1,0 +1,27 @@
+<section class="rspku-section">
+  <div class="rspku-container">
+    <div class="relative overflow-hidden rounded-[2rem] bg-slate-950 px-6 py-12 text-white sm:px-10 lg:px-14">
+      <div class="absolute inset-0 opacity-70" aria-hidden="true">
+        <div class="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-hospital-500 blur-3xl"></div>
+        <div class="absolute -bottom-24 left-10 h-56 w-56 rounded-full bg-amber-400 blur-3xl"></div>
+      </div>
+      <div class="relative max-w-3xl space-y-5">
+        {% if attributes.eyebrow %}
+          <p class="text-sm font-bold uppercase tracking-[0.24em] text-white/70">{{ attributes.eyebrow }}</p>
+        {% endif %}
+        <h1 class="text-4xl font-black leading-tight tracking-tight sm:text-5xl">{{ attributes.title|default('RS PKU Muhammadiyah Yogyakarta') }}</h1>
+        {% if attributes.description %}
+          <p class="max-w-2xl text-lg leading-8 text-white/80">{{ attributes.description }}</p>
+        {% endif %}
+        <div class="flex flex-wrap gap-3">
+          {% if attributes.ctaLabel and attributes.ctaUrl %}
+            <a href="{{ attributes.ctaUrl }}" class="rspku-button bg-white text-slate-950">{{ attributes.ctaLabel }}</a>
+          {% endif %}
+          {% if attributes.secondaryLabel and attributes.secondaryUrl %}
+            <a href="{{ attributes.secondaryUrl }}" class="rspku-button border border-white/30 text-white">{{ attributes.secondaryLabel }}</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,227 @@
+<!doctype html>
+<html {{ function('language_attributes') }}>
+<head>
+  <meta charset="{{ site.charset|default('UTF-8') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ function('wp_head') }}
+</head>
+<body class="min-h-screen overflow-x-hidden text-slate-900 antialiased">
+{{ function('wp_body_open') }}
+
+{% set fallback_primary = [
+  { title: 'Beranda', link: site.url },
+  { title: 'Layanan', link: site.url ~ '/layanan/' },
+  { title: 'Fasilitas', link: site.url ~ '/fasilitas-rawat-inap/' },
+  { title: 'Pusat informasi', link: site.url ~ '/berita-artikel/' },
+  { title: 'Karir', link: site.url ~ '/karir/' },
+  { title: 'Kontak', link: site.url ~ '/kontak/' }
+] %}
+{% set primary_items = menus.primary and menus.primary.items ? menus.primary.items : fallback_primary %}
+{% set layanan_children = [
+  { title: 'Semua layanan medis', link: site.url ~ '/layanan/' },
+  { title: 'Layanan unggulan', link: site.url ~ '/layanan-medis/layanan-unggulan/' },
+  { title: 'Layanan penunjang', link: site.url ~ '/layanan-medis/layanan-penunjang/' },
+  { title: 'Poliklinik', link: site.url ~ '/poliklinik/' }
+] %}
+{% set fasilitas_children = [
+  { title: 'Fasilitas rawat inap', link: site.url ~ '/fasilitas-rawat-inap/' },
+  { title: 'Manajemen RS', link: site.url ~ '/manajemen-rs/' },
+  { title: 'Kontak rumah sakit', link: site.url ~ '/kontak/' }
+] %}
+{% set info_children = [
+  { title: 'Berita dan artikel', link: site.url ~ '/berita-artikel/' },
+  { title: 'E-Jurnal', link: site.url ~ '/e-jurnal/' },
+  { title: 'Legalitas', link: site.url ~ '/legalitas/' },
+  { title: 'Sejarah', link: site.url ~ '/sejarah-kami/' }
+] %}
+
+<a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:border focus:border-slate-200 focus:bg-white focus:px-4 focus:py-3" href="#main">
+  Lewati ke konten
+</a>
+
+<header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl" x-data="siteNavigation" @keydown.escape.window="close">
+  <div class="border-b border-slate-200 bg-[#f4f5f2]">
+    <div class="rspku-container flex flex-wrap items-center justify-between gap-3 py-3 text-sm text-slate-600">
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <a href="tel:+62274512321" class="inline-flex items-center gap-2 font-medium transition hover:text-hospital-700">
+          {{ icon('phone', { class: 'h-4 w-4 text-hospital-600' }) }}
+          <span class="hidden sm:inline">IGD 24 Jam:</span>
+          <span class="font-semibold">0274 512321</span>
+        </a>
+        <a href="{{ site.url }}/kontak/" class="inline-flex items-center gap-2 font-medium transition hover:text-hospital-700">
+          {{ icon('map-pin', { class: 'h-4 w-4 text-hospital-600' }) }}
+          <span class="hidden md:inline">Jl. KH Ahmad Dahlan 20, Yogyakarta</span>
+          <span class="md:hidden">Hubungi Kami</span>
+        </a>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-700">
+          {{ icon('activity', { class: 'h-3.5 w-3.5' }) }}
+          <span>IGD 24/7</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rspku-container flex min-h-[5.5rem] items-center justify-between gap-6">
+    <a href="{{ site.url }}" class="flex min-h-12 items-center gap-3 text-slate-950">
+      {% if site_logo.url %}
+        <img src="{{ site_logo.url }}" alt="{{ site_logo.alt|default(site.name) }}" class="h-14 w-auto object-contain sm:h-16">
+      {% else %}
+        <span class="grid h-14 w-14 place-items-center rounded-2xl bg-hospital-700 text-xl font-black text-white">PKU</span>
+        <span class="max-w-[14rem] text-sm font-bold leading-tight sm:text-base">{{ site.name }}</span>
+      {% endif %}
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Menu utama">
+      {% for item in primary_items %}
+        {% set title_lower = item.title|lower %}
+        {% set children = item.children is defined and item.children ? item.children : (
+          title_lower == 'layanan' ? layanan_children :
+          (title_lower == 'fasilitas' ? fasilitas_children :
+          (title_lower starts with 'pusat informasi' ? info_children : []))
+        ) %}
+        {% set has_children = children is not empty %}
+        <div class="relative flex items-center py-2" {% if has_children %}@mouseenter="openPanel('desktop-{{ loop.index }}')" @mouseleave="scheduleClose()" @focusin="openPanel('desktop-{{ loop.index }}')" @focusout="scheduleClose()"{% endif %}>
+          <a href="{{ item.link }}" class="rspku-nav-link inline-flex min-h-11 items-center gap-2 rounded-sm px-4 text-slate-600 transition hover:bg-[#f4f5f2] hover:text-slate-950 {{ item.current is defined and item.current ? 'bg-[#f4f5f2] text-slate-950' : '' }}" {% if has_children %}:class="isPanel('desktop-{{ loop.index }}') ? 'bg-[#f4f5f2] text-slate-950' : ''"{% endif %}>
+            <span>{{ item.title }}</span>
+            {% if has_children %}
+              <span class="transition duration-200" :class="isPanel('desktop-{{ loop.index }}') ? 'rotate-180 text-slate-700' : 'text-slate-400'">
+                {{ icon('chevron-down', { class: 'h-4 w-4' }) }}
+              </span>
+            {% endif %}
+          </a>
+          {% if has_children %}
+            <div class="absolute left-0 top-full z-20 hidden w-[20.5rem] pt-1 lg:block" x-cloak x-show="isPanel('desktop-{{ loop.index }}')" x-transition.opacity.scale.origin.top.left.90 @mouseenter="cancelClose()" @mouseleave="scheduleClose()">
+              <div class="overflow-hidden rounded-sm border border-slate-200 bg-white">
+                {% for child in children %}
+                  <a href="{{ child.link }}" class="rspku-menu-link block px-4 py-3 text-slate-600 transition hover:bg-[#f5f7f4] hover:text-slate-950">{{ child.title }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </nav>
+
+    <div class="hidden items-center gap-2 lg:flex">
+      <a href="{{ site.url }}/dokter/" class="rspku-button rspku-button-primary gap-3 px-7">
+        {{ icon('clipboard-list', { class: 'h-5 w-5' }) }}
+        <span>Daftar</span>
+      </a>
+    </div>
+
+    <button type="button" class="grid min-h-12 min-w-12 place-items-center rounded-full border border-slate-200 bg-white text-slate-900 lg:hidden" @click="toggle" :aria-expanded="open.toString()" aria-label="Buka menu">
+      <span class="text-sm font-bold" x-show="!open">Menu</span>
+      <span class="text-sm font-bold" x-cloak x-show="open">Tutup</span>
+    </button>
+  </div>
+
+  <div class="border-t border-slate-100 bg-white lg:hidden" x-cloak x-show="open">
+    <nav class="rspku-container grid gap-3 py-5" aria-label="Menu mobile">
+      {% for item in primary_items %}
+        {% set title_lower = item.title|lower %}
+        {% set children = item.children is defined and item.children ? item.children : (
+          title_lower == 'layanan' ? layanan_children :
+          (title_lower == 'fasilitas' ? fasilitas_children :
+          (title_lower starts with 'pusat informasi' ? info_children : []))
+        ) %}
+        {% set has_children = children is not empty %}
+        <div class="rounded-lg border border-slate-200 bg-white">
+          <div class="flex items-center justify-between gap-3 px-4 py-3">
+            <a href="{{ item.link }}" class="rspku-mobile-nav-link text-slate-700" @click="close">{{ item.title }}</a>
+            {% if has_children %}
+              <button type="button" class="text-sm font-semibold text-slate-500" @click="togglePanel('mobile-{{ loop.index }}')">
+                <span x-show="!isPanel('mobile-{{ loop.index }}')">+</span>
+                <span x-cloak x-show="isPanel('mobile-{{ loop.index }}')">-</span>
+              </button>
+            {% endif %}
+          </div>
+          {% if has_children %}
+            <div class="grid gap-1 px-4 pb-4" x-cloak x-show="isPanel('mobile-{{ loop.index }}')">
+              {% for child in children %}
+                <a href="{{ child.link }}" class="rspku-menu-link rounded-2xl px-3 py-2 text-slate-600 hover:bg-[#f5f7f4]" @click="close">{{ child.title }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <a href="{{ site.url }}/dokter/" class="rspku-button rspku-button-primary w-full text-base">Daftar</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="mt-16 border-t border-slate-200 bg-white">
+  <div class="rspku-container grid gap-8 py-14 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
+    <div class="space-y-6">
+      <div class="flex items-center gap-4">
+        {% if site_logo.url %}
+          <img src="{{ site_logo.url }}" alt="{{ site_logo.alt|default(site.name) }}" class="h-14 w-auto object-contain">
+        {% else %}
+          <span class="grid h-14 w-14 place-items-center rounded-2xl bg-hospital-700 text-xl font-black text-white">PKU</span>
+        {% endif %}
+      </div>
+      <p class="max-w-sm text-base leading-relaxed text-slate-600">Rumah sakit islami dan unggul untuk layanan kesehatan, informasi medis, dan edukasi publik yang lebih mudah diakses.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="rspku-icon-button min-h-11 min-w-11 text-[#d62976]" aria-label="Instagram">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="1"></circle>
+          </svg>
+        </a>
+        <a href="#" class="rspku-icon-button min-h-11 min-w-11 text-[#ff0000]" aria-label="YouTube">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M23 12c0 3.2-.3 5.2-.8 6.2a3 3 0 0 1-1.3 1.3c-1 .5-3 .8-6.2.8s-5.2-.3-6.2-.8a3 3 0 0 1-1.3-1.3C6.3 17.2 6 15.2 6 12s.3-5.2.8-6.2a3 3 0 0 1 1.3-1.3C9.1 4 11.1 3.7 14.3 3.7s5.2.3 6.2.8a3 3 0 0 1 1.3 1.3c.5 1 .8 3 .8 6.2Z"></path>
+            <path d="m10 8.8 5.5 3.2L10 15.2V8.8Z" fill="#fff"></path>
+          </svg>
+        </a>
+        <a href="#" class="rspku-icon-button min-h-11 min-w-11 text-[#4267B2]" aria-label="Facebook">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M13.5 22v-8h2.7l.5-3.3h-3.2V8.6c0-.9.3-1.6 1.7-1.6H17V4.1c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.2v2.5H8V14h2.2v8h3.3Z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <p class="text-2xl font-bold text-slate-950">Navigasi</p>
+      <div class="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 text-lg text-slate-600">
+        <a href="{{ site.url }}" class="transition hover:text-hospital-700">Beranda</a>
+        <a href="{{ site.url }}/karir/" class="transition hover:text-hospital-700">Karir</a>
+        <a href="{{ site.url }}/layanan/" class="transition hover:text-hospital-700">Layanan</a>
+        <a href="{{ site.url }}/e-jurnal/" class="transition hover:text-hospital-700">E-Jurnal</a>
+        <a href="{{ site.url }}/fasilitas-rawat-inap/" class="transition hover:text-hospital-700">Fasilitas</a>
+        <a href="{{ site.url }}/kontak/" class="transition hover:text-hospital-700">Kontak</a>
+      </div>
+    </div>
+    <div class="lg:border-l lg:border-slate-200 lg:pl-8">
+      <p class="text-2xl font-bold text-slate-950">Ekosistem</p>
+      <div class="mt-6 grid gap-4 text-lg text-slate-600">
+        <a href="#" class="transition hover:text-hospital-700">Muhammadiyah ID</a>
+        <a href="#" class="transition hover:text-hospital-700">KTAM</a>
+        <a href="#" class="transition hover:text-hospital-700">DOM</a>
+      </div>
+    </div>
+    <div>
+      <p class="text-2xl font-bold text-slate-950">Alamat</p>
+      <div class="mt-6 space-y-2 text-lg leading-relaxed text-slate-600">
+        <p>Office 858</p>
+        <p>Jl. K.H. Djawad Faqih MG3/858 Yogyakarta</p>
+      </div>
+    </div>
+  </div>
+  <div class="rspku-container border-t border-slate-200 py-6">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-lg text-slate-700">&copy; {{ "now"|date("Y") }} Muhammadiyah Software Labs</p>
+      <p class="rspku-footer-mark text-slate-800">LabMu</p>
+    </div>
+  </div>
+</footer>
+
+{{ function('wp_footer') }}
+</body>
+</html>

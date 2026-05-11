@@ -1,0 +1,95 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+  {% if journal_archive is defined %}
+    {% set featured = journal_archive.featured %}
+    <section class="rspku-section pb-8">
+      <div class="rspku-container space-y-12">
+        {% include 'partials/breadcrumb.twig' with {
+          items: [
+            { title: 'Home', url: site.url },
+            { title: 'E Jurnal RS PKU', current: true }
+          ]
+        } only %}
+
+        <div class="grid gap-8 xl:grid-cols-[1fr_0.85fr] xl:items-end">
+          <div class="space-y-6">
+            <span class="rspku-eyebrow">Jurnal</span>
+            <h1 class="max-w-4xl text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl xl:text-[3.75rem]">E Jurnal RS PKU</h1>
+            <p class="max-w-3xl text-base leading-relaxed text-slate-600">Inovasi teknologi kesehatan, edukasi medis, dan pembelajaran klinis yang dirangkum lebih rapi untuk dibaca oleh tenaga kesehatan maupun masyarakat umum.</p>
+          </div>
+
+          <div class="rounded-xl border border-slate-200 bg-[linear-gradient(180deg,#f8fbf8_0%,#ffffff_100%)] p-8">
+            <div class="grid gap-6 sm:grid-cols-2">
+              <div>
+                <p class="text-sm font-medium uppercase tracking-wider text-hospital-700">Publikasi</p>
+                <p class="mt-3 text-4xl font-semibold leading-tight text-slate-950">{{ journal_archive.total }}</p>
+                <p class="mt-3 text-sm leading-relaxed text-slate-600">Entri jurnal tersusun dalam satu arsip yang lebih mudah dipindai.</p>
+              </div>
+              <div>
+                <p class="text-sm font-medium uppercase tracking-wider text-hospital-700">Dokumen siap unduh</p>
+                <p class="mt-3 text-4xl font-semibold leading-tight text-slate-950">{{ journal_archive.documents }}</p>
+                <p class="mt-3 text-sm leading-relaxed text-slate-600">Sistem sudah disiapkan agar file jurnal bisa dilampirkan lebih rapi saat tersedia.</p>
+              </div>
+            </div>
+
+            {% if featured %}
+              <div class="mt-8 rspku-divider pt-6">
+                <p class="text-sm font-medium text-hospital-700">Sorotan terbaru</p>
+                <h2 class="mt-3 text-2xl font-semibold leading-tight text-slate-950">{{ featured.title }}</h2>
+                {% if featured.excerpt %}
+                  <p class="mt-4 text-sm leading-relaxed text-slate-600">{{ featured.excerpt }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="rspku-divider"></div>
+
+        {% if journal_archive.items %}
+          <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {% for item in journal_archive.items %}
+              <article class="rspku-journal-card flex h-full flex-col">
+                <div class="flex items-start justify-between gap-4">
+                  <span class="rspku-eyebrow">Jurnal</span>
+                  {% if item.date %}
+                    <span class="text-sm text-slate-500">{{ item.date }}</span>
+                  {% endif %}
+                </div>
+
+                <div class="mt-6 flex-1 space-y-4">
+                  <h2 class="text-xl font-semibold leading-snug text-slate-950">
+                    <a href="{{ item.url }}" class="transition hover:text-hospital-700">{{ item.title }}</a>
+                  </h2>
+                  {% if item.excerpt %}
+                    <p class="text-sm leading-relaxed text-slate-600">{{ item.excerpt }}</p>
+                  {% endif %}
+                </div>
+
+                <div class="mt-8 flex flex-col gap-3">
+                  <a href="{{ item.url }}" class="rspku-button rspku-button-primary w-full">Baca</a>
+                  {% if item.file and item.file.url %}
+                    <a href="{{ item.file.url }}" target="_blank" rel="noopener" class="rspku-button rspku-button-secondary w-full">Unduh PDF</a>
+                  {% endif %}
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% include 'partials/pagination.twig' with {
+          pagination: pagination|default(''),
+          class: 'pt-2',
+          label: 'Pagination jurnal',
+          total: pagination_meta.total|default(0),
+          per_page: pagination_meta.per_page|default(10),
+          current_page: pagination_meta.current_page|default(1),
+          total_pages: pagination_meta.total_pages|default(1),
+          show_single: pagination_meta.total|default(0) > 0,
+          item_label: pagination_meta.item_label|default('jurnal')
+        } only %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

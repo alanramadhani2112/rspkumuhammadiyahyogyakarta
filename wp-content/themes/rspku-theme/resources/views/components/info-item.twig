@@ -1,0 +1,25 @@
+{#
+  Info Item Component (for sidebar)
+  
+  Usage:
+  {% include 'components/info-item.twig' with {
+    icon: 'tag',
+    label: 'Kategori',
+    value: 'VIP'
+  } only %}
+  
+  Props:
+  - icon (required): Icon name
+  - label (required): Label text
+  - value (required): Value text
+#}
+
+<div class="flex items-start gap-3">
+  <div class="grid h-9 w-9 shrink-0 place-items-center rounded-[0.65rem] bg-slate-100 text-slate-600">
+    {{ icon(icon, { class: 'h-4 w-4' }) }}
+  </div>
+  <div class="min-w-0">
+    <p class="text-[13px] font-medium text-slate-500">{{ label }}</p>
+    <p class="mt-1 text-[15px] font-semibold text-slate-950">{{ value }}</p>
+  </div>
+</div>

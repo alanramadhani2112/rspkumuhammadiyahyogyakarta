@@ -1,0 +1,23 @@
+{% if doctors %}
+  <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+    {% for doctor in doctors %}
+      {% include 'partials/doctor-card.twig' with { doctor: doctor } %}
+    {% endfor %}
+  </div>
+  {% include 'partials/pagination.twig' with {
+    pagination: pagination|default(''),
+    class: 'mt-8',
+    label: 'Pagination dokter',
+    total: total|default(0),
+    per_page: per_page|default(12),
+    current_page: current_page|default(1),
+    total_pages: total_pages|default(1),
+    show_single: total|default(0) > 0,
+    item_label: 'dokter'
+  } only %}
+{% else %}
+  <div class="rounded-lg border border-dashed border-slate-300 bg-white/80 p-8 text-center">
+    <p class="text-lg font-semibold text-slate-950">Dokter belum ditemukan</p>
+    <p class="mt-2 text-sm leading-6 text-slate-600">Coba ubah kata kunci, spesialisasi, layanan, atau hari praktik.</p>
+  </div>
+{% endif %}

@@ -1,0 +1,20 @@
+{% if items %}
+  <nav class="rspku-breadcrumb" aria-label="Breadcrumb">
+    <ol class="flex flex-wrap items-center gap-1.5 text-[0.8125rem] font-medium leading-5 text-slate-500">
+      {% for item in items %}
+        {% if not loop.first %}
+          <li aria-hidden="true" class="text-slate-400">
+            {{ icon('chevron-right', { class: 'h-3.5 w-3.5' }) }}
+          </li>
+        {% endif %}
+        <li class="{{ item.current|default(false) ? 'max-w-full truncate text-slate-400 sm:max-w-[42rem]' : 'text-slate-700' }}">
+          {% if item.current|default(false) %}
+            <span aria-current="page">{{ item.title }}</span>
+          {% else %}
+            <a href="{{ item.url }}" class="transition hover:text-hospital-700">{{ item.title }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </nav>
+{% endif %}

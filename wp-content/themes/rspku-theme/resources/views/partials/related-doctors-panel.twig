@@ -1,0 +1,59 @@
+{% set doctors = doctors|default([]) %}
+
+{% if doctors %}
+  <section class="space-y-4 {{ class|default('') }}">
+    <div class="space-y-2">
+      <p class="text-sm font-medium text-hospital-700">{{ eyebrow|default('Dokter terkait') }}</p>
+      <h2 class="text-[1.15rem] font-semibold leading-tight text-slate-950">{{ title|default('Jadwal dan profil dokter') }}</h2>
+      {% if description|default('') %}
+        <p class="text-[13px] leading-6 text-slate-500">{{ description }}</p>
+      {% endif %}
+    </div>
+
+    {% for doctor in doctors %}
+      {% set specialization = doctor.primary_specialization ?: doctor.specializations|first %}
+      <article class="rspku-mini-doctor">
+        <div class="flex items-start gap-4">
+          <div class="h-14 w-14 shrink-0 overflow-hidden rounded-[1rem] bg-slate-100">
+            {% if doctor.photo and doctor.photo.url %}
+              <img src="{{ doctor.photo.url }}" alt="{{ doctor.name }}" class="h-full w-full object-cover">
+            {% else %}
+              <div class="grid h-full w-full place-items-center bg-[linear-gradient(180deg,#eef6f0_0%,#f8fbf8_100%)] text-lg font-semibold text-hospital-700">{{ doctor.name|slice(0, 1) }}</div>
+            {% endif %}
+          </div>
+          <div class="min-w-0 flex-1">
+            <h3 class="text-[0.98rem] font-semibold leading-6 text-slate-950">
+              <a href="{{ doctor.url }}" class="transition hover:text-hospital-700">{{ doctor.name }}</a>
+            </h3>
+            <div class="mt-2 flex items-center gap-2 text-[13px] leading-6 text-slate-500">
+              {{ icon('stethoscope', { class: 'h-4 w-4 shrink-0' }) }}
+              <span>{{ specialization.name|default('Dokter RS PKU') }}</span>
+            </div>
+            {% if doctor.specialization_category %}
+              <div class="mt-3">
+                <span class="rspku-chip min-h-[2rem] px-3 text-[12px] font-semibold text-hospital-700">{{ doctor.specialization_category }}</span>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="mt-5 flex flex-col gap-3">
+          {% include 'components/button.twig' with {
+            text: 'Buat janji',
+            url: doctor.appointment_url ?: doctor.url,
+            variant: 'primary',
+            size: 'sm',
+            full_width: true
+          } only %}
+          {% include 'components/button.twig' with {
+            text: 'Profil dokter',
+            url: doctor.url,
+            variant: 'secondary',
+            size: 'sm',
+            full_width: true
+          } only %}
+        </div>
+      </article>
+    {% endfor %}
+  </section>
+{% endif %}
