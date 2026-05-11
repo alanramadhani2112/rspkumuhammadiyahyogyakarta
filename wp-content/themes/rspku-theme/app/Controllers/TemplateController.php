@@ -145,8 +145,8 @@ final class TemplateController
                 $context['article_landing'] = [
                     'items' => $articles,
                     'featured' => self::firstWithImage($articles) ?? ($articles[0] ?? null),
-                    'title' => 'Berita & Artikel',
-                    'description' => 'Beragam berita, edukasi kesehatan, dan informasi terbaru RS PKU Muhammadiyah Yogyakarta dalam satu halaman yang lebih mudah dipindai.',
+                    'title' => __('Berita & Artikel', 'rspku-theme'),
+                    'description' => __('Beragam berita, edukasi kesehatan, dan informasi terbaru RS PKU Muhammadiyah Yogyakarta dalam satu halaman yang lebih mudah dipindai.', 'rspku-theme'),
                     'search_action' => home_url('/'),
                     'total' => (int) ($articlePage['total'] ?? self::publishCount('post')),
                     'total_pages' => (int) ($articlePage['total_pages'] ?? 1),
@@ -164,8 +164,8 @@ final class TemplateController
                 $context['journal_landing'] = [
                     'items' => $journals,
                     'featured' => $journals[0] ?? null,
-                    'title' => 'E-Jurnal',
-                    'description' => 'Publikasi kesehatan, pembelajaran klinis, dan inovasi layanan medis RS PKU Muhammadiyah Yogyakarta yang disusun lebih jelas dan rapi.',
+                    'title' => __('E-Jurnal', 'rspku-theme'),
+                    'description' => __('Publikasi kesehatan, pembelajaran klinis, dan inovasi layanan medis RS PKU Muhammadiyah Yogyakarta yang disusun lebih jelas dan rapi.', 'rspku-theme'),
                     'total' => self::publishCount('jurnal'),
                     'documents' => count(
                         array_filter(
@@ -183,8 +183,8 @@ final class TemplateController
                 $context['room_landing'] = [
                     'items' => $rooms,
                     'featured' => self::firstWithImage($rooms) ?? ($rooms[0] ?? null),
-                    'title' => 'Fasilitas Rawat Inap',
-                    'description' => 'Pilihan kamar dan fasilitas perawatan yang disusun lebih proporsional agar keluarga pasien dapat membandingkan opsi layanan dengan cepat.',
+                    'title' => __('Fasilitas Rawat Inap', 'rspku-theme'),
+                    'description' => __('Pilihan kamar dan fasilitas perawatan yang disusun lebih proporsional agar keluarga pasien dapat membandingkan opsi layanan dengan cepat.', 'rspku-theme'),
                     'total' => (int) ($roomPage['total'] ?? self::publishCount('rawat-inap')),
                     'total_pages' => (int) ($roomPage['total_pages'] ?? 1),
                     'current_page' => (int) ($roomPage['current_page'] ?? 1),
@@ -244,8 +244,8 @@ final class TemplateController
 
             if (is_post_type_archive('manajemen-rs')) {
                 $context['management_archive'] = [
-                    'title' => 'Manajemen RS',
-                    'description' => 'Profil pimpinan dan jajaran manajemen RS PKU Muhammadiyah Yogyakarta yang disusun lebih rapi agar struktur kepemimpinan lebih mudah dipahami.',
+                    'title' => __('Manajemen RS', 'rspku-theme'),
+                    'description' => __('Profil pimpinan dan jajaran manajemen RS PKU Muhammadiyah Yogyakarta yang disusun lebih rapi agar struktur kepemimpinan lebih mudah dipahami.', 'rspku-theme'),
                 ];
             }
         }
@@ -254,7 +254,7 @@ final class TemplateController
             $context['posts'] = class_exists(Timber::class) ? Timber::get_posts() : [];
             $context['search_query'] = get_search_query();
             $context['pagination'] = self::pagination($GLOBALS['wp_query']);
-            $context['pagination_meta'] = self::paginationMeta($GLOBALS['wp_query'], 'hasil');
+            $context['pagination_meta'] = self::paginationMeta($GLOBALS['wp_query'], __('hasil', 'rspku-theme'));
             $context['search_view'] = self::searchViewContext();
         }
 
@@ -396,26 +396,26 @@ final class TemplateController
     private static function archiveItemLabel(): string
     {
         if (self::isArticleArchive()) {
-            return 'artikel';
+            return __('artikel', 'rspku-theme');
         }
 
         if (is_post_type_archive('jurnal')) {
-            return 'jurnal';
+            return __('jurnal', 'rspku-theme');
         }
 
         if (is_post_type_archive('poliklinik')) {
-            return 'poliklinik';
+            return __('poliklinik', 'rspku-theme');
         }
 
         if (is_post_type_archive('layanan') || is_tax('kategori-layanan')) {
-            return 'layanan';
+            return __('layanan', 'rspku-theme');
         }
 
         if (is_post_type_archive('manajemen-rs')) {
-            return 'profil';
+            return __('profil', 'rspku-theme');
         }
 
-        return 'item';
+        return __('item', 'rspku-theme');
     }
 
     private static function isArticleArchive(): bool
@@ -445,7 +445,7 @@ final class TemplateController
         }
 
         return [
-            'eyebrow' => 'Berita dan artikel',
+            'eyebrow' => __('Berita dan artikel', 'rspku-theme'),
             'title' => get_the_archive_title(),
             'description' => $description,
             'search_action' => home_url('/'),
@@ -467,11 +467,12 @@ final class TemplateController
         $isArticleSearch = $postType === 'post' || $categorySlug !== '';
 
         return [
-            'eyebrow' => $isArticleSearch ? 'Berita dan artikel' : 'Pencarian',
-            'title' => sprintf('Hasil pencarian untuk "%s"', get_search_query()),
+            'eyebrow' => $isArticleSearch ? __('Berita dan artikel', 'rspku-theme') : __('Pencarian', 'rspku-theme'),
+            /* translators: %s: user's search query */
+            'title' => sprintf(__('Hasil pencarian untuk "%s"', 'rspku-theme'), get_search_query()),
             'description' => $isArticleSearch
-                ? 'Temukan berita, edukasi kesehatan, dan informasi terbaru RS PKU Muhammadiyah Yogyakarta dengan lebih cepat.'
-                : 'Gunakan kata kunci yang lebih spesifik untuk menemukan konten yang Anda butuhkan.',
+                ? __('Temukan berita, edukasi kesehatan, dan informasi terbaru RS PKU Muhammadiyah Yogyakarta dengan lebih cepat.', 'rspku-theme')
+                : __('Gunakan kata kunci yang lebih spesifik untuk menemukan konten yang Anda butuhkan.', 'rspku-theme'),
             'search_action' => home_url('/'),
             'post_type' => $postType,
             'category_slug' => $categorySlug,
@@ -508,19 +509,21 @@ final class TemplateController
     {
         if ($queriedObject instanceof WP_Term) {
             return sprintf(
-                'Kumpulan berita, edukasi kesehatan, dan informasi RS PKU Muhammadiyah Yogyakarta dalam topik %s.',
+                /* translators: %s: topic name */
+                __('Kumpulan berita, edukasi kesehatan, dan informasi RS PKU Muhammadiyah Yogyakarta dalam topik %s.', 'rspku-theme'),
                 $queriedObject->name
             );
         }
 
         if ($queriedObject instanceof WP_Post_Type) {
             return sprintf(
-                'Jelajahi berbagai konten %s yang tersusun rapi dan lebih mudah dipindai.',
+                /* translators: %s: content type plural label */
+                __('Jelajahi berbagai konten %s yang tersusun rapi dan lebih mudah dipindai.', 'rspku-theme'),
                 $queriedObject->labels->name
             );
         }
 
-        return 'Beragam berita, edukasi kesehatan, dan informasi terbaru RS PKU Muhammadiyah Yogyakarta.';
+        return __('Beragam berita, edukasi kesehatan, dan informasi terbaru RS PKU Muhammadiyah Yogyakarta.', 'rspku-theme');
     }
 
     /**
@@ -539,14 +542,15 @@ final class TemplateController
         if ($description === '') {
             $description = $queriedObject instanceof WP_Term
                 ? sprintf(
-                    'Pilihan layanan %s RS PKU Muhammadiyah Yogyakarta yang disusun agar pasien dan keluarga lebih cepat menemukan kebutuhan perawatan yang tepat.',
+                    /* translators: %s: service category name (lowercase) */
+                    __('Pilihan layanan %s RS PKU Muhammadiyah Yogyakarta yang disusun agar pasien dan keluarga lebih cepat menemukan kebutuhan perawatan yang tepat.', 'rspku-theme'),
                     strtolower($queriedObject->name)
                 )
-                : 'Kumpulan layanan medis RS PKU Muhammadiyah Yogyakarta yang disusun lebih rapi dan mudah dipahami.';
+                : __('Kumpulan layanan medis RS PKU Muhammadiyah Yogyakarta yang disusun lebih rapi dan mudah dipahami.', 'rspku-theme');
         }
 
         return [
-            'title' => $queriedObject instanceof WP_Term ? $queriedObject->name : 'Layanan Medis',
+            'title' => $queriedObject instanceof WP_Term ? $queriedObject->name : __('Layanan Medis', 'rspku-theme'),
             'description' => $description,
             'eyebrow' => self::serviceEyebrow($queriedObject),
             'items' => $items,
@@ -556,7 +560,7 @@ final class TemplateController
             'total_pages' => max(1, (int) $query->max_num_pages),
             'per_page' => max(1, (int) $query->get('posts_per_page')),
             'breadcrumb_parent' => [
-                'title' => 'Semua layanan medis',
+                'title' => __('Semua layanan medis', 'rspku-theme'),
                 'url' => home_url('/layanan/'),
             ],
         ];
@@ -565,13 +569,13 @@ final class TemplateController
     private static function serviceEyebrow(object|null $queriedObject): string
     {
         if (!$queriedObject instanceof WP_Term) {
-            return 'Layanan medis';
+            return __('Layanan medis', 'rspku-theme');
         }
 
         return match ($queriedObject->slug) {
-            'layanan-unggulan' => 'Layanan unggulan',
-            'layanan-penunjang' => 'Layanan penunjang',
-            default => 'Layanan medis',
+            'layanan-unggulan' => __('Layanan unggulan', 'rspku-theme'),
+            'layanan-penunjang' => __('Layanan penunjang', 'rspku-theme'),
+            default => __('Layanan medis', 'rspku-theme'),
         };
     }
 
@@ -581,37 +585,37 @@ final class TemplateController
     private static function contactPageContext(): array
     {
         return [
-            'eyebrow' => 'Informasi Kontak',
-            'title' => 'Kami Siap Membantu Anda',
-            'description' => 'Tim RS PKU Muhammadiyah Yogyakarta hadir untuk membantu kebutuhan informasi layanan, pendaftaran, dan kontak penting rumah sakit.',
+            'eyebrow' => __('Informasi Kontak', 'rspku-theme'),
+            'title' => __('Kami Siap Membantu Anda', 'rspku-theme'),
+            'description' => __('Tim RS PKU Muhammadiyah Yogyakarta hadir untuk membantu kebutuhan informasi layanan, pendaftaran, dan kontak penting rumah sakit.', 'rspku-theme'),
             'map_embed_url' => 'https://maps.google.com/maps?q=Jl.%20KH.%20Ahmad%20Dahlan%20No.20%2C%20Ngupasan%2C%20Kec.%20Gondomanan%2C%20Kota%20Yogyakarta%2C%20Daerah%20Istimewa%20Yogyakarta%2055122&t=m&z=14&output=embed&iwloc=near',
             'cards' => [
                 [
                     'icon' => 'map-pin',
-                    'title' => 'Alamat',
-                    'body' => 'Jl. KH. Ahmad Dahlan No.20, Ngupasan, Kec. Gondomanan, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55122',
+                    'title' => __('Alamat', 'rspku-theme'),
+                    'body' => __('Jl. KH. Ahmad Dahlan No.20, Ngupasan, Kec. Gondomanan, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55122', 'rspku-theme'),
                 ],
                 [
                     'icon' => 'phone',
-                    'title' => 'Pusat Panggilan',
+                    'title' => __('Pusat Panggilan', 'rspku-theme'),
                     'lines' => ['+62 274 512653', '+62 8886412345', '+62 274 566129'],
                 ],
                 [
                     'icon' => 'hospital',
-                    'title' => 'IGD',
+                    'title' => __('IGD', 'rspku-theme'),
                     'lines' => ['0274 512653 - 118'],
                 ],
                 [
                     'icon' => 'briefcase',
-                    'title' => 'Email',
+                    'title' => __('Email', 'rspku-theme'),
                     'lines' => ['info@rspkudev.test'],
                 ],
             ],
             'service_hours' => [
-                'IGD: 24 Jam',
-                'Rawat Jalan: 07.00 - 20.00 WIB',
-                'Administrasi: 08.00 - 16.00 WIB',
-                'Pendaftaran Online: 24 Jam',
+                __('IGD: 24 Jam', 'rspku-theme'),
+                __('Rawat Jalan: 07.00 - 20.00 WIB', 'rspku-theme'),
+                __('Administrasi: 08.00 - 16.00 WIB', 'rspku-theme'),
+                __('Pendaftaran Online: 24 Jam', 'rspku-theme'),
             ],
             'socials' => [
                 'Facebook: RS PKU Muhammadiyah Yogyakarta',
@@ -627,56 +631,56 @@ final class TemplateController
     private static function historyPageContext(): array
     {
         return [
-            'eyebrow' => 'Perjalanan Kami',
-            'title' => 'Sejarah RS PKU Muhammadiyah Yogyakarta',
-            'description' => 'Perjalanan panjang pelayanan kesehatan umat yang berakar dari gerakan sosial, berkembang menjadi rumah sakit islami modern, dan tetap berpijak pada nilai dakwah serta kemanusiaan.',
+            'eyebrow' => __('Perjalanan Kami', 'rspku-theme'),
+            'title' => __('Sejarah RS PKU Muhammadiyah Yogyakarta', 'rspku-theme'),
+            'description' => __('Perjalanan panjang pelayanan kesehatan umat yang berakar dari gerakan sosial, berkembang menjadi rumah sakit islami modern, dan tetap berpijak pada nilai dakwah serta kemanusiaan.', 'rspku-theme'),
             'milestones' => [
                 [
                     'label' => '1923',
-                    'title' => 'Berawal dari PKO',
-                    'body' => 'Layanan kesehatan ini dimulai dari klinik sederhana di Jagang Notoprajan No. 72 Yogyakarta untuk membantu masyarakat yang kesulitan mengakses pelayanan medis.',
+                    'title' => __('Berawal dari PKO', 'rspku-theme'),
+                    'body' => __('Layanan kesehatan ini dimulai dari klinik sederhana di Jagang Notoprajan No. 72 Yogyakarta untuk membantu masyarakat yang kesulitan mengakses pelayanan medis.', 'rspku-theme'),
                 ],
                 [
                     'label' => '1928-1936',
-                    'title' => 'Bertumbuh di pusat kota',
-                    'body' => 'PKO berkembang menjadi PKU, berpindah ke Ngabean, lalu menempati lokasi permanen di Jalan K.H. Ahmad Dahlan No. 20 Yogyakarta.',
+                    'title' => __('Bertumbuh di pusat kota', 'rspku-theme'),
+                    'body' => __('PKO berkembang menjadi PKU, berpindah ke Ngabean, lalu menempati lokasi permanen di Jalan K.H. Ahmad Dahlan No. 20 Yogyakarta.', 'rspku-theme'),
                 ],
                 [
                     'label' => '1970-an',
-                    'title' => 'Menjadi rumah sakit',
-                    'body' => 'Status rumah sakit menandai fase baru: pelayanan yang lebih terstruktur, profesional, dan semakin berorientasi pada mutu.',
+                    'title' => __('Menjadi rumah sakit', 'rspku-theme'),
+                    'body' => __('Status rumah sakit menandai fase baru: pelayanan yang lebih terstruktur, profesional, dan semakin berorientasi pada mutu.', 'rspku-theme'),
                 ],
                 [
                     'label' => '1998-sekarang',
-                    'title' => 'Penguatan tata kelola dan PKU Reborn',
-                    'body' => 'Rumah sakit terus memperkuat standar layanan, pendidikan, teknologi kesehatan, dan dakwah melalui pembaruan berkelanjutan.',
+                    'title' => __('Penguatan tata kelola dan PKU Reborn', 'rspku-theme'),
+                    'body' => __('Rumah sakit terus memperkuat standar layanan, pendidikan, teknologi kesehatan, dan dakwah melalui pembaruan berkelanjutan.', 'rspku-theme'),
                 ],
             ],
             'principles' => [
                 [
-                    'title' => 'Falsafah Pelayanan',
-                    'body' => 'Pelayanan kesehatan dipandang sebagai bagian dari dakwah Islam amar ma\'ruf nahi munkar, dengan keselamatan pasien, mutu layanan, dan nilai kemanusiaan sebagai landasan utama.',
+                    'title' => __('Falsafah Pelayanan', 'rspku-theme'),
+                    'body' => __('Pelayanan kesehatan dipandang sebagai bagian dari dakwah Islam amar ma\'ruf nahi munkar, dengan keselamatan pasien, mutu layanan, dan nilai kemanusiaan sebagai landasan utama.', 'rspku-theme'),
                 ],
                 [
-                    'title' => 'Visi',
-                    'body' => 'Menjadi rumah sakit yang Islami dan unggul dalam pelayanan, pendidikan, penelitian, dan dakwah di bidang kesehatan.',
+                    'title' => __('Visi', 'rspku-theme'),
+                    'body' => __('Menjadi rumah sakit yang Islami dan unggul dalam pelayanan, pendidikan, penelitian, dan dakwah di bidang kesehatan.', 'rspku-theme'),
                 ],
                 [
-                    'title' => 'Misi',
+                    'title' => __('Misi', 'rspku-theme'),
                     'items' => [
-                        'Menyelenggarakan pelayanan kesehatan berbasis standar terkini dan bukti ilmiah.',
-                        'Mengembangkan sumber daya insani melalui pendidikan, pelatihan, penelitian, dan pemanfaatan teknologi kesehatan.',
-                        'Melaksanakan dakwah Islam dalam setiap aspek pelayanan dan membangun sinergi untuk masyarakat yang sehat dan sejahtera.',
+                        __('Menyelenggarakan pelayanan kesehatan berbasis standar terkini dan bukti ilmiah.', 'rspku-theme'),
+                        __('Mengembangkan sumber daya insani melalui pendidikan, pelatihan, penelitian, dan pemanfaatan teknologi kesehatan.', 'rspku-theme'),
+                        __('Melaksanakan dakwah Islam dalam setiap aspek pelayanan dan membangun sinergi untuk masyarakat yang sehat dan sejahtera.', 'rspku-theme'),
                     ],
                 ],
             ],
             'values' => [
-                'Amanah: jujur, bertanggung jawab, dan dapat dipercaya.',
-                'Lengkap: menghadirkan layanan kesehatan secara komprehensif.',
-                'Mutu: menjunjung standar pelayanan terkini serta nilai syariah Islamiyah.',
-                'Antusias: melayani dengan cepat, tepat, dan sepenuh hati.',
-                'Universal: terbuka untuk seluruh lapisan masyarakat.',
-                'Nyaman: menciptakan pengalaman layanan yang tenang dan menenteramkan.',
+                __('Amanah: jujur, bertanggung jawab, dan dapat dipercaya.', 'rspku-theme'),
+                __('Lengkap: menghadirkan layanan kesehatan secara komprehensif.', 'rspku-theme'),
+                __('Mutu: menjunjung standar pelayanan terkini serta nilai syariah Islamiyah.', 'rspku-theme'),
+                __('Antusias: melayani dengan cepat, tepat, dan sepenuh hati.', 'rspku-theme'),
+                __('Universal: terbuka untuk seluruh lapisan masyarakat.', 'rspku-theme'),
+                __('Nyaman: menciptakan pengalaman layanan yang tenang dan menenteramkan.', 'rspku-theme'),
             ],
         ];
     }
