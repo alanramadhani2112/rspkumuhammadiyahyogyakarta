@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+# Cancel in-progress runs for the same branch/PR to save CI minutes.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  phpstan:
+    name: PHPStan static analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+          coverage: none
+          ini-values: memory_limit=2G
+
+      # Root dev tooling (PHPStan + phpstan-wordpress stubs)
+      - name: Cache root composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-root-${{ runner.os }}-php83-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            composer-root-${{ runner.os }}-php83-
+
+      - name: Install root composer dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      # Theme runtime dependencies (Timber) — needed so PHPStan can scan
+      # wp-content/themes/rspku-theme/vendor/timber/timber/src
+      - name: Cache theme composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: wp-content/themes/rspku-theme/vendor
+          key: composer-theme-${{ runner.os }}-php83-${{ hashFiles('wp-content/themes/rspku-theme/composer.lock') }}
+          restore-keys: |
+            composer-theme-${{ runner.os }}-php83-
+
+      - name: Install theme composer dependencies
+        working-directory: wp-content/themes/rspku-theme
+        run: composer install --prefer-dist --no-progress --no-interaction --no-dev
+
+      - name: Validate composer.json files
+        run: |
+          composer validate --no-check-publish
+          composer --working-dir=wp-content/themes/rspku-theme validate --no-check-publish
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --memory-limit=2G --no-progress --error-format=github
+
+  php-syntax:
+    name: PHP syntax lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+
+      - name: Lint all tracked PHP files
+        run: |
+          set -e
+          files=$(git ls-files '*.php')
+          if [ -z "$files" ]; then
+            echo "No PHP files tracked."
+            exit 0
+          fi
+          echo "$files" | xargs -n 1 -P 4 php -l

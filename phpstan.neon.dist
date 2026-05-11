@@ -1,0 +1,65 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+    - phpstan-baseline.neon
+
+parameters:
+    level: 5
+
+    # Project-relative paths analysed on every run
+    paths:
+        - wp-content/themes/rspku-theme/app
+        - wp-content/themes/rspku-theme/functions.php
+        - wp-content/themes/rspku-theme/index.php
+        - wp-content/plugins/rspku-core
+
+    # Paths that should not be analysed at all. Note: we still want
+    # Timber's src scanned (see scanDirectories below) so we don't blanket-
+    # exclude the theme vendor directory.
+    excludePaths:
+        - wp-content/themes/rspku-theme/vendor/composer
+        - wp-content/themes/rspku-theme/vendor/symfony
+        - wp-content/themes/rspku-theme/vendor/twig
+        - wp-content/themes/rspku-theme/node_modules
+        - wp-content/themes/rspku-theme/public
+        - wp-content/themes/rspku-theme/scripts
+        - wp-content/themes/rspku-theme/.playwright-cli
+        - wp-content/themes/rspku-theme/output
+        - vendor
+        - wp-admin
+        - wp-includes
+
+    # Pull Timber classes into the symbol table so we can type-check
+    # subclasses (e.g. Rspku\Models\EnhancedPost extends Timber\Post).
+    scanDirectories:
+        - wp-content/themes/rspku-theme/vendor/timber/timber/src
+
+    # Keep PHPStan lean so it runs within Laragon's default 512M memory
+    # limit: disable parallel workers (each worker duplicates memory).
+    parallel:
+        maximumNumberOfProcesses: 1
+
+    # Known dynamic / third-party patterns we tolerate at level 5.
+    ignoreErrors:
+        # ACF function availability is checked via function_exists() guards
+        - '#Function (get_field|get_fields|acf_register_block_type) not found#'
+
+        # Theme bootstrap constants defined in functions.php
+        - '#Constant RSPKU_THEME_(PATH|URL|VERSION) not found#'
+
+        # Timber + Twig: resolved at runtime via composer, but not loaded
+        # during static analysis. These are first-party vendor deps we trust.
+        - '~Timber\\[A-Za-z0-9_]+~'
+        - '~Twig\\[A-Za-z0-9_\\]+~'
+
+        # Missing array value types and generics — progressive, tighten later
+        -
+            identifier: missingType.iterableValue
+        -
+            identifier: missingType.generics
+
+    # Cache path kept inside vendor so it's covered by .gitignore
+    tmpDir: vendor/.phpstan-cache
+
+    # Reporting knobs
+    reportUnmatchedIgnoredErrors: false
+    treatPhpDocTypesAsCertain: false

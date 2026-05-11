@@ -1,0 +1,51 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#2 \\$args of function register_block_type expects array\\{api_version\\?\\: string, title\\?\\: string, category\\?\\: string\\|null, parent\\?\\: array\\<string\\>\\|null, ancestor\\?\\: array\\<string\\>\\|null, allowed_blocks\\?\\: array\\<string\\>\\|null, icon\\?\\: string\\|null, description\\?\\: string, \\.\\.\\.\\}, array\\{api_version\\: 2, title\\: string, category\\: 'rspku', icon\\: 'heart', attributes\\: array\\<string, array\\<string, 6\\|8\\|array\\{\\}\\|string\\>\\>, render_callback\\: array\\{'Rspku\\\\\\\\Blocks\\\\\\\\Registry', 'articleList'\\|'ctaBanner'\\|'doctorGrid'\\|'doctorSearch'\\|'faq'\\|'heroBanner'\\|'insurancePartners'\\|'journalList'\\|'serviceCards'\\}\\} given\\.$#"
+			count: 1
+			path: wp-content/themes/rspku-theme/app/Blocks/Registry.php
+
+		-
+			message: "#^PHPDoc tag @param references unknown parameter\\: \\$schedule$#"
+			count: 1
+			path: wp-content/themes/rspku-theme/app/Fields/DoctorFields.php
+
+		-
+			message: "#^Offset 1 on array\\{string, string\\} on left side of \\?\\? always exists and is not nullable\\.$#"
+			count: 1
+			path: wp-content/themes/rspku-theme/app/Helpers/Icon.php
+
+		-
+			message: "#^Method Rspku\\\\Repositories\\\\DoctorScheduleRepository\\:\\:specializationCopy\\(\\) should return array\\<string, array\\<string, mixed\\>\\> but returns array\\<string, string\\>\\.$#"
+			count: 1
+			path: wp-content/themes/rspku-theme/app/Repositories/DoctorScheduleRepository.php
+
+		-
+			message: "#^Offset 1 on array\\{string, non\\-falsy\\-string, non\\-falsy\\-string\\} on left side of \\?\\? always exists and is not nullable\\.$#"
+			count: 1
+			path: wp-content/themes/rspku-theme/app/Repositories/DoctorScheduleRepository.php
+
+		-
+			message: "#^Offset 2 on array\\{string, non\\-falsy\\-string, non\\-falsy\\-string\\} on left side of \\?\\? always exists and is not nullable\\.$#"
+			count: 1
+			path: wp-content/themes/rspku-theme/app/Repositories/DoctorScheduleRepository.php
+
+		-
+			message: "#^Property WP_Term\\:\\:\\$count \\(int\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: wp-content/themes/rspku-theme/app/Services/DoctorDirectorySync.php
+
+		-
+			message: "#^Property WP_Term\\:\\:\\$slug \\(string\\) on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: wp-content/themes/rspku-theme/app/Services/DoctorDirectorySync.php
+
+		-
+			message: "#^Static method Rspku\\\\Services\\\\DoctorDirectorySync\\:\\:isGenericDirectoryLabel\\(\\) is unused\\.$#"
+			count: 1
+			path: wp-content/themes/rspku-theme/app/Services/DoctorDirectorySync.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between lowercase\\-string&non\\-falsy\\-string and '' will always evaluate to false\\.$#"
+			count: 1
+			path: wp-content/themes/rspku-theme/app/Services/DoctorDirectorySync.php
