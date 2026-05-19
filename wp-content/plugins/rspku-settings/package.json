@@ -1,0 +1,12 @@
+{
+  "name": "rspku-settings-admin-ui",
+  "private": true,
+  "version": "0.2.0",
+  "scripts": {
+    "build:css": "tailwindcss -c tailwind.admin.config.js -i ./assets/admin.source.css -o ./assets/admin.css --minify",
+    "test": "node tests/admin-css.test.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
