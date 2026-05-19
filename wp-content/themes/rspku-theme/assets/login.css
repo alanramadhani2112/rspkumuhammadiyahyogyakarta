@@ -1,0 +1,292 @@
+/* ============================================================
+   RS PKU Muhammadiyah Yogyakarta — Login Page
+   Clean card with image panel left, form right.
+   Uses padding-left + absolute positioning for the image panel.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* { box-sizing: border-box; }
+
+/* ─── Page ─── */
+body.login {
+  margin: 0;
+  padding: 24px;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #eef2ee;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Card ─── */
+#login {
+  position: relative;
+  width: 100%;
+  max-width: 840px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(15,23,42,0.06), 0 1px 3px rgba(15,23,42,0.04);
+  padding: 12px;
+}
+
+@media (min-width: 860px) {
+  #login {
+    padding-left: 352px; /* 340px panel + 12px gap */
+  }
+}
+
+/* ─── Hide WP default h1 but show as logo above form ─── */
+#login h1.wp-login-logo { 
+  margin: 0;
+  padding: 20px 20px 0;
+}
+
+@media (min-width: 860px) {
+  #login h1.wp-login-logo {
+    padding: 24px 28px 0;
+  }
+}
+
+#login h1.wp-login-logo a {
+  display: block;
+  width: 150px;
+  height: 42px;
+  background: url('/wp-content/uploads/2025/07/LOGO-RS-PKU-MUHAMMADIYAH-YOGYAKARTA-2.png') left center/contain no-repeat !important;
+  text-indent: -9999px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body.login > h1.screen-reader-text { display: none; }
+
+/* ─── Image Panel (absolute on desktop, static on mobile) ─── */
+.rspku-login-panel {
+  margin-bottom: 12px;
+}
+
+.rspku-login-panel-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  min-height: 150px;
+  border-radius: 12px;
+  background:
+    linear-gradient(170deg, rgba(6,95,46,0.85) 0%, rgba(12,143,69,0.55) 40%, rgba(4,70,36,0.92) 100%),
+    url('/wp-content/uploads/2023/12/640px-Gedung_PKU_Muhammadiyah_Yogyakarta_Kota_Jogjakarta_200_Tahun_plate_after_page_96.jpg') center/cover no-repeat;
+}
+
+@media (min-width: 860px) {
+  .rspku-login-panel {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    bottom: 12px;
+    width: 340px;
+    margin: 0;
+  }
+
+  .rspku-login-panel-image {
+    height: 100%;
+    min-height: auto;
+    padding: 28px;
+  }
+}
+
+.rspku-login-panel-logo {
+  display: none;
+}
+
+.rspku-login-panel-text {
+  margin: auto 0 0;
+  padding-top: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+/* ─── Form ─── */
+.login form {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 12px 20px 12px;
+  margin: 0;
+}
+
+@media (min-width: 860px) {
+  .login form { padding: 12px 28px 12px; }
+}
+
+.login form::before {
+  content: 'Masuk ke dashboard';
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.login form > p:first-of-type::before {
+  content: 'Kelola konten, pengaturan, dan data rumah sakit.';
+  display: block;
+  font-size: 12.5px;
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
+/* Space between form groups */
+.login form > p,
+.login form > .user-pass-wrap {
+  margin-bottom: 16px;
+}
+
+/* ─── Labels ─── */
+.login form label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* ─── Inputs ─── */
+.login form .input,
+.login form input[type="text"],
+.login form input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #0f172a;
+  background: #fff;
+  outline: none;
+  box-shadow: none;
+  transition: border-color 150ms, box-shadow 150ms;
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
+
+.login form input:hover { border-color: #94a3b8; }
+.login form input:focus { border-color: #0c8f45; box-shadow: 0 0 0 3px rgba(12,143,69,0.08); }
+.login form input::placeholder { color: #94a3b8; }
+
+/* ─── Password toggle ─── */
+.login .wp-pwd .wp-hide-pw { color: #94a3b8; background: transparent; border: none; }
+
+/* ─── Remember me ─── */
+.login .forgetmenot { float: none !important; margin-top: 2px; }
+.login .forgetmenot label { font-size: 12.5px; font-weight: 400; color: #475569; display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+
+.login .forgetmenot input[type="checkbox"] {
+  appearance: none; -webkit-appearance: none;
+  width: 15px; height: 15px; min-width: 15px;
+  border: 1.5px solid #d1d5db; border-radius: 4px;
+  background: #fff; cursor: pointer; position: relative; margin: 0; transition: all 120ms;
+}
+.login .forgetmenot input[type="checkbox"]:checked { background: #0c8f45; border-color: #0c8f45; }
+.login .forgetmenot input[type="checkbox"]:checked::after {
+  content: ""; position: absolute; left: 4px; top: 1px; width: 4px; height: 8px;
+  border: solid #fff; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg);
+}
+
+/* ─── Submit ─── */
+.login form .submit { margin-top: 16px; clear: both; }
+.login form .submit .button-primary {
+  width: 100%; display: flex; align-items: center; justify-content: center;
+  min-height: 42px; padding: 10px 20px; border: none; border-radius: 8px;
+  background: #0c8f45; color: #fff; font-size: 13.5px; font-weight: 600;
+  cursor: pointer; transition: background 150ms; text-shadow: none; box-shadow: none; float: none !important;
+}
+.login form .submit .button-primary:hover { background: #086d35; }
+.login form .submit .button-primary:active { background: #065f2e; }
+.login form .submit .button-primary:focus { outline: 2px solid rgba(12,143,69,0.3); outline-offset: 2px; }
+
+/* ─── Messages ─── */
+.login .message, .login .success {
+  border: 1px solid #bbf7d0; border-left: 3px solid #0c8f45;
+  background: #f0fdf4; border-radius: 6px; font-size: 12.5px; color: #065f2e;
+  padding: 10px 12px; margin: 8px 20px 0; box-shadow: none;
+}
+@media (min-width: 860px) { .login .message, .login .success { margin: 8px 28px 0; } }
+
+.login #login_error {
+  border: 1px solid #fecaca; border-left: 3px solid #ef4444;
+  background: #fef2f2; border-radius: 6px; font-size: 12.5px; color: #991b1b;
+  padding: 10px 12px; margin: 8px 20px 0; box-shadow: none;
+}
+@media (min-width: 860px) { .login #login_error { margin: 8px 28px 0; } }
+.login #login_error a { color: #dc2626; font-weight: 500; }
+
+/* ─── Nav links ─── */
+p#nav, p#backtoblog { margin: 0; padding: 2px 20px; text-align: left; }
+@media (min-width: 860px) { p#nav, p#backtoblog { padding: 2px 28px; } }
+p#backtoblog { padding-bottom: 16px; }
+#nav a, #backtoblog a { font-size: 12px; color: #64748b; text-decoration: none; transition: color 150ms; }
+#nav a:hover, #backtoblog a:hover { color: #0c8f45; }
+
+/* ─── Language switcher (outside card) ─── */
+.language-switcher { text-align: center; }
+.language-switcher > label { font-size: 11px !important; color: #64748b !important; font-weight: 400 !important; }
+.language-switcher select { border-radius: 6px; border: 1px solid #dce2e7; background: #fff; font-size: 12px; padding: 4px 8px; }
+.language-switcher .button { border-radius: 6px; font-size: 11px; padding: 3px 10px; min-height: auto; }
+
+/* Hide the WP login page title that appears above language switcher */
+.language-switcher > h2,
+body.login > h2,
+body.login > .login > h2,
+#login-form-title {
+  display: none !important;
+}
+
+/* Also ensure form::before doesn't render on non-login forms (lost-password etc) */
+.login form:not(#loginform)::before,
+.login form:not(#loginform) > p:first-of-type::before {
+  display: none;
+}
+
+/* ─── Privacy ─── */
+.login .privacy-policy-page-link { margin: 0; padding: 0 20px 12px; }
+@media (min-width: 860px) { .login .privacy-policy-page-link { padding: 0 28px 12px; } }
+.login .privacy-policy-page-link a { font-size: 11px; color: #94a3b8; }
+
+/* ─── Footer (outside card) ─── */
+.rspku-login-footer { text-align: center; }
+.rspku-login-footer p { margin: 0 0 1px; font-size: 11px; color: #94a3b8; }
+.rspku-login-footer .rspku-login-dev a { color: #64748b; font-weight: 500; text-decoration: none; }
+.rspku-login-footer .rspku-login-dev a:hover { color: #0c8f45; }
+
+/* ─── Responsive ─── */
+@media (max-width: 859px) {
+  body.login { padding: 16px; justify-content: flex-start; padding-top: 28px; }
+  #login { max-width: 420px; border-radius: 16px; }
+  .rspku-login-panel-image { min-height: 130px; padding: 20px; border-radius: 10px; }
+  .rspku-login-panel-text { font-size: 14px; }
+  .login form { padding: 18px 16px 10px; }
+  .login form::before { font-size: 16px; }
+  p#nav, p#backtoblog { padding: 2px 16px; }
+  p#backtoblog { padding-bottom: 12px; }
+}
+
+@media (max-width: 480px) {
+  body.login { padding: 10px; padding-top: 16px; }
+  #login { border-radius: 14px; padding: 8px; }
+  .rspku-login-panel-image { min-height: 110px; padding: 16px; border-radius: 8px; }
+  .rspku-login-panel-logo { width: 32px; height: 32px; border-radius: 8px; padding: 4px; }
+  .rspku-login-panel-text { font-size: 13px; padding-top: 12px; }
+  .login form { padding: 14px 12px 8px; }
+  .login form::before { font-size: 15px; }
+  .login form > p:first-of-type::before { font-size: 11.5px; margin-bottom: 14px; }
+  .login form input[type="text"], .login form input[type="password"] { font-size: 16px; padding: 11px 12px; }
+  p#nav, p#backtoblog { padding: 2px 12px; }
+  p#backtoblog { padding-bottom: 10px; }
+}

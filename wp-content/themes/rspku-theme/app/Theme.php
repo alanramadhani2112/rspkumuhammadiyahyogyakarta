@@ -10,6 +10,7 @@ use Rspku\Services\DoctorDirectorySync;
 use Rspku\Services\DoctorSearch;
 use Rspku\Setup\AdminExperience;
 use Rspku\Setup\Assets;
+use Rspku\Setup\LoginPage;
 use Rspku\Setup\ThemeSetup;
 use Rspku\Setup\TimberSetup;
 
@@ -26,9 +27,11 @@ final class Theme
         self::$booted = true;
 
         ThemeSetup::configureTheme();
+        ThemeSetup::registerHooks();
         TimberSetup::register();
         AdminExperience::register();
         Assets::register();
+        LoginPage::register();
 
         // Post types, taxonomies, and doctor fields now live in the
         // `rspku-cpt` plugin (see wp-content/plugins/rspku-cpt). The
@@ -39,7 +42,41 @@ final class Theme
         DoctorDirectorySync::register();
         BlockRegistry::register();
 
+        self::registerCacheInvalidation();
+
         add_action('after_switch_theme', [self::class, 'flushRewriteRules']);
+    }
+
+    /**
+     * Drop normalized doctor/content payloads when their source posts
+     * change. Without this, editors who update a doctor's bio or photo
+     * would keep seeing the stale cached version for up to six hours.
+     */
+    private static function registerCacheInvalidation(): void
+    {
+        $handler = static function (int $postId): void {
+            $type = (string) get_post_type($postId);
+            if ($type === 'dokter') {
+                \Rspku\Repositories\DoctorRepository::flushCache($postId);
+            }
+            if ($type === 'post') {
+                \Rspku\Repositories\ContentRepository::flushRelatedCache($postId);
+                \Rspku\Services\ArticleCtaMapper::flushCache($postId);
+            }
+        };
+
+        add_action('save_post', $handler, 10, 1);
+        add_action('deleted_post', $handler, 10, 1);
+        add_action('trashed_post', $handler, 10, 1);
+
+        // The settings plugin fires this action whenever the rspku_settings
+        // option is changed. If it's installed, take the opportunity to
+        // invalidate content caches that depend on settings-driven data.
+        add_action('rspku/settings/flushed', static function (): void {
+            if (function_exists('wp_cache_flush_group')) {
+                wp_cache_flush_group('rspku_theme');
+            }
+        });
     }
 
     public static function render(): void

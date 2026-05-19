@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panduan Penggunaan Theme — RS PKU Muhammadiyah Yogyakarta</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  
+  :root {
+    --brand: #0c8f45;
+    --brand-dark: #065f2e;
+    --brand-light: #ecfdf5;
+    --ink: #0f172a;
+    --sub: #475569;
+    --muted: #94a3b8;
+    --line: #e2e8f0;
+    --surface: #f8fafc;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 14px;
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media print {
+    body { font-size: 11px; line-height: 1.6; }
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    section { page-break-inside: avoid; }
+    h2 { page-break-after: avoid; }
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 32px;
+  }
+
+  /* Cover */
+  .cover {
+    text-align: center;
+    padding: 80px 32px;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: #fff;
+    border-radius: 0;
+    margin-bottom: 48px;
+  }
+
+  .cover h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+
+  .cover .subtitle {
+    font-size: 16px;
+    opacity: 0.85;
+    margin-bottom: 24px;
+  }
+
+  .cover .meta {
+    font-size: 12px;
+    opacity: 0.65;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+  }
+
+  .toc h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--brand-dark);
+  }
+
+  .toc ol {
+    padding-left: 20px;
+    counter-reset: toc;
+  }
+
+  .toc ol li {
+    counter-increment: toc;
+    padding: 4px 0;
+    font-size: 13px;
+    color: var(--sub);
+  }
+
+  .toc ol li a {
+    color: var(--sub);
+    text-decoration: none;
+  }
+
+  .toc ol li a:hover {
+    color: var(--brand);
+  }
+
+  /* Headings */
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--brand-dark);
+    margin: 48px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--brand-light);
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 28px 0 10px;
+  }
+
+  h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sub);
+    margin: 20px 0 8px;
+  }
+
+  p { margin-bottom: 12px; color: var(--sub); }
+
+  ul, ol { margin: 8px 0 16px 20px; color: var(--sub); }
+  li { margin-bottom: 6px; }
+
+  strong { color: var(--ink); font-weight: 600; }
+
+  code {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+
+  /* Info box */
+  .info-box {
+    background: var(--brand-light);
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+
+  .info-box strong {
+    color: var(--brand-dark);
+  }
+
+  .warning-box {
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+
+  .warning-box strong {
+    color: #92400e;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 12.5px;
+  }
+
+  th, td {
+    border: 1px solid var(--line);
+    padding: 9px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: var(--surface);
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  td { color: var(--sub); }
+
+  /* Screenshot placeholder */
+  .screenshot {
+    border: 2px dashed var(--line);
+    border-radius: 8px;
+    padding: 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    margin: 16px 0;
+    background: var(--surface);
+  }
+
+  .screenshot img {
+    max-width: 100%;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+  }
+
+  /* Steps */
+  .steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+  }
+
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 12px 0 12px 44px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .steps li:last-child { border-bottom: none; }
+
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 28px;
+    height: 28px;
+    background: var(--brand);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--brand-light);
+    color: var(--brand-dark);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .footer-doc {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>📖 Panduan Penggunaan Theme<br>RS PKU Muhammadiyah Yogyakarta</h1>
+  <p class="subtitle">Panduan lengkap untuk admin, editor, dan pengelola konten website rumah sakit</p>
+  <p class="meta">Versi 1.0 · Mei 2026 · Dikembangkan oleh LabMu — Muhammadiyah Software Labs</p>
+</div>
+
+<div class="container">
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Daftar Isi</h2>
+  <ol>
+    <li><a href="#overview">Gambaran Umum Website</a></li>
+    <li><a href="#login">Masuk ke Dashboard Admin</a></li>
+    <li><a href="#settings">Panel RS PKU Settings</a></li>
+    <li><a href="#content">Mengelola Konten</a></li>
+    <li><a href="#homepage">Mengatur Homepage</a></li>
+    <li><a href="#doctors">Mengelola Dokter</a></li>
+    <li><a href="#services">Mengelola Layanan</a></li>
+    <li><a href="#rooms">Mengelola Rawat Inap</a></li>
+    <li><a href="#polyclinic">Mengelola Poliklinik</a></li>
+    <li><a href="#articles">Mengelola Berita & Artikel</a></li>
+    <li><a href="#pages">Halaman Statis</a></li>
+    <li><a href="#media">Mengelola Gambar & Media</a></li>
+    <li><a href="#menus">Mengatur Menu Navigasi</a></li>
+    <li><a href="#features">Toggle Fitur</a></li>
+    <li><a href="#seo">SEO & Schema</a></li>
+    <li><a href="#backup">Export & Import Settings</a></li>
+    <li><a href="#faq">FAQ & Troubleshooting</a></li>
+  </ol>
+</div>
+
+<!-- 1. OVERVIEW -->
+<h2 id="overview">1. Gambaran Umum Website</h2>
+
+<p>Website RS PKU Muhammadiyah Yogyakarta menggunakan <strong>WordPress</strong> sebagai CMS dengan theme custom yang dibangun khusus untuk kebutuhan rumah sakit. Theme ini mendukung:</p>
+
+<ul>
+  <li>Tampilan modern, responsif, dan cepat</li>
+  <li>7 jenis konten khusus (Dokter, Poliklinik, Layanan, Rawat Inap, E-Jurnal, Cabang RS, Manajemen)</li>
+  <li>Panel settings terpusat untuk seluruh konfigurasi</li>
+  <li>Dual bahasa (Indonesia/English) dengan GTranslate</li>
+  <li>SEO otomatis dengan Schema.org JSON-LD</li>
+  <li>Aksesibilitas (skip navigation, ARIA labels, focus states)</li>
+</ul>
+
+<h3>Struktur Halaman Utama</h3>
+<table>
+  <tr><th>Halaman</th><th>URL</th><th>Keterangan</th></tr>
+  <tr><td>Beranda</td><td>/</td><td>Homepage dengan hero, layanan unggulan, dokter, ulasan</td></tr>
+  <tr><td>Cari Dokter</td><td>/dokter/</td><td>Daftar & pencarian dokter</td></tr>
+  <tr><td>Jadwal Dokter</td><td>/jadwal-dokter/</td><td>Tabel jadwal praktik per hari</td></tr>
+  <tr><td>Poliklinik</td><td>/poliklinik/</td><td>Daftar klinik rawat jalan</td></tr>
+  <tr><td>Layanan</td><td>/layanan/</td><td>Layanan medis & penunjang</td></tr>
+  <tr><td>Rawat Inap</td><td>/rawat-inap/</td><td>Info kamar & fasilitas</td></tr>
+  <tr><td>Berita & Artikel</td><td>/berita-artikel/</td><td>Blog/berita rumah sakit</td></tr>
+  <tr><td>E-Jurnal</td><td>/e-jurnal/</td><td>Jurnal medis & penelitian</td></tr>
+  <tr><td>Kontak</td><td>/kontak/</td><td>Informasi kontak & peta</td></tr>
+  <tr><td>Sejarah</td><td>/sejarah-kami/</td><td>Sejarah rumah sakit</td></tr>
+  <tr><td>Manajemen RS</td><td>/manajemen-rs/</td><td>Struktur organisasi</td></tr>
+</table>
+
+<!-- 2. LOGIN -->
+<h2 id="login" class="page-break">2. Masuk ke Dashboard Admin</h2>
+
+<ol class="steps">
+  <li>Buka browser, ketik: <code>https://rspkujogja.com/wp-admin/</code></li>
+  <li>Masukkan username dan password Anda</li>
+  <li>Anda akan masuk ke dashboard WordPress</li>
+</ol>
+
+<div class="info-box">
+  <strong>💡 Tips:</strong> Bookmark halaman <code>/wp-admin/</code> agar mudah diakses. Gunakan password yang kuat dan aktifkan 2FA jika tersedia.
+</div>
+
+<div class="screenshot"><img src="images/01-login.png" alt="Halaman login WordPress"><p>Halaman login WordPress (URL custom via WPS Hide Login)</p></div>
+
+<!-- 3. SETTINGS -->
+<h2 id="settings" class="page-break">3. Panel RS PKU Settings</h2>
+
+<p>Semua konfigurasi website terpusat di menu <strong>RS PKU Settings</strong> di sidebar kiri WordPress admin. Panel ini memiliki <strong>11 tab</strong>:</p>
+
+<table>
+  <tr><th>Tab</th><th>Fungsi</th></tr>
+  <tr><td>Umum</td><td>Nama RS, tagline, tahun berdiri</td></tr>
+  <tr><td>Kontak</td><td>Telepon IGD, WhatsApp, email, alamat, jam operasional, Google Maps</td></tr>
+  <tr><td>Media Sosial</td><td>URL & handle Instagram, Facebook, YouTube, Twitter/X, LinkedIn</td></tr>
+  <tr><td>Homepage</td><td>Hero section, CTA, metrics, gambar, layanan & dokter unggulan, ulasan</td></tr>
+  <tr><td>Gambar</td><td>Gambar hero per halaman (dokter, fasilitas, berita, dll)</td></tr>
+  <tr><td>Branding</td><td>Logo (via Customizer), warna brand</td></tr>
+  <tr><td>Fitur</td><td>Toggle fitur (reading progress, TOC, share, related posts, dll)</td></tr>
+  <tr><td>Header</td><td>Sticky header, top bar, badge IGD, CTA button</td></tr>
+  <tr><td>CTA</td><td>Teks & URL tombol buat janji dokter</td></tr>
+  <tr><td>Footer</td><td>Tagline, copyright, disclaimer, quick links</td></tr>
+  <tr><td>Tools</td><td>Export/import settings (backup)</td></tr>
+</table>
+
+<div class="screenshot"><img src="images/03-settings-umum.png" alt="Panel RS PKU Settings tab Umum"><p>Panel RS PKU Settings — Tab Umum</p></div>
+
+<h3>Cara Mengubah Setting</h3>
+<ol class="steps">
+  <li>Klik <strong>RS PKU Settings</strong> di sidebar kiri</li>
+  <li>Pilih tab yang sesuai (contoh: "Kontak")</li>
+  <li>Ubah isian field yang diinginkan</li>
+  <li>Klik tombol hijau <strong>"Simpan Perubahan"</strong> di bagian bawah</li>
+  <li>Refresh halaman depan untuk melihat hasilnya</li>
+</ol>
+
+<div class="warning-box">
+  <strong>⚠️ Penting:</strong> Perubahan langsung berlaku setelah klik Simpan. Pastikan data yang diisi sudah benar sebelum menyimpan.
+</div>
+
+<!-- 4. CONTENT -->
+<h2 id="content" class="page-break">4. Mengelola Konten</h2>
+
+<p>Website ini memiliki <strong>7 jenis konten khusus</strong> selain post dan page biasa:</p>
+
+<table>
+  <tr><th>Konten</th><th>Menu Admin</th><th>Keterangan</th></tr>
+  <tr><td>Dokter</td><td>Dokter</td><td>Profil dokter dengan spesialisasi & jadwal</td></tr>
+  <tr><td>Poliklinik</td><td>Poliklinik</td><td>Klinik rawat jalan</td></tr>
+  <tr><td>Layanan</td><td>Layanan</td><td>Layanan medis & penunjang</td></tr>
+  <tr><td>Rawat Inap</td><td>Rawat Inap</td><td>Info kamar & fasilitas</td></tr>
+  <tr><td>E-Jurnal</td><td>Jurnal</td><td>Publikasi jurnal medis</td></tr>
+  <tr><td>Manajemen RS</td><td>Manajemen RS</td><td>Profil pimpinan & direksi</td></tr>
+  <tr><td>Cabang RS</td><td>Cabang RS</td><td>Info cabang rumah sakit</td></tr>
+</table>
+
+<h3>Cara Umum Menambah Konten Baru</h3>
+<ol class="steps">
+  <li>Di sidebar, klik menu konten yang diinginkan (contoh: "Dokter")</li>
+  <li>Klik tombol <strong>"Tambah Dokter Baru"</strong> di bagian atas</li>
+  <li>Isi judul dan detail konten</li>
+  <li>Set gambar featured (Featured Image) di panel kanan</li>
+  <li>Klik <strong>"Terbitkan"</strong> (atau "Simpan Draft" jika belum siap)</li>
+</ol>
+
+<!-- 5. HOMEPAGE -->
+<h2 id="homepage" class="page-break">5. Mengatur Homepage</h2>
+
+<p>Homepage terdiri dari beberapa section yang semuanya dikontrol dari <strong>RS PKU Settings → Tab Homepage</strong>:</p>
+
+<h3>Hero Section (Bagian Atas)</h3>
+<ul>
+  <li><strong>Gambar Hero:</strong> Upload gambar rasio 4:3, minimal 1200px lebar</li>
+  <li><strong>Badge Text:</strong> Teks kecil di atas judul (contoh: "RS Islami Unggul")</li>
+  <li><strong>Judul Utama:</strong> Boleh pakai HTML untuk highlight. Contoh: <code>&lt;span class="text-hospital-600"&gt;Terpercaya&lt;/span&gt;</code></li>
+  <li><strong>Deskripsi:</strong> 1-2 kalimat deskripsi RS</li>
+  <li><strong>Tombol CTA:</strong> 2 tombol (utama + kedua) dengan teks dan URL</li>
+</ul>
+
+<h3>Metrics (Angka Statistik)</h3>
+<p>3 angka yang tampil di bawah hero. Contoh:</p>
+<ul>
+  <li>Metric 1: <strong>100+</strong> → "Tahun Melayani"</li>
+  <li>Metric 2: <strong>200+</strong> → "Dokter Spesialis"</li>
+  <li>Metric 3: <strong>50.000+</strong> → "Pasien Per Tahun"</li>
+</ul>
+
+<h3>Layanan Unggulan</h3>
+<p>Pilih maksimal 6 layanan yang tampil di homepage. Jika tidak dipilih, otomatis menampilkan layanan terbaru.</p>
+
+<h3>Dokter Unggulan</h3>
+<p>Pilih maksimal 6 dokter yang tampil di homepage. Jika tidak dipilih, otomatis menampilkan dokter terbaru.</p>
+
+<h3>Ulasan (Reviews)</h3>
+<p>Tambahkan ulasan manual dari Google Maps:</p>
+<ul>
+  <li>Nama reviewer</li>
+  <li>Rating (1-5 bintang)</li>
+  <li>Tanggal (format: "Januari 2026")</li>
+  <li>Kutipan ulasan</li>
+</ul>
+
+<div class="screenshot"><img src="images/05-settings-homepage.png" alt="Tab Homepage — Hero Section settings"><p>Tab Homepage — pengaturan Hero, Metrics, dan Featured Content</p></div>
+
+<!-- 6. DOCTORS -->
+<h2 id="doctors" class="page-break">6. Mengelola Dokter</h2>
+
+<h3>Menambah Dokter Baru</h3>
+<ol class="steps">
+  <li>Klik <strong>Dokter → Tambah Dokter Baru</strong></li>
+  <li>Isi judul dengan nama lengkap dokter (contoh: "dr. Ahmad Fadli, Sp.PD")</li>
+  <li>Isi detail konten menggunakan block editor</li>
+  <li>Set <strong>Featured Image</strong> — foto formal dokter (rasio potrait 4:5, min 720px)</li>
+  <li>Pilih <strong>Spesialisasi</strong> dari taxonomy yang tersedia</li>
+  <li>Klik <strong>Terbitkan</strong></li>
+</ol>
+
+<div class="info-box">
+  <strong>💡 Tips:</strong> Gunakan foto dengan background netral dan pencahayaan baik. Ukuran ideal: 720×900 pixel.
+</div>
+
+<h3>Mengelola Spesialisasi</h3>
+<p>Buka <strong>Dokter → Spesialisasi Dokter</strong> untuk menambah kategori spesialisasi baru (Penyakit Dalam, Bedah, Anak, dll).</p>
+
+<!-- 7. SERVICES -->
+<h2 id="services" class="page-break">7. Mengelola Layanan</h2>
+
+<ol class="steps">
+  <li>Klik <strong>Layanan → Tambah Layanan Baru</strong></li>
+  <li>Isi judul layanan (contoh: "Hemodialisis")</li>
+  <li>Tulis deskripsi lengkap layanan</li>
+  <li>Set gambar dan kategori layanan</li>
+  <li>Terbitkan</li>
+</ol>
+
+<h3>Kategori Layanan</h3>
+<p>Layanan dikelompokkan via taxonomy <strong>Kategori Layanan</strong>:</p>
+<ul>
+  <li>Layanan Unggulan</li>
+  <li>Layanan Penunjang</li>
+  <li>Layanan Medis</li>
+</ul>
+
+<!-- 8. ROOMS -->
+<h2 id="rooms">8. Mengelola Rawat Inap</h2>
+
+<ol class="steps">
+  <li>Klik <strong>Rawat Inap → Tambah Rawat Inap Baru</strong></li>
+  <li>Isi nama tipe kamar (contoh: "Kelas VIP", "Kelas 1")</li>
+  <li>Tulis fasilitas dan informasi harga</li>
+  <li>Upload foto kamar sebagai Featured Image</li>
+  <li>Terbitkan</li>
+</ol>
+
+<!-- 9. POLYCLINIC -->
+<h2 id="polyclinic">9. Mengelola Poliklinik</h2>
+
+<ol class="steps">
+  <li>Klik <strong>Poliklinik → Tambah Poliklinik Baru</strong></li>
+  <li>Isi nama klinik (contoh: "Poliklinik Penyakit Dalam")</li>
+  <li>Tulis deskripsi, jadwal, dan dokter yang bertugas</li>
+  <li>Upload gambar dan terbitkan</li>
+</ol>
+
+<!-- 10. ARTICLES -->
+<h2 id="articles" class="page-break">10. Mengelola Berita & Artikel</h2>
+
+<p>Berita menggunakan fitur <strong>Pos</strong> bawaan WordPress:</p>
+
+<ol class="steps">
+  <li>Klik <strong>Pos → Tambah Pos Baru</strong></li>
+  <li>Tulis judul dan isi artikel</li>
+  <li>Pilih <strong>Kategori</strong> yang sesuai</li>
+  <li>Set <strong>Featured Image</strong> (minimal 960×720 pixel)</li>
+  <li>Isi <strong>Kutipan/Excerpt</strong> (ringkasan 1-2 kalimat)</li>
+  <li>Klik <strong>Terbitkan</strong></li>
+</ol>
+
+<h3>Fitur Artikel Otomatis</h3>
+<p>Jika toggle fitur aktif, artikel akan otomatis memiliki:</p>
+<ul>
+  <li><strong>Reading Progress Bar</strong> — bar hijau di atas halaman</li>
+  <li><strong>Table of Contents</strong> — daftar isi otomatis di sidebar</li>
+  <li><strong>Share Buttons</strong> — tombol berbagi di sidebar</li>
+  <li><strong>Related Articles</strong> — artikel terkait di bawah konten</li>
+  <li><strong>Populer Dibaca</strong> — sidebar artikel populer</li>
+</ul>
+
+<!-- 11. PAGES -->
+<h2 id="pages">11. Halaman Statis</h2>
+
+<p>Beberapa halaman menggunakan template khusus yang otomatis aktif berdasarkan slug:</p>
+
+<table>
+  <tr><th>Slug Halaman</th><th>Template</th></tr>
+  <tr><td>berita-artikel</td><td>Daftar berita dengan pagination</td></tr>
+  <tr><td>e-jurnal</td><td>Daftar e-jurnal</td></tr>
+  <tr><td>fasilitas-rawat-inap</td><td>Gallery kamar rawat inap</td></tr>
+  <tr><td>jadwal-dokter</td><td>Tabel jadwal per hari/spesialisasi</td></tr>
+  <tr><td>kontak</td><td>Halaman kontak + maps</td></tr>
+  <tr><td>sejarah-kami</td><td>Timeline sejarah RS</td></tr>
+</table>
+
+<div class="warning-box">
+  <strong>⚠️ Jangan ubah slug halaman-halaman di atas.</strong> Slug ini terhubung dengan template khusus. Mengubahnya akan membuat halaman menggunakan template generik.
+</div>
+
+<!-- 12. MEDIA -->
+<h2 id="media" class="page-break">12. Mengelola Gambar & Media</h2>
+
+<h3>Ukuran Gambar yang Disarankan</h3>
+<table>
+  <tr><th>Kegunaan</th><th>Rasio</th><th>Ukuran Minimal</th></tr>
+  <tr><td>Hero halaman</td><td>16:9</td><td>1600 × 900 px</td></tr>
+  <tr><td>Card/thumbnail</td><td>4:3</td><td>960 × 720 px</td></tr>
+  <tr><td>Foto dokter</td><td>4:5 (potrait)</td><td>720 × 900 px</td></tr>
+  <tr><td>Logo</td><td>Bebas</td><td>Min 96px tinggi</td></tr>
+  <tr><td>CTA Image</td><td>1:1</td><td>600 × 600 px</td></tr>
+</table>
+
+<div class="info-box">
+  <strong>💡 Tips optimasi:</strong>
+  <ul style="margin-top:8px">
+    <li>Kompres gambar sebelum upload (gunakan TinyPNG atau ShortPixel)</li>
+    <li>Format: JPG untuk foto, PNG untuk logo/grafis transparan</li>
+    <li>Isi <strong>Alt Text</strong> pada setiap gambar untuk aksesibilitas & SEO</li>
+  </ul>
+</div>
+
+<h3>Upload Gambar di Settings</h3>
+<ol class="steps">
+  <li>Buka RS PKU Settings → tab yang memiliki field gambar</li>
+  <li>Klik tombol <strong>"Pilih Gambar"</strong></li>
+  <li>Upload atau pilih dari Media Library</li>
+  <li>Klik <strong>"Simpan Perubahan"</strong></li>
+</ol>
+
+<!-- 13. MENUS -->
+<h2 id="menus">13. Mengatur Menu Navigasi</h2>
+
+<p>Website memiliki 3 lokasi menu:</p>
+
+<table>
+  <tr><th>Lokasi</th><th>Tampil di</th></tr>
+  <tr><td>Primary Menu</td><td>Header utama (desktop & mobile)</td></tr>
+  <tr><td>Footer Menu</td><td>Kolom footer</td></tr>
+  <tr><td>Utility Menu</td><td>Top bar / utilitas</td></tr>
+</table>
+
+<h3>Cara Mengubah Menu</h3>
+<ol class="steps">
+  <li>Buka <strong>Tampilan → Menu</strong></li>
+  <li>Pilih menu yang ingin diedit dari dropdown</li>
+  <li>Tambah/hapus/susun ulang item menu dengan drag & drop</li>
+  <li>Klik <strong>"Simpan Menu"</strong></li>
+</ol>
+
+<div class="info-box">
+  <strong>💡 Catatan:</strong> Jika menu Primary tidak diisi, website otomatis menampilkan menu fallback: Beranda, Layanan, Fasilitas, Pusat Informasi, Karir, Kontak.
+</div>
+
+<!-- 14. FEATURES -->
+<h2 id="features" class="page-break">14. Toggle Fitur</h2>
+
+<p>Buka <strong>RS PKU Settings → Tab Fitur</strong> untuk mengaktifkan/nonaktifkan fitur:</p>
+
+<table>
+  <tr><th>Fitur</th><th>Keterangan</th></tr>
+  <tr><td>Reading Progress Bar</td><td>Bar hijau di atas saat baca artikel</td></tr>
+  <tr><td>Table of Contents</td><td>Daftar isi otomatis dari heading artikel</td></tr>
+  <tr><td>Share Buttons</td><td>Tombol share floating di sidebar</td></tr>
+  <tr><td>Related Articles</td><td>Artikel terkait di bawah konten</td></tr>
+  <tr><td>Populer Dibaca</td><td>Widget artikel populer di sidebar</td></tr>
+  <tr><td>Language Switcher</td><td>Tombol ganti bahasa Indonesia/English</td></tr>
+  <tr><td>Reviews Carousel</td><td>Carousel ulasan pasien di homepage</td></tr>
+  <tr><td>JSON-LD Schema</td><td>Structured data SEO otomatis</td></tr>
+</table>
+
+<p>Cukup klik toggle <strong>Aktif/Nonaktif</strong> lalu simpan. Perubahan langsung berlaku.</p>
+
+<!-- 15. SEO -->
+<h2 id="seo">15. SEO & Schema</h2>
+
+<p>Website sudah dilengkapi optimasi SEO otomatis:</p>
+
+<ul>
+  <li><strong>Meta Description otomatis</strong> — setiap halaman/CPT punya deskripsi default jika belum diisi via Yoast</li>
+  <li><strong>JSON-LD Schema</strong> — structured data untuk Hospital, Physician, MedicalClinic, Article (aktifkan di tab Fitur)</li>
+  <li><strong>Robots directives</strong> — halaman pencarian dan filtered archive otomatis noindex</li>
+  <li><strong>Semantic HTML</strong> — heading hierarchy, landmark regions, ARIA labels</li>
+</ul>
+
+<div class="info-box">
+  <strong>💡 Rekomendasi:</strong> Instal plugin <strong>Yoast SEO</strong> dan isi Focus Keyword + Meta Description di setiap pos/halaman penting.
+</div>
+
+<!-- 16. BACKUP -->
+<h2 id="backup" class="page-break">16. Export & Import Settings</h2>
+
+<h3>Export (Backup)</h3>
+<ol class="steps">
+  <li>Buka <strong>RS PKU Settings → Tab Tools</strong></li>
+  <li>Klik tombol <strong>"Download JSON"</strong></li>
+  <li>File <code>rspku-settings-YYYYMMDD.json</code> akan terunduh</li>
+  <li>Simpan file ini sebagai backup</li>
+</ol>
+
+<h3>Import (Restore)</h3>
+<ol class="steps">
+  <li>Buka <strong>RS PKU Settings → Tab Tools</strong></li>
+  <li>Pilih file JSON yang sudah di-export sebelumnya</li>
+  <li>Klik <strong>"Upload & Terapkan"</strong></li>
+  <li>Semua settings akan ditimpa dengan isi file</li>
+</ol>
+
+<div class="warning-box">
+  <strong>⚠️ Peringatan:</strong> Import akan <strong>menimpa seluruh settings saat ini</strong>. Selalu export backup terlebih dahulu sebelum import.
+</div>
+
+<!-- 17. FAQ -->
+<h2 id="faq" class="page-break">17. FAQ & Troubleshooting</h2>
+
+<h3>Q: Perubahan settings tidak muncul di website?</h3>
+<p><strong>A:</strong> Coba hard refresh browser (Ctrl+Shift+R). Jika pakai cache plugin, bersihkan cache dari dashboard.</p>
+
+<h3>Q: Gambar hero tidak muncul?</h3>
+<p><strong>A:</strong> Pastikan gambar sudah di-upload melalui field gambar di RS PKU Settings (bukan hanya di Media Library). Klik "Pilih Gambar" → pilih → Simpan.</p>
+
+<h3>Q: Dokter/layanan tidak muncul di homepage?</h3>
+<p><strong>A:</strong> Cek 2 hal: (1) Konten harus berstatus <strong>Terbitkan</strong> (bukan Draft), (2) Jika menggunakan fitur "pilih manual" di Settings → Homepage, pastikan sudah dicentang.</p>
+
+<h3>Q: Menu dropdown tidak muncul?</h3>
+<p><strong>A:</strong> Pastikan item menu memiliki sub-item (drag ke kanan untuk membuat child item di Tampilan → Menu).</p>
+
+<h3>Q: Bagaimana ganti logo?</h3>
+<p><strong>A:</strong> Buka <strong>Tampilan → Customize → Site Identity → Logo</strong>. Upload logo baru lalu klik Publikasikan.</p>
+
+<h3>Q: Bagaimana menambah halaman baru dengan template khusus?</h3>
+<p><strong>A:</strong> Buat Page baru via <strong>Laman → Tambah Laman Baru</strong>. Gunakan slug sesuai tabel di bagian "Halaman Statis" di atas. Template otomatis terpilih berdasarkan slug.</p>
+
+<h3>Q: Website lambat, apa yang harus dilakukan?</h3>
+<p><strong>A:</strong> (1) Kompres gambar sebelum upload, (2) Aktifkan cache plugin (WP Super Cache / LiteSpeed Cache), (3) Kurangi jumlah plugin non-esensial.</p>
+
+<!-- FOOTER -->
+<div class="footer-doc">
+  <p>Panduan Penggunaan Theme RS PKU Muhammadiyah Yogyakarta v1.0</p>
+  <p>© 2026 LabMu — Muhammadiyah Software Labs · Majelis Pustaka dan Informasi PP Muhammadiyah</p>
+  <p style="margin-top:8px">Untuk bantuan teknis, hubungi tim IT RS PKU atau email: dev@labs.muhammadiyah.or.id</p>
+</div>
+
+<!-- APPENDIX: HOW TO GENERATE SCREENSHOTS -->
+<h2 id="appendix" class="page-break">Lampiran: Cara Generate Screenshot Otomatis</h2>
+
+<p>Panduan ini dilengkapi script otomatis untuk menangkap screenshot dari admin panel. Untuk menjalankan:</p>
+
+<ol class="steps">
+  <li>Pastikan <strong>Laragon</strong> sedang berjalan dan site aktif di <code>http://rspkudev.test</code></li>
+  <li>Buka file <code>docs/capture-screenshots.mjs</code> dan edit 3 variabel:
+    <br><code>LOGIN_URL</code> — URL login custom (dari WPS Hide Login)
+    <br><code>ADMIN_USER</code> — username admin
+    <br><code>ADMIN_PASS</code> — password admin
+  </li>
+  <li>Buka terminal di root project dan jalankan:
+    <br><code>node docs/capture-screenshots.mjs</code>
+  </li>
+  <li>18 screenshot akan tersimpan di folder <code>docs/images/</code></li>
+  <li>Buka file HTML ini di browser untuk melihat hasilnya</li>
+</ol>
+
+<div class="info-box">
+  <strong>💡 Daftar screenshot yang di-generate:</strong>
+  <ul style="margin-top:8px; columns: 2; column-gap: 24px;">
+    <li>01-login.png</li>
+    <li>02-dashboard.png</li>
+    <li>03-settings-umum.png</li>
+    <li>04-settings-kontak.png</li>
+    <li>05-settings-homepage.png</li>
+    <li>06-settings-gambar.png</li>
+    <li>07-settings-fitur.png</li>
+    <li>08-settings-header.png</li>
+    <li>09-settings-footer.png</li>
+    <li>10-settings-tools.png</li>
+    <li>11-dokter-list.png</li>
+    <li>12-layanan-list.png</li>
+    <li>13-poliklinik-list.png</li>
+    <li>14-menus.png</li>
+    <li>15-frontend-homepage.png</li>
+    <li>16-frontend-homepage-full.png</li>
+    <li>17-frontend-dokter.png</li>
+    <li>18-frontend-layanan.png</li>
+  </ul>
+</div>
+
+</div><!-- .container -->
+</body>
+</html>
