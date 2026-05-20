@@ -8,7 +8,7 @@ Dokumen ini mencatat proses persiapan migrasi project dari lokal (Laragon) ke se
 
 ### 1. Export Database
 
-- **File:** `db-rspkujogja-clean-20260520-141057.sql`
+- **File:** `db-rspkujogja-20260520-144238.sql`
 - **Lokasi di project:** root folder (`C:\laragon\www\rspkudev\`)
 - **Ukuran:** 65.31 MB (setelah cleanup)
 - **DB name lokal:** `db-rspkujogja`
@@ -111,7 +111,7 @@ FLUSH PRIVILEGES;
 ### Step 4 — Import Database
 
 ```bash
-mysql -u user_db -p nama_db_server < db-rspkujogja-clean-20260520-141057.sql
+mysql -u user_db -p nama_db_server < db-rspkujogja-20260520-144238.sql
 ```
 
 ### Step 5 — Update wp-config.php
