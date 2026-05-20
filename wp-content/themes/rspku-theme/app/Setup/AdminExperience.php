@@ -26,6 +26,12 @@ final class AdminExperience
         add_filter('wpseo_metabox_prio', [self::class, 'yoastMetaboxPriority']);
         add_action('admin_menu', [self::class, 'removeLowValueMetaBoxes'], 99);
         add_action('add_meta_boxes', [self::class, 'removeConflictingDoctorMetaBoxes'], 99);
+
+        // Author credentials field on user profile (spec R2.4).
+        add_action('show_user_profile', [self::class, 'renderAuthorCredentialsField']);
+        add_action('edit_user_profile', [self::class, 'renderAuthorCredentialsField']);
+        add_action('personal_options_update', [self::class, 'saveAuthorCredentialsField']);
+        add_action('edit_user_profile_update', [self::class, 'saveAuthorCredentialsField']);
     }
 
     public static function useBlockEditor(bool $useBlockEditor, string $postType): bool
@@ -81,6 +87,55 @@ final class AdminExperience
             remove_meta_box('authordiv', $postType, 'normal');
             remove_meta_box('trackbacksdiv', $postType, 'normal');
         }
+    }
+
+    /**
+     * Render the author credentials input on edit-user screens.
+     * Fulfils spec R2.4 — lets editors capture "Sp.A., M.Kes." strings
+     * that appear on single post author cards.
+     */
+    public static function renderAuthorCredentialsField(\WP_User $user): void
+    {
+        if (!current_user_can('edit_user', $user->ID)) {
+            return;
+        }
+
+        $value = (string) get_user_meta($user->ID, '_rspku_author_credentials', true);
+        ?>
+        <h2><?php esc_html_e('Informasi RSPKU', 'rspku-theme'); ?></h2>
+        <table class="form-table" role="presentation">
+            <tr>
+                <th><label for="rspku_author_credentials"><?php esc_html_e('Kredensial (opsional)', 'rspku-theme'); ?></label></th>
+                <td>
+                    <input type="text"
+                           name="rspku_author_credentials"
+                           id="rspku_author_credentials"
+                           value="<?php echo esc_attr($value); ?>"
+                           class="regular-text"
+                           maxlength="160">
+                    <p class="description">
+                        <?php esc_html_e('Contoh: Sp.A., M.Kes. — ditampilkan di bawah nama penulis artikel.', 'rspku-theme'); ?>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <?php
+    }
+
+    public static function saveAuthorCredentialsField(int $userId): void
+    {
+        if (!current_user_can('edit_user', $userId)) {
+            return;
+        }
+
+        $raw = isset($_POST['rspku_author_credentials'])
+            ? sanitize_text_field(wp_unslash((string) $_POST['rspku_author_credentials']))
+            : '';
+
+        // Cap length defensively even though the input has maxlength.
+        $raw = mb_substr($raw, 0, 160);
+
+        update_user_meta($userId, '_rspku_author_credentials', $raw);
     }
 
     public static function removeConflictingDoctorMetaBoxes(): void

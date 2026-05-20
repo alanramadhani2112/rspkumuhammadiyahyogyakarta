@@ -2,21 +2,17 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main, develop]
   pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [main, develop]
 
-# Cancel in-progress runs for the same branch/PR to save CI minutes.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ci-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  phpstan:
-    name: PHPStan static analysis
+  php:
+    name: PHP Lint + PHPStan
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -28,65 +24,79 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-          tools: composer:v2
           coverage: none
-          ini-values: memory_limit=2G
+          tools: composer:v2
 
-      # Root dev tooling (PHPStan + phpstan-wordpress stubs)
-      - name: Cache root composer dependencies
+      - name: Validate composer.json
+        run: composer validate --no-check-publish
+
+      - name: Cache composer (root)
         uses: actions/cache@v4
         with:
           path: vendor
-          key: composer-root-${{ runner.os }}-php83-${{ hashFiles('composer.lock') }}
-          restore-keys: |
-            composer-root-${{ runner.os }}-php83-
+          key: composer-root-${{ runner.os }}-${{ hashFiles('composer.lock', 'composer.json') }}
+          restore-keys: composer-root-${{ runner.os }}-
 
-      - name: Install root composer dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
-
-      # Theme runtime dependencies (Timber) — needed so PHPStan can scan
-      # wp-content/themes/rspku-theme/vendor/timber/timber/src
-      - name: Cache theme composer dependencies
+      - name: Cache composer (theme)
         uses: actions/cache@v4
         with:
           path: wp-content/themes/rspku-theme/vendor
-          key: composer-theme-${{ runner.os }}-php83-${{ hashFiles('wp-content/themes/rspku-theme/composer.lock') }}
-          restore-keys: |
-            composer-theme-${{ runner.os }}-php83-
+          key: composer-theme-${{ runner.os }}-${{ hashFiles('wp-content/themes/rspku-theme/composer.lock', 'wp-content/themes/rspku-theme/composer.json') }}
+          restore-keys: composer-theme-${{ runner.os }}-
 
-      - name: Install theme composer dependencies
+      - name: Install root dev dependencies (PHPStan)
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Install theme runtime dependencies (Timber, etc.)
         working-directory: wp-content/themes/rspku-theme
-        run: composer install --prefer-dist --no-progress --no-interaction --no-dev
+        run: composer install --prefer-dist --no-progress --no-interaction
 
-      - name: Validate composer.json files
+      - name: PHP syntax lint
+        shell: bash
         run: |
-          composer validate --no-check-publish
-          composer --working-dir=wp-content/themes/rspku-theme validate --no-check-publish
+          set -e
+          find wp-content/themes/rspku-theme/app \
+               wp-content/themes/rspku-theme/functions.php \
+               wp-content/plugins/rspku-core \
+               wp-content/plugins/rspku-schema \
+               wp-content/plugins/rspku-cpt \
+               wp-content/plugins/rspku-settings \
+               -name '*.php' -print0 |
+          xargs -0 -n1 -P4 php -l > /tmp/lint.log || (cat /tmp/lint.log && exit 1)
 
-      - name: Run PHPStan
-        run: vendor/bin/phpstan analyse --memory-limit=2G --no-progress --error-format=github
+      - name: PHPStan (level 5)
+        run: vendor/bin/phpstan analyse --memory-limit=2G --no-progress
 
-  php-syntax:
-    name: PHP syntax lint
+  frontend:
+    name: Theme build (Vite)
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
+
+    defaults:
+      run:
+        working-directory: wp-content/themes/rspku-theme
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup PHP 8.3
-        uses: shivammathur/setup-php@v2
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
         with:
-          php-version: '8.3'
-          coverage: none
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: wp-content/themes/rspku-theme/package-lock.json
 
-      - name: Lint all tracked PHP files
+      - name: Install npm dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build assets
+        run: npm run build
+
+      - name: Verify manifest generated
+        shell: bash
         run: |
           set -e
-          files=$(git ls-files '*.php')
-          if [ -z "$files" ]; then
-            echo "No PHP files tracked."
-            exit 0
-          fi
-          echo "$files" | xargs -n 1 -P 4 php -l
+          test -f public/build/.vite/manifest.json || { echo "Vite manifest missing"; exit 1; }
+          echo "Manifest entries:"
+          cat public/build/.vite/manifest.json | head -40

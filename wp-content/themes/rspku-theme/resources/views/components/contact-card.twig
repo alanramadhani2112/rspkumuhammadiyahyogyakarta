@@ -1,0 +1,56 @@
+{#
+  Contact Card Component - Contact information display
+  
+  Usage:
+  {% include 'components/contact-card.twig' with {
+    icon: 'phone',
+    title: 'IGD 24 Jam',
+    value: '0274 512321',
+    url: 'tel:+62274512321',
+    description: 'Siap melayani 24/7'
+  } only %}
+  
+  Props:
+  - icon (required): Icon name
+  - title (required): Contact type label
+  - value (required): Contact value (phone, email, address)
+  - url (optional): Link (tel:, mailto:, maps URL)
+  - description (optional): Additional info text
+  - variant (optional): 'default' | 'highlight' | 'compact' (default: 'default')
+#}
+
+{% set variant = variant|default('default') %}
+
+{% set classes = {
+  'default': 'rounded-xl border border-slate-200 bg-white p-5 transition hover:border-hospital-200',
+  'highlight': 'rounded-xl border border-hospital-200 bg-hospital-50/30 p-5',
+  'compact': 'rounded-lg border border-slate-200 bg-white p-4'
+} %}
+
+{% set icon_class = variant == 'highlight' ? 'bg-hospital-600 text-white' : 'bg-hospital-50 text-hospital-700' %}
+{% set icon_size = variant == 'compact' ? 'h-9 w-9' : 'h-10 w-10' %}
+
+{% set content %}
+  <div class="flex items-start gap-3">
+    <div class="grid {{ icon_size }} shrink-0 place-items-center rounded-lg {{ icon_class }}">
+      {{ icon(icon, { class: 'h-4 w-4' }) }}
+    </div>
+    <div class="min-w-0 flex-1">
+      <p class="text-xs font-medium text-slate-500">{{ title }}</p>
+      <p class="mt-0.5 text-sm font-semibold text-slate-950">{{ value }}</p>
+      {% if description %}
+        <p class="mt-1 text-xs text-slate-600">{{ description }}</p>
+      {% endif %}
+    </div>
+  </div>
+{% endset %}
+
+{% if url %}
+  <a href="{{ url }}" class="block {{ classes[variant] }}">
+    {{ content|raw }}
+  </a>
+{% else %}
+  <div class="{{ classes[variant] }}">
+    {{ content|raw }}
+  </div>
+{% endif %}

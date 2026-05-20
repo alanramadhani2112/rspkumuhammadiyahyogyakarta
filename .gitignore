@@ -30,6 +30,9 @@
 wp-config.php
 wp-config-sample.php
 
+# ---------- Database dumps (SENSITIF) ----------
+*.sql
+
 # ---------- wp-content: whitelist hanya theme+plugin custom ----------
 /wp-content/*
 !/wp-content/themes/
@@ -39,11 +42,15 @@ wp-config-sample.php
 /wp-content/themes/*
 !/wp-content/themes/rspku-theme/
 
-# Plugins: whitelist hanya rspku-core + rspku-schema + rspku-cpt
+# Plugins: whitelist hanya rspku-core + rspku-schema + rspku-cpt + rspku-settings
 /wp-content/plugins/*
 !/wp-content/plugins/rspku-core/
 !/wp-content/plugins/rspku-schema/
 !/wp-content/plugins/rspku-cpt/
+!/wp-content/plugins/rspku-settings/
+
+# rspku-settings: exclude node_modules
+wp-content/plugins/rspku-settings/node_modules/
 
 # ---------- Build artefact & dependency di theme ----------
 wp-content/themes/rspku-theme/node_modules/

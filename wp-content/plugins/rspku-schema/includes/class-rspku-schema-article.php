@@ -23,7 +23,6 @@ final class RSPKU_Schema_Article {
             return null;
         }
 
-        $home = home_url('/');
         $url = (string) get_permalink($post);
         $type = self::resolve_type($post);
         $author = self::author_node((int) $post->post_author);
@@ -43,7 +42,7 @@ final class RSPKU_Schema_Article {
             'inLanguage' => str_replace('_', '-', (string) get_bloginfo('language')),
             'image' => RSPKU_Schema_Helpers::image_from_post($postId),
             'author' => $author,
-            'publisher' => ['@id' => $home . '#hospital'],
+            'publisher' => RSPKU_Schema_Helpers::organization_id_ref(),
             'articleSection' => self::primary_category($postId),
             'keywords' => self::keywords($postId),
         ]);

@@ -72,11 +72,11 @@ final class RSPKU_CPT_PostTypes
     private static function journal(): void
     {
         register_post_type('jurnal', [
-            'labels' => self::labels('E-Journal', 'E-Journal', 'Jurnal'),
+            'labels' => self::labels('E-Jurnal', 'E-Jurnal', 'Jurnal'),
             'public' => true,
             'show_in_rest' => true,
-            'has_archive' => 'e-journal',
-            'rewrite' => ['slug' => 'e-journal', 'with_front' => false],
+            'has_archive' => false,
+            'rewrite' => ['slug' => 'e-jurnal', 'with_front' => false],
             'menu_icon' => 'dashicons-media-document',
             'supports' => ['title', 'thumbnail', 'revisions'],
         ]);

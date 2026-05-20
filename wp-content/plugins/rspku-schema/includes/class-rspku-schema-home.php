@@ -19,6 +19,10 @@ final class RSPKU_Schema_Home {
         $home = home_url('/');
         $hospital = RSPKU_Schema_Helpers::hospital_node();
 
+        if (RSPKU_Schema_Helpers::yoast_active()) {
+            return [$hospital];
+        }
+
         $website = RSPKU_Schema_Helpers::compact_node([
             '@type' => 'WebSite',
             '@id' => $home . '#website',
@@ -26,7 +30,7 @@ final class RSPKU_Schema_Home {
             'name' => get_bloginfo('name'),
             'description' => get_bloginfo('description'),
             'inLanguage' => str_replace('_', '-', (string) get_bloginfo('language')),
-            'publisher' => ['@id' => $home . '#hospital'],
+            'publisher' => RSPKU_Schema_Helpers::organization_id_ref(),
             'potentialAction' => [
                 '@type' => 'SearchAction',
                 'target' => [

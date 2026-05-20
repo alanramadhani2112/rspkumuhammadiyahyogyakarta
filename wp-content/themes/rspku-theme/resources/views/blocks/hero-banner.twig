@@ -1,6 +1,6 @@
 <section class="rspku-section">
   <div class="rspku-container">
-    <div class="relative overflow-hidden rounded-[2rem] bg-slate-950 px-6 py-12 text-white sm:px-10 lg:px-14">
+    <div class="relative overflow-hidden rounded-xl bg-slate-950 px-6 py-12 text-white sm:px-10 lg:px-14">
       <div class="absolute inset-0 opacity-70" aria-hidden="true">
         <div class="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-hospital-500 blur-3xl"></div>
         <div class="absolute -bottom-24 left-10 h-56 w-56 rounded-full bg-amber-400 blur-3xl"></div>
@@ -15,10 +15,10 @@
         {% endif %}
         <div class="flex flex-wrap gap-3">
           {% if attributes.ctaLabel and attributes.ctaUrl %}
-            <a href="{{ attributes.ctaUrl }}" class="rspku-button bg-white text-slate-950">{{ attributes.ctaLabel }}</a>
+            <a href="{{ attributes.ctaUrl }}" class="rspku-button rspku-button-white">{{ attributes.ctaLabel }}</a>
           {% endif %}
           {% if attributes.secondaryLabel and attributes.secondaryUrl %}
-            <a href="{{ attributes.secondaryUrl }}" class="rspku-button border border-white/30 text-white">{{ attributes.secondaryLabel }}</a>
+            <a href="{{ attributes.secondaryUrl }}" class="rspku-button rspku-button-ghost">{{ attributes.secondaryLabel }}</a>
           {% endif %}
         </div>
       </div>

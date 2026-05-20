@@ -44,6 +44,7 @@ final class TimberSetup
         ];
 
         $context['site_logo'] = self::siteLogo();
+        $context['labmu_logo'] = self::labmuLogo();
 
         return $context;
     }
@@ -54,6 +55,36 @@ final class TimberSetup
             'icon',
             static fn (string $name, array $attributes = []): string => Icon::svg($name, $attributes),
             ['is_safe' => ['html']]
+        ));
+
+        $twig->addFunction(new TwigFunction(
+            'image_src',
+            /**
+             * Build a responsive image descriptor for an attachment.
+             *
+             * @return array{url:string,srcset:string,sizes:string,width:int,height:int,alt:string}|null
+             */
+            static function (int $attachmentId, string $size = 'rspku-hero', string $sizes = '(min-width: 1024px) 50vw, 100vw'): ?array {
+                if ($attachmentId <= 0) {
+                    return null;
+                }
+
+                $src = wp_get_attachment_image_src($attachmentId, $size);
+                if (!$src) {
+                    return null;
+                }
+
+                $srcset = wp_get_attachment_image_srcset($attachmentId, $size);
+
+                return [
+                    'url' => (string) $src[0],
+                    'width' => (int) $src[1],
+                    'height' => (int) $src[2],
+                    'srcset' => is_string($srcset) ? $srcset : '',
+                    'sizes' => $sizes,
+                    'alt' => (string) get_post_meta($attachmentId, '_wp_attachment_image_alt', true),
+                ];
+            }
         ));
 
         return $twig;
@@ -85,6 +116,17 @@ final class TimberSetup
             'id' => $logoId,
             'url' => $image ? $image[0] : wp_get_attachment_url($logoId),
             'alt' => (string) get_post_meta($logoId, '_wp_attachment_image_alt', true),
+        ];
+    }
+
+    /**
+     * @return array<string,mixed>
+     */
+    private static function labmuLogo(): array
+    {
+        return [
+            'url' => get_template_directory_uri() . '/resources/images/labmu-logo.png',
+            'alt' => 'LabMu - Muhammadiyah Software Labs',
         ];
     }
 }

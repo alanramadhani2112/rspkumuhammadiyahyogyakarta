@@ -21,9 +21,9 @@ final class RSPKU_Schema_Clinic {
             return null;
         }
 
-        $home = home_url('/');
         $url = (string) get_permalink($post);
         $name = self::field_text($postId, 'nama_poli', (string) get_the_title($post));
+        $organization = RSPKU_Schema_Helpers::organization_id_ref();
 
         return RSPKU_Schema_Helpers::compact_node([
             '@type' => 'MedicalClinic',
@@ -32,8 +32,8 @@ final class RSPKU_Schema_Clinic {
             'url' => $url,
             'description' => self::field_text($postId, 'deskripsi_singkat'),
             'image' => self::image_url($postId, 'gambar_poli'),
-            'parentOrganization' => ['@id' => $home . '#hospital'],
-            'isPartOf' => ['@id' => $home . '#hospital'],
+            'parentOrganization' => $organization,
+            'isPartOf' => $organization,
         ]);
     }
 

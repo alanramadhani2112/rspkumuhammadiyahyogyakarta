@@ -23,9 +23,9 @@ final class RSPKU_Schema_Physician {
             return null;
         }
 
-        $home = home_url('/');
         $name = self::field_text($postId, 'nama_dokter', (string) get_the_title($post));
         $url = (string) get_permalink($post);
+        $organization = RSPKU_Schema_Helpers::organization_id_ref();
 
         $node = RSPKU_Schema_Helpers::compact_node([
             '@type' => 'Physician',
@@ -35,8 +35,8 @@ final class RSPKU_Schema_Physician {
             'description' => self::field_text($postId, 'profil_dokter'),
             'image' => self::physician_image($postId),
             'medicalSpecialty' => self::medical_specialty($postId),
-            'worksFor' => ['@id' => $home . '#hospital'],
-            'affiliation' => ['@id' => $home . '#hospital'],
+            'worksFor' => $organization,
+            'affiliation' => $organization,
         ]);
 
         return $node;

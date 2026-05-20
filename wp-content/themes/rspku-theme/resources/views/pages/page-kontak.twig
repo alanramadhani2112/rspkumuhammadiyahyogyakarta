@@ -2,8 +2,9 @@
 
 {% block content %}
   {% if contact_page is defined %}
+    {# Hero Section #}
     <section class="rspku-section pb-8">
-      <div class="rspku-container space-y-10">
+      <div class="rspku-container">
         {% include 'partials/breadcrumb.twig' with {
           items: [
             { title: 'Home', url: site.url },
@@ -11,94 +12,209 @@
           ]
         } only %}
 
-        <div class="grid gap-10 xl:grid-cols-[0.92fr_1.08fr] xl:items-start">
-          <div class="space-y-6">
-            <span class="rspku-eyebrow">{{ contact_page.eyebrow }}</span>
-            <h1 class="max-w-3xl text-[2.25rem] font-semibold leading-[1.08] text-slate-950 sm:text-[2.75rem] xl:text-[3.25rem]">{{ contact_page.title }}</h1>
-            <p class="max-w-2xl text-base leading-8 text-slate-600">{{ contact_page.description }}</p>
-
-            <div class="flex flex-wrap gap-3">
-              {% include 'components/button.twig' with {
-                text: 'Telepon utama',
-                url: 'tel:+62274512653',
-                variant: 'primary',
-                icon: 'phone'
-              } only %}
-              {% include 'components/button.twig' with {
-                text: 'Kirim email',
-                url: 'mailto:info@rspkudev.test',
-                variant: 'secondary',
-                icon: 'mail'
-              } only %}
-            </div>
-          </div>
-
-          <div class="overflow-hidden border border-slate-200 bg-slate-100">
-            <iframe src="{{ contact_page.map_embed_url }}" title="Lokasi RS PKU Muhammadiyah Yogyakarta" class="h-[24rem] w-full border-0 sm:h-[30rem]" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-
-        <div class="rspku-divider"></div>
-
-        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {% for item in contact_page.cards %}
-            <article class="border border-slate-200 bg-white p-6">
-              <div class="grid h-12 w-12 place-items-center border border-hospital-200 bg-[#f8fbf8] text-hospital-700">
-                {{ icon(item.icon, { class: 'h-6 w-6' }) }}
-              </div>
-              <h2 class="mt-5 text-[1.35rem] font-semibold leading-tight text-slate-950">{{ item.title }}</h2>
-              {% if item.body %}
-                <p class="mt-4 text-[15px] leading-7 text-slate-600">{{ item.body }}</p>
-              {% endif %}
-              {% if item.lines %}
-                <div class="mt-4 space-y-2 text-[15px] leading-7 text-slate-600">
-                  {% for line in item.lines %}
-                    <p>{{ line }}</p>
-                  {% endfor %}
-                </div>
-              {% endif %}
-            </article>
-          {% endfor %}
-        </div>
-
-        <div class="grid gap-6 lg:grid-cols-2">
-          <article class="border border-slate-200 bg-white p-6">
-            <div class="flex items-center gap-3">
-              <div class="grid h-12 w-12 place-items-center border border-hospital-200 bg-[#f8fbf8] text-hospital-700">
-                {{ icon('calendar-days', { class: 'h-6 w-6' }) }}
-              </div>
-              <div>
-                <p class="text-sm font-medium text-hospital-700">Jam layanan rumah sakit</p>
-                <h2 class="mt-1 text-[1.35rem] font-semibold text-slate-950">Jam operasional</h2>
-              </div>
-            </div>
-
-            <div class="mt-5 space-y-3 text-[15px] leading-7 text-slate-600">
-              {% for line in contact_page.service_hours %}
-                <p>{{ line }}</p>
-              {% endfor %}
-            </div>
-          </article>
-
-          <article class="border border-slate-200 bg-white p-6">
-            <div class="flex items-center gap-3">
-              <div class="grid h-12 w-12 place-items-center border border-hospital-200 bg-[#f8fbf8] text-hospital-700">
-                {{ icon('share-2', { class: 'h-6 w-6' }) }}
-              </div>
-              <div>
-                <p class="text-sm font-medium text-hospital-700">Media sosial resmi</p>
-                <h2 class="mt-1 text-[1.35rem] font-semibold text-slate-950">Kanal informasi</h2>
-              </div>
-            </div>
-
-            <div class="mt-5 space-y-3 text-[15px] leading-7 text-slate-600">
-              {% for line in contact_page.socials %}
-                <p>{{ line }}</p>
-              {% endfor %}
-            </div>
-          </article>
+        <div class="mt-6 max-w-3xl space-y-4">
+          <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ contact_page.eyebrow }}</span>
+          <h1 class="text-3xl font-bold leading-tight text-slate-950 sm:text-4xl lg:text-5xl">{{ contact_page.title }}</h1>
+          <p class="max-w-2xl text-base leading-relaxed text-slate-600">{{ contact_page.description }}</p>
         </div>
       </div>
     </section>
+
+    {# Emergency Alert Banner #}
+    {% if contact_page.emergency %}
+      <section class="pb-8">
+        <div class="rspku-container">
+          <a href="tel:{{ contact_page.emergency.phone|replace({' ': ''}) }}" class="block rounded-md border border-red-200 bg-red-50 p-6 transition hover:border-red-300">
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div class="flex items-start gap-4">
+                <div class="grid h-12 w-12 shrink-0 place-items-center rounded-sm bg-red-600 text-white">
+                  {{ icon(contact_page.emergency.icon, { class: 'h-6 w-6' }) }}
+                </div>
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-wide text-red-700">{{ contact_page.emergency.label }}</p>
+                  <h2 class="mt-1 text-lg font-bold text-slate-950">{{ contact_page.emergency.title }}</h2>
+                  <p class="mt-1 text-sm text-slate-600">{{ contact_page.emergency.description }}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 sm:shrink-0">
+                <div class="text-right">
+                  <p class="text-xs font-medium text-slate-500">Hubungi sekarang</p>
+                  <p class="text-xl font-bold text-red-700">{{ contact_page.emergency.phone_display }}</p>
+                </div>
+                <div class="grid h-10 w-10 place-items-center rounded-sm bg-red-600 text-white">
+                  {{ icon('phone', { class: 'h-4 w-4' }) }}
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+    {% endif %}
+
+    {# Quick Contacts Grid #}
+    {% if contact_page.quick_contacts %}
+      <section class="pb-12">
+        <div class="rspku-container">
+          <div class="mb-6">
+            <h2 class="text-xl font-bold text-slate-950">Saluran Kontak</h2>
+            <p class="mt-1 text-sm text-slate-600">Pilih cara yang paling nyaman untuk Anda</p>
+          </div>
+          <div class="grid gap-4 md:grid-cols-3">
+            {% for contact in contact_page.quick_contacts %}
+              <a href="{{ contact.url }}" {% if contact.url starts with 'http' %}target="_blank" rel="noopener"{% endif %} class="group rounded-md border border-slate-200 bg-white p-5 transition hover:border-hospital-300">
+                <div class="flex items-start gap-4">
+                  <div class="grid h-11 w-11 shrink-0 place-items-center rounded-sm bg-hospital-50 text-hospital-700 transition group-hover:bg-hospital-600 group-hover:text-white">
+                    {{ icon(contact.icon, { class: 'h-5 w-5' }) }}
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-xs font-medium uppercase tracking-wide text-slate-500">{{ contact.title }}</p>
+                    <p class="mt-1 text-base font-semibold text-slate-950 transition group-hover:text-hospital-700">{{ contact.value }}</p>
+                    <p class="mt-1 text-xs text-slate-500">{{ contact.description }}</p>
+                  </div>
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
+    {# Address + Map #}
+    <section class="pb-12">
+      <div class="rspku-container">
+        <div class="grid gap-6 overflow-hidden rounded-md border border-slate-200 bg-white lg:grid-cols-[1fr_1.5fr]">
+          {# Address Info #}
+          <div class="space-y-5 p-6 lg:p-8">
+            <div>
+              <div class="grid h-11 w-11 place-items-center rounded-sm bg-hospital-50 text-hospital-700">
+                {{ icon('map-pin', { class: 'h-5 w-5' }) }}
+              </div>
+              <h2 class="mt-4 text-xl font-bold text-slate-950">Lokasi Rumah Sakit</h2>
+              <p class="mt-1 text-sm text-slate-600">Kunjungi langsung kantor pusat kami</p>
+            </div>
+
+            <div class="space-y-1 border-t border-slate-100 pt-5 text-sm text-slate-700">
+              <p class="font-semibold text-slate-950">{{ contact_page.address.street }}</p>
+              <p>{{ contact_page.address.district }}</p>
+              <p>{{ contact_page.address.city }}</p>
+              <p>{{ contact_page.address.province }}</p>
+            </div>
+
+            <div class="flex flex-col gap-2 sm:flex-row">
+              {% include 'components/button.twig' with {
+                text: 'Petunjuk Arah',
+                url: contact_page.map_link|default('https://maps.google.com'),
+                variant: 'primary',
+                icon: 'map-pin',
+                size: 'sm',
+                target: '_blank'
+              } only %}
+              {% include 'components/button.twig' with {
+                text: 'Telepon',
+                url: 'tel:+62274512653',
+                variant: 'secondary',
+                icon: 'phone',
+                size: 'sm'
+              } only %}
+            </div>
+          </div>
+
+          {# Map #}
+          <div class="min-h-[20rem] bg-slate-100 lg:min-h-0">
+            <iframe
+              src="{{ contact_page.map_embed_url }}"
+              title="Lokasi RS PKU Muhammadiyah Yogyakarta"
+              class="h-full min-h-[20rem] w-full border-0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# Service Hours #}
+    {% if contact_page.service_hours %}
+      <section class="pb-12">
+        <div class="rspku-container">
+          <div class="grid gap-6 lg:grid-cols-[1fr_1.5fr] lg:items-start">
+            <div class="lg:sticky lg:top-28">
+              <div class="grid h-11 w-11 place-items-center rounded-sm bg-hospital-50 text-hospital-700">
+                {{ icon('clock', { class: 'h-5 w-5' }) }}
+              </div>
+              <h2 class="mt-4 text-xl font-bold text-slate-950">Jam Operasional</h2>
+              <p class="mt-1 text-sm text-slate-600">Kami siap melayani Anda sesuai jam berikut</p>
+            </div>
+
+            <div class="divide-y divide-slate-100 overflow-hidden rounded-md border border-slate-200 bg-white">
+              {% for hour in contact_page.service_hours %}
+                <div class="flex items-center justify-between gap-4 px-5 py-4 {% if hour.highlight %}bg-hospital-50/30{% endif %}">
+                  <div class="flex items-center gap-3">
+                    {% if hour.highlight %}
+                      <span class="relative flex h-2 w-2">
+                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-hospital-400 opacity-75"></span>
+                        <span class="relative inline-flex h-2 w-2 rounded-full bg-hospital-600"></span>
+                      </span>
+                    {% endif %}
+                    <p class="text-sm font-medium text-slate-800">{{ hour.label }}</p>
+                  </div>
+                  <p class="text-sm {% if hour.highlight %}font-semibold text-hospital-700{% else %}text-slate-600{% endif %}">{{ hour.time }}</p>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
+    {# Department Direct Lines #}
+    {% if contact_page.departments %}
+      <section class="bg-slate-50/50 py-12">
+        <div class="rspku-container">
+          <div class="mb-6">
+            <h2 class="text-xl font-bold text-slate-950">Nomor Ekstensi Departemen</h2>
+            <p class="mt-1 text-sm text-slate-600">Hubungi departemen terkait langsung untuk informasi spesifik</p>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {% for dept in contact_page.departments %}
+              <a href="tel:+62274512653" class="group flex items-center gap-3 rounded-md border border-slate-200 bg-white p-4 transition hover:border-hospital-300">
+                <div class="grid h-10 w-10 shrink-0 place-items-center rounded-sm bg-hospital-50 text-hospital-700">
+                  {{ icon(dept.icon, { class: 'h-4 w-4' }) }}
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="truncate text-sm font-semibold text-slate-950">{{ dept.name }}</p>
+                  <p class="mt-0.5 text-xs text-slate-500">{{ dept.ext }}</p>
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
+    {# Social Media #}
+    {% if contact_page.socials %}
+      <section class="py-12">
+        <div class="rspku-container">
+          <div class="mb-6">
+            <h2 class="text-xl font-bold text-slate-950">Ikuti Kami</h2>
+            <p class="mt-1 text-sm text-slate-600">Dapatkan informasi terbaru di media sosial resmi</p>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-3">
+            {% for social in contact_page.socials %}
+              <a href="{{ social.url }}" target="_blank" rel="noopener" class="group flex items-center gap-4 rounded-md border border-slate-200 bg-white p-5 transition hover:border-hospital-300">
+                <div class="grid h-10 w-10 shrink-0 place-items-center rounded-sm bg-slate-50 text-slate-600 transition group-hover:bg-hospital-50 group-hover:text-hospital-700">
+                  {{ icon(social.icon, { class: 'h-5 w-5' }) }}
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-xs font-medium uppercase tracking-wide text-slate-500">{{ social.name }}</p>
+                  <p class="mt-0.5 truncate text-sm font-semibold text-slate-950">{{ social.handle }}</p>
+                </div>
+                {{ icon('arrow-up-right', { class: 'h-4 w-4 text-slate-400 transition group-hover:text-hospital-700' }) }}
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
   {% endif %}
 {% endblock %}

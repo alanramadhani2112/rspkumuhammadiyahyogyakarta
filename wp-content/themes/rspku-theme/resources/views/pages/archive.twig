@@ -3,8 +3,10 @@
 {% block content %}
   {% if article_archive is defined %}
     {% set lead_post = posts|first %}
+
+    {# Hero Section #}
     <section class="rspku-section pb-8">
-      <div class="rspku-container space-y-10">
+      <div class="rspku-container">
         {% include 'partials/breadcrumb.twig' with {
           items: [
             { title: 'Home', url: site.url },
@@ -12,40 +14,33 @@
           ]
         } only %}
 
-        <div class="grid gap-10 xl:grid-cols-[1fr_0.95fr] xl:items-end">
-          <div class="space-y-6">
-            <span class="rspku-eyebrow">{{ article_archive.eyebrow }}</span>
-            <h1 class="max-w-3xl text-[2.25rem] font-semibold leading-[1.08] text-slate-950 sm:text-[2.75rem] xl:text-[3.25rem]">{{ article_archive.title }}</h1>
-            <p class="max-w-2xl text-base leading-8 text-slate-600">{{ article_archive.description }}</p>
-
-            <form action="{{ article_archive.search_action }}" method="get" class="max-w-3xl">
-              <input type="hidden" name="post_type" value="post">
-              {% if article_archive.search_category_slug %}
-                <input type="hidden" name="category_name" value="{{ article_archive.search_category_slug }}">
-              {% endif %}
-              <div class="flex flex-col gap-3 rounded-[2rem] border border-slate-200 bg-white p-2 sm:flex-row sm:items-center sm:rounded-full">
-                <label for="article-search" class="sr-only">Cari berita dan artikel</label>
-                <input id="article-search" type="search" name="s" value="{{ article_archive.search_query }}" placeholder="Cari berita di sini" class="min-h-[3.75rem] flex-1 rounded-full px-5 text-base font-normal leading-6 text-slate-700 outline-none placeholder:text-[15px] placeholder:text-slate-400">
-                <button type="submit" class="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-hospital-600 text-white transition hover:bg-hospital-700" aria-label="Cari artikel">
-                  {{ icon('search', { class: 'h-6 w-6' }) }}
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-100">
-            {% if lead_post and lead_post.thumbnail %}
-              <img src="{{ lead_post.thumbnail.src('rspku-hero') }}" alt="{{ lead_post.title }}" class="aspect-[16/10] w-full object-cover">
-            {% else %}
-              <div class="grid aspect-[16/10] place-items-center bg-[#edf4ef] p-8 text-center text-lg font-semibold text-slate-500">Berita dan artikel RS PKU Muhammadiyah Yogyakarta</div>
-            {% endif %}
-          </div>
+        <div class="mt-6 max-w-3xl space-y-4">
+          <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ article_archive.eyebrow }}</span>
+          <h1 class="text-3xl font-bold leading-tight text-slate-950 sm:text-4xl lg:text-5xl">{{ article_archive.title }}</h1>
+          <p class="max-w-2xl text-base leading-relaxed text-slate-600">{{ article_archive.description }}</p>
         </div>
 
-        {% if posts %}
-          <div class="rspku-divider"></div>
+        {# Search Bar #}
+        <form action="{{ article_archive.search_action }}" method="get" class="mt-6 max-w-2xl">
+          <input type="hidden" name="post_type" value="post">
+          {% if article_archive.search_category_slug %}
+            <input type="hidden" name="category_name" value="{{ article_archive.search_category_slug }}">
+          {% endif %}
+          <label for="article-search" class="sr-only">Cari berita dan artikel</label>
+          <div class="flex items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 transition focus-within:border-hospital-400">
+            {{ icon('search', { class: 'h-4 w-4 text-slate-400' }) }}
+            <input id="article-search" type="search" name="s" value="{{ article_archive.search_query }}" placeholder="Cari berita atau artikel..." class="min-h-[2.25rem] flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400">
+            <button type="submit" class="rounded-sm bg-hospital-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-hospital-700">Cari</button>
+          </div>
+        </form>
+      </div>
+    </section>
 
-          <div class="grid gap-x-8 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
+    {# Articles Grid #}
+    {% if posts %}
+      <section class="py-8">
+        <div class="rspku-container">
+          <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {% for item in posts %}
               {% include 'components/content-card.twig' with {
                 item: {
@@ -63,21 +58,36 @@
               } %}
             {% endfor %}
           </div>
-        {% endif %}
 
-        {% include 'partials/pagination.twig' with {
-          pagination: pagination|default(''),
-          class: 'pt-2',
-          label: 'Pagination artikel',
-          total: pagination_meta.total|default(0),
-          per_page: pagination_meta.per_page|default(10),
-          current_page: pagination_meta.current_page|default(1),
-          total_pages: pagination_meta.total_pages|default(1),
-          show_single: pagination_meta.total|default(0) > 0,
-          item_label: pagination_meta.item_label|default('artikel')
-        } only %}
-      </div>
-    </section>
+          {% include 'partials/pagination.twig' with {
+            pagination: pagination|default(''),
+            class: 'pt-10',
+            label: 'Pagination artikel',
+            total: pagination_meta.total|default(0),
+            per_page: pagination_meta.per_page|default(10),
+            current_page: pagination_meta.current_page|default(1),
+            total_pages: pagination_meta.total_pages|default(1),
+            show_single: pagination_meta.total|default(0) > 0,
+            item_label: pagination_meta.item_label|default('artikel')
+          } only %}
+        </div>
+      </section>
+    {% else %}
+      <section class="py-12">
+        <div class="rspku-container">
+          {% include 'components/empty-state.twig' with {
+            icon: 'newspaper',
+            title: 'Belum ada artikel',
+            description: article_archive.search_query ? 'Belum ada artikel yang cocok dengan pencarian Anda.' : 'Artikel akan ditampilkan di sini setelah dipublikasikan.',
+            action: article_archive.search_query ? {
+              text: 'Lihat semua artikel',
+              url: site.url ~ '/berita-artikel/',
+              variant: 'secondary'
+            } : null
+          } only %}
+        </div>
+      </section>
+    {% endif %}
   {% else %}
     <section class="rspku-section">
       <div class="rspku-container space-y-8">
@@ -90,8 +100,8 @@
 
         <div class="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-end">
           <div class="space-y-4">
-            <span class="rspku-eyebrow">Arsip</span>
-            <h1 class="text-4xl font-black leading-tight text-slate-950 sm:text-5xl">{{ archive_title|default('Arsip Konten') }}</h1>
+            <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">Arsip</span>
+            <h1 class="text-3xl font-bold leading-tight text-slate-950 sm:text-4xl">{{ archive_title|default('Arsip Konten') }}</h1>
           </div>
           {% if archive_description %}
             <div class="rspku-prose">{{ archive_description|raw }}</div>

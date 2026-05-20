@@ -3,14 +3,14 @@
   {% set fallback_icon = 'building-2' %}
 {% endif %}
 
-<article class="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white transition hover:shadow-md">
+<article class="group flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:border-hospital-300">
   <a href="{{ item.url }}" class="block overflow-hidden bg-slate-100">
     {% if item.image.url %}
       <img src="{{ item.image.url }}" alt="{{ item.image.alt|default(item.title) }}" loading="lazy" class="aspect-[16/9] h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
     {% else %}
       <div class="grid aspect-[16/9] place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(159,212,91,0.16),_transparent_32%),linear-gradient(180deg,#f8fbf8_0%,#eef6f0_100%)] p-8 text-center">
         <div class="space-y-4">
-          <div class="mx-auto grid h-14 w-14 place-items-center rounded-lg border border-hospital-200 bg-white text-hospital-700">
+          <div class="mx-auto grid h-14 w-14 place-items-center rounded-sm border border-hospital-200 bg-white text-hospital-700">
             {{ icon(fallback_icon, { class: 'h-7 w-7' }) }}
           </div>
           <p class="text-sm font-medium text-hospital-700">{{ item.badge|default('Konten') }}</p>
@@ -18,8 +18,8 @@
       </div>
     {% endif %}
   </a>
-  <div class="flex flex-1 flex-col space-y-4 p-6">
-    <h3 class="text-xl font-semibold leading-snug text-slate-950">
+  <div class="flex flex-1 flex-col space-y-3 p-5">
+    <h3 class="text-base font-semibold leading-snug text-slate-950">
       <a href="{{ item.url }}" class="transition hover:text-hospital-700">{{ item.title }}</a>
     </h3>
     {% if item.excerpt %}

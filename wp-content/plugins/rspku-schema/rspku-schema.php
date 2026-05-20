@@ -47,10 +47,11 @@ final class RSPKU_Schema {
 
         $nodes = [];
 
-        // Breadcrumb always emits on non-home pages.
-        $breadcrumb = RSPKU_Schema_Breadcrumb::build();
-        if ($breadcrumb !== null) {
-            $nodes[] = $breadcrumb;
+        if (!RSPKU_Schema_Helpers::yoast_active()) {
+            $breadcrumb = RSPKU_Schema_Breadcrumb::build();
+            if ($breadcrumb !== null) {
+                $nodes[] = $breadcrumb;
+            }
         }
 
         // Page-specific nodes.
@@ -73,7 +74,7 @@ final class RSPKU_Schema {
             if ($node !== null) {
                 $nodes[] = $node;
             }
-        } elseif (is_singular('post') || is_singular('jurnal')) {
+        } elseif ((is_singular('post') || is_singular('jurnal')) && !RSPKU_Schema_Helpers::yoast_active()) {
             $node = RSPKU_Schema_Article::build((int) get_queried_object_id());
             if ($node !== null) {
                 $nodes[] = $node;

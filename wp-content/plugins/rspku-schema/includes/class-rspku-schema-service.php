@@ -24,7 +24,6 @@ final class RSPKU_Schema_Service {
             return null;
         }
 
-        $home = home_url('/');
         $url = (string) get_permalink($post);
         $name = self::field_text($postId, 'nama_layanan', (string) get_the_title($post));
 
@@ -42,7 +41,7 @@ final class RSPKU_Schema_Service {
             'description' => self::field_text($postId, 'deskripsi_singkat_layanan'),
             'image' => self::image_url($postId, 'gambar_layanan'),
             'category' => self::service_category($postId),
-            'provider' => ['@id' => $home . '#hospital'],
+            'provider' => RSPKU_Schema_Helpers::organization_id_ref(),
         ]);
 
         if ($type === 'Service') {

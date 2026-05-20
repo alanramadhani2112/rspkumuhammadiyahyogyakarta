@@ -273,6 +273,10 @@ Alpine.data('reviewsCarousel', () => ({
   startX: 0,
   startScrollLeft: 0,
   pointerId: null,
+  velocity: 0,
+  lastX: 0,
+  lastTime: 0,
+  momentumId: null,
   scroll(direction) {
     const track = this.$refs.track;
     if (!track) {
@@ -291,9 +295,21 @@ Alpine.data('reviewsCarousel', () => ({
       return;
     }
 
+    // Stop any ongoing momentum
+    if (this.momentumId) {
+      cancelAnimationFrame(this.momentumId);
+      this.momentumId = null;
+    }
+
+    // Disable scroll-snap during drag for smooth movement
+    track.style.scrollSnapType = 'none';
+
     this.dragging = true;
     this.pointerId = event.pointerId;
     this.startX = event.clientX;
+    this.lastX = event.clientX;
+    this.lastTime = Date.now();
+    this.velocity = 0;
     this.startScrollLeft = track.scrollLeft;
     track.setPointerCapture(event.pointerId);
   },
@@ -303,8 +319,19 @@ Alpine.data('reviewsCarousel', () => ({
       return;
     }
 
+    event.preventDefault();
+
     const delta = event.clientX - this.startX;
     track.scrollLeft = this.startScrollLeft - delta;
+
+    // Track velocity for momentum
+    const now = Date.now();
+    const timeDelta = now - this.lastTime;
+    if (timeDelta > 0) {
+      this.velocity = (event.clientX - this.lastX) / timeDelta;
+    }
+    this.lastX = event.clientX;
+    this.lastTime = now;
   },
   end(event) {
     const track = this.$refs.track;
@@ -318,6 +345,109 @@ Alpine.data('reviewsCarousel', () => ({
 
     this.dragging = false;
     this.pointerId = null;
+
+    // Apply momentum scrolling
+    if (track && Math.abs(this.velocity) > 0.1) {
+      this.applyMomentum(track);
+    } else if (track) {
+      // Re-enable scroll-snap after drag completes
+      this.restoreSnap(track);
+    }
+  },
+  applyMomentum(track) {
+    let currentVelocity = this.velocity * 16; // Convert to px per frame (~60fps)
+    const friction = 0.94; // Decay factor per frame
+    const minVelocity = 0.5;
+
+    const step = () => {
+      if (Math.abs(currentVelocity) < minVelocity) {
+        this.momentumId = null;
+        this.restoreSnap(track);
+        return;
+      }
+
+      track.scrollLeft -= currentVelocity;
+      currentVelocity *= friction;
+      this.momentumId = requestAnimationFrame(step);
+    };
+
+    this.momentumId = requestAnimationFrame(step);
+  },
+  restoreSnap(track) {
+    // Restore scroll-snap smoothly
+    track.style.scrollSnapType = 'x mandatory';
+  },
+}));
+
+Alpine.data('readingProgress', () => ({
+  progress: 0,
+  init() {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      this.$el.style.transition = 'none';
+    }
+
+    const update = () => {
+      const article = document.querySelector('[x-ref="articleBody"]');
+      if (!article) return;
+
+      const rect = article.getBoundingClientRect();
+      const articleTop = rect.top + window.scrollY;
+      const articleHeight = rect.height;
+      const scrolled = window.scrollY - articleTop;
+      const viewportHeight = window.innerHeight;
+
+      if (scrolled <= 0) {
+        this.progress = 0;
+      } else if (scrolled >= articleHeight - viewportHeight) {
+        this.progress = 100;
+      } else {
+        this.progress = Math.min(100, Math.max(0, (scrolled / (articleHeight - viewportHeight)) * 100));
+      }
+    };
+
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  },
+}));
+
+Alpine.data('tocHighlight', () => ({
+  active: '',
+  init() {
+    const headings = document.querySelectorAll('.rspku-prose h2[id], .rspku-prose h3[id]');
+    if (!headings.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            this.active = entry.target.id;
+          }
+        }
+      },
+      { rootMargin: '-80px 0px -70% 0px' }
+    );
+
+    headings.forEach((h) => observer.observe(h));
+
+    // Smooth scroll with sticky header offset for TOC links.
+    this.$el.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+
+      e.preventDefault();
+      const targetId = link.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      const headerOffset = 80; // sticky header height
+      const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+      window.scrollTo({ top, behavior: 'smooth' });
+
+      // Update URL hash without jump
+      history.replaceState(null, '', '#' + targetId);
+    });
   },
 }));
 

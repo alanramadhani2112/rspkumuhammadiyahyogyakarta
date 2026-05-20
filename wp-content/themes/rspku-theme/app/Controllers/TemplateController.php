@@ -36,14 +36,32 @@ final class TemplateController
         $reviewRepository = new ReviewRepository();
 
         if (is_front_page()) {
+            // Dynamic pickers: use admin-selected IDs if available,
+            // otherwise fall back to auto-populated content.
+            $featuredServiceIds = self::settingArray('home_featured_services');
+            $featuredDoctorIds = self::settingArray('home_featured_doctors');
+            $featuredReviews = self::settingArray('home_featured_reviews');
+
+            $services = $featuredServiceIds !== []
+                ? self::postsByIds($featuredServiceIds, 'layanan', fn (\WP_Post $p) => $contentRepository->normalizeServicePublic($p))
+                : $contentRepository->featuredServices(8);
+
+            $doctors = $featuredDoctorIds !== []
+                ? self::postsByIds($featuredDoctorIds, 'dokter', fn (\WP_Post $p) => $doctorRepository->normalize($p))
+                : $doctorRepository->list(['per_page' => 6]);
+
+            $reviews = $featuredReviews !== []
+                ? $featuredReviews
+                : $reviewRepository->homeReviews(12);
+
             $context['home'] = [
-                'doctors' => $doctorRepository->list(['per_page' => 6]),
-                'services' => $contentRepository->featuredServices(8),
+                'doctors' => $doctors,
+                'services' => $services,
                 'polyclinics' => $contentRepository->polyclinics(8),
                 'articles' => $contentRepository->latestArticles(6),
                 'journals' => $contentRepository->latestJournals(4),
                 'rooms' => $contentRepository->latestRooms(4),
-                'reviews' => $reviewRepository->homeReviews(12),
+                'reviews' => $reviews,
                 'review_summary' => $reviewRepository->summary(),
                 'schedule_summary' => $doctorScheduleRepository->summary(),
             ];
@@ -91,10 +109,6 @@ final class TemplateController
             $context['polyclinic'] = $contentRepository->findPolyclinic($polyclinicId);
             $context['polyclinic_navigation'] = $contentRepository->polyclinicGroups();
             $context['polyclinic_doctors'] = $doctorRepository->forPolyclinic($polyclinicId, 4);
-
-            if ($context['polyclinic_doctors'] === []) {
-                $context['polyclinic_doctors'] = $doctorRepository->featured(4);
-            }
         }
 
         if (is_singular('layanan')) {
@@ -102,10 +116,6 @@ final class TemplateController
             $context['service_single'] = $contentRepository->findService($serviceId);
             $context['service_related'] = $contentRepository->relatedServices($serviceId, 3);
             $context['service_doctors'] = $doctorRepository->forService($serviceId, 4);
-
-            if ($context['service_doctors'] === []) {
-                $context['service_doctors'] = $doctorRepository->featured(4);
-            }
         }
 
         if (is_singular('rawat-inap')) {
@@ -497,11 +507,37 @@ final class TemplateController
 
         $categoryIds = array_map(static fn (WP_Term $term): int => (int) $term->term_id, $terms);
 
+        $post = get_post($postId);
+        $rendered = $post instanceof \WP_Post ? apply_filters('the_content', $post->post_content) : '';
+        $toc = is_string($rendered) && $rendered !== ''
+            ? \Rspku\Helpers\TocGenerator::fromHtml($rendered)
+            : ['html' => '', 'items' => []];
+
+        $contentWithAnchors = (string) ($toc['html'] ?? '');
+        if ($contentWithAnchors === '') {
+            $contentWithAnchors = is_string($rendered) ? $rendered : '';
+        }
+
+        $tocItems = is_array($toc['items'] ?? null) ? $toc['items'] : [];
+        $tocFlat = \Rspku\Helpers\TocGenerator::flatten($tocItems);
+
         return [
             'categories' => $categories,
             'primary_category' => $categories[0] ?? null,
             'popular_articles' => $contentRepository->popularArticles(5, $postId),
             'related_articles' => $contentRepository->relatedArticles($postId, 3, $categoryIds),
+            'content_with_anchors' => $contentWithAnchors,
+            'toc' => [
+                'items' => $tocItems,
+                'flat' => $tocFlat,
+                'has_toc' => count($tocFlat) >= 2,
+            ],
+            'cta' => $post instanceof \WP_Post
+                ? \Rspku\Services\ArticleCtaMapper::build($post)
+                : null,
+            'reading_time' => $post instanceof \WP_Post
+                ? \Rspku\Helpers\ReadingTime::calculate($post->post_content)
+                : 0,
         ];
     }
 
@@ -584,43 +620,91 @@ final class TemplateController
      */
     private static function contactPageContext(): array
     {
+        // Read from plugin settings if available
+        $s = function_exists('rspku_setting') ? fn ($k) => rspku_setting($k) : fn ($k) => null;
+
+        $serviceHoursRaw = $s('service_hours') ?: [];
+        $serviceHours = [];
+        foreach ($serviceHoursRaw as $row) {
+            if (is_array($row)) {
+                $serviceHours[] = [
+                    'label' => (string) ($row['label'] ?? ''),
+                    'time' => (string) ($row['time'] ?? ''),
+                    'highlight' => !empty($row['highlight']),
+                ];
+            }
+        }
+
+        $socials = [];
+        if ($s('social_instagram')) {
+            $socials[] = ['name' => 'Instagram', 'handle' => $s('social_instagram_handle') ?: '@rspkujogja', 'url' => $s('social_instagram'), 'icon' => 'instagram'];
+        }
+        if ($s('social_facebook')) {
+            $socials[] = ['name' => 'Facebook', 'handle' => $s('social_facebook_handle') ?: 'Facebook Page', 'url' => $s('social_facebook'), 'icon' => 'facebook'];
+        }
+        if ($s('social_youtube')) {
+            $socials[] = ['name' => 'YouTube', 'handle' => $s('social_youtube_handle') ?: 'YouTube Channel', 'url' => $s('social_youtube'), 'icon' => 'circle-play'];
+        }
+
+        $phoneIgd = $s('phone_igd') ?: '0274 512321';
+        $phoneIgdLink = $s('phone_igd_link') ?: '+62274512321';
+        $phoneMain = $s('phone_main') ?: $phoneIgd;
+        $phoneMainLink = $s('phone_main_link') ?: $phoneIgdLink;
+        $whatsapp = $s('whatsapp') ?: '';
+        $whatsappLink = $s('whatsapp_link') ?: '';
+        $email = $s('email') ?: 'info@rspkujogja.co.id';
+
         return [
             'eyebrow' => __('Informasi Kontak', 'rspku-theme'),
             'title' => __('Kami Siap Membantu Anda', 'rspku-theme'),
             'description' => __('Tim RS PKU Muhammadiyah Yogyakarta hadir untuk membantu kebutuhan informasi layanan, pendaftaran, dan kontak penting rumah sakit.', 'rspku-theme'),
-            'map_embed_url' => 'https://maps.google.com/maps?q=Jl.%20KH.%20Ahmad%20Dahlan%20No.20%2C%20Ngupasan%2C%20Kec.%20Gondomanan%2C%20Kota%20Yogyakarta%2C%20Daerah%20Istimewa%20Yogyakarta%2055122&t=m&z=14&output=embed&iwloc=near',
-            'cards' => [
-                [
-                    'icon' => 'map-pin',
-                    'title' => __('Alamat', 'rspku-theme'),
-                    'body' => __('Jl. KH. Ahmad Dahlan No.20, Ngupasan, Kec. Gondomanan, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55122', 'rspku-theme'),
-                ],
+            'map_embed_url' => $s('google_maps_embed_url') ?: 'https://maps.google.com/maps?q=Jl.%20KH.%20Ahmad%20Dahlan%20No.20%2C%20Yogyakarta&t=m&z=14&output=embed',
+            'map_link' => $s('google_maps_link') ?: 'https://maps.app.goo.gl/RSPKUJogja',
+            'emergency' => [
+                'icon' => 'siren',
+                'label' => __('Darurat 24 Jam', 'rspku-theme'),
+                'title' => __('IGD Siaga 24/7', 'rspku-theme'),
+                'description' => __('Untuk kondisi darurat medis, segera hubungi IGD kami yang siap melayani Anda kapan saja.', 'rspku-theme'),
+                'phone' => $phoneIgdLink,
+                'phone_display' => $phoneIgd,
+                'extension' => '118',
+            ],
+            'quick_contacts' => array_filter([
                 [
                     'icon' => 'phone',
-                    'title' => __('Pusat Panggilan', 'rspku-theme'),
-                    'lines' => ['+62 274 512653', '+62 8886412345', '+62 274 566129'],
+                    'title' => __('Pendaftaran & Informasi', 'rspku-theme'),
+                    'value' => $phoneMain,
+                    'url' => 'tel:' . $phoneMainLink,
+                    'description' => __('Senin - Jumat, 08.00 - 16.00 WIB', 'rspku-theme'),
                 ],
+                $whatsapp ? [
+                    'icon' => 'message-circle',
+                    'title' => __('WhatsApp', 'rspku-theme'),
+                    'value' => $whatsapp,
+                    'url' => 'https://wa.me/' . $whatsappLink,
+                    'description' => __('Chat untuk janji temu & informasi', 'rspku-theme'),
+                ] : null,
                 [
-                    'icon' => 'hospital',
-                    'title' => __('IGD', 'rspku-theme'),
-                    'lines' => ['0274 512653 - 118'],
-                ],
-                [
-                    'icon' => 'briefcase',
+                    'icon' => 'mail',
                     'title' => __('Email', 'rspku-theme'),
-                    'lines' => ['info@rspkudev.test'],
+                    'value' => $email,
+                    'url' => 'mailto:' . $email,
+                    'description' => __('Pertanyaan umum & layanan', 'rspku-theme'),
                 ],
+            ]),
+            'address' => [
+                'street' => $s('address_street') ?: 'Jl. KH. Ahmad Dahlan No. 20',
+                'district' => $s('address_district') ?: 'Ngupasan, Kec. Gondomanan',
+                'city' => $s('address_city') ?: 'Kota Yogyakarta',
+                'province' => $s('address_province') ?: 'Daerah Istimewa Yogyakarta 55122',
             ],
-            'service_hours' => [
-                __('IGD: 24 Jam', 'rspku-theme'),
-                __('Rawat Jalan: 07.00 - 20.00 WIB', 'rspku-theme'),
-                __('Administrasi: 08.00 - 16.00 WIB', 'rspku-theme'),
-                __('Pendaftaran Online: 24 Jam', 'rspku-theme'),
-            ],
-            'socials' => [
-                'Facebook: RS PKU Muhammadiyah Yogyakarta',
-                'Instagram: @rspkujogja',
-                'YouTube: RS PKU Yogyakarta',
+            'service_hours' => $serviceHours,
+            'socials' => $socials,
+            'departments' => [
+                ['icon' => 'stethoscope', 'name' => __('Customer Service', 'rspku-theme'), 'phone' => $phoneMain, 'ext' => 'Ext. 100'],
+                ['icon' => 'heart', 'name' => __('Humas & Layanan Pelanggan', 'rspku-theme'), 'phone' => $phoneMain, 'ext' => 'Ext. 200'],
+                ['icon' => 'briefcase-medical', 'name' => __('Farmasi', 'rspku-theme'), 'phone' => $phoneMain, 'ext' => 'Ext. 300'],
+                ['icon' => 'user-round', 'name' => __('Rekam Medis', 'rspku-theme'), 'phone' => $phoneMain, 'ext' => 'Ext. 400'],
             ],
         ];
     }
@@ -633,40 +717,71 @@ final class TemplateController
         return [
             'eyebrow' => __('Perjalanan Kami', 'rspku-theme'),
             'title' => __('Sejarah RS PKU Muhammadiyah Yogyakarta', 'rspku-theme'),
-            'description' => __('Perjalanan panjang pelayanan kesehatan umat yang berakar dari gerakan sosial, berkembang menjadi rumah sakit islami modern, dan tetap berpijak pada nilai dakwah serta kemanusiaan.', 'rspku-theme'),
+            'description' => __('Perjalanan lebih dari 100 tahun pelayanan kesehatan umat yang berakar dari gerakan sosial, berkembang menjadi rumah sakit islami modern, dan tetap berpijak pada nilai dakwah serta kemanusiaan.', 'rspku-theme'),
+            'stats' => [
+                ['value' => '100+', 'label' => __('Tahun Melayani', 'rspku-theme')],
+                ['value' => '75+', 'label' => __('Dokter Spesialis', 'rspku-theme')],
+                ['value' => '31+', 'label' => __('Spesialisasi', 'rspku-theme')],
+                ['value' => '24/7', 'label' => __('IGD Siaga', 'rspku-theme')],
+            ],
             'milestones' => [
                 [
-                    'label' => '1923',
+                    'year' => '1923',
+                    'label' => __('Berdiri', 'rspku-theme'),
                     'title' => __('Berawal dari PKO', 'rspku-theme'),
-                    'body' => __('Layanan kesehatan ini dimulai dari klinik sederhana di Jagang Notoprajan No. 72 Yogyakarta untuk membantu masyarakat yang kesulitan mengakses pelayanan medis.', 'rspku-theme'),
+                    'body' => __('Layanan kesehatan dimulai dari klinik sederhana di Jagang Notoprajan No. 72 Yogyakarta untuk membantu masyarakat yang kesulitan mengakses pelayanan medis. Didirikan sebagai wujud gerakan sosial Muhammadiyah.', 'rspku-theme'),
+                    'icon' => 'heart-pulse',
                 ],
                 [
-                    'label' => '1928-1936',
-                    'title' => __('Bertumbuh di pusat kota', 'rspku-theme'),
-                    'body' => __('PKO berkembang menjadi PKU, berpindah ke Ngabean, lalu menempati lokasi permanen di Jalan K.H. Ahmad Dahlan No. 20 Yogyakarta.', 'rspku-theme'),
+                    'year' => '1928',
+                    'label' => __('Pindah ke Ngabean', 'rspku-theme'),
+                    'title' => __('Transformasi menjadi PKU', 'rspku-theme'),
+                    'body' => __('PKO (Pertolongan Kesengsaraan Oemoem) berkembang menjadi PKU (Pembina Kesejahteraan Umat) dan berpindah ke Ngabean untuk memperluas jangkauan pelayanan.', 'rspku-theme'),
+                    'icon' => 'building-2',
                 ],
                 [
-                    'label' => '1970-an',
-                    'title' => __('Menjadi rumah sakit', 'rspku-theme'),
-                    'body' => __('Status rumah sakit menandai fase baru: pelayanan yang lebih terstruktur, profesional, dan semakin berorientasi pada mutu.', 'rspku-theme'),
+                    'year' => '1936',
+                    'label' => __('Lokasi Permanen', 'rspku-theme'),
+                    'title' => __('Menempati Jl. KH Ahmad Dahlan', 'rspku-theme'),
+                    'body' => __('Menempati lokasi permanen di Jalan K.H. Ahmad Dahlan No. 20 Yogyakarta, yang kini menjadi lokasi utama rumah sakit dan saksi perjalanan pelayanan kesehatan umat.', 'rspku-theme'),
+                    'icon' => 'map-pin',
                 ],
                 [
-                    'label' => '1998-sekarang',
-                    'title' => __('Penguatan tata kelola dan PKU Reborn', 'rspku-theme'),
-                    'body' => __('Rumah sakit terus memperkuat standar layanan, pendidikan, teknologi kesehatan, dan dakwah melalui pembaruan berkelanjutan.', 'rspku-theme'),
+                    'year' => '1970',
+                    'label' => __('Naik Status', 'rspku-theme'),
+                    'title' => __('Menjadi Rumah Sakit', 'rspku-theme'),
+                    'body' => __('Status rumah sakit menandai fase baru: pelayanan yang lebih terstruktur, profesional, dan semakin berorientasi pada mutu serta keselamatan pasien.', 'rspku-theme'),
+                    'icon' => 'hospital',
+                ],
+                [
+                    'year' => '1998',
+                    'label' => __('Penguatan', 'rspku-theme'),
+                    'title' => __('Modernisasi Tata Kelola', 'rspku-theme'),
+                    'body' => __('Memasuki era baru dengan penguatan tata kelola, standar layanan, pendidikan klinis, dan integrasi teknologi kesehatan modern.', 'rspku-theme'),
+                    'icon' => 'shield-check',
+                ],
+                [
+                    'year' => '2024',
+                    'label' => __('PKU Reborn', 'rspku-theme'),
+                    'title' => __('Era Digital & Inovasi', 'rspku-theme'),
+                    'body' => __('Transformasi digital dan inovasi berkelanjutan dalam pelayanan, pendidikan kedokteran, penelitian, dan dakwah kesehatan untuk generasi mendatang.', 'rspku-theme'),
+                    'icon' => 'sparkles',
                 ],
             ],
             'principles' => [
                 [
                     'title' => __('Falsafah Pelayanan', 'rspku-theme'),
+                    'icon' => 'heart',
                     'body' => __('Pelayanan kesehatan dipandang sebagai bagian dari dakwah Islam amar ma\'ruf nahi munkar, dengan keselamatan pasien, mutu layanan, dan nilai kemanusiaan sebagai landasan utama.', 'rspku-theme'),
                 ],
                 [
                     'title' => __('Visi', 'rspku-theme'),
+                    'icon' => 'eye',
                     'body' => __('Menjadi rumah sakit yang Islami dan unggul dalam pelayanan, pendidikan, penelitian, dan dakwah di bidang kesehatan.', 'rspku-theme'),
                 ],
                 [
                     'title' => __('Misi', 'rspku-theme'),
+                    'icon' => 'target',
                     'items' => [
                         __('Menyelenggarakan pelayanan kesehatan berbasis standar terkini dan bukti ilmiah.', 'rspku-theme'),
                         __('Mengembangkan sumber daya insani melalui pendidikan, pelatihan, penelitian, dan pemanfaatan teknologi kesehatan.', 'rspku-theme'),
@@ -675,12 +790,12 @@ final class TemplateController
                 ],
             ],
             'values' => [
-                __('Amanah: jujur, bertanggung jawab, dan dapat dipercaya.', 'rspku-theme'),
-                __('Lengkap: menghadirkan layanan kesehatan secara komprehensif.', 'rspku-theme'),
-                __('Mutu: menjunjung standar pelayanan terkini serta nilai syariah Islamiyah.', 'rspku-theme'),
-                __('Antusias: melayani dengan cepat, tepat, dan sepenuh hati.', 'rspku-theme'),
-                __('Universal: terbuka untuk seluruh lapisan masyarakat.', 'rspku-theme'),
-                __('Nyaman: menciptakan pengalaman layanan yang tenang dan menenteramkan.', 'rspku-theme'),
+                ['letter' => 'A', 'name' => __('Amanah', 'rspku-theme'), 'desc' => __('Jujur, bertanggung jawab, dan dapat dipercaya dalam setiap pelayanan.', 'rspku-theme')],
+                ['letter' => 'L', 'name' => __('Lengkap', 'rspku-theme'), 'desc' => __('Menghadirkan layanan kesehatan secara komprehensif dan terintegrasi.', 'rspku-theme')],
+                ['letter' => 'M', 'name' => __('Mutu', 'rspku-theme'), 'desc' => __('Menjunjung standar pelayanan terkini serta nilai syariah Islamiyah.', 'rspku-theme')],
+                ['letter' => 'A', 'name' => __('Antusias', 'rspku-theme'), 'desc' => __('Melayani dengan cepat, tepat, dan sepenuh hati tanpa mengenal lelah.', 'rspku-theme')],
+                ['letter' => 'U', 'name' => __('Universal', 'rspku-theme'), 'desc' => __('Terbuka dan ramah untuk seluruh lapisan masyarakat tanpa terkecuali.', 'rspku-theme')],
+                ['letter' => 'N', 'name' => __('Nyaman', 'rspku-theme'), 'desc' => __('Menciptakan pengalaman layanan yang tenang dan menenteramkan.', 'rspku-theme')],
             ],
         ];
     }
@@ -705,5 +820,48 @@ final class TemplateController
         }
 
         return null;
+    }
+
+    /**
+     * Read a setting key that should be an array (post IDs or review objects).
+     * Returns empty array if the setting is not set or not an array.
+     *
+     * @return array<int,mixed>
+     */
+    private static function settingArray(string $key): array
+    {
+        if (!function_exists('rspku_setting')) {
+            return [];
+        }
+
+        $value = rspku_setting($key, []);
+
+        return is_array($value) ? $value : [];
+    }
+
+    /**
+     * Load posts by an ordered list of IDs and normalize each one.
+     * Preserves the admin-defined order (not WP default ordering).
+     *
+     * @param array<int,int> $ids
+     * @return array<int,array<string,mixed>>
+     */
+    private static function postsByIds(array $ids, string $postType, callable $normalizer): array
+    {
+        $ids = array_values(array_filter(array_map('absint', $ids)));
+        if ($ids === []) {
+            return [];
+        }
+
+        $posts = get_posts([
+            'post_type' => $postType,
+            'post_status' => 'publish',
+            'post__in' => $ids,
+            'orderby' => 'post__in',
+            'posts_per_page' => count($ids),
+            'no_found_rows' => true,
+        ]);
+
+        return array_map($normalizer, $posts);
     }
 }

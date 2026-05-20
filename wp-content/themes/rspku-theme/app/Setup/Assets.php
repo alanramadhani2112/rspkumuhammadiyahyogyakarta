@@ -20,13 +20,51 @@ final class Assets
 
     public static function enqueueFrontend(): void
     {
+        // wp_enqueue_scripts normally doesn't fire for REST/AJAX requests,
+        // but some plugins (e.g. preview renderers) invoke do_action on it
+        // out of the usual flow. Skip those cases — the frontend bundle is
+        // only meaningful for rendered HTML responses.
+        if (self::isNonRenderedRequest()) {
+            return;
+        }
+
         self::enqueueAsset(self::FRONT_HANDLE, 'resources/js/app.js');
+    }
+
+    private static function isNonRenderedRequest(): bool
+    {
+        if (function_exists('wp_doing_ajax') && wp_doing_ajax()) {
+            return true;
+        }
+
+        if (defined('REST_REQUEST') && REST_REQUEST) {
+            return true;
+        }
+
+        if (defined('DOING_CRON') && DOING_CRON) {
+            return true;
+        }
+
+        return false;
     }
 
     public static function enqueueAdmin(): void
     {
         $screen = function_exists('get_current_screen') ? get_current_screen() : null;
-        if ($screen && !in_array($screen->post_type, ['dokter', 'layanan', 'poliklinik', 'jurnal', 'rawat-inap', 'manajemen-rs', 'cabang-rs'], true)) {
+        if (!$screen) {
+            return;
+        }
+
+        // Only load admin JS on edit screens for our custom post types.
+        // Other admin pages (dashboard, settings, tools) don't need it.
+        $relevantTypes = ['dokter', 'layanan', 'poliklinik', 'jurnal', 'rawat-inap', 'manajemen-rs', 'cabang-rs'];
+        $relevantBases = ['post', 'post-new'];
+
+        if (!in_array((string) $screen->post_type, $relevantTypes, true)) {
+            return;
+        }
+
+        if (!in_array((string) $screen->base, $relevantBases, true)) {
             return;
         }
 
@@ -45,9 +83,27 @@ final class Assets
         ]);
     }
 
+    /**
+     * Convert our Vite-built scripts to ES modules. WordPress core does
+     * not natively support `type="module"` on enqueued scripts (the
+     * Script Modules API is a separate system). This filter is the
+     * standard community approach for Vite-based themes.
+     *
+     * Guards:
+     * - Only touches our own handles (no third-party interference).
+     * - Skips admin handle (admin.js is plain jQuery, not a module).
+     * - Skips if `type=` is already present (avoids double-injection
+     *   from caching plugins that rewrite script tags).
+     * - Skips `nomodule` fallback tags.
+     */
     public static function useModuleScripts(string $tag, string $handle, string $src): string
     {
-        if (!in_array($handle, [self::FRONT_HANDLE, self::ADMIN_HANDLE, self::EDITOR_HANDLE], true)) {
+        // Admin JS is plain jQuery — not an ES module. Skip conversion.
+        if ($handle === self::ADMIN_HANDLE) {
+            return $tag;
+        }
+
+        if (!in_array($handle, [self::FRONT_HANDLE, self::EDITOR_HANDLE], true)) {
             return $tag;
         }
 
@@ -55,7 +111,13 @@ final class Assets
             return $tag;
         }
 
-        return sprintf('<script type="module" src="%s" id="%s-js"></script>' . "\n", esc_url($src), esc_attr($handle));
+        // Build a clean module tag. Using a manual sprintf avoids issues
+        // with regex replacements on malformed tags from other filters.
+        return sprintf(
+            '<script type="module" src="%s" id="%s-js"></script>' . "\n",
+            esc_url($src),
+            esc_attr($handle)
+        );
     }
 
     /**

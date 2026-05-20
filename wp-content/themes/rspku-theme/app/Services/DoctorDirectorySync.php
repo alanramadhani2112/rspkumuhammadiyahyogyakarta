@@ -19,6 +19,10 @@ final class DoctorDirectorySync
 
     public static function maybeSync(): void
     {
+        if (!self::shouldRunSync()) {
+            return;
+        }
+
         if (!class_exists(\TablePress::class)) {
             return;
         }
@@ -38,6 +42,33 @@ final class DoctorDirectorySync
 
         self::sync($records, $repository);
         update_option(self::HASH_OPTION, $hash, false);
+    }
+
+    /**
+     * Restrict the directory sync to contexts where writing to the
+     * database is expected: wp-admin, WP-CLI, and cron. Front-end page
+     * loads (including REST and AJAX) only read the doctor directory;
+     * running the sync there just duplicates work on every request and
+     * leaks TablePress initialisation into read-only contexts.
+     */
+    private static function shouldRunSync(): bool
+    {
+        if (defined('WP_CLI') && WP_CLI) {
+            return true;
+        }
+
+        if (defined('DOING_CRON') && DOING_CRON) {
+            return true;
+        }
+
+        if (function_exists('is_admin') && is_admin()) {
+            // Admin AJAX still counts as an admin request. That's fine —
+            // sync is cheap when the hash hasn't changed and writers
+            // benefit from fresh data immediately.
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -65,6 +96,12 @@ final class DoctorDirectorySync
 
             self::syncDoctorMeta($postId, $record);
             self::syncDoctorTerms($postId, $record);
+
+            // Invalidate the normalized payload cache so the next page
+            // render picks up the meta we just wrote. Without this the
+            // directory would display the pre-sync snapshot until the
+            // transient expired (up to six hours later).
+            \Rspku\Repositories\DoctorRepository::flushCache($postId);
         }
 
         foreach ($doctorPosts as $post) {
@@ -151,13 +188,41 @@ final class DoctorDirectorySync
             $payload['post_name'] = (string) get_post_field('post_name', $existingId);
             $result = wp_update_post($payload, true);
 
-            return is_wp_error($result) ? 0 : (int) $result;
+            if (is_wp_error($result)) {
+                self::logSyncError('update', $name, $existingId, $result);
+                return 0;
+            }
+
+            return (int) $result;
         }
 
         $payload['post_name'] = $slug;
         $result = wp_insert_post($payload, true);
 
-        return is_wp_error($result) ? 0 : (int) $result;
+        if (is_wp_error($result)) {
+            self::logSyncError('insert', $name, 0, $result);
+            return 0;
+        }
+
+        return (int) $result;
+    }
+
+    private static function logSyncError(string $action, string $doctorName, int $postId, \WP_Error $error): void
+    {
+        if (!defined('WP_DEBUG') || !WP_DEBUG) {
+            return;
+        }
+
+        $message = sprintf(
+            '[RSPKU DoctorSync] Failed to %s doctor "%s" (ID: %d): %s',
+            $action,
+            $doctorName,
+            $postId,
+            $error->get_error_message()
+        );
+
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+        error_log($message);
     }
 
     /**
@@ -442,18 +507,5 @@ final class DoctorDirectorySync
         }
 
         return $score;
-    }
-
-    private static function isGenericDirectoryLabel(string $name): bool
-    {
-        return in_array(
-            self::normalizeKey($name),
-            [
-                'fisioterapi',
-                'okupasi terapis',
-                'terapis wicara',
-            ],
-            true
-        );
     }
 }
