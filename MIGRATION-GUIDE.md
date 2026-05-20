@@ -1,210 +1,246 @@
 # Migration Guide — RS PKU Muhammadiyah Yogyakarta
 
-Dokumen ini mencatat proses persiapan migrasi project dari lokal (Laragon) ke server produksi.
+Panduan migrasi dari lokal (Laragon) ke server produksi via **CloudPanel**.
 
----
-
-## Ringkasan Persiapan (20 Mei 2026)
-
-### 1. Export Database
-
-- **File:** `db-rspkujogja-20260520-144238.sql`
-- **Lokasi di project:** root folder (`C:\laragon\www\rspkudev\`)
-- **Ukuran:** 65.31 MB (setelah cleanup)
-- **DB name lokal:** `db-rspkujogja`
+- **Domain produksi:** `https://dash-rspkujogja.muhammadiyah.or.id`
+- **DB export:** `db-rspkujogja-20260520-144238.sql` (65.3 MB)
 - **Table prefix:** `lyxpx_`
-- **Tool:** `mysqldump` dengan flag `--single-transaction --routines --triggers --add-drop-table`
-- **URL lokal di DB:** `http://rspkudev.test` → harus diganti ke domain produksi saat migrasi (lihat Step 6)
-
-#### DB Cleanup yang dilakukan sebelum export:
-
-| Item | Jumlah dihapus | Keterangan |
-|------|---------------|------------|
-| Trash posts | 41 | Dokter, page, customize_changeset |
-| Orphaned postmeta | 1075 + 9 | Meta dari post yang sudah dihapus |
-| Auto-drafts | 1 | Draft otomatis tidak terpakai |
-| Transients | 59 | Cache sementara, tidak perlu di server |
-| Revisions | 809 | Riwayat edit, tidak dibutuhkan produksi |
-| Localhost options | 1 | `wpsyncmu_source_url` |
-| **Total penghematan** | ~5.5 MB | 70.82 MB → 65.31 MB |
-
-> Semua data di DB adalah dari tahun 2023 ke atas — tidak ada data lama yang perlu difilter.
-
-### 2. Backup Project
-
-- **Folder backup:** `C:\Users\LENOVO\AppData\Local\Temp\opencode\rspkudev-backup-20260520-134949`
-- **Ukuran backup:** ~2.98 GB
-- **Breakdown ukuran:**
-
-| Folder | Ukuran | Keterangan |
-|--------|--------|------------|
-| `wp-content/uploads/` | 1858 MB | Media files (gambar, dokumen) |
-| `archive/` (lama) | 858 MB | 7 SQL dump lama dari operasi thumbnail sync — sudah dihapus dari project |
-| `wp-content/plugins/` | 121 MB | Plugin WordPress |
-| `wp-includes/` | 92 MB | WordPress core |
-| `wp-content/themes/` | 9.9 MB | Theme rspku-theme |
-| lainnya | < 20 MB | — |
-
-> **Catatan:** Backup besar bukan karena duplicate. `archive/` berisi SQL dump lama (thumbnail sync Mei 2026) yang sudah tidak relevan dan sudah dihapus dari project aktif. `uploads/` memang besar karena media asli.
-
-### 3. Cleanup Dev Files
-
-File dan folder berikut dihapus dari project (tidak dibutuhkan di server):
-
-**Folder:**
-- `node_modules/` (root) — Playwright dev tools, 16.6 MB
-- `vendor/` (root) — PHPStan dev tools, 33 MB
-- `output/` — Playwright screenshots, 236.8 MB
-- `.playwright-cli/`, `.playwright-mcp/` — 1.1 MB
-- `frontend/` — kosong (Next.js lama)
-- `.vscode/`, `.agents/`, `.kiro/`, `.sisyphus/` — IDE/AI dev tools
-- `docs/` — dev documentation
-- `archive/` — SQL dump lama
-- `wp-content/themes/rspku-theme/node_modules/` — 80.6 MB (build sudah ada di `public/build/`)
-- `wp-content/themes/rspku-theme/output/`, `.playwright-cli/`
-
-**File:**
-- 39 file `.md` dev notes (CHANGELOG, DESIGN-SYSTEM, HERO-*, dll)
-- `phpstan-baseline.neon`, `phpstan.neon.dist`
-- `fix-project.ps1`, `skills-lock.json`
-- `composer.json`, `composer.lock` (root — dev tooling only)
-
-**Hasil:** Project size berkurang dari ~3308 MB → ~2139 MB (hemat ~1.17 GB)
 
 ---
 
-## Langkah Migrasi ke Server
+## Step 1 — Buat Site di CloudPanel
 
-### Step 1 — Siapkan Server
+1. Login ke CloudPanel → **Sites → Add Site**
+2. Isi domain: `dash-rspkujogja.muhammadiyah.or.id`
+3. Pilih PHP version: **8.3**
+4. Catat **Document Root** yang diberikan (biasanya `/home/username/htdocs/dash-rspkujogja.muhammadiyah.or.id`)
 
-Pastikan server memiliki:
-- PHP 8.3+
-- MySQL/MariaDB
-- Web server (Apache/Nginx)
-- Composer (untuk install theme dependencies)
-- Node.js + npm (untuk rebuild theme jika diperlukan)
+---
 
-### Step 2 — Upload Files
+## Step 2 — Buat Database di CloudPanel
 
-Upload seluruh project ke server. Opsi yang disarankan:
+1. Di CloudPanel → **Databases → Add Database**
+2. Isi:
+   - **Database Name:** `rspkujogja` (atau sesuai preferensi)
+   - **Username:** buat user baru
+   - **Password:** gunakan password kuat
+3. Catat ketiga nilai ini — dibutuhkan di Step 5
+
+---
+
+## Step 3 — Upload Files ke Server
+
+### Opsi A: via SFTP (disarankan untuk file besar)
+
+Di CloudPanel → **Users → Add User** → aktifkan SFTP.
+
+Gunakan FileZilla atau WinSCP:
+- **Host:** IP server
+- **Port:** 22
+- **Username/Password:** dari CloudPanel SFTP user
+
+Upload seluruh isi folder `C:\laragon\www\rspkudev\` ke Document Root, **kecuali:**
+- `wp-config.php` (buat baru di server — lihat Step 5)
+- `*.sql` (upload terpisah — lihat Step 4)
+- `wp-content/uploads/` (upload terpisah karena 1.8 GB)
+
+### Opsi B: via File Manager CloudPanel
+
+Cocok untuk file kecil. Untuk folder `wp-content/uploads/` yang 1.8 GB, tetap gunakan SFTP.
+
+---
+
+## Step 4 — Import Database
+
+### Persiapan: Naikkan batas upload phpMyAdmin
+
+File SQL 65 MB sering gagal karena batas default phpMyAdmin 2–8 MB.
+
+**Di CloudPanel → PHP Settings → php.ini**, tambahkan/ubah:
+```ini
+upload_max_filesize = 128M
+post_max_size = 128M
+max_execution_time = 300
+max_input_time = 300
+```
+Simpan dan restart PHP.
+
+### Import via phpMyAdmin
+
+1. CloudPanel → **Databases → phpMyAdmin** (klik ikon di samping nama DB)
+2. Pilih database yang sudah dibuat di Step 2
+3. Klik tab **Import**
+4. Klik **Choose File** → pilih `db-rspkujogja-20260520-144238.sql`
+5. Format: **SQL** (default)
+6. Klik **Import**
+
+> **Jika muncul error "Table structure for table..."** — itu bukan error, itu komentar SQL biasa. Error asli biasanya berwarna merah dan menyebut `ERROR` atau `Access denied`. Jika import selesai dan muncul pesan hijau "Import has been successfully finished", berarti berhasil.
+
+> **Jika timeout/gagal karena file terlalu besar**, gunakan SSH (Step 4B).
+
+### Step 4B — Import via SSH (alternatif jika phpMyAdmin gagal)
+
+Di CloudPanel → **Users → SSH Users** → aktifkan SSH.
 
 ```bash
-# Via rsync (lebih efisien, skip file yang sudah ada)
-rsync -avz --progress /path/to/rspkudev/ user@server:/var/www/html/
+# Login ke server
+ssh username@ip-server
 
-# Atau via zip + extract di server
-zip -r rspkudev.zip . -x "*.git*"
-scp rspkudev.zip user@server:/var/www/html/
+# Import database
+mysql -u db_user -p nama_database < /path/to/db-rspkujogja-20260520-144238.sql
 ```
 
-> **Catatan uploads:** Folder `wp-content/uploads/` berisi 1.8 GB media. Pertimbangkan upload terpisah atau gunakan rsync untuk efisiensi.
+---
 
-### Step 3 — Buat Database di Server
+## Step 5 — Buat wp-config.php di Server
 
-```sql
-CREATE DATABASE nama_db_server CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'user_db'@'localhost' IDENTIFIED BY 'password_kuat';
-GRANT ALL PRIVILEGES ON nama_db_server.* TO 'user_db'@'localhost';
-FLUSH PRIVILEGES;
-```
+**Jangan upload wp-config.php dari lokal** — berisi kredensial lokal dan dev flags.
 
-### Step 4 — Import Database
-
-```bash
-mysql -u user_db -p nama_db_server < db-rspkujogja-20260520-144238.sql
-```
-
-### Step 5 — Update wp-config.php
-
-Edit `wp-config.php` di server, sesuaikan:
+Buat file baru di Document Root server dengan isi berikut:
 
 ```php
-define( 'DB_NAME', 'nama_db_server' );
-define( 'DB_USER', 'user_db' );
-define( 'DB_PASSWORD', 'password_kuat' );
+<?php
+define( 'DB_NAME', 'nama_database' );        // dari Step 2
+define( 'DB_USER', 'db_user' );              // dari Step 2
+define( 'DB_PASSWORD', 'db_password' );      // dari Step 2
 define( 'DB_HOST', 'localhost' );
+define( 'DB_CHARSET', 'utf8' );
+define( 'DB_COLLATE', '' );
 
-// Matikan semua dev flags di produksi
+// Ganti dengan salt baru dari: https://api.wordpress.org/secret-key/1.1/salt/
+define( 'AUTH_KEY',         'ganti-dengan-salt-baru' );
+define( 'SECURE_AUTH_KEY',  'ganti-dengan-salt-baru' );
+define( 'LOGGED_IN_KEY',    'ganti-dengan-salt-baru' );
+define( 'NONCE_KEY',        'ganti-dengan-salt-baru' );
+define( 'AUTH_SALT',        'ganti-dengan-salt-baru' );
+define( 'SECURE_AUTH_SALT', 'ganti-dengan-salt-baru' );
+define( 'LOGGED_IN_SALT',   'ganti-dengan-salt-baru' );
+define( 'NONCE_SALT',       'ganti-dengan-salt-baru' );
+
+$table_prefix = 'lyxpx_';
+
+// Produksi — semua debug OFF
 define( 'WP_DEBUG', false );
 define( 'WP_DEBUG_DISPLAY', false );
 define( 'WP_DEBUG_LOG', false );
-// define( 'CONCATENATE_SCRIPTS', false );  // ← HAPUS atau comment baris ini
-// define( 'WP_DISABLE_FATAL_ERROR_HANDLER', true );  // ← HAPUS atau comment baris ini
+
+define( 'AUTOSAVE_INTERVAL', 600 );
+define( 'WP_POST_REVISIONS', 5 );
+define( 'EMPTY_TRASH_DAYS', 21 );
+
+if ( ! defined( 'ABSPATH' ) ) {
+    define( 'ABSPATH', __DIR__ . '/' );
+}
+require_once ABSPATH . 'wp-settings.php';
 ```
 
-> **Penting:** File `wp-config.php` lokal memiliki `WP_DEBUG=true`, `WP_DEBUG_LOG=true`, `CONCATENATE_SCRIPTS=false`, dan `WP_DISABLE_FATAL_ERROR_HANDLER=true`. Semua flag ini **harus dinonaktifkan** di server produksi. Jangan upload wp-config.php lokal langsung — buat ulang di server dengan kredensial dan setting produksi.
+> Generate salt baru di: https://api.wordpress.org/secret-key/1.1/salt/
 
-### Step 6 — Update URL Siteurl & Home
+---
 
-Ganti URL lokal ke URL produksi. Via WP-CLI (disarankan):
+## Step 6 — Ganti URL (WAJIB)
+
+Database masih berisi URL lokal `http://rspkudev.test`. Harus diganti ke domain produksi.
+
+### Via SSH + WP-CLI (disarankan)
 
 ```bash
-wp search-replace 'http://rspkudev.test' 'https://domain-produksi.com' --all-tables --precise
+cd /path/to/document-root
+
+# Install WP-CLI jika belum ada
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+chmod +x wp-cli.phar
+sudo mv wp-cli.phar /usr/local/bin/wp
+
+# Ganti URL — --precise wajib untuk handle serialized data (Elementor/ACF)
+wp search-replace 'http://rspkudev.test' 'https://dash-rspkujogja.muhammadiyah.or.id' --all-tables --precise
+
+# Jika ada sisa URL lama dari domain sebelumnya
+wp search-replace 'https://rspkujogja.com' 'https://dash-rspkujogja.muhammadiyah.or.id' --all-tables --precise
+wp search-replace 'http://rspkujogja.com' 'https://dash-rspkujogja.muhammadiyah.or.id' --all-tables --precise
+
+# Flush cache
+wp cache flush
+wp rewrite flush
 ```
 
-> **Penting — Serialized Data:** Database ini mengandung **119 baris postmeta** dengan URL `rspkudev.test` dalam format serialized (data Elementor/ACF). Flag `--precise` pada WP-CLI **wajib digunakan** — flag ini secara otomatis menangani unserialize → replace → re-serialize dengan benar. Tanpa `--precise`, data serialized akan corrupt.
+> **Kenapa `--precise` wajib?** Database ini mengandung 119 baris postmeta dengan URL dalam format serialized (data Elementor/ACF). Tanpa `--precise`, data serialized akan corrupt dan halaman Elementor rusak.
 
-Verifikasi setelah search-replace:
-```bash
-# Pastikan tidak ada sisa URL lama
-wp db query "SELECT COUNT(*) FROM lyxpx_postmeta WHERE meta_value LIKE '%rspkudev.test%';"
-# Harus mengembalikan 0
-```
+### Via phpMyAdmin (minimal — jika tidak ada SSH)
 
-Atau manual via phpMyAdmin — update tabel `lyxpx_options` (hanya untuk siteurl & home):
+Ini hanya fix siteurl & home, **tidak** menangani serialized data di postmeta:
+
 ```sql
-UPDATE lyxpx_options SET option_value = 'https://domain-produksi.com' WHERE option_name IN ('siteurl', 'home');
+UPDATE lyxpx_options
+SET option_value = 'https://dash-rspkujogja.muhammadiyah.or.id'
+WHERE option_name IN ('siteurl', 'home');
 ```
-> Catatan: Cara manual tidak menangani serialized data di postmeta. Gunakan WP-CLI untuk hasil lengkap.
 
-### Step 7 — Install Theme Dependencies
+Setelah ini, halaman yang dibangun dengan Elementor mungkin masih ada broken link — harus tetap jalankan WP-CLI `search-replace` untuk fix sempurna.
+
+---
+
+## Step 7 — Install Theme Dependencies
+
+Via SSH:
 
 ```bash
-cd wp-content/themes/rspku-theme
+cd /path/to/document-root/wp-content/themes/rspku-theme
 
 # Install PHP dependencies (Timber, dll)
 composer install --no-dev --optimize-autoloader
-
-# Jika perlu rebuild assets (opsional — build sudah ada di public/build/)
-npm install
-npm run build
 ```
 
-### Step 8 — Set File Permissions
+> **Catatan:** Build assets (CSS/JS) sudah ada di `public/build/` — tidak perlu `npm run build` di server.
+
+---
+
+## Step 8 — Set File Permissions
 
 ```bash
-# WordPress standard permissions
-find /var/www/html -type d -exec chmod 755 {} \;
-find /var/www/html -type f -exec chmod 644 {} \;
+cd /path/to/document-root
+
+find . -type d -exec chmod 755 {} \;
+find . -type f -exec chmod 644 {} \;
 chmod 600 wp-config.php
-chown -R www-data:www-data /var/www/html/
 ```
 
-### Step 9 — Flush Rewrite Rules
+---
 
-Di WordPress admin:
+## Step 9 — Flush Rewrite Rules
+
+Di WordPress Admin:
 - **Settings → Permalinks → Save Changes**
 
-Ini penting agar custom post type (`dokter`, `poliklinik`, `layanan`, dll) dan REST API endpoint berfungsi.
+Ini penting agar custom post type (`dokter`, `poliklinik`, `layanan`, `rawat-inap`) dan REST API endpoint berfungsi.
 
-### Step 10 — Aktifkan Theme & Plugin
+---
 
-Di WordPress admin:
-1. **Appearance → Themes** → aktifkan **RSPKU Muhammadiyah Yogyakarta**
-2. **Plugins** → aktifkan **RSPKU Core** (dan plugin lain yang diperlukan)
+## Step 10 — Upload Media (wp-content/uploads)
+
+Folder uploads 1.8 GB — upload via SFTP ke:
+```
+/path/to/document-root/wp-content/uploads/
+```
+
+Gunakan rsync jika ada SSH untuk efisiensi:
+```bash
+rsync -avz --progress wp-content/uploads/ username@server:/path/to/document-root/wp-content/uploads/
+```
 
 ---
 
 ## Checklist Verifikasi Post-Migrasi
 
-- [ ] Homepage tampil normal
-- [ ] Custom post type: Dokter, Poliklinik, Layanan, Rawat Inap bisa diakses
+- [ ] Homepage tampil normal di `https://dash-rspkujogja.muhammadiyah.or.id`
+- [ ] Tidak ada redirect ke `rspkujogja.com` atau `rspkudev.test`
+- [ ] WP Admin bisa login: `/wp-admin`
+- [ ] Custom post type bisa diakses: Dokter, Poliklinik, Layanan, Rawat Inap
 - [ ] REST API berfungsi: `GET /wp-json/rspku/v1/site`
 - [ ] Media/gambar tampil (uploads ter-upload dengan benar)
-- [ ] WP Admin bisa login
-- [ ] SSL/HTTPS aktif dan tidak ada mixed content
-- [ ] Wordfence atau security plugin aktif
-- [ ] WP_DEBUG = false di produksi
+- [ ] SSL/HTTPS aktif, tidak ada mixed content warning di browser
+- [ ] `WP_DEBUG = false` (cek di wp-config.php server)
+- [ ] Plugin aktif: rspku-core, rspku-cpt, rspku-schema, rspku-settings
 
 ---
 
@@ -215,7 +251,10 @@ Di WordPress admin:
 | Platform | WordPress 6.5+ |
 | PHP | 8.3+ |
 | Theme | rspku-theme (Timber v2 + Twig + TailwindCSS 3 + Alpine.js 3 + Vite 6) |
-| Plugin custom | rspku-core, rspku-schema, rspku-cpt, rspku-settings |
+| Plugin custom | rspku-core, rspku-cpt, rspku-schema, rspku-settings |
 | DB table prefix | `lyxpx_` |
 | Namespace PHP | `Rspku\` |
 | REST API namespace | `rspku/v1` |
+| DB export | `db-rspkujogja-20260520-144238.sql` (65.3 MB) |
+| URL lokal | `http://rspkudev.test` |
+| URL produksi | `https://dash-rspkujogja.muhammadiyah.or.id` |
