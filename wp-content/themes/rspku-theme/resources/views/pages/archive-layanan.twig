@@ -2,92 +2,155 @@
 
 {% block content %}
   {% if service_archive is defined %}
-    {% set featured = service_archive.featured %}
     {% set breadcrumb_items = [{ title: 'Home', url: site.url }] %}
     {% if service_archive.breadcrumb_parent %}
       {% set breadcrumb_items = breadcrumb_items|merge([service_archive.breadcrumb_parent]) %}
     {% endif %}
     {% set breadcrumb_items = breadcrumb_items|merge([{ title: service_archive.title, current: true }]) %}
+
+    {# Hero Section #}
     <section class="rspku-section pb-8">
-      <div class="rspku-container space-y-8">
+      <div class="rspku-container">
         {% include 'partials/breadcrumb.twig' with { items: breadcrumb_items } only %}
 
-        <div class="grid gap-8 xl:grid-cols-[1fr_0.95fr] xl:items-end">
-          <div class="space-y-6">
-            <span class="rspku-eyebrow">{{ service_archive.eyebrow }}</span>
-            <h1 class="max-w-3xl text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl xl:text-[3.25rem]">{{ service_archive.title }}</h1>
+        <div class="mt-6 grid gap-10 xl:grid-cols-[1fr_0.9fr] xl:items-end">
+          <div class="space-y-4">
+            <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ service_archive.eyebrow }}</span>
+            <h1 class="text-3xl font-bold leading-tight text-slate-950 sm:text-4xl lg:text-5xl">{{ service_archive.title }}</h1>
             <p class="max-w-2xl text-base leading-relaxed text-slate-600">{{ service_archive.description }}</p>
-            <div class="flex flex-wrap gap-3">
-              <span class="rspku-chip">{{ service_archive.total }} layanan ditampilkan</span>
-              <a href="{{ site.url }}/poliklinik/" class="rspku-chip">Lihat poliklinik</a>
+
+            {# Quick Stats #}
+            <div class="flex flex-wrap gap-3 pt-2">
+              <div class="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-4 py-2">
+                {{ icon('hospital', { class: 'h-4 w-4 text-hospital-700' }) }}
+                <span class="text-sm font-semibold text-slate-950">{{ service_archive.total }}</span>
+                <span class="text-sm text-slate-500">layanan tersedia</span>
+              </div>
+              <a href="{{ site.url }}/poliklinik/" class="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-hospital-300 hover:text-hospital-700">
+                {{ icon('stethoscope', { class: 'h-4 w-4' }) }}
+                <span>Lihat poliklinik</span>
+              </a>
+              <a href="{{ site.url }}/dokter/" class="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-hospital-300 hover:text-hospital-700">
+                {{ icon('search', { class: 'h-4 w-4' }) }}
+                <span>Cari dokter</span>
+              </a>
             </div>
           </div>
 
           <div class="overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
-            {% if featured and featured.image and featured.image.url %}
-              <img src="{{ featured.image.url }}" alt="{{ featured.title }}" class="aspect-[16/10] w-full object-cover">
+            {% if rspku.image_layanan or rspku.image_layanan_url %}
+              {% include 'partials/responsive-image.twig' with {
+                id: rspku.image_layanan,
+                url: rspku.image_layanan_url,
+                alt: service_archive.title,
+                class: 'aspect-[16/10] w-full object-cover',
+                sizes: '(min-width: 1280px) 45vw, 100vw',
+                width: 1200,
+                height: 750,
+                eager: true
+              } only %}
+            {% elseif service_archive.featured and service_archive.featured.image and service_archive.featured.image.url %}
+              {% include 'partials/responsive-image.twig' with {
+                id: service_archive.featured.image.id,
+                url: service_archive.featured.image.url,
+                alt: service_archive.featured.title,
+                class: 'aspect-[16/10] w-full object-cover',
+                sizes: '(min-width: 1280px) 45vw, 100vw',
+                width: 1200,
+                height: 750,
+                eager: true
+              } only %}
             {% else %}
-              <div class="grid aspect-[16/10] place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(159,212,91,0.18),_transparent_32%),linear-gradient(180deg,#f8fbf8_0%,#eef6f0_100%)] p-8 text-center">
+              <div class="grid aspect-[16/10] place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(159,212,91,0.18),_transparent_35%),linear-gradient(180deg,#f8fbf8_0%,#eef6f0_100%)] p-8 text-center">
                 <div class="space-y-4">
                   <div class="mx-auto grid h-16 w-16 place-items-center rounded-lg border border-hospital-200 bg-white text-hospital-700">
-                    {{ icon('stethoscope', { class: 'h-8 w-8' }) }}
+                    {{ icon('hospital', { class: 'h-8 w-8' }) }}
                   </div>
-                  <p class="text-lg font-semibold text-slate-700">Pilihan layanan medis RS PKU Muhammadiyah Yogyakarta</p>
+                  <p class="text-lg font-semibold text-slate-700">Layanan medis dan penunjang RS PKU Muhammadiyah Yogyakarta</p>
                 </div>
               </div>
             {% endif %}
           </div>
         </div>
+      </div>
+    </section>
 
-        {% if service_archive.items %}
-          <div class="rspku-divider"></div>
-
-          <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+    {# Service Grid #}
+    {% if service_archive.items %}
+      <section class="py-12">
+        <div class="rspku-container">
+          <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {% for item in service_archive.items %}
-              <article class="group flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white">
-                <a href="{{ item.url }}" class="block overflow-hidden bg-slate-100">
+              <a href="{{ item.url }}" class="group flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:border-hospital-300">
+                {# Image Header #}
+                <div class="relative aspect-[16/9] overflow-hidden bg-slate-100">
                   {% if item.image and item.image.url %}
-                    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
                   {% else %}
-                    <div class="grid aspect-[16/11] place-items-center bg-[linear-gradient(180deg,#f8fbf8_0%,#eef6f0_100%)] p-8 text-center">
-                      <div class="space-y-4">
-                        <div class="mx-auto grid h-14 w-14 place-items-center rounded-[1rem] border border-hospital-200 bg-white text-hospital-700">
-                          {{ icon('hospital', { class: 'h-7 w-7' }) }}
-                        </div>
-                        <p class="text-sm font-medium text-hospital-700">Layanan medis</p>
+                    <div class="grid h-full w-full place-items-center bg-hospital-50/30">
+                      <div class="grid h-16 w-16 place-items-center rounded-sm border border-hospital-200 bg-white text-hospital-700">
+                        {{ icon('hospital', { class: 'h-7 w-7' }) }}
                       </div>
                     </div>
                   {% endif %}
-                </a>
-
-                <div class="flex flex-1 flex-col gap-4 p-6">
-                  <p class="text-sm font-medium text-hospital-700">{{ service_archive.eyebrow }}</p>
-                  <h2 class="text-[1.25rem] font-semibold leading-7 text-slate-950">
-                    <a href="{{ item.url }}" class="transition hover:text-hospital-700">{{ item.title }}</a>
-                  </h2>
-                  {% if item.excerpt %}
-                    <p class="text-[15px] leading-7 text-slate-600">{{ item.excerpt }}</p>
-                  {% endif %}
-                  <div class="mt-auto pt-2">
-                    <a href="{{ item.url }}" class="rspku-button rspku-button-secondary w-full">Lihat detail layanan</a>
+                  <div class="absolute left-3 top-3">
+                    <span class="inline-block rounded-sm bg-white/90 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700 backdrop-blur-sm">{{ service_archive.eyebrow }}</span>
                   </div>
                 </div>
-              </article>
+
+                {# Content #}
+                <div class="flex flex-1 flex-col p-5">
+                  <h2 class="text-base font-semibold leading-snug text-slate-950 transition group-hover:text-hospital-700">{{ item.title }}</h2>
+                  {% if item.excerpt %}
+                    <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-600">{{ item.excerpt }}</p>
+                  {% endif %}
+                  <div class="mt-auto flex items-center justify-between gap-3 pt-4">
+                    <span class="text-xs font-semibold uppercase tracking-wide text-hospital-700">Lihat detail</span>
+                    <span class="grid h-7 w-7 place-items-center rounded-sm bg-hospital-50 text-hospital-700 transition group-hover:bg-hospital-600 group-hover:text-white">
+                      {{ icon('arrow-up-right', { class: 'h-3.5 w-3.5' }) }}
+                    </span>
+                  </div>
+                </div>
+              </a>
             {% endfor %}
           </div>
-        {% endif %}
 
-        {% include 'partials/pagination.twig' with {
-          pagination: pagination,
-          class: 'pt-2',
-          label: 'Pagination layanan',
-          total: service_archive.total|default(0),
-          per_page: service_archive.per_page|default(10),
-          current_page: service_archive.current_page|default(1),
-          total_pages: service_archive.total_pages|default(1),
-          show_single: true,
-          item_label: 'layanan'
-        } only %}
+          {% include 'partials/pagination.twig' with {
+            pagination: pagination,
+            class: 'pt-10',
+            label: 'Pagination layanan',
+            total: service_archive.total|default(0),
+            per_page: service_archive.per_page|default(10),
+            current_page: service_archive.current_page|default(1),
+            total_pages: service_archive.total_pages|default(1),
+            show_single: true,
+            item_label: 'layanan'
+          } only %}
+        </div>
+      </section>
+    {% endif %}
+
+    {# CTA #}
+    <section class="border-t border-slate-200 bg-slate-50/50 py-12">
+      <div class="rspku-container">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-xl font-bold text-slate-950 sm:text-2xl">Butuh rekomendasi layanan?</h2>
+          <p class="mx-auto mt-2 max-w-xl text-sm text-slate-600">Konsultasikan dengan dokter kami untuk mendapatkan layanan yang tepat.</p>
+          <div class="mt-5 flex flex-wrap justify-center gap-3">
+            {% include 'components/button.twig' with {
+              text: 'Cari Dokter',
+              url: site.url ~ '/dokter/',
+              variant: 'primary',
+              icon: 'search'
+            } only %}
+            {% include 'components/button.twig' with {
+              text: 'Hubungi Kami',
+              url: site.url ~ '/kontak/',
+              variant: 'secondary',
+              icon: 'phone'
+            } only %}
+          </div>
+        </div>
       </div>
     </section>
   {% endif %}

@@ -14,9 +14,9 @@
 
         <div class="grid gap-10 xl:grid-cols-[1fr_0.9fr] xl:items-end">
           <div class="space-y-6">
-            <span class="rspku-eyebrow">Jurnal</span>
-            <h1 class="max-w-4xl text-[2.35rem] font-semibold leading-[1.06] text-slate-950 sm:text-[2.9rem] xl:text-[3.4rem]">{{ journal_landing.title }}</h1>
-            <p class="max-w-3xl text-base leading-8 text-slate-600">{{ journal_landing.description }}</p>
+            <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">Jurnal</span>
+            <h1 class="max-w-4xl text-3xl font-bold leading-tight text-slate-950 sm:text-4xl lg:text-5xl">{{ journal_landing.title }}</h1>
+            <p class="max-w-3xl text-base leading-relaxed text-slate-600">{{ journal_landing.description }}</p>
           </div>
 
           <div class="grid gap-4 sm:grid-cols-2">
@@ -37,7 +37,7 @@
           <div class="rspku-divider pt-8">
             <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
               <div class="space-y-4">
-                <span class="rspku-eyebrow">Sorotan terbaru</span>
+                <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">Sorotan terbaru</span>
                 <h2 class="max-w-3xl text-[1.75rem] font-semibold leading-tight text-slate-950">{{ featured.title }}</h2>
                 {% if featured.excerpt %}
                   <p class="max-w-2xl text-[15px] leading-8 text-slate-600">{{ featured.excerpt }}</p>
@@ -66,42 +66,7 @@
         {% if journal_landing.items %}
           <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {% for item in journal_landing.items %}
-              <article class="rspku-journal-card flex h-full flex-col">
-                <div class="flex items-start justify-between gap-4">
-                  <span class="rspku-eyebrow">Jurnal</span>
-                  {% if item.date %}
-                    <span class="text-sm text-slate-500">{{ item.date }}</span>
-                  {% endif %}
-                </div>
-
-                <div class="mt-6 flex-1 space-y-4">
-                  <h2 class="text-[1.25rem] font-semibold leading-7 text-slate-950">
-                    <a href="{{ item.url }}" class="transition hover:text-hospital-700">{{ item.title }}</a>
-                  </h2>
-                  {% if item.excerpt %}
-                    <p class="text-[15px] leading-8 text-slate-600">{{ item.excerpt }}</p>
-                  {% endif %}
-                </div>
-
-                <div class="mt-8 flex flex-col gap-3">
-                  {% include 'components/button.twig' with {
-                    text: 'Baca',
-                    url: item.url,
-                    variant: 'primary',
-                    full_width: true
-                  } only %}
-                  {% if item.file and item.file.url %}
-                    {% include 'components/button.twig' with {
-                      text: 'Unduh PDF',
-                      url: item.file.url,
-                      variant: 'secondary',
-                      target: '_blank',
-                      icon: 'download',
-                      full_width: true
-                    } only %}
-                  {% endif %}
-                </div>
-              </article>
+              {% include 'components/journal-card.twig' with { item: item } only %}
             {% endfor %}
           </div>
         {% endif %}

@@ -43,10 +43,185 @@ final class ContentRepository
     }
 
     /**
+     * Score-based related articles scorer (per spec R8.2).
+     *
+     * Ranking:
+     * - +100 pts: article shares at least one category with the source
+     * - +50 pts: article shares at least one tag with the source
+     * - +10 pts: recency fallback (so we never return empty)
+     *
+     * Results are cached per source post for six hours. The transient
+     * is invalidated automatically by the theme's cache-busting hooks
+     * (save_post, deleted_post) and by {@see self::flushRelatedCache()}.
+     *
      * @param array<int,int> $categoryIds
      * @return array<int,array<string,mixed>>
      */
     public function relatedArticles(int $excludeId, int $limit = 3, array $categoryIds = []): array
+    {
+        if ($excludeId <= 0) {
+            return $this->queryRelatedArticles($excludeId, $limit, []);
+        }
+
+        $cacheKey = 'rspku_related_' . $excludeId . '_' . $limit;
+        $cached = get_transient($cacheKey);
+        if (is_array($cached)) {
+            return $cached;
+        }
+
+        $ranked = $this->scoreRelatedArticles($excludeId, $limit, $categoryIds);
+
+        // Persist for six hours. On a post update the save_post hook in
+        // Theme::registerCacheInvalidation() flushes the source post's
+        // cache; tag/category edits on related posts do not invalidate
+        // here (too hot-path). Worst case is 6h of staleness, accepted.
+        set_transient($cacheKey, $ranked, 6 * HOUR_IN_SECONDS);
+
+        return $ranked;
+    }
+
+    /**
+     * Walk the candidate pool once, score by category/tag overlap, and
+     * return the top `$limit` by combined score (ties broken by date).
+     *
+     * @param array<int,int> $categoryIds
+     * @return array<int,array<string,mixed>>
+     */
+    private function scoreRelatedArticles(int $excludeId, int $limit, array $categoryIds): array
+    {
+        $categoryIds = array_values(array_filter(array_map('absint', $categoryIds)));
+
+        if ($categoryIds === []) {
+            $termIds = wp_get_post_terms($excludeId, 'category', ['fields' => 'ids']);
+            if (is_array($termIds)) {
+                $categoryIds = array_values(array_filter(array_map('absint', $termIds)));
+            }
+        }
+
+        $tagIds = wp_get_post_terms($excludeId, 'post_tag', ['fields' => 'ids']);
+        $tagIds = is_array($tagIds) ? array_values(array_filter(array_map('absint', $tagIds))) : [];
+
+        // Pull a wider pool than $limit so scoring has something to rank.
+        // 3× limit is a sensible trade-off between query weight and
+        // ranking quality; worst case we materialise 9 candidates.
+        $poolSize = max($limit * 3, 10);
+
+        $taxQuery = [];
+        if ($categoryIds !== []) {
+            $taxQuery[] = [
+                'taxonomy' => 'category',
+                'field' => 'term_id',
+                'terms' => $categoryIds,
+                'operator' => 'IN',
+            ];
+        }
+        if ($tagIds !== []) {
+            $taxQuery[] = [
+                'taxonomy' => 'post_tag',
+                'field' => 'term_id',
+                'terms' => $tagIds,
+                'operator' => 'IN',
+            ];
+        }
+
+        $args = [
+            'post_type' => 'post',
+            'post_status' => 'publish',
+            'posts_per_page' => $poolSize,
+            'post__not_in' => [$excludeId],
+            'orderby' => 'date',
+            'order' => 'DESC',
+            'no_found_rows' => true,
+        ];
+
+        if ($taxQuery !== []) {
+            $args['tax_query'] = count($taxQuery) > 1
+                ? array_merge(['relation' => 'OR'], $taxQuery)
+                : $taxQuery;
+        }
+
+        $candidates = get_posts($args);
+
+        // Always include the latest fallback so we never return nothing.
+        if (count($candidates) < $limit) {
+            $fallback = get_posts([
+                'post_type' => 'post',
+                'post_status' => 'publish',
+                'posts_per_page' => $limit * 2,
+                'post__not_in' => array_merge(
+                    [$excludeId],
+                    array_map(static fn (WP_Post $p): int => (int) $p->ID, $candidates)
+                ),
+                'orderby' => 'date',
+                'order' => 'DESC',
+                'no_found_rows' => true,
+            ]);
+            $candidates = array_merge($candidates, $fallback);
+        }
+
+        if ($candidates === []) {
+            return [];
+        }
+
+        $scored = [];
+        foreach ($candidates as $post) {
+            $score = 10; // Recency baseline so everything ranks.
+
+            if ($categoryIds !== []) {
+                $postCats = wp_get_post_terms((int) $post->ID, 'category', ['fields' => 'ids']);
+                if (is_array($postCats) && array_intersect($categoryIds, array_map('absint', $postCats))) {
+                    $score += 100;
+                }
+            }
+
+            if ($tagIds !== []) {
+                $postTags = wp_get_post_terms((int) $post->ID, 'post_tag', ['fields' => 'ids']);
+                if (is_array($postTags) && array_intersect($tagIds, array_map('absint', $postTags))) {
+                    $score += 50;
+                }
+            }
+
+            $scored[] = [
+                'score' => $score,
+                'timestamp' => (int) strtotime((string) $post->post_date_gmt),
+                'post' => $post,
+            ];
+        }
+
+        usort(
+            $scored,
+            static fn (array $a, array $b): int => ($b['score'] <=> $a['score']) ?: ($b['timestamp'] <=> $a['timestamp'])
+        );
+
+        $top = array_slice($scored, 0, max(1, $limit));
+
+        return array_map(
+            fn (array $entry): array => $this->normalizeArticle($entry['post']),
+            $top
+        );
+    }
+
+    /**
+     * Public cache-bust hook for individual related-articles caches.
+     * Called from the theme's save_post/deleted_post handlers.
+     */
+    public static function flushRelatedCache(int $postId): void
+    {
+        if ($postId <= 0) {
+            return;
+        }
+
+        // Delete the whole size matrix we might have written.
+        foreach ([3, 4, 5, 6, 9] as $limit) {
+            delete_transient('rspku_related_' . $postId . '_' . $limit);
+        }
+    }
+
+    /**
+     * @param array<int,int> $categoryIds
+     * @return array<int,array<string,mixed>>
+     */
+    private function queryRelatedArticles(int $excludeId, int $limit, array $categoryIds): array
     {
         $queryArgs = [
             'post_type' => 'post',
@@ -64,13 +239,8 @@ final class ContentRepository
         }
 
         $query = new WP_Query($queryArgs);
-        $articles = array_map(fn (WP_Post $post): array => $this->normalizeArticle($post), $query->posts);
 
-        if ($articles !== [] || $categoryIds === []) {
-            return $articles;
-        }
-
-        return $this->relatedArticles($excludeId, $limit);
+        return array_map(fn (WP_Post $post): array => $this->normalizeArticle($post), $query->posts);
     }
 
     /**
@@ -446,6 +616,17 @@ final class ContentRepository
     }
 
     /**
+     * Public normalizer for service posts. Used by TemplateController
+     * when resolving admin-picked featured services by ID.
+     *
+     * @return array<string,mixed>
+     */
+    public function normalizeServicePublic(WP_Post $post): array
+    {
+        return $this->normalizeService($post);
+    }
+
+    /**
      * @return array<string,mixed>
      */
     private function normalizeService(WP_Post $post): array
@@ -621,7 +802,7 @@ final class ContentRepository
                 return [
                     'id' => null,
                     'url' => $url,
-                    'label' => sanitize_text_field((string) ($value['title'] ?? $value['filename'] ?? 'Dokumen jurnal')),
+                    'label' => sanitize_text_field((string) ($value['title'] ?? $value['filename'] ?? __('Dokumen jurnal', 'rspku-theme'))),
                     'mime' => sanitize_text_field((string) ($value['mime_type'] ?? '')),
                 ];
             }
@@ -633,7 +814,7 @@ final class ContentRepository
                 return [
                     'id' => null,
                     'url' => esc_url_raw($url),
-                    'label' => 'Dokumen jurnal',
+                    'label' => __('Dokumen jurnal', 'rspku-theme'),
                     'mime' => '',
                 ];
             }
@@ -655,7 +836,7 @@ final class ContentRepository
         return [
             'id' => $attachmentId,
             'url' => esc_url_raw($url),
-            'label' => get_the_title($attachmentId) ?: 'Dokumen jurnal',
+            'label' => get_the_title($attachmentId) ?: __('Dokumen jurnal', 'rspku-theme'),
             'mime' => (string) get_post_mime_type($attachmentId),
         ];
     }

@@ -9,6 +9,18 @@ use WP_Query;
 
 final class DoctorRepository
 {
+    private const CACHE_GROUP = 'rspku_theme';
+    private const CACHE_TTL = 6 * HOUR_IN_SECONDS;
+
+    /**
+     * Per-request memo so repeated normalize() calls on the same post
+     * inside a single page render (archive + sidebar + schedule) don't
+     * refetch meta/terms over and over.
+     *
+     * @var array<int,array<string,mixed>>
+     */
+    private static array $normalizeMemo = [];
+
     private const DAYS = [
         'monday' => 'Senin',
         'tuesday' => 'Selasa',
@@ -111,6 +123,11 @@ final class DoctorRepository
     }
 
     /**
+     * Get doctors related to a polyclinic via:
+     * 1. pilih_poliklinik_dokter meta (direct relation)
+     * 2. _rspku_related_polyclinic meta (secondary relation)
+     * 3. Spesialisasi that matches polyclinic title
+     *
      * @return array<int,array<string,mixed>>
      */
     public function forPolyclinic(int $polyclinicId, int $limit = 4): array
@@ -119,12 +136,16 @@ final class DoctorRepository
             return [];
         }
 
-        $query = new WP_Query([
+        $doctorIds = [];
+
+        // Strategy 1: Direct meta relation
+        $direct = new WP_Query([
             'post_type' => 'dokter',
             'post_status' => 'publish',
             'posts_per_page' => max(1, $limit),
             'orderby' => 'title',
             'order' => 'ASC',
+            'fields' => 'ids',
             'no_found_rows' => true,
             'meta_query' => [
                 'relation' => 'AND',
@@ -154,10 +175,43 @@ final class DoctorRepository
             ],
         ]);
 
+        foreach ($direct->posts as $id) {
+            $doctorIds[(int) $id] = true;
+        }
+
+        // Strategy 2: Match by specialization name vs polyclinic title
+        if (count($doctorIds) < $limit) {
+            $polyclinicPost = get_post($polyclinicId);
+            if ($polyclinicPost) {
+                $polyclinicName = $polyclinicPost->post_title;
+                $matches = $this->findBySpecializationKeyword($polyclinicName, $limit - count($doctorIds), array_keys($doctorIds));
+                foreach ($matches as $id) {
+                    $doctorIds[$id] = true;
+                }
+            }
+        }
+
+        if ($doctorIds === []) {
+            return [];
+        }
+
+        $query = new WP_Query([
+            'post_type' => 'dokter',
+            'post_status' => 'publish',
+            'posts_per_page' => max(1, $limit),
+            'post__in' => array_keys($doctorIds),
+            'orderby' => 'post__in',
+            'no_found_rows' => true,
+        ]);
+
         return array_map(fn (WP_Post $post): array => $this->normalize($post), $query->posts);
     }
 
     /**
+     * Get doctors related to a service via:
+     * 1. _rspku_related_service meta (direct relation)
+     * 2. Spesialisasi that matches service title
+     *
      * @return array<int,array<string,mixed>>
      */
     public function forService(int $serviceId, int $limit = 4): array
@@ -166,12 +220,16 @@ final class DoctorRepository
             return [];
         }
 
-        $query = new WP_Query([
+        $doctorIds = [];
+
+        // Strategy 1: Direct meta relation
+        $direct = new WP_Query([
             'post_type' => 'dokter',
             'post_status' => 'publish',
             'posts_per_page' => max(1, $limit),
             'orderby' => 'title',
             'order' => 'ASC',
+            'fields' => 'ids',
             'no_found_rows' => true,
             'meta_query' => [
                 'relation' => 'AND',
@@ -188,7 +246,103 @@ final class DoctorRepository
             ],
         ]);
 
+        foreach ($direct->posts as $id) {
+            $doctorIds[(int) $id] = true;
+        }
+
+        // Strategy 2: Match by specialization keyword from service title
+        if (count($doctorIds) < $limit) {
+            $servicePost = get_post($serviceId);
+            if ($servicePost) {
+                $serviceName = $servicePost->post_title;
+                $matches = $this->findBySpecializationKeyword($serviceName, $limit - count($doctorIds), array_keys($doctorIds));
+                foreach ($matches as $id) {
+                    $doctorIds[$id] = true;
+                }
+            }
+        }
+
+        if ($doctorIds === []) {
+            return [];
+        }
+
+        $query = new WP_Query([
+            'post_type' => 'dokter',
+            'post_status' => 'publish',
+            'posts_per_page' => max(1, $limit),
+            'post__in' => array_keys($doctorIds),
+            'orderby' => 'post__in',
+            'no_found_rows' => true,
+        ]);
+
         return array_map(fn (WP_Post $post): array => $this->normalize($post), $query->posts);
+    }
+
+    /**
+     * Find doctors whose spesialisasi taxonomy matches a keyword from the given name.
+     *
+     * @param array<int,int> $excludeIds
+     * @return array<int,int>
+     */
+    private function findBySpecializationKeyword(string $name, int $limit, array $excludeIds = []): array
+    {
+        if ($limit <= 0 || trim($name) === '') {
+            return [];
+        }
+
+        // Extract meaningful keywords (min 4 chars, skip common words)
+        $stopWords = ['klinik', 'poliklinik', 'layanan', 'medis', 'dan', 'atau', 'untuk', 'rumah', 'sakit'];
+        $words = preg_split('/\s+/', strtolower(trim($name)));
+        $keywords = array_filter($words, fn ($w) => strlen($w) >= 4 && !in_array($w, $stopWords, true));
+
+        if ($keywords === []) {
+            return [];
+        }
+
+        // Find matching taxonomy terms
+        $matchedTermIds = [];
+        foreach ($keywords as $keyword) {
+            $terms = get_terms([
+                'taxonomy' => 'spesialisasi-dokter',
+                'hide_empty' => false,
+                'search' => $keyword,
+                'number' => 10,
+            ]);
+            if (!is_wp_error($terms)) {
+                foreach ($terms as $term) {
+                    $matchedTermIds[$term->term_id] = true;
+                }
+            }
+        }
+
+        if ($matchedTermIds === []) {
+            return [];
+        }
+
+        $args = [
+            'post_type' => 'dokter',
+            'post_status' => 'publish',
+            'posts_per_page' => $limit,
+            'orderby' => 'title',
+            'order' => 'ASC',
+            'fields' => 'ids',
+            'no_found_rows' => true,
+            'tax_query' => [
+                [
+                    'taxonomy' => 'spesialisasi-dokter',
+                    'field' => 'term_id',
+                    'terms' => array_keys($matchedTermIds),
+                ],
+            ],
+        ];
+
+        if ($excludeIds !== []) {
+            $args['post__not_in'] = $excludeIds;
+        }
+
+        $query = new WP_Query($args);
+
+        return array_map('intval', $query->posts);
     }
 
     /**
@@ -232,6 +386,61 @@ final class DoctorRepository
      * @return array<string,mixed>
      */
     public function normalize(WP_Post $post): array
+    {
+        $postId = (int) $post->ID;
+
+        if (isset(self::$normalizeMemo[$postId])) {
+            return self::$normalizeMemo[$postId];
+        }
+
+        $cacheKey = self::cacheKey($postId);
+        $cached = wp_cache_get($cacheKey, self::CACHE_GROUP);
+        if (is_array($cached)) {
+            self::$normalizeMemo[$postId] = $cached;
+            return $cached;
+        }
+
+        $transientKey = 'rspku_doctor_' . $postId;
+        $persistent = get_transient($transientKey);
+        if (is_array($persistent)) {
+            wp_cache_set($cacheKey, $persistent, self::CACHE_GROUP, self::CACHE_TTL);
+            self::$normalizeMemo[$postId] = $persistent;
+            return $persistent;
+        }
+
+        $data = $this->buildNormalized($post);
+
+        wp_cache_set($cacheKey, $data, self::CACHE_GROUP, self::CACHE_TTL);
+        set_transient($transientKey, $data, self::CACHE_TTL);
+        self::$normalizeMemo[$postId] = $data;
+
+        return $data;
+    }
+
+    /**
+     * Public so other modules (e.g. the directory sync) can bust the
+     * cache for a specific doctor after mutating its meta.
+     */
+    public static function flushCache(int $postId): void
+    {
+        if ($postId <= 0) {
+            return;
+        }
+
+        wp_cache_delete(self::cacheKey($postId), self::CACHE_GROUP);
+        delete_transient('rspku_doctor_' . $postId);
+        unset(self::$normalizeMemo[$postId]);
+    }
+
+    private static function cacheKey(int $postId): string
+    {
+        return 'doctor_' . $postId;
+    }
+
+    /**
+     * @return array<string,mixed>
+     */
+    private function buildNormalized(WP_Post $post): array
     {
         $postId = (int) $post->ID;
         $title = get_the_title($post);

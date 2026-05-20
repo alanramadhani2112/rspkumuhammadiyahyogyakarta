@@ -1,0 +1,44 @@
+{#
+  Article End-of-Content CTA
+  Fulfils spec R7. Consumes the `article_single.cta` payload built by
+  `Rspku\Services\ArticleCtaMapper`, which may be contextual (matched
+  to a polyclinic via tags/categories) or the generic fallback.
+
+  Usage:
+  {% include 'partials/article-cta.twig' with { cta: article_single.cta } only %}
+
+  Props:
+  - cta (required): Array with keys `heading`, `description`, `primary`, `secondary`
+    where `primary`/`secondary` = { label, url, icon }.
+#}
+
+{% if cta %}
+  <aside class="mt-10 rounded-md border border-hospital-200 bg-hospital-50/40 p-6" aria-labelledby="article-cta-heading">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="min-w-0">
+        <h3 id="article-cta-heading" class="text-base font-semibold text-slate-950">{{ cta.heading }}</h3>
+        <p class="mt-1 text-sm leading-relaxed text-slate-600">{{ cta.description }}</p>
+      </div>
+      <div class="flex flex-col gap-2 sm:flex-row sm:shrink-0">
+        {% if cta.primary and cta.primary.label %}
+          {% include 'components/button.twig' with {
+            text: cta.primary.label,
+            url: cta.primary.url,
+            variant: 'primary',
+            icon: cta.primary.icon|default('arrow-right'),
+            size: 'sm'
+          } only %}
+        {% endif %}
+        {% if cta.secondary and cta.secondary.label %}
+          {% include 'components/button.twig' with {
+            text: cta.secondary.label,
+            url: cta.secondary.url,
+            variant: 'secondary',
+            icon: cta.secondary.icon|default('arrow-right'),
+            size: 'sm'
+          } only %}
+        {% endif %}
+      </div>
+    </div>
+  </aside>
+{% endif %}

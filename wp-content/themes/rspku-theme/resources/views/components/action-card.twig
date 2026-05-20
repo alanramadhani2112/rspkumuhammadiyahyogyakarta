@@ -1,0 +1,26 @@
+{#
+  Action Card Component - Quick navigation cards
+  
+  Usage:
+  {% include 'components/action-card.twig' with { item: item } only %}
+  
+  Props:
+  - item.title (required): Card title
+  - item.text (optional): Short description
+  - item.url (required): Link URL
+  - item.icon (required): Icon name
+#}
+
+<a href="{{ item.url }}" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-hospital-200 hover:bg-hospital-50/30">
+  <div class="flex items-start gap-4">
+    <div class="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-hospital-50 text-hospital-700 transition group-hover:bg-hospital-600 group-hover:text-white">
+      {{ icon(item.icon, { class: 'h-5 w-5' }) }}
+    </div>
+    <div class="min-w-0 flex-1">
+      <p class="font-semibold text-slate-950">{{ item.title }}</p>
+      {% if item.text %}
+        <p class="mt-1 text-sm text-slate-600">{{ item.text }}</p>
+      {% endif %}
+    </div>
+  </div>
+</a>

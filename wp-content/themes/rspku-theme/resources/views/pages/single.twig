@@ -42,11 +42,11 @@
         <div class="rspku-container space-y-10">
           <div class="flex items-end justify-between gap-6">
             <div>
-              <span class="rspku-eyebrow">Info update</span>
-              <h2 class="mt-4 text-[2.5rem] font-semibold leading-tight text-slate-950 sm:text-[3rem]">Berita terbaru</h2>
+              <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">Berita & Informasi</span>
+              <h2 class="mt-3 text-2xl font-bold leading-tight text-slate-950 sm:text-3xl">Berita terbaru</h2>
             </div>
             {% if primary_category %}
-              <a href="{{ primary_category.url }}" class="rspku-icon-button hidden lg:inline-flex" aria-label="Lihat semua artikel">
+              <a href="{{ primary_category.url }}" class="hidden items-center gap-2 text-sm font-medium text-hospital-700 hover:text-hospital-800 lg:inline-flex" aria-label="Lihat semua artikel">
                 {{ icon('arrow-up-right', { class: 'h-6 w-6' }) }}
               </a>
             {% endif %}

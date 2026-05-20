@@ -30,6 +30,9 @@
 wp-config.php
 wp-config-sample.php
 
+# ---------- Database dumps (SENSITIF) ----------
+*.sql
+
 # ---------- wp-content: whitelist hanya theme+plugin custom ----------
 /wp-content/*
 !/wp-content/themes/

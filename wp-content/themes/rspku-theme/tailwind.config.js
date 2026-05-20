@@ -41,14 +41,15 @@ export default {
         '5xl': ['3.052rem', { lineHeight: '1.1' }],    // 49px
         '6xl': ['3.815rem', { lineHeight: '1.1' }],    // 61px
       },
-      // Standardized border radius
+      // Medical-grade border radius (less rounded, more clinical)
       borderRadius: {
-        'sm': '0.75rem',   // 12px - buttons, chips
-        'DEFAULT': '1rem', // 16px - cards, default
-        'md': '1rem',      // 16px - cards
-        'lg': '1.5rem',    // 24px - panels, images
-        'xl': '2rem',      // 32px - hero sections
-        '2xl': '2.5rem',   // 40px - extra large
+        'none': '0',
+        'sm': '0.25rem',    // 4px - chips, badges, small inputs
+        'DEFAULT': '0.375rem', // 6px - buttons, small cards
+        'md': '0.5rem',     // 8px - cards, inputs
+        'lg': '0.75rem',    // 12px - large cards, panels
+        'xl': '1rem',       // 16px - hero sections, feature panels
+        '2xl': '1.5rem',    // 24px - extra large sections
       },
       boxShadow: {
         soft: '0 22px 44px rgba(15, 23, 42, 0.08)',

@@ -47,13 +47,18 @@ final class TocGenerator
         $dom = new DOMDocument('1.0', 'UTF-8');
         $previousInternalErrors = libxml_use_internal_errors(true);
 
-        $loaded = $dom->loadHTML(
-            $wrapped,
-            LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
-        );
-
-        libxml_clear_errors();
-        libxml_use_internal_errors($previousInternalErrors);
+        try {
+            $loaded = $dom->loadHTML(
+                $wrapped,
+                LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+            );
+        } finally {
+            // Restore libxml state even if loadHTML throws. Leaking the
+            // error-suppression flag would make later libxml consumers
+            // (e.g. SimpleXML in another plugin) silently lose warnings.
+            libxml_clear_errors();
+            libxml_use_internal_errors($previousInternalErrors);
+        }
 
         if ($loaded === false) {
             return ['html' => $html, 'items' => []];

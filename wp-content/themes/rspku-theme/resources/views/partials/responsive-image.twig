@@ -1,0 +1,49 @@
+{#
+  Responsive Image Partial
+
+  Emits <img> with srcset + sizes when the attachment id is available.
+  Falls back to a plain <img src="..."> when only a URL is provided
+  (e.g. external image or setting not resolved to an ID).
+
+  Usage:
+  {% include 'partials/responsive-image.twig' with {
+    id: rspku.hero_image_id,
+    url: rspku.hero_image_url,
+    alt: rspku.site_name,
+    class: 'aspect-[4/3] w-full object-cover',
+    sizes: '(min-width: 1024px) 50vw, 100vw',
+    width: 1200,
+    height: 900,
+    eager: true
+  } only %}
+
+  Props:
+  - id (optional): Attachment ID. If provided, srcset is generated.
+  - url (required unless id given): Image URL as fallback.
+  - alt (required): Alt text.
+  - class (optional): CSS classes for the <img>.
+  - sizes (optional): Sizes attribute. Default: '(min-width: 1024px) 50vw, 100vw'
+  - width, height (required when not provided via id): Explicit dimensions for CLS prevention.
+  - eager (optional): Bool. If true, adds loading="eager" + fetchpriority="high" (for LCP images).
+  - default_size (optional): Image size to use for fallback URL. Default: 'rspku-hero'
+#}
+
+{% set image = id is defined and id ? image_src(id, default_size|default('rspku-hero'), sizes|default('(min-width: 1024px) 50vw, 100vw')) : null %}
+{% set final_url = image ? image.url : url|default('') %}
+{% set final_width = image ? image.width : width|default(1200) %}
+{% set final_height = image ? image.height : height|default(900) %}
+{% set final_alt = alt|default(image ? image.alt : '') %}
+
+{% if final_url %}
+  <img
+    src="{{ final_url }}"
+    {% if image and image.srcset %}srcset="{{ image.srcset }}"{% endif %}
+    {% if image %}sizes="{{ image.sizes }}"{% endif %}
+    alt="{{ final_alt }}"
+    width="{{ final_width }}"
+    height="{{ final_height }}"
+    {% if eager|default(false) %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}
+    decoding="async"
+    class="{{ class|default('w-full object-cover') }}"
+  >
+{% endif %}

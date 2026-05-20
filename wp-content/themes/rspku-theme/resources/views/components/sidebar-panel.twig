@@ -1,0 +1,54 @@
+{#
+  Sidebar Panel Component - Generic sidebar card/panel container
+  
+  Usage (basic):
+  {% include 'components/sidebar-panel.twig' with {
+    title: 'Info artikel',
+    icon: 'info',
+    content: '<p>Content here</p>'
+  } only %}
+  
+  Usage (block):
+  {% embed 'components/sidebar-panel.twig' with { title: 'Title', icon: 'info' } only %}
+    {% block content %}
+      <p>Your content here</p>
+    {% endblock %}
+  {% endembed %}
+  
+  Props:
+  - title (required): Panel heading
+  - icon (optional): Icon name
+  - content (optional): Panel body content (HTML string)
+  - variant (optional): 'default' | 'highlight' | 'success' (default: 'default')
+  - sticky (optional): Add sticky positioning classes (default: false)
+#}
+
+{% set variant = variant|default('default') %}
+{% set sticky = sticky|default(false) %}
+
+{% set variant_classes = {
+  'default': 'border-slate-200 bg-white',
+  'highlight': 'border-hospital-200 bg-hospital-50/30',
+  'success': 'border-green-200 bg-green-50/30'
+} %}
+
+{% set wrapper_class = 'rounded-xl border ' ~ variant_classes[variant] ~ ' p-6' %}
+{% if sticky %}
+  {% set wrapper_class = wrapper_class ~ ' sticky top-28' %}
+{% endif %}
+
+<section class="{{ wrapper_class }}">
+  <div class="flex items-center gap-2">
+    {% if icon %}
+      <span class="grid h-7 w-7 place-items-center rounded-lg bg-hospital-50 text-hospital-700">
+        {{ icon(icon, { class: 'h-3.5 w-3.5' }) }}
+      </span>
+    {% endif %}
+    <h2 class="text-sm font-semibold text-slate-950">{{ title }}</h2>
+  </div>
+  <div class="mt-4">
+    {% block content %}
+      {{ content|default('')|raw }}
+    {% endblock %}
+  </div>
+</section>

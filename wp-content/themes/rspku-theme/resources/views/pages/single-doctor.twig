@@ -4,36 +4,42 @@
   {% if doctor %}
     {% set specialization = doctor.primary_specialization ?: doctor.specializations|first %}
     <article class="rspku-doctor-detail rspku-section pb-8">
-      <div class="rspku-container space-y-10">
+      <div class="rspku-container space-y-8">
         {% include 'partials/breadcrumb.twig' with {
           items: [
             { title: 'Home', url: site.url },
-            { title: 'Cari dokter', url: site.url ~ '/dokter' },
+            { title: 'Cari dokter', url: site.url ~ '/dokter/' },
             { title: doctor.name, current: true }
           ]
         } only %}
 
-        <div class="rspku-doctor-hero">
-          <div class="rspku-doctor-identity">
-            <div class="rspku-doctor-avatar">
-              {% if doctor.photo.url %}
-                <img src="{{ doctor.photo.url }}" alt="{{ doctor.name }}" class="h-full w-full object-cover">
-              {% else %}
-                <div class="rspku-doctor-avatar-fallback">{{ doctor.name|slice(0, 1) }}</div>
+        {# Doctor Hero - Clean Identity #}
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-start">
+          {# Avatar #}
+          <div class="h-28 w-28 shrink-0 overflow-hidden rounded-2xl bg-hospital-50 sm:h-32 sm:w-32">
+            {% if doctor.photo.url %}
+              <img src="{{ doctor.photo.url }}" alt="{{ doctor.name }}" class="h-full w-full object-cover">
+            {% else %}
+              <div class="grid h-full w-full place-items-center text-4xl font-bold text-hospital-700">{{ doctor.name|slice(0, 1) }}</div>
+            {% endif %}
+          </div>
+
+          {# Identity Info #}
+          <div class="min-w-0 flex-1 space-y-3">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="rounded-full bg-hospital-50 px-3 py-1 text-xs font-semibold text-hospital-700">{{ specialization.name|default('Dokter') }}</span>
+              {% if doctor.specialization_category %}
+                <span class="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600">{{ doctor.specialization_category }}</span>
+              {% endif %}
+              {% if doctor.sub_specialization %}
+                <span class="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600">{{ doctor.sub_specialization }}</span>
               {% endif %}
             </div>
-            <div class="min-w-0 flex-1 space-y-4">
-              <div class="rspku-doctor-tags">
-                <span class="rspku-eyebrow">{{ specialization.name|default('Dokter') }}</span>
-                {% if doctor.specialization_category %}
-                  <span class="rspku-chip">{{ doctor.specialization_category }}</span>
-                {% endif %}
-                {% if doctor.sub_specialization %}
-                  <span class="rspku-chip">{{ doctor.sub_specialization }}</span>
-                {% endif %}
-              </div>
-              <h1 class="rspku-page-title font-semibold text-slate-950">{{ doctor.name }}</h1>
-              <div class="rspku-doctor-meta">
+
+            <h1 class="text-2xl font-bold text-slate-950 sm:text-3xl">{{ doctor.name }}</h1>
+
+            {% if doctor.license or doctor.consultation_type or doctor.degree %}
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-500">
                 {% if doctor.license %}
                   <span>SIP {{ doctor.license }}</span>
                 {% endif %}
@@ -44,127 +50,216 @@
                   <span>{{ doctor.degree }}</span>
                 {% endif %}
               </div>
-              {% if doctor.services %}
-                <div class="rspku-doctor-service-list">
-                  {% for service in doctor.services|slice(0, 4) %}
-                    <a href="{{ service.url }}" class="rspku-chip">{{ service.title }}</a>
-                  {% endfor %}
-                </div>
-              {% endif %}
-            </div>
-          </div>
+            {% endif %}
 
-          {% if doctor.social_links %}
-            <nav class="rspku-doctor-social" aria-label="Sosial media dokter">
-              {% for social in doctor.social_links %}
-                <a href="{{ social.url }}" target="_blank" rel="noopener" class="rspku-icon-button" aria-label="{{ social.platform|title }}">
-                  {% if social.platform == 'instagram' %}
-                    {{ icon('instagram', { class: 'h-5 w-5' }) }}
-                  {% elseif social.platform == 'facebook' %}
-                    {{ icon('facebook', { class: 'h-5 w-5' }) }}
-                  {% elseif social.platform == 'linkedin' %}
-                    {{ icon('linkedin', { class: 'h-5 w-5' }) }}
-                  {% else %}
-                    {{ icon('message-circle', { class: 'h-5 w-5' }) }}
-                  {% endif %}
-                </a>
-              {% endfor %}
-            </nav>
-          {% endif %}
+            {% if doctor.services %}
+              <div class="flex flex-wrap gap-2 pt-1">
+                {% for service in doctor.services|slice(0, 4) %}
+                  <a href="{{ service.url }}" class="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-hospital-200 hover:bg-hospital-50 hover:text-hospital-700">{{ service.title }}</a>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% if doctor.social_links %}
+              <nav class="flex items-center gap-2 pt-1" aria-label="Sosial media dokter">
+                {% for social in doctor.social_links %}
+                  <a href="{{ social.url }}" target="_blank" rel="noopener" class="grid h-9 w-9 place-items-center rounded-lg border border-slate-200 text-slate-400 transition hover:border-hospital-200 hover:text-hospital-700" aria-label="{{ social.platform|title }}">
+                    {% if social.platform == 'instagram' %}
+                      {{ icon('instagram', { class: 'h-4 w-4' }) }}
+                    {% elseif social.platform == 'facebook' %}
+                      {{ icon('facebook', { class: 'h-4 w-4' }) }}
+                    {% elseif social.platform == 'linkedin' %}
+                      {{ icon('linkedin', { class: 'h-4 w-4' }) }}
+                    {% else %}
+                      {{ icon('message-circle', { class: 'h-4 w-4' }) }}
+                    {% endif %}
+                  </a>
+                {% endfor %}
+              </nav>
+            {% endif %}
+          </div>
         </div>
 
-        <div class="rspku-divider"></div>
+        <div class="border-t border-slate-200"></div>
 
-        <div class="grid gap-8 xl:grid-cols-[minmax(0,1fr)_20rem]">
-          <div class="min-w-0 space-y-10">
-            <section class="rspku-profile-story">
-              <div class="rspku-profile-block-heading">
-                <span class="rspku-profile-block-icon">
-                  {{ icon('user-round', { class: 'h-5 w-5' }) }}
-                </span>
-                <div>
-                  <p class="rspku-profile-block-kicker">Tentang dokter</p>
-                  <h2 class="rspku-profile-block-title">Profil</h2>
+        {# Main Content - 2 Column: Content / Sidebar (22rem) #}
+        <div class="grid gap-10 xl:grid-cols-[minmax(0,1fr)_22rem]">
+
+          {# Content Column #}
+          <div class="min-w-0 space-y-8">
+
+            {# Profile Section - Clean, no heavy box #}
+            {% if doctor.profile %}
+              <section>
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="grid h-9 w-9 place-items-center rounded-lg bg-hospital-50 text-hospital-700">
+                    {{ icon('user-round', { class: 'h-4 w-4' }) }}
+                  </div>
+                  <h2 class="text-lg font-semibold text-slate-950">Tentang Dokter</h2>
                 </div>
-              </div>
-              <div class="rspku-profile-copy rspku-prose">{{ doctor.profile|raw }}</div>
-            </section>
+                <div class="rspku-prose">{{ doctor.profile|raw }}</div>
+              </section>
+            {% endif %}
 
-            {% include 'partials/doctor-credential-section.twig' with {
-              title: 'Pendidikan',
-              kicker: 'Riwayat akademik',
-              icon_name: 'graduation-cap',
-              items: doctor.education_items
-            } only %}
-
-            {% include 'partials/doctor-credential-section.twig' with {
-              title: 'Pengalaman',
-              kicker: 'Praktik dan organisasi',
-              icon_name: 'briefcase-medical',
-              items: doctor.experience_items
-            } only %}
-
-            {% include 'partials/doctor-credential-section.twig' with {
-              title: 'Pelatihan',
-              kicker: 'Kompetensi tambahan',
-              icon_name: 'badge-check',
-              items: doctor.training_items
-            } only %}
-          </div>
-
-          <aside class="space-y-5 xl:sticky xl:top-28 xl:self-start">
-            <section class="rounded-lg border border-slate-200 bg-white p-6 space-y-4">
-              <h2 class="text-xl font-semibold text-slate-950">Buat janji</h2>
-              <p class="text-sm leading-relaxed text-slate-600">Jadwalkan pertemuan dengan dokter untuk mendukung kesehatan Anda lebih baik.</p>
-              <div class="pt-2">
-                {% include 'components/button.twig' with {
-                  text: 'Buat janji',
-                  url: doctor.appointment_url ?: site.url ~ '/kontak',
-                  variant: 'primary',
-                  full_width: true
-                } only %}
-              </div>
-            </section>
-
-            <section class="rounded-lg border border-slate-200 bg-white p-6 space-y-4">
-              <h2 class="text-xl font-semibold text-slate-950">Jadwal praktik</h2>
-              {% if doctor.schedule %}
-                <div class="divide-y divide-slate-100">
-                  {% for row in doctor.schedule %}
-                    <div class="grid grid-cols-[1fr_auto] gap-4 py-3 first:pt-0 last:pb-0">
-                      <div>
-                        <p class="text-sm font-semibold text-slate-950">{{ row.day_label|default(row.day) }}</p>
-                        {% if row.branch or row.room %}
-                          <p class="mt-1 text-xs leading-relaxed text-slate-500">{{ row.branch|default('RS PKU Muhammadiyah Yogyakarta') }}{% if row.room %} - {{ row.room }}{% endif %}</p>
-                        {% endif %}
-                      </div>
-                      <p class="text-sm leading-relaxed text-slate-600">{{ row.start_time }}{% if row.end_time %} - {{ row.end_time }}{% endif %}</p>
+            {# Credentials - Cleaner style #}
+            {% if doctor.education_items %}
+              <section class="border-t border-slate-200 pt-8">
+                <div class="flex items-center gap-3 mb-5">
+                  <div class="grid h-9 w-9 place-items-center rounded-lg bg-hospital-50 text-hospital-700">
+                    {{ icon('graduation-cap', { class: 'h-4 w-4' }) }}
+                  </div>
+                  <h2 class="text-lg font-semibold text-slate-950">Pendidikan</h2>
+                </div>
+                <div class="space-y-3">
+                  {% for item in doctor.education_items %}
+                    <div class="flex gap-4 rounded-lg bg-slate-50/50 px-4 py-3">
+                      {% if item.period %}
+                        <span class="shrink-0 text-xs font-semibold text-hospital-700 pt-0.5">{{ item.period }}</span>
+                      {% endif %}
+                      <p class="text-sm leading-relaxed text-slate-700">{{ item.description }}</p>
                     </div>
                   {% endfor %}
                 </div>
-              {% else %}
-                <p class="text-sm text-slate-600">Jadwal praktik belum tersedia.</p>
-              {% endif %}
-            </section>
+              </section>
+            {% endif %}
 
-            {% if doctor.branches %}
-              <section class="rounded-lg border border-slate-200 bg-white p-6 space-y-4">
-                <div class="grid h-11 w-11 place-items-center rounded-lg border border-hospital-200 bg-white text-hospital-700">
-                  {{ icon('map-pinned', { class: 'h-6 w-6' }) }}
-                </div>
-                <div>
-                  <h2 class="text-xl font-semibold text-slate-950">Lokasi rumah sakit</h2>
-                  <div class="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
-                    {% for branch in doctor.branches %}
-                      <a href="{{ branch.url }}" class="block transition hover:text-hospital-700">{{ branch.title }}</a>
-                    {% endfor %}
+            {% if doctor.experience_items %}
+              <section class="border-t border-slate-200 pt-8">
+                <div class="flex items-center gap-3 mb-5">
+                  <div class="grid h-9 w-9 place-items-center rounded-lg bg-hospital-50 text-hospital-700">
+                    {{ icon('briefcase-medical', { class: 'h-4 w-4' }) }}
                   </div>
+                  <h2 class="text-lg font-semibold text-slate-950">Pengalaman</h2>
+                </div>
+                <div class="space-y-3">
+                  {% for item in doctor.experience_items %}
+                    <div class="flex gap-4 rounded-lg bg-slate-50/50 px-4 py-3">
+                      {% if item.period %}
+                        <span class="shrink-0 text-xs font-semibold text-hospital-700 pt-0.5">{{ item.period }}</span>
+                      {% endif %}
+                      <p class="text-sm leading-relaxed text-slate-700">{{ item.description }}</p>
+                    </div>
+                  {% endfor %}
                 </div>
               </section>
             {% endif %}
+
+            {% if doctor.training_items %}
+              <section class="border-t border-slate-200 pt-8">
+                <div class="flex items-center gap-3 mb-5">
+                  <div class="grid h-9 w-9 place-items-center rounded-lg bg-hospital-50 text-hospital-700">
+                    {{ icon('badge-check', { class: 'h-4 w-4' }) }}
+                  </div>
+                  <h2 class="text-lg font-semibold text-slate-950">Pelatihan</h2>
+                </div>
+                <div class="space-y-3">
+                  {% for item in doctor.training_items %}
+                    <div class="flex gap-4 rounded-lg bg-slate-50/50 px-4 py-3">
+                      {% if item.period %}
+                        <span class="shrink-0 text-xs font-semibold text-hospital-700 pt-0.5">{{ item.period }}</span>
+                      {% endif %}
+                      <p class="text-sm leading-relaxed text-slate-700">{{ item.description }}</p>
+                    </div>
+                  {% endfor %}
+                </div>
+              </section>
+            {% endif %}
+          </div>
+
+          {# Sidebar Column (22rem) #}
+          <aside class="xl:block">
+            <div class="sticky top-28 space-y-5">
+
+              {# CTA - Prominent #}
+              <section class="rounded-xl border-2 border-hospital-200 bg-hospital-50/30 p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="grid h-10 w-10 place-items-center rounded-lg bg-hospital-600 text-white">
+                    {{ icon('calendar-check', { class: 'h-5 w-5' }) }}
+                  </div>
+                  <h2 class="text-lg font-semibold text-slate-950">Buat Janji</h2>
+                </div>
+                <p class="text-sm leading-relaxed text-slate-600 mb-4">Jadwalkan konsultasi dengan {{ doctor.name|split(' ')|slice(0,2)|join(' ') }} sekarang.</p>
+                {% set doctor_appointment_fallback_url = rspku.doctor_appointment_fallback_url|default('/kontak/') %}
+                {% set doctor_appointment_fallback_href = doctor_appointment_fallback_url starts with 'http' or doctor_appointment_fallback_url starts with 'tel:' or doctor_appointment_fallback_url starts with 'mailto:' ? doctor_appointment_fallback_url : site.url ~ doctor_appointment_fallback_url %}
+                {% include 'components/button.twig' with {
+                  text: rspku.doctor_appointment_cta_text|default('Buat janji sekarang'),
+                  url: doctor.appointment_url ?: doctor_appointment_fallback_href,
+                  variant: 'primary',
+                  icon: 'calendar-check',
+                  full_width: true
+                } only %}
+              </section>
+
+              {# Schedule - Scannable #}
+              <section class="rounded-xl border border-slate-200 bg-white p-6">
+                <div class="flex items-center gap-2 mb-4">
+                  {{ icon('clock', { class: 'h-4 w-4 text-hospital-700' }) }}
+                  <h2 class="text-sm font-semibold text-slate-950">Jadwal Praktik</h2>
+                </div>
+                {% if doctor.schedule %}
+                  <div class="space-y-2">
+                    {% for row in doctor.schedule %}
+                      <div class="flex items-start justify-between gap-3 rounded-lg bg-slate-50 px-3 py-2.5">
+                        <div>
+                          <p class="text-sm font-semibold text-slate-800">{{ row.day_label|default(row.day) }}</p>
+                          {% if row.branch or row.room %}
+                            <p class="mt-0.5 text-xs text-slate-500">{{ row.branch|default('RS PKU Yogyakarta') }}{% if row.room %} • {{ row.room }}{% endif %}</p>
+                          {% endif %}
+                        </div>
+                        <span class="shrink-0 rounded-md bg-hospital-50 px-2 py-1 text-xs font-semibold text-hospital-700">{{ row.start_time }}{% if row.end_time %}-{{ row.end_time }}{% endif %}</span>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  <p class="text-sm text-slate-500">Jadwal praktik belum tersedia.</p>
+                {% endif %}
+              </section>
+
+              {# Location #}
+              {% if doctor.branches %}
+                <section class="rounded-xl border border-slate-200 bg-white p-6">
+                  <div class="flex items-center gap-2 mb-4">
+                    {{ icon('map-pin', { class: 'h-4 w-4 text-hospital-700' }) }}
+                    <h2 class="text-sm font-semibold text-slate-950">Lokasi Praktik</h2>
+                  </div>
+                  <div class="space-y-2">
+                    {% for branch in doctor.branches %}
+                      <a href="{{ branch.url }}" class="flex items-center gap-2 rounded-lg bg-slate-50 px-3 py-2.5 text-sm text-slate-700 transition hover:bg-hospital-50 hover:text-hospital-700">
+                        {{ icon('building-2', { class: 'h-4 w-4 shrink-0 text-slate-400' }) }}
+                        <span>{{ branch.title }}</span>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </section>
+              {% endif %}
+
+              {# Quick Contact #}
+              <section class="rounded-xl border border-slate-200 bg-white p-6">
+                <div class="flex items-center gap-2 mb-4">
+                  {{ icon('phone', { class: 'h-4 w-4 text-hospital-700' }) }}
+                  <h2 class="text-sm font-semibold text-slate-950">Hubungi Kami</h2>
+                </div>
+                <a href="tel:0274512321" class="flex items-center gap-3 rounded-lg bg-slate-50 px-3 py-3 transition hover:bg-hospital-50">
+                  <div class="grid h-8 w-8 place-items-center rounded-lg bg-hospital-600 text-white">
+                    {{ icon('phone', { class: 'h-4 w-4' }) }}
+                  </div>
+                  <div>
+                    <p class="text-xs text-slate-500">Pendaftaran</p>
+                    <p class="text-sm font-semibold text-slate-800">0274 512321</p>
+                  </div>
+                </a>
+              </section>
+            </div>
           </aside>
         </div>
       </div>
     </article>
+  {% else %}
+    {% include 'partials/content-not-found.twig' with {
+      title: 'Dokter tidak ditemukan',
+      description: 'Profil dokter yang Anda cari tidak tersedia atau sudah dipindahkan.',
+      back_url: site.url ~ '/dokter/',
+      back_label: 'Kembali ke direktori dokter'
+    } only %}
   {% endif %}
 {% endblock %}

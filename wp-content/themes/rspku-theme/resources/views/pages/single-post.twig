@@ -3,6 +3,7 @@
 {% block content %}
   {% if article_single is defined %}
     {% set primary_category = article_single.primary_category %}
+    {% set toc = article_single.toc|default({ 'items': [], 'has_toc': false }) %}
     {% set breadcrumb_items = [{ title: 'Home', url: site.url }, { title: 'Berita & Artikel', url: site.url ~ '/berita-artikel/' }] %}
     {% if primary_category %}
       {% set breadcrumb_items = breadcrumb_items|merge([{ title: primary_category.name, url: primary_category.url }]) %}
@@ -10,144 +11,184 @@
     {% set breadcrumb_items = breadcrumb_items|merge([{ title: post.title, current: true }]) %}
 
     <article class="rspku-section pb-10">
-      <div class="rspku-container space-y-8">
+      {% if rspku.feature_reading_progress is not defined or rspku.feature_reading_progress %}
+        <div class="rspku-reading-progress" x-data="readingProgress" :style="'width:' + progress + '%'" aria-hidden="true"></div>
+      {% endif %}
+      <div class="rspku-container">
         {% include 'partials/breadcrumb.twig' with { items: breadcrumb_items } only %}
 
-        <div class="grid gap-8 xl:grid-cols-[minmax(0,1fr)_20rem]">
-          <div class="min-w-0 space-y-8">
-            <header class="space-y-5">
-              <div class="flex flex-wrap items-center gap-3 text-sm leading-normal text-slate-500">
-                {% if primary_category %}
-                  <span class="rspku-chip min-h-[2rem] px-3 text-xs font-semibold text-hospital-700">{{ primary_category.name }}</span>
-                {% endif %}
-                <span>{{ post.date('j M Y') }}</span>
-                {% if post.modified and post.modified != post.date %}
-                  <span>• Diperbarui: {{ post.modified('j M Y') }}</span>
-                {% endif %}
-                {% if post.reading_time %}
-                  <span>• 📖 {{ post.reading_time }} min baca</span>
-                {% endif %}
-              </div>
-              <h1 class="rspku-page-title max-w-4xl font-semibold text-slate-950">{{ post.title }}</h1>
-              <div class="flex items-center gap-3">
-                {% if post.author.avatar %}
-                  <img src="{{ post.author.avatar }}" alt="{{ post.author.name }}" class="h-10 w-10 rounded-full">
-                {% else %}
-                  <div class="grid h-10 w-10 place-items-center rounded-full bg-hospital-100 text-sm font-semibold text-hospital-700">
-                    {{ post.author.name|slice(0, 1)|upper }}
-                  </div>
-                {% endif %}
-                <div class="text-sm">
-                  <p class="font-semibold text-slate-950">{{ post.author.name|default('Tim RS PKU') }}</p>
-                  {% if post.author.description %}
-                    <p class="text-slate-600">{{ post.author.description|slice(0, 60) }}...</p>
-                  {% endif %}
-                </div>
-              </div>
-              {% if post.preview %}
-                <p class="rspku-section-lead max-w-3xl">{{ post.preview }}</p>
-              {% endif %}
-            </header>
+        {# Article Header - Clean, left-aligned #}
+        <header class="mt-6 max-w-3xl space-y-4">
+          <div class="flex flex-wrap items-center gap-3 text-sm text-slate-500">
+            {% if primary_category %}
+              <a href="{{ primary_category.url }}" class="rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700 transition hover:bg-hospital-100">{{ primary_category.name }}</a>
+            {% endif %}
+            <span>{{ post.date('j M Y') }}</span>
+            {% if post.was_modified %}
+              <span class="text-slate-300">•</span>
+              <span>Diperbarui {{ post.modified('j M Y') }}</span>
+            {% endif %}
+            {% set reading_minutes = article_single.reading_time|default(post.reading_time) %}
+            {% if reading_minutes %}
+              <span class="text-slate-300">•</span>
+              <span class="inline-flex items-center gap-1">
+                {{ icon('clock', { class: 'h-3.5 w-3.5' }) }}
+                {{ reading_minutes }} menit baca
+              </span>
+            {% endif %}
+          </div>
 
-            {% if post.thumbnail %}
-              <div class="overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
-                <img src="{{ post.thumbnail.src('rspku-hero') }}" alt="{{ post.title }}" loading="lazy" class="aspect-[16/9] w-full object-cover">
-              </div>
+          <h1 class="text-3xl font-bold leading-tight text-slate-950 sm:text-4xl">{{ post.title }}</h1>
+
+          {% if post.excerpt %}
+            <p class="rspku-section-lead text-lg">{{ post.excerpt|striptags }}</p>
+          {% endif %}
+        </header>
+
+        {# Featured Image - LCP optimized #}
+        {% if post.thumbnail %}
+          <figure class="mt-8 max-w-3xl overflow-hidden rounded-md border border-slate-200 bg-slate-100">
+            <img src="{{ post.thumbnail.src('rspku-hero') }}"
+                 srcset="{{ post.thumbnail.srcset|default('') }}"
+                 sizes="(min-width: 1024px) 720px, 100vw"
+                 alt="{{ post.thumbnail.alt|default(post.title) }}"
+                 loading="eager"
+                 fetchpriority="high"
+                 width="1200"
+                 height="675"
+                 decoding="async"
+                 class="aspect-[16/9] w-full object-cover">
+            {% if post.thumbnail.caption %}
+              <figcaption class="px-4 py-3 text-center text-xs text-slate-500">{{ post.thumbnail.caption }}</figcaption>
+            {% endif %}
+          </figure>
+        {% endif %}
+
+        {# Main Content - 2 Column Layout #}
+        <div class="mt-10 grid gap-10 xl:grid-cols-[minmax(0,1fr)_22rem]">
+
+          {# Content Column #}
+          <div class="min-w-0" x-ref="articleBody">
+            {# Mobile TOC #}
+            {% if toc.has_toc and (rspku.feature_toc is not defined or rspku.feature_toc) %}
+              {% include 'components/toc.twig' with {
+                items: toc.items,
+                variant: 'mobile'
+              } only %}
             {% endif %}
 
-            <div class="rspku-prose max-w-none">{{ post.content|raw }}</div>
+            {# Article Content with injected anchors #}
+            <div class="rspku-prose rspku-reading-container">
+              {{ article_single.content_with_anchors|default(post.content)|raw }}
+            </div>
 
-            {# Tags section #}
+            {# Tags - Inline chip style #}
             {% if post.tags %}
-              <div class="flex flex-wrap items-center gap-2 border-t border-slate-200 pt-6">
-                <span class="text-sm font-medium text-slate-500">🏷️ Tags:</span>
+              <div class="mt-10 flex flex-wrap items-center gap-2 border-t border-slate-200 pt-6">
+                <span class="text-xs font-semibold uppercase tracking-wide text-slate-500">Topik:</span>
                 {% for tag in post.tags %}
-                  <a href="{{ tag.link }}" class="rspku-chip text-slate-700 transition hover:bg-hospital-100 hover:text-hospital-700">
+                  <a href="{{ tag.link }}" class="rounded-sm border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-600 transition hover:border-hospital-300 hover:text-hospital-700">
                     {{ tag.name }}
                   </a>
                 {% endfor %}
               </div>
             {% endif %}
 
-            {% include 'partials/share-actions.twig' with {
-              title: post.title,
-              url: post.link
-            } only %}
+            {# Contextual CTA from ArticleCtaMapper #}
+            {% include 'partials/article-cta.twig' with { cta: article_single.cta } only %}
 
-            {# Author bio card #}
-            {% if post.author %}
-              <div class="mt-10 rounded-lg border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-8">
-                <p class="text-sm font-semibold uppercase tracking-wider text-hospital-700">Tentang Penulis</p>
-                <div class="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start">
-                  {% if post.author.avatar %}
-                    <img src="{{ post.author.avatar }}" alt="{{ post.author.name }}" class="h-24 w-24 rounded-lg object-cover">
-                  {% else %}
-                    <div class="grid h-24 w-24 shrink-0 place-items-center rounded-lg bg-hospital-100 text-3xl font-bold text-hospital-700">
-                      {{ post.author.name|slice(0, 1)|upper }}
-                    </div>
-                  {% endif %}
-                  <div class="flex-1 space-y-3">
-                    <div>
-                      <h3 class="text-xl font-semibold text-slate-950">{{ post.author.name }}</h3>
-                      {% if post.author.title %}
-                        <p class="mt-1 text-sm font-medium text-hospital-700">{{ post.author.title }}</p>
-                      {% endif %}
-                    </div>
-                    {% if post.author.description %}
-                      <p class="text-sm leading-relaxed text-slate-600">{{ post.author.description }}</p>
-                    {% endif %}
-                    {% if post.author.url %}
-                      <a href="{{ post.author.url }}" class="inline-flex items-center gap-2 text-sm font-medium text-hospital-700 transition hover:text-hospital-800">
-                        Lihat profil lengkap
-                        {{ icon('arrow-right', { class: 'h-4 w-4' }) }}
-                      </a>
-                    {% endif %}
-                  </div>
-                </div>
-              </div>
-            {% endif %}
+            {# Author Bio Card #}
+            {% include 'partials/article-author-bio.twig' with { post: post } only %}
           </div>
 
-          <aside class="space-y-5 xl:sticky xl:top-28 xl:self-start">
-            <section class="rspku-side-panel">
-              <p class="text-sm font-medium text-slate-500">Info artikel</p>
-              <div class="mt-6 space-y-4 text-sm leading-normal text-slate-600">
-                <div>
-                  <p class="font-semibold text-slate-950">Tanggal terbit</p>
-                  <p class="mt-1">{{ post.date('j M Y') }}</p>
-                </div>
-                <div>
-                  <p class="font-semibold text-slate-950">Penulis</p>
-                  <p class="mt-1">{{ post.author.name|default('Tim RS PKU') }}</p>
-                </div>
-                {% if primary_category %}
-                  <div>
-                    <p class="font-semibold text-slate-950">Kategori</p>
-                    <a href="{{ primary_category.url }}" class="mt-1 inline-flex text-hospital-700 transition hover:text-hospital-800">{{ primary_category.name }}</a>
+          {# Sidebar Column #}
+          <aside class="hidden xl:block">
+            <div class="sticky top-28 space-y-5">
+              {# TOC - Desktop Sticky #}
+              {% if toc.has_toc and (rspku.feature_toc is not defined or rspku.feature_toc) %}
+                {% include 'components/toc.twig' with {
+                  items: toc.items,
+                  variant: 'desktop'
+                } only %}
+              {% endif %}
+
+              {# Popular Articles #}
+              {% if article_single.popular_articles is defined and article_single.popular_articles and (rspku.feature_popular_articles is not defined or rspku.feature_popular_articles) %}
+                <section class="rounded-md border border-slate-200 bg-white p-5">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Populer dibaca</p>
+                  <div class="mt-4 space-y-3">
+                    {% for item in article_single.popular_articles|slice(0, 5) %}
+                      <a href="{{ item.url }}" class="group flex gap-3">
+                        {% if item.image is defined and item.image and item.image.url is defined %}
+                          <div class="h-14 w-14 shrink-0 overflow-hidden rounded-sm bg-slate-100">
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy" width="56" height="56" class="h-full w-full object-cover">
+                          </div>
+                        {% else %}
+                          <div class="grid h-14 w-14 shrink-0 place-items-center rounded-sm bg-slate-100 text-slate-400">
+                            {{ icon('newspaper', { class: 'h-4 w-4' }) }}
+                          </div>
+                        {% endif %}
+                        <div class="min-w-0 flex-1">
+                          <p class="line-clamp-2 text-sm font-medium leading-snug text-slate-800 transition group-hover:text-hospital-700">{{ item.title }}</p>
+                          {% if item.date is defined %}
+                            <p class="mt-1 text-xs text-slate-400">{{ item.date }}</p>
+                          {% endif %}
+                        </div>
+                      </a>
+                    {% endfor %}
                   </div>
-                {% endif %}
-              </div>
-            </section>
-            {% include 'partials/article-sidebar-list.twig' with {
-              title: 'Populer dibaca',
-              eyebrow: 'Sidebar artikel',
-              icon_name: 'newspaper',
-              items: article_single.popular_articles
-            } only %}
+                </section>
+              {% endif %}
+
+              {# Share Buttons - Sidebar compact #}
+              {% if rspku.feature_floating_share is not defined or rspku.feature_floating_share %}
+                <section class="rounded-md border border-slate-200 bg-white p-5">
+                  <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Bagikan artikel</p>
+                  <div class="mt-3 flex gap-2" role="group" aria-label="Tombol bagikan">
+                    <a href="https://wa.me/?text={{ post.title|url_encode }}%20{{ post.link|url_encode }}"
+                       target="_blank" rel="noopener"
+                       class="grid h-9 w-9 place-items-center rounded-sm border border-slate-200 text-slate-500 transition hover:border-green-400 hover:bg-green-50 hover:text-green-600"
+                       aria-label="Bagikan ke WhatsApp">
+                      <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ post.link|url_encode }}"
+                       target="_blank" rel="noopener"
+                       class="grid h-9 w-9 place-items-center rounded-sm border border-slate-200 text-slate-500 transition hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600"
+                       aria-label="Bagikan ke Facebook">
+                      <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?text={{ post.title|url_encode }}&url={{ post.link|url_encode }}"
+                       target="_blank" rel="noopener"
+                       class="grid h-9 w-9 place-items-center rounded-sm border border-slate-200 text-slate-500 transition hover:border-slate-400 hover:bg-slate-100 hover:text-slate-900"
+                       aria-label="Bagikan ke X/Twitter">
+                      <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <button type="button"
+                            x-data="{ copy() { navigator.clipboard.writeText('{{ post.link }}'); this.$dispatch('toast', { message: 'Link artikel disalin', variant: 'success' }) } }"
+                            @click="copy"
+                            class="grid h-9 w-9 place-items-center rounded-sm border border-slate-200 text-slate-500 transition hover:border-hospital-300 hover:bg-hospital-50 hover:text-hospital-700"
+                            aria-label="Salin link artikel">
+                      {{ icon('link', { class: 'h-4 w-4' }) }}
+                    </button>
+                  </div>
+                </section>
+              {% endif %}
+            </div>
           </aside>
         </div>
       </div>
     </article>
 
-    {% if article_single.related_articles %}
-      <section class="rspku-section pt-0">
-        <div class="rspku-container space-y-10">
+    {# Related Articles #}
+    {% if article_single.related_articles and (rspku.feature_related_posts is not defined or rspku.feature_related_posts) %}
+      <section class="border-t border-slate-200 py-14">
+        <div class="rspku-container space-y-8">
           <div>
-            <span class="rspku-eyebrow">Artikel terkait</span>
-            <h2 class="mt-4 text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl">Artikel terkait lainnya</h2>
+            <span class="text-xs font-semibold uppercase tracking-wide text-hospital-700">Baca juga</span>
+            <h2 class="mt-2 text-2xl font-bold text-slate-950 sm:text-3xl">Artikel Terkait</h2>
           </div>
 
-          <div class="grid gap-8 xl:grid-cols-3">
+          <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {% for item in article_single.related_articles %}
               {% include 'components/content-card.twig' with {
                 item: item|merge({
@@ -160,5 +201,12 @@
         </div>
       </section>
     {% endif %}
+  {% else %}
+    {% include 'partials/content-not-found.twig' with {
+      title: 'Artikel tidak ditemukan',
+      description: 'Artikel yang Anda cari tidak tersedia atau sudah dipindahkan.',
+      back_url: site.url ~ '/berita-artikel/',
+      back_label: 'Kembali ke berita & artikel'
+    } only %}
   {% endif %}
 {% endblock %}

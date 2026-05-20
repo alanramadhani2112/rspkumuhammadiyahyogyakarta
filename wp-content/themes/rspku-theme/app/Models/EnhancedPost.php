@@ -24,17 +24,46 @@ class EnhancedPost extends Post
     {
         return ReadingTime::format($this->post_content);
     }
+
+    /**
+     * Return the author's credentials (e.g. "Sp.A., M.Kes.") stored in
+     * user meta `_rspku_author_credentials`. Fulfils spec R2.4.
+     */
+    public function author_credentials(): string
+    {
+        $authorId = (int) $this->post_author;
+        if ($authorId <= 0) {
+            return '';
+        }
+
+        $value = get_user_meta($authorId, '_rspku_author_credentials', true);
+
+        return is_string($value) ? trim($value) : '';
+    }
     
     /**
-     * Get last modified date (if different from published date)
+     * Get last modified date (if different from published date).
+     *
+     * Uses {@see wp_date()} so the output honours the WordPress timezone
+     * and active locale. The legacy implementation used native date()
+     * against strtotime(), which meant timestamps shifted whenever the
+     * server timezone didn't match WP's configured timezone and locale
+     * formatting (e.g. Indonesian month names) was lost.
      */
     public function modified(string $format = ''): string
     {
-        if (empty($format)) {
-            $format = get_option('date_format');
+        if ($format === '') {
+            $format = (string) get_option('date_format', 'j M Y');
         }
-        
-        return date($format, strtotime($this->post_modified));
+
+        $timestamp = strtotime((string) $this->post_modified);
+        if (!is_int($timestamp)) {
+            return '';
+        }
+
+        $formatted = wp_date($format, $timestamp);
+
+        return is_string($formatted) ? $formatted : '';
     }
     
     /**

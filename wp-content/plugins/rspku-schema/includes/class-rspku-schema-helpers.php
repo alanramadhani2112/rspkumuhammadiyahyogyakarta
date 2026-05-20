@@ -20,18 +20,23 @@ final class RSPKU_Schema_Helpers {
     public static function organization_data(): array {
         $home = home_url('/');
         $logo = self::site_logo_url();
+        $settings = class_exists('RSPKU_Settings_API') ? RSPKU_Settings_API::all() : [];
+        $street = self::setting_text($settings, 'address_street', 'Jl. KH. Ahmad Dahlan No.20');
+        $district = self::setting_text($settings, 'address_district', 'Ngupasan, Kec. Gondomanan');
+        $city = self::setting_text($settings, 'address_city', 'Kota Yogyakarta');
+        $province = self::setting_text($settings, 'address_province', 'Daerah Istimewa Yogyakarta 55122');
 
         $defaults = [
-            'name' => 'RS PKU Muhammadiyah Yogyakarta',
+            'name' => self::setting_text($settings, 'site_name', 'RS PKU Muhammadiyah Yogyakarta'),
             'alternate_name' => 'RSPKU Jogja',
             'url' => $home,
             'logo' => $logo,
-            'telephone' => '+62-274-512653',
-            'email' => 'info@rspkudev.test',
+            'telephone' => self::setting_text($settings, 'phone_main_link', '+62274512653'),
+            'email' => self::setting_text($settings, 'email', 'info@rspkujogja.co.id'),
             'address' => [
-                'street' => 'Jl. KH. Ahmad Dahlan No.20, Ngupasan, Kec. Gondomanan',
-                'locality' => 'Yogyakarta',
-                'region' => 'Daerah Istimewa Yogyakarta',
+                'street' => trim($street . ', ' . $district, ', '),
+                'locality' => $city,
+                'region' => $province,
                 'postal_code' => '55122',
                 'country' => 'ID',
             ],
@@ -40,9 +45,11 @@ final class RSPKU_Schema_Helpers {
                 'longitude' => 110.3644,
             ],
             'same_as' => [
-                'https://www.facebook.com/rspkujogja',
-                'https://www.instagram.com/rspkujogja',
-                'https://www.youtube.com/@rspkujogja',
+                self::setting_text($settings, 'social_facebook', ''),
+                self::setting_text($settings, 'social_instagram', ''),
+                self::setting_text($settings, 'social_youtube', ''),
+                self::setting_text($settings, 'social_twitter', ''),
+                self::setting_text($settings, 'social_linkedin', ''),
             ],
             'opening_hours' => [
                 // IGD 24 jam
@@ -76,8 +83,7 @@ final class RSPKU_Schema_Helpers {
      */
     public static function hospital_node(): array {
         $data = self::organization_data();
-        $home = home_url('/');
-        $hospitalId = $home . '#hospital';
+        $hospitalId = self::organization_id();
 
         $node = [
             '@type' => ['Hospital', 'MedicalOrganization', 'LocalBusiness'],
@@ -99,6 +105,21 @@ final class RSPKU_Schema_Helpers {
         }
 
         return self::compact_node($node);
+    }
+
+    public static function yoast_active(): bool {
+        return defined('WPSEO_VERSION');
+    }
+
+    public static function organization_id(): string {
+        return home_url('/') . (self::yoast_active() ? '#organization' : '#hospital');
+    }
+
+    /**
+     * @return array<string,string>
+     */
+    public static function organization_id_ref(): array {
+        return ['@id' => self::organization_id()];
     }
 
     /**
@@ -236,6 +257,19 @@ final class RSPKU_Schema_Helpers {
         }
 
         return $strings === [] ? null : $strings;
+    }
+
+    /**
+     * @param array<string,mixed> $settings
+     */
+    private static function setting_text(array $settings, string $key, string $fallback): string {
+        $value = $settings[$key] ?? $fallback;
+        if (!is_scalar($value)) {
+            return $fallback;
+        }
+
+        $text = trim((string) $value);
+        return $text !== '' ? $text : $fallback;
     }
 
     /**

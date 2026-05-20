@@ -1,7 +1,7 @@
 {% if items %}
   <section class="rspku-side-panel">
     <div class="flex items-center gap-3">
-      <div class="grid h-11 w-11 place-items-center rounded-[0.95rem] border border-slate-200 bg-[#f7faf7] text-hospital-700">
+      <div class="grid h-11 w-11 place-items-center rounded-sm border border-slate-200 bg-[#f7faf7] text-hospital-700">
         {{ icon(icon_name|default('newspaper'), { class: 'h-5 w-5' }) }}
       </div>
       <div>
@@ -15,7 +15,7 @@
         <article class="py-4 {{ loop.first ? 'pt-0' : '' }}">
           <a href="{{ item.url }}" class="flex gap-3 transition hover:text-hospital-700">
             {% if item.image and item.image.url %}
-              <span class="block h-14 w-[4.5rem] shrink-0 overflow-hidden rounded-[0.75rem] border border-slate-200 bg-slate-100">
+              <span class="block h-14 w-[4.5rem] shrink-0 overflow-hidden rounded-sm border border-slate-200 bg-slate-100">
                 <img src="{{ item.image.url }}" alt="{{ item.title }}" class="h-full w-full object-cover">
               </span>
             {% endif %}

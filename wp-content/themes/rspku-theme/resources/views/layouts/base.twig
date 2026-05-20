@@ -8,6 +8,11 @@
 <body class="min-h-screen overflow-x-hidden text-slate-900 antialiased">
 {{ function('wp_body_open') }}
 
+{% set header_cta_url = rspku.header_cta_url|default('/dokter/') %}
+{% set header_cta_href = header_cta_url starts with 'http' or header_cta_url starts with 'tel:' or header_cta_url starts with 'mailto:' ? header_cta_url : site.url ~ header_cta_url %}
+{% set language_id_label = rspku.language_switcher_label_id|default('Bahasa Indonesia') %}
+{% set language_en_label = rspku.language_switcher_label_en|default('English') %}
+
 {% set fallback_primary = [
   { title: 'Beranda', link: site.url },
   { title: 'Layanan', link: site.url ~ '/layanan/' },
@@ -35,45 +40,95 @@
   { title: 'Sejarah', link: site.url ~ '/sejarah-kami/' }
 ] %}
 
-<a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:border focus:border-slate-200 focus:bg-white focus:px-4 focus:py-3" href="#main">
-  Lewati ke konten
+<a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:inline-flex focus:items-center focus:gap-2 focus:rounded-md focus:border-2 focus:border-hospital-600 focus:bg-white focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-hospital-700 focus:shadow-lg focus:outline-none" href="#main">
+  {{ icon('arrow-right', { class: 'h-4 w-4' }) }}
+  <span>Lewati ke konten utama</span>
 </a>
 
-<header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl" x-data="siteNavigation" @keydown.escape.window="close">
+<header class="{{ rspku.header_sticky is not defined or rspku.header_sticky ? 'sticky top-0' : 'relative' }} z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl" x-data="siteNavigation" @keydown.escape.window="close">
+  {# Top Bar - Compact Info #}
+  {% if rspku.header_topbar_enabled is not defined or rspku.header_topbar_enabled %}
   <div class="border-b border-slate-200 bg-[#f4f5f2]">
-    <div class="rspku-container flex flex-wrap items-center justify-between gap-3 py-3 text-sm text-slate-600">
-      <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
-        <a href="tel:+62274512321" class="inline-flex items-center gap-2 font-medium transition hover:text-hospital-700">
-          {{ icon('phone', { class: 'h-4 w-4 text-hospital-600' }) }}
+    <div class="rspku-container flex items-center justify-between gap-4 py-2 text-sm text-slate-600">
+      <div class="flex items-center gap-x-5 gap-y-1">
+        <a href="tel:{{ rspku.phone_igd_link }}" class="inline-flex items-center gap-2 font-medium transition hover:text-hospital-700">
+          {{ icon('phone', { class: 'h-3.5 w-3.5 text-hospital-600' }) }}
           <span class="hidden sm:inline">IGD 24 Jam:</span>
-          <span class="font-semibold">0274 512321</span>
+          <span class="font-semibold">{{ rspku.phone_igd }}</span>
         </a>
-        <a href="{{ site.url }}/kontak/" class="inline-flex items-center gap-2 font-medium transition hover:text-hospital-700">
-          {{ icon('map-pin', { class: 'h-4 w-4 text-hospital-600' }) }}
-          <span class="hidden md:inline">Jl. KH Ahmad Dahlan 20, Yogyakarta</span>
-          <span class="md:hidden">Hubungi Kami</span>
+        <a href="{{ site.url }}/kontak/" class="hidden items-center gap-2 font-medium transition hover:text-hospital-700 md:inline-flex">
+          {{ icon('map-pin', { class: 'h-3.5 w-3.5 text-hospital-600' }) }}
+          <span>{{ rspku.address_street }}, {{ rspku.address_city }}</span>
         </a>
       </div>
       <div class="flex items-center gap-3">
-        <span class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-700">
-          {{ icon('activity', { class: 'h-3.5 w-3.5' }) }}
-          <span>IGD 24/7</span>
-        </span>
+        {% if rspku.feature_gtranslate %}
+        <div class="gtranslate_wrapper sr-only" aria-hidden="true">{{ function('do_shortcode', '[gtranslate]') }}</div>
+        {# Language Switcher - Clean Flags Only #}
+        <div class="flex items-center gap-1.5" data-rspku-language-switcher>
+          <button type="button" data-rspku-lang="id" onclick="window.rspkuSwitchLanguage('id'); return false;" class="inline-block h-5 w-5 cursor-pointer overflow-hidden rounded-full border border-slate-200 transition hover:scale-110 hover:border-slate-400" title="{{ language_id_label }}" aria-label="{{ language_id_label }}">
+            <img src="https://cdn.gtranslate.net/flags/svg/id.svg" alt="{{ language_id_label }}" class="h-full w-full object-cover">
+          </button>
+          <button type="button" data-rspku-lang="en" onclick="window.rspkuSwitchLanguage('en'); return false;" class="inline-block h-5 w-5 cursor-pointer overflow-hidden rounded-full border border-slate-200 transition hover:scale-110 hover:border-slate-400" title="{{ language_en_label }}" aria-label="{{ language_en_label }}">
+            <img src="https://cdn.gtranslate.net/flags/svg/en.svg" alt="{{ language_en_label }}" class="h-full w-full object-cover">
+          </button>
+        </div>
+        <script>
+          window.rspkuSwitchLanguage = window.rspkuSwitchLanguage || function(language) {
+            if (!window.gt_translate_script && typeof window.googleTranslateElementInit2 === 'function') {
+              window.gt_translate_script = document.createElement('script');
+              window.gt_translate_script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2';
+              document.body.appendChild(window.gt_translate_script);
+            }
+
+            if (typeof window.doGTranslate === 'function') {
+              window.doGTranslate('id|' + language);
+              return;
+            }
+
+            var select = document.querySelector('.gtranslate_wrapper select');
+
+            if (select) {
+              select.value = 'id|' + language;
+              select.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          };
+        </script>
+        <noscript>
+          <a href="https://translate.google.com/translate?sl=id&tl=id&u={{ site.url|url_encode }}" class="inline-block h-5 w-5 overflow-hidden rounded-full border border-slate-200" title="{{ language_id_label }}" aria-label="{{ language_id_label }}">
+            <img src="https://cdn.gtranslate.net/flags/svg/id.svg" alt="{{ language_id_label }}" class="h-full w-full object-cover">
+          </a>
+          <a href="https://translate.google.com/translate?sl=id&tl=en&u={{ site.url|url_encode }}" class="inline-block h-5 w-5 overflow-hidden rounded-full border border-slate-200" title="{{ language_en_label }}" aria-label="{{ language_en_label }}">
+            <img src="https://cdn.gtranslate.net/flags/svg/en.svg" alt="{{ language_en_label }}" class="h-full w-full object-cover">
+          </a>
+        </noscript>
+        {% endif %}
+        {# IGD Badge #}
+        {% if rspku.header_emergency_enabled is not defined or rspku.header_emergency_enabled %}
+        <a href="tel:{{ rspku.phone_igd_link }}" class="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-700 transition hover:bg-red-100">
+          {{ icon('siren', { class: 'h-3.5 w-3.5' }) }}
+          <span>{{ rspku.header_emergency_label|default('IGD 24/7') }}</span>
+        </a>
+        {% endif %}
       </div>
     </div>
   </div>
+  {% endif %}
 
-  <div class="rspku-container flex min-h-[5.5rem] items-center justify-between gap-6">
-    <a href="{{ site.url }}" class="flex min-h-12 items-center gap-3 text-slate-950">
+  {# Main Navigation #}
+  <div class="rspku-container flex min-h-[4.5rem] items-center justify-between gap-6">
+    {# Logo #}
+    <a href="{{ site.url }}" class="flex shrink-0 items-center gap-3 text-slate-950">
       {% if site_logo.url %}
-        <img src="{{ site_logo.url }}" alt="{{ site_logo.alt|default(site.name) }}" class="h-14 w-auto object-contain sm:h-16">
+        <img src="{{ site_logo.url }}" alt="{{ site_logo.alt|default(site.name) }}" class="h-12 w-auto object-contain sm:h-14">
       {% else %}
-        <span class="grid h-14 w-14 place-items-center rounded-2xl bg-hospital-700 text-xl font-black text-white">PKU</span>
-        <span class="max-w-[14rem] text-sm font-bold leading-tight sm:text-base">{{ site.name }}</span>
+        <span class="grid h-12 w-12 place-items-center rounded-xl bg-hospital-700 text-lg font-black text-white">PKU</span>
+        <span class="max-w-[12rem] text-sm font-bold leading-tight">{{ site.name }}</span>
       {% endif %}
     </a>
 
-    <nav class="hidden items-center gap-1 lg:flex" aria-label="Menu utama">
+    {# Desktop Nav - Simplified #}
+    <nav class="hidden items-center gap-0.5 lg:flex" aria-label="Menu utama">
       {% for item in primary_items %}
         {% set title_lower = item.title|lower %}
         {% set children = item.children is defined and item.children ? item.children : (
@@ -82,20 +137,20 @@
           (title_lower starts with 'pusat informasi' ? info_children : []))
         ) %}
         {% set has_children = children is not empty %}
-        <div class="relative flex items-center py-2" {% if has_children %}@mouseenter="openPanel('desktop-{{ loop.index }}')" @mouseleave="scheduleClose()" @focusin="openPanel('desktop-{{ loop.index }}')" @focusout="scheduleClose()"{% endif %}>
-          <a href="{{ item.link }}" class="rspku-nav-link inline-flex min-h-11 items-center gap-2 rounded-sm px-4 text-slate-600 transition hover:bg-[#f4f5f2] hover:text-slate-950 {{ item.current is defined and item.current ? 'bg-[#f4f5f2] text-slate-950' : '' }}" {% if has_children %}:class="isPanel('desktop-{{ loop.index }}') ? 'bg-[#f4f5f2] text-slate-950' : ''"{% endif %}>
+        <div class="relative flex items-center" {% if has_children %}@mouseenter="openPanel('desktop-{{ loop.index }}')" @mouseleave="scheduleClose()" @focusin="openPanel('desktop-{{ loop.index }}')" @focusout="scheduleClose()"{% endif %}>
+          <a href="{{ item.link }}" class="inline-flex min-h-10 items-center gap-1.5 rounded-lg px-3 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 {{ item.current is defined and item.current ? 'bg-slate-100 text-slate-950' : '' }}" {% if has_children %}:class="isPanel('desktop-{{ loop.index }}') ? 'bg-slate-100 text-slate-950' : ''"{% endif %}>
             <span>{{ item.title }}</span>
             {% if has_children %}
-              <span class="transition duration-200" :class="isPanel('desktop-{{ loop.index }}') ? 'rotate-180 text-slate-700' : 'text-slate-400'">
-                {{ icon('chevron-down', { class: 'h-4 w-4' }) }}
+              <span class="transition duration-200" :class="isPanel('desktop-{{ loop.index }}') ? 'rotate-180' : ''">
+                {{ icon('chevron-down', { class: 'h-3.5 w-3.5 text-slate-400' }) }}
               </span>
             {% endif %}
           </a>
           {% if has_children %}
-            <div class="absolute left-0 top-full z-20 hidden w-[20.5rem] pt-1 lg:block" x-cloak x-show="isPanel('desktop-{{ loop.index }}')" x-transition.opacity.scale.origin.top.left.90 @mouseenter="cancelClose()" @mouseleave="scheduleClose()">
-              <div class="overflow-hidden rounded-sm border border-slate-200 bg-white">
+            <div class="absolute left-0 top-full z-20 hidden w-[18rem] pt-2 lg:block" x-cloak x-show="isPanel('desktop-{{ loop.index }}')" x-transition.opacity.scale.origin.top.left.90 @mouseenter="cancelClose()" @mouseleave="scheduleClose()">
+              <div class="overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5 shadow-lg">
                 {% for child in children %}
-                  <a href="{{ child.link }}" class="rspku-menu-link block px-4 py-3 text-slate-600 transition hover:bg-[#f5f7f4] hover:text-slate-950">{{ child.title }}</a>
+                  <a href="{{ child.link }}" class="block rounded-lg px-4 py-2.5 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-slate-950">{{ child.title }}</a>
                 {% endfor %}
               </div>
             </div>
@@ -104,21 +159,28 @@
       {% endfor %}
     </nav>
 
-    <div class="hidden items-center gap-2 lg:flex">
-      <a href="{{ site.url }}/dokter/" class="rspku-button rspku-button-primary gap-3 px-7">
-        {{ icon('clipboard-list', { class: 'h-5 w-5' }) }}
-        <span>Daftar</span>
+    {# Desktop CTA #}
+    <div class="hidden items-center gap-3 lg:flex">
+      <a href="{{ header_cta_href }}" class="rspku-button rspku-button-primary rspku-button-sm gap-2">
+        {{ icon('clipboard-list', { class: 'h-4 w-4' }) }}
+        <span>{{ rspku.header_cta_text|default('Daftar Online') }}</span>
       </a>
     </div>
 
-    <button type="button" class="grid min-h-12 min-w-12 place-items-center rounded-full border border-slate-200 bg-white text-slate-900 lg:hidden" @click="toggle" :aria-expanded="open.toString()" aria-label="Buka menu">
-      <span class="text-sm font-bold" x-show="!open">Menu</span>
-      <span class="text-sm font-bold" x-cloak x-show="open">Tutup</span>
+    {# Mobile Hamburger Button #}
+    <button type="button" class="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 lg:hidden" @click="toggle" :aria-expanded="open.toString()" aria-label="Buka menu navigasi">
+      <svg x-show="!open" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      <svg x-cloak x-show="open" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
     </button>
   </div>
 
-  <div class="border-t border-slate-100 bg-white lg:hidden" x-cloak x-show="open">
-    <nav class="rspku-container grid gap-3 py-5" aria-label="Menu mobile">
+  {# Mobile Menu #}
+  <div class="border-t border-slate-100 bg-white lg:hidden" x-cloak x-show="open" x-transition.opacity>
+    <nav class="rspku-container space-y-1 py-4" aria-label="Menu mobile">
       {% for item in primary_items %}
         {% set title_lower = item.title|lower %}
         {% set children = item.children is defined and item.children ? item.children : (
@@ -127,100 +189,181 @@
           (title_lower starts with 'pusat informasi' ? info_children : []))
         ) %}
         {% set has_children = children is not empty %}
-        <div class="rounded-lg border border-slate-200 bg-white">
-          <div class="flex items-center justify-between gap-3 px-4 py-3">
-            <a href="{{ item.link }}" class="rspku-mobile-nav-link text-slate-700" @click="close">{{ item.title }}</a>
+        <div>
+          <div class="flex items-center justify-between">
+            <a href="{{ item.link }}" class="flex-1 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50" @click="close">{{ item.title }}</a>
             {% if has_children %}
-              <button type="button" class="text-sm font-semibold text-slate-500" @click="togglePanel('mobile-{{ loop.index }}')">
-                <span x-show="!isPanel('mobile-{{ loop.index }}')">+</span>
-                <span x-cloak x-show="isPanel('mobile-{{ loop.index }}')">-</span>
+              <button type="button" class="grid h-10 w-10 place-items-center rounded-lg text-slate-400 transition hover:bg-slate-50 hover:text-slate-700" @click="togglePanel('mobile-{{ loop.index }}')">
+                <svg class="h-4 w-4 transition" :class="isPanel('mobile-{{ loop.index }}') ? 'rotate-180' : ''" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                </svg>
               </button>
             {% endif %}
           </div>
           {% if has_children %}
-            <div class="grid gap-1 px-4 pb-4" x-cloak x-show="isPanel('mobile-{{ loop.index }}')">
+            <div class="ml-4 space-y-0.5 border-l-2 border-slate-100 pl-4" x-cloak x-show="isPanel('mobile-{{ loop.index }}')" x-transition>
               {% for child in children %}
-                <a href="{{ child.link }}" class="rspku-menu-link rounded-2xl px-3 py-2 text-slate-600 hover:bg-[#f5f7f4]" @click="close">{{ child.title }}</a>
+                <a href="{{ child.link }}" class="block rounded-lg px-3 py-2 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-slate-950" @click="close">{{ child.title }}</a>
               {% endfor %}
             </div>
           {% endif %}
         </div>
       {% endfor %}
-      <a href="{{ site.url }}/dokter/" class="rspku-button rspku-button-primary w-full text-base">Daftar</a>
+      <div class="border-t border-slate-100 pt-3">
+        <a href="{{ header_cta_href }}" class="rspku-button rspku-button-primary w-full" @click="close">
+          {{ icon('clipboard-list', { class: 'h-5 w-5' }) }}
+          <span>{{ rspku.header_cta_text|default('Daftar Online') }}</span>
+        </a>
+      </div>
     </nav>
   </div>
 </header>
 
-<main id="main">
+<main id="main" tabindex="-1" class="focus:outline-none">
   {% block content %}{% endblock %}
 </main>
 
-<footer class="mt-16 border-t border-slate-200 bg-white">
-  <div class="rspku-container grid gap-8 py-14 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
-    <div class="space-y-6">
-      <div class="flex items-center gap-4">
-        {% if site_logo.url %}
-          <img src="{{ site_logo.url }}" alt="{{ site_logo.alt|default(site.name) }}" class="h-14 w-auto object-contain">
-        {% else %}
-          <span class="grid h-14 w-14 place-items-center rounded-2xl bg-hospital-700 text-xl font-black text-white">PKU</span>
-        {% endif %}
-      </div>
-      <p class="max-w-sm text-base leading-relaxed text-slate-600">Rumah sakit islami dan unggul untuk layanan kesehatan, informasi medis, dan edukasi publik yang lebih mudah diakses.</p>
-      <div class="flex items-center gap-4">
-        <a href="#" class="rspku-icon-button min-h-11 min-w-11 text-[#d62976]" aria-label="Instagram">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-            <circle cx="12" cy="12" r="4"></circle>
-            <circle cx="17.5" cy="6.5" r="1"></circle>
-          </svg>
+<footer class="mt-16 border-t border-slate-200 bg-slate-50/50">
+  {# Main Footer #}
+  <div class="rspku-container py-12 lg:py-16">
+    <div class="grid gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+      {# Brand Column #}
+      <div class="space-y-5">
+        <a href="{{ site.url }}" class="inline-flex items-center gap-3">
+          {% if site_logo.url %}
+            <img src="{{ site_logo.url }}" alt="{{ site_logo.alt|default(site.name) }}" class="h-12 w-auto object-contain">
+          {% else %}
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-hospital-700 text-lg font-black text-white">PKU</span>
+          {% endif %}
         </a>
-        <a href="#" class="rspku-icon-button min-h-11 min-w-11 text-[#ff0000]" aria-label="YouTube">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M23 12c0 3.2-.3 5.2-.8 6.2a3 3 0 0 1-1.3 1.3c-1 .5-3 .8-6.2.8s-5.2-.3-6.2-.8a3 3 0 0 1-1.3-1.3C6.3 17.2 6 15.2 6 12s.3-5.2.8-6.2a3 3 0 0 1 1.3-1.3C9.1 4 11.1 3.7 14.3 3.7s5.2.3 6.2.8a3 3 0 0 1 1.3 1.3c.5 1 .8 3 .8 6.2Z"></path>
-            <path d="m10 8.8 5.5 3.2L10 15.2V8.8Z" fill="#fff"></path>
-          </svg>
+        <p class="max-w-sm text-sm leading-relaxed text-slate-600">{{ rspku.footer_tagline|default('Rumah sakit islami dan unggul untuk layanan kesehatan, informasi medis, dan edukasi publik yang mudah diakses.') }}</p>
+
+        {# Emergency Contact - Prominent #}
+        <a href="tel:{{ rspku.phone_igd_link }}" class="inline-flex items-center gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3 transition hover:bg-red-100">
+          <div class="grid h-10 w-10 place-items-center rounded-lg bg-red-600 text-white">
+            {{ icon('siren', { class: 'h-5 w-5' }) }}
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-red-700">IGD 24 Jam</p>
+            <p class="text-sm font-bold text-slate-950">{{ rspku.phone_igd }}</p>
+          </div>
         </a>
-        <a href="#" class="rspku-icon-button min-h-11 min-w-11 text-[#4267B2]" aria-label="Facebook">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M13.5 22v-8h2.7l.5-3.3h-3.2V8.6c0-.9.3-1.6 1.7-1.6H17V4.1c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.2v2.5H8V14h2.2v8h3.3Z"></path>
-          </svg>
-        </a>
+
+        {# Social Media - Compact (dynamic from settings) #}
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-medium text-slate-500">Ikuti kami:</span>
+          {% if rspku.social_instagram %}
+            <a href="{{ rspku.social_instagram }}" target="_blank" rel="noopener" class="grid h-8 w-8 place-items-center rounded-lg border border-slate-200 text-slate-400 transition hover:border-hospital-200 hover:text-hospital-700" aria-label="Instagram">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1"/>
+              </svg>
+            </a>
+          {% endif %}
+          {% if rspku.social_youtube %}
+            <a href="{{ rspku.social_youtube }}" target="_blank" rel="noopener" class="grid h-8 w-8 place-items-center rounded-lg border border-slate-200 text-slate-400 transition hover:border-hospital-200 hover:text-hospital-700" aria-label="YouTube">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          {% endif %}
+          {% if rspku.social_facebook %}
+            <a href="{{ rspku.social_facebook }}" target="_blank" rel="noopener" class="grid h-8 w-8 place-items-center rounded-lg border border-slate-200 text-slate-400 transition hover:border-hospital-200 hover:text-hospital-700" aria-label="Facebook">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+          {% endif %}
+          {% if rspku.social_linkedin %}
+            <a href="{{ rspku.social_linkedin }}" target="_blank" rel="noopener" class="grid h-8 w-8 place-items-center rounded-lg border border-slate-200 text-slate-400 transition hover:border-hospital-200 hover:text-hospital-700" aria-label="LinkedIn">
+              {{ icon('linkedin', { class: 'h-4 w-4' }) }}
+            </a>
+          {% endif %}
+        </div>
       </div>
-    </div>
-    <div>
-      <p class="text-2xl font-bold text-slate-950">Navigasi</p>
-      <div class="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 text-lg text-slate-600">
-        <a href="{{ site.url }}" class="transition hover:text-hospital-700">Beranda</a>
-        <a href="{{ site.url }}/karir/" class="transition hover:text-hospital-700">Karir</a>
-        <a href="{{ site.url }}/layanan/" class="transition hover:text-hospital-700">Layanan</a>
-        <a href="{{ site.url }}/e-jurnal/" class="transition hover:text-hospital-700">E-Jurnal</a>
-        <a href="{{ site.url }}/fasilitas-rawat-inap/" class="transition hover:text-hospital-700">Fasilitas</a>
-        <a href="{{ site.url }}/kontak/" class="transition hover:text-hospital-700">Kontak</a>
+
+      {# Layanan Column — from settings or hardcoded fallback #}
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-900">Layanan</h3>
+        <ul class="mt-5 space-y-3 text-sm text-slate-600">
+          {% if rspku.footer_quick_links is defined and rspku.footer_quick_links is not empty %}
+            {% for link in rspku.footer_quick_links %}
+              <li><a href="{{ link.url starts with 'http' ? link.url : site.url ~ link.url }}" class="transition hover:text-hospital-700">{{ link.label }}</a></li>
+            {% endfor %}
+          {% else %}
+            <li><a href="{{ site.url }}/dokter/" class="transition hover:text-hospital-700">Cari Dokter</a></li>
+            <li><a href="{{ site.url }}/jadwal-dokter/" class="transition hover:text-hospital-700">Jadwal Dokter</a></li>
+            <li><a href="{{ site.url }}/poliklinik/" class="transition hover:text-hospital-700">Poliklinik</a></li>
+            <li><a href="{{ site.url }}/layanan/" class="transition hover:text-hospital-700">Layanan Medis</a></li>
+            <li><a href="{{ site.url }}/fasilitas-rawat-inap/" class="transition hover:text-hospital-700">Rawat Inap</a></li>
+          {% endif %}
+        </ul>
       </div>
-    </div>
-    <div class="lg:border-l lg:border-slate-200 lg:pl-8">
-      <p class="text-2xl font-bold text-slate-950">Ekosistem</p>
-      <div class="mt-6 grid gap-4 text-lg text-slate-600">
-        <a href="#" class="transition hover:text-hospital-700">Muhammadiyah ID</a>
-        <a href="#" class="transition hover:text-hospital-700">KTAM</a>
-        <a href="#" class="transition hover:text-hospital-700">DOM</a>
+
+      {# Informasi Column #}
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-900">Informasi</h3>
+        <ul class="mt-5 space-y-3 text-sm text-slate-600">
+          <li><a href="{{ site.url }}/sejarah-kami/" class="transition hover:text-hospital-700">Tentang Kami</a></li>
+          <li><a href="{{ site.url }}/manajemen-rs/" class="transition hover:text-hospital-700">Manajemen RS</a></li>
+          <li><a href="{{ site.url }}/berita-artikel/" class="transition hover:text-hospital-700">Berita & Artikel</a></li>
+          <li><a href="{{ site.url }}/e-jurnal/" class="transition hover:text-hospital-700">E-Jurnal</a></li>
+          <li><a href="https://e-career.rspkudev.test/" target="_blank" rel="noopener" class="inline-flex items-center gap-1 transition hover:text-hospital-700">E-Career {{ icon('external-link', { class: 'h-3 w-3' }) }}</a></li>
+        </ul>
       </div>
-    </div>
-    <div>
-      <p class="text-2xl font-bold text-slate-950">Alamat</p>
-      <div class="mt-6 space-y-2 text-lg leading-relaxed text-slate-600">
-        <p>Office 858</p>
-        <p>Jl. K.H. Djawad Faqih MG3/858 Yogyakarta</p>
+
+      {# Kontak Column #}
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-900">Kontak</h3>
+        <ul class="mt-5 space-y-4 text-sm text-slate-600">
+          <li class="flex items-start gap-3">
+            {{ icon('map-pin', { class: 'h-4 w-4 shrink-0 text-hospital-600 mt-0.5' }) }}
+            <div>
+              <p class="font-medium text-slate-700">Alamat</p>
+              <p class="mt-0.5 leading-relaxed">{{ rspku.address_street }}, {{ rspku.address_city }}</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            {{ icon('phone', { class: 'h-4 w-4 shrink-0 text-hospital-600 mt-0.5' }) }}
+            <div>
+              <p class="font-medium text-slate-700">Telepon</p>
+              <a href="tel:{{ rspku.phone_igd_link }}" class="mt-0.5 block leading-relaxed hover:text-hospital-700">{{ rspku.phone_igd }}</a>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            {{ icon('clock', { class: 'h-4 w-4 shrink-0 text-hospital-600 mt-0.5' }) }}
+            <div>
+              <p class="font-medium text-slate-700">Jam Operasional</p>
+              <p class="mt-0.5 leading-relaxed">IGD buka 24 jam<br>Poliklinik: 07.00 - 20.00 WIB</p>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-  <div class="rspku-container border-t border-slate-200 py-6">
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <p class="text-lg text-slate-700">&copy; {{ "now"|date("Y") }} Muhammadiyah Software Labs</p>
-      <p class="rspku-footer-mark text-slate-800">LabMu</p>
+
+  {# Bottom Bar #}
+  <div class="border-t border-slate-200 bg-white">
+    <div class="rspku-container py-5">
+      <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <p class="text-xs text-slate-500">{{ rspku.footer_copyright|default('&copy; ' ~ "now"|date("Y") ~ ' RS PKU Muhammadiyah Yogyakarta. Hak Cipta Dilindungi.') }}</p>
+        <div class="flex items-center gap-2 text-xs text-slate-500">
+          <span>Dikembangkan oleh</span>
+          <a href="https://labs.muhammadiyah.or.id" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold text-slate-700 transition hover:text-hospital-700" title="Muhammadiyah Software Labs (LabMu) — Unit pengembangan teknologi internal Majelis Pustaka dan Informasi PP Muhammadiyah">
+            {% if labmu_logo.url is defined and labmu_logo.url %}
+              <img src="{{ labmu_logo.url }}" alt="LabMu — Muhammadiyah Software Labs" class="h-5 w-auto object-contain">
+            {% else %}
+              <span>LabMu</span>
+            {% endif %}
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
+
+{% include 'components/toast.twig' %}
 
 {{ function('wp_footer') }}
 </body>

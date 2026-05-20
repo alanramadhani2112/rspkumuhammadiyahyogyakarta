@@ -14,19 +14,39 @@
 
         <div class="grid gap-10 xl:grid-cols-[0.95fr_1.05fr] xl:items-end">
           <div class="space-y-6">
-            <span class="rspku-eyebrow">Fasilitas</span>
-            <h1 class="max-w-3xl text-[2.35rem] font-semibold leading-[1.06] text-slate-950 sm:text-[2.9rem] xl:text-[3.4rem]">{{ room_landing.title }}</h1>
-            <p class="max-w-2xl text-base leading-8 text-slate-600">{{ room_landing.description }}</p>
+            <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">Fasilitas</span>
+            <h1 class="max-w-3xl text-3xl font-bold leading-tight text-slate-950 sm:text-4xl lg:text-5xl">{{ room_landing.title }}</h1>
+            <p class="max-w-2xl text-base leading-relaxed text-slate-600">{{ room_landing.description }}</p>
 
             <div class="flex flex-wrap gap-3">
-              <span class="rspku-chip">{{ room_landing.total }} tipe kamar</span>
-              <a href="{{ site.url }}/kontak/" class="rspku-chip">Hubungi admisi</a>
+              <span class="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-950">{{ room_landing.total }} tipe kamar</span>
+              <a href="{{ site.url }}/kontak/" class="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-hospital-300 hover:text-hospital-700">Hubungi admisi</a>
             </div>
           </div>
 
           <div class="overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
-            {% if featured and featured.image and featured.image.url %}
-              <img src="{{ featured.image.url }}" alt="{{ featured.title }}" class="aspect-[16/10] w-full object-cover">
+            {% if rspku.image_fasilitas or rspku.image_fasilitas_url %}
+              {% include 'partials/responsive-image.twig' with {
+                id: rspku.image_fasilitas,
+                url: rspku.image_fasilitas_url,
+                alt: 'Fasilitas Rawat Inap RS PKU',
+                class: 'aspect-[16/10] w-full object-cover',
+                sizes: '(min-width: 1280px) 50vw, 100vw',
+                width: 1200,
+                height: 750,
+                eager: true
+              } only %}
+            {% elseif featured and featured.image and featured.image.url %}
+              {% include 'partials/responsive-image.twig' with {
+                id: featured.image.id,
+                url: featured.image.url,
+                alt: featured.title,
+                class: 'aspect-[16/10] w-full object-cover',
+                sizes: '(min-width: 1280px) 50vw, 100vw',
+                width: 1200,
+                height: 750,
+                eager: true
+              } only %}
             {% else %}
               <div class="grid aspect-[16/10] place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(159,212,91,0.18),_transparent_35%),linear-gradient(180deg,#f8fbf8_0%,#eef6f0_100%)] p-8 text-center">
                 <div class="space-y-4">
@@ -52,7 +72,7 @@
                   {% else %}
                     <div class="grid aspect-[16/11] place-items-center bg-[linear-gradient(180deg,#f8fbf8_0%,#eef6f0_100%)] p-8 text-center">
                       <div class="space-y-4">
-                        <div class="mx-auto grid h-14 w-14 place-items-center rounded-[1rem] border border-hospital-200 bg-white text-hospital-700">
+                        <div class="mx-auto grid h-14 w-14 place-items-center rounded border border-hospital-200 bg-white text-hospital-700">
                           {{ icon('building-2', { class: 'h-7 w-7' }) }}
                         </div>
                         <p class="text-base font-semibold text-slate-700">{{ item.title }}</p>
