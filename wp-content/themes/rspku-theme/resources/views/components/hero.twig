@@ -42,7 +42,7 @@
           {% endif %}
           
           <div class="space-y-6">
-            <h1 class="text-4xl font-bold leading-tight text-slate-950 sm:text-5xl lg:text-6xl">{{ title|raw }}</h1>
+            <h1 class="text-4xl font-bold leading-tight text-slate-950 sm:text-5xl lg:text-6xl">{{ title|wp_kses_post }}</h1>
             {% if description %}
               <p class="max-w-xl text-lg leading-relaxed text-slate-600">{{ description }}</p>
             {% endif %}

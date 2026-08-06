@@ -239,16 +239,27 @@ Alpine.data('doctorSearch', () => ({
         body,
       });
 
-      const payload = await response.json();
+      const payload = await response.json().catch(() => null);
 
-      if (payload.success && payload.data?.html) {
+      if (!response.ok || !payload?.success) {
+        this.showError(results, payload?.data?.message || payload?.message || 'Pencarian belum bisa diproses. Silakan coba lagi.');
+        return;
+      }
+
+      if (payload.data?.html) {
         results.innerHTML = payload.data.html;
       }
     } catch (error) {
-      results.innerHTML = '<p class="rounded-2xl bg-red-50 p-4 text-sm text-red-700">Pencarian belum bisa diproses. Silakan coba lagi.</p>';
+      this.showError(results, 'Pencarian belum bisa diproses. Silakan coba lagi.');
     } finally {
       this.loading = false;
     }
+  },
+  showError(results, message) {
+    const paragraph = document.createElement('p');
+    paragraph.className = 'rounded-2xl bg-red-50 p-4 text-sm text-red-700';
+    paragraph.textContent = message;
+    results.replaceChildren(paragraph);
   },
   resetFilters() {
     const form = this.$refs.form;

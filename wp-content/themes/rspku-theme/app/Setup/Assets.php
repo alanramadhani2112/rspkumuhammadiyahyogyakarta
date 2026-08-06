@@ -10,12 +10,31 @@ final class Assets
     private const ADMIN_HANDLE = 'rspku-theme-admin';
     private const EDITOR_HANDLE = 'rspku-theme-editor-blocks';
 
+    /**
+     * @var array<int,string>
+     */
+    private static array $assetWarnings = [];
+
     public static function register(): void
     {
         add_action('wp_enqueue_scripts', [self::class, 'enqueueFrontend']);
         add_action('admin_enqueue_scripts', [self::class, 'enqueueAdmin']);
+        add_action('admin_notices', [self::class, 'displayAssetWarnings']);
         add_action('enqueue_block_editor_assets', [self::class, 'enqueueEditor']);
         add_filter('script_loader_tag', [self::class, 'useModuleScripts'], 10, 3);
+    }
+
+    public static function displayAssetWarnings(): void
+    {
+        if (!current_user_can('manage_options') && !current_user_can('switch_themes')) {
+            return;
+        }
+
+        self::manifestEntry('resources/js/app.js');
+
+        foreach (array_unique(self::$assetWarnings) as $message) {
+            printf('<div class="notice notice-error"><p>%s</p></div>', esc_html($message));
+        }
     }
 
     public static function enqueueFrontend(): void
@@ -162,18 +181,36 @@ final class Assets
         if ($manifest === null) {
             $manifestPath = RSPKU_THEME_PATH . '/public/build/.vite/manifest.json';
             if (!file_exists($manifestPath)) {
+                self::reportMissingAsset('RSPKU theme Vite manifest is missing: ' . $manifestPath);
                 return null;
             }
 
             $json = file_get_contents($manifestPath);
             $manifest = is_string($json) ? json_decode($json, true) : null;
+
+            if (!is_array($manifest)) {
+                self::reportMissingAsset('RSPKU theme Vite manifest is invalid: ' . $manifestPath);
+                return null;
+            }
         }
 
-        if (!is_array($manifest) || !isset($manifest[$entry]) || !is_array($manifest[$entry])) {
+        if (!isset($manifest[$entry]) || !is_array($manifest[$entry])) {
+            self::reportMissingAsset('RSPKU theme Vite manifest entry is missing: ' . $entry);
             return null;
         }
 
         return $manifest[$entry];
+    }
+
+    private static function reportMissingAsset(string $message): void
+    {
+        if (in_array($message, self::$assetWarnings, true)) {
+            return;
+        }
+
+        self::$assetWarnings[] = $message;
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+        error_log($message);
     }
 
     private static function assetUrl(string $file): string
