@@ -89,8 +89,50 @@ final class RSPKU_Settings_API
     {
         $defaults = RSPKU_Settings_Defaults::all();
         $saved = get_option(RSPKU_SETTINGS_OPTION_KEY, []);
+        $settings = array_merge($defaults, is_array($saved) ? $saved : []);
 
-        return array_merge($defaults, is_array($saved) ? $saved : []);
+        $settings['footer_quick_links'] = self::normalizeFooterQuickLinks(
+            $settings['footer_quick_links'] ?? null,
+            $defaults['footer_quick_links'] ?? []
+        );
+
+        return $settings;
+    }
+
+    /**
+     * @param mixed $links
+     * @param mixed $fallback
+     * @return list<array{label:string,url:string}>
+     */
+    private static function normalizeFooterQuickLinks(mixed $links, mixed $fallback): array
+    {
+        $normalized = [];
+
+        if (is_array($links)) {
+            foreach ($links as $link) {
+                if (!is_array($link)) {
+                    continue;
+                }
+
+                $label = sanitize_text_field((string) ($link['label'] ?? ''));
+                $url = esc_url_raw((string) ($link['url'] ?? ''));
+
+                if ($label === '' || $url === '') {
+                    continue;
+                }
+
+                $normalized[] = [
+                    'label' => $label,
+                    'url' => $url,
+                ];
+            }
+        }
+
+        if ($normalized !== [] || !is_array($fallback)) {
+            return $normalized;
+        }
+
+        return self::normalizeFooterQuickLinks($fallback, []);
     }
 
     public static function get(string $key, mixed $fallback = null): mixed
