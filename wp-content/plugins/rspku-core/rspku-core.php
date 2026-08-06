@@ -16,6 +16,10 @@ if (!defined('ABSPATH')) {
 final class RSPKU_Core {
     private const REST_NAMESPACE = 'rspku/v1';
 
+    private const SEARCH_PER_PAGE_MAX = 50;
+
+    private const COLLECTION_PER_PAGE_MAX = 50;
+
     private const HEADLESS_POST_TYPES = [
         'post',
         'page',
@@ -403,7 +407,7 @@ final class RSPKU_Core {
         }
 
         $postTypes = self::parse_search_post_types($request->get_param('post_type') ?: $request->get_param('types'));
-        $perPage = min(max((int) $request->get_param('per_page'), 1), 50);
+        $perPage = min(max((int) $request->get_param('per_page'), 1), self::SEARCH_PER_PAGE_MAX);
         $page = max((int) $request->get_param('page'), 1);
 
         if ($query === '') {
@@ -493,7 +497,12 @@ final class RSPKU_Core {
      */
     private static function get_collection(WP_REST_Request $request, string $postType, callable $normalizer): WP_REST_Response {
         $queryParams = $request->get_query_params();
-        $perPage = min(max((int) $request->get_param('per_page'), 1), 100);
+        $rateLimitResponse = self::enforce_rate_limit('collection_' . $postType, 120, 60);
+        if ($rateLimitResponse instanceof WP_REST_Response) {
+            return $rateLimitResponse;
+        }
+
+        $perPage = min(max((int) $request->get_param('per_page'), 1), self::COLLECTION_PER_PAGE_MAX);
         $page = max((int) $request->get_param('page'), 1);
         $defaultOrder = $postType === 'post' ? 'desc' : 'asc';
         $defaultOrderby = $postType === 'post' ? 'date' : 'title';
@@ -1402,33 +1411,53 @@ final class RSPKU_Core {
 
     /**
      * Best-effort resolution of the client IP. Trusts common CDN/proxy
-     * headers when present and validates each candidate before use.
+     * headers only when REMOTE_ADDR is an explicit trusted proxy.
      *
      * Falls back to 0.0.0.0 so transient keys stay deterministic even
      * when upstream did not provide a usable address.
      */
     private static function client_ip(): string {
-        $candidates = [
-            'HTTP_CF_CONNECTING_IP',
-            'HTTP_X_FORWARDED_FOR',
-            'HTTP_X_REAL_IP',
-            'REMOTE_ADDR',
-        ];
+        $remote = self::valid_ip_from_server('REMOTE_ADDR');
 
-        foreach ($candidates as $header) {
-            if (empty($_SERVER[$header])) {
-                continue;
-            }
+        if ($remote !== null && self::is_trusted_proxy($remote)) {
+            foreach (['HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP'] as $header) {
+                $forwarded = self::valid_ip_from_server($header);
 
-            $raw = sanitize_text_field((string) wp_unslash((string) $_SERVER[$header]));
-            $first = trim((string) explode(',', $raw)[0]);
-
-            if ($first !== '' && filter_var($first, FILTER_VALIDATE_IP) !== false) {
-                return $first;
+                if ($forwarded !== null) {
+                    return $forwarded;
+                }
             }
         }
 
-        return '0.0.0.0';
+        return $remote ?? '0.0.0.0';
+    }
+
+    private static function valid_ip_from_server(string $key): ?string {
+        if (empty($_SERVER[$key])) {
+            return null;
+        }
+
+        $raw = sanitize_text_field((string) wp_unslash((string) $_SERVER[$key]));
+        $first = trim((string) explode(',', $raw)[0]);
+
+        return $first !== '' && filter_var($first, FILTER_VALIDATE_IP) !== false ? $first : null;
+    }
+
+    private static function is_trusted_proxy(string $remote): bool {
+        $trusted = defined('RSPKU_TRUSTED_PROXY_IPS') ? constant('RSPKU_TRUSTED_PROXY_IPS') : [];
+        $trusted = apply_filters('rspku_trusted_proxy_ips', $trusted);
+
+        if (is_string($trusted)) {
+            $trusted = explode(',', $trusted);
+        }
+
+        foreach ((array) $trusted as $ip) {
+            if ($remote === trim((string) $ip)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 

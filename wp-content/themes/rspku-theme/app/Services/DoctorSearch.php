@@ -147,26 +147,48 @@ final class DoctorSearch
 
     private static function clientIp(): string
     {
-        $candidates = [
-            'HTTP_CF_CONNECTING_IP',
-            'HTTP_X_FORWARDED_FOR',
-            'HTTP_X_REAL_IP',
-            'REMOTE_ADDR',
-        ];
+        $remote = self::validIpFromServer('REMOTE_ADDR');
 
-        foreach ($candidates as $header) {
-            if (empty($_SERVER[$header])) {
-                continue;
-            }
+        if ($remote !== null && self::isTrustedProxy($remote)) {
+            foreach (['HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP'] as $header) {
+                $forwarded = self::validIpFromServer($header);
 
-            $raw = sanitize_text_field((string) wp_unslash((string) $_SERVER[$header]));
-            $first = trim((string) explode(',', $raw)[0]);
-
-            if ($first !== '' && filter_var($first, FILTER_VALIDATE_IP) !== false) {
-                return $first;
+                if ($forwarded !== null) {
+                    return $forwarded;
+                }
             }
         }
 
-        return '0.0.0.0';
+        return $remote ?? '0.0.0.0';
+    }
+
+    private static function validIpFromServer(string $key): ?string
+    {
+        if (empty($_SERVER[$key])) {
+            return null;
+        }
+
+        $raw = sanitize_text_field((string) wp_unslash((string) $_SERVER[$key]));
+        $first = trim((string) explode(',', $raw)[0]);
+
+        return $first !== '' && filter_var($first, FILTER_VALIDATE_IP) !== false ? $first : null;
+    }
+
+    private static function isTrustedProxy(string $remote): bool
+    {
+        $trusted = defined('RSPKU_TRUSTED_PROXY_IPS') ? constant('RSPKU_TRUSTED_PROXY_IPS') : [];
+        $trusted = apply_filters('rspku_trusted_proxy_ips', $trusted);
+
+        if (is_string($trusted)) {
+            $trusted = explode(',', $trusted);
+        }
+
+        foreach ((array) $trusted as $ip) {
+            if ($remote === trim((string) $ip)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
