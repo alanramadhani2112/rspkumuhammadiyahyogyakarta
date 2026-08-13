@@ -41,7 +41,6 @@ final class RSPKU_CPT_DoctorFields
     {
         wp_nonce_field('rspku_doctor_fields', 'rspku_doctor_fields_nonce');
 
-        $branches = self::branchOptions();
         $services = self::serviceOptions();
         $schedule = self::scheduleValue((int) $post->ID);
         $isSyncedFromSchedule = (string) get_post_meta((int) $post->ID, '_rspku_synced_from_schedule', true) === '1';
@@ -104,7 +103,6 @@ final class RSPKU_CPT_DoctorFields
             echo '<th>' . esc_html__('Hari', 'rspku-theme') . '</th>';
             echo '<th>' . esc_html__('Mulai', 'rspku-theme') . '</th>';
             echo '<th>' . esc_html__('Selesai', 'rspku-theme') . '</th>';
-            echo '<th>' . esc_html__('Cabang', 'rspku-theme') . '</th>';
             echo '<th>' . esc_html__('Ruangan', 'rspku-theme') . '</th>';
             echo '<th>' . esc_html__('Jenis Konsultasi', 'rspku-theme') . '</th>';
             echo '<th></th>';
@@ -112,16 +110,16 @@ final class RSPKU_CPT_DoctorFields
             echo '<tbody data-rspku-schedule-rows>';
 
             if ($schedule === []) {
-                echo self::scheduleRow('__INDEX__', [], $branches);
+                echo self::scheduleRow('__INDEX__', []);
             } else {
                 foreach (array_values($schedule) as $index => $row) {
-                    echo self::scheduleRow((string) $index, $row, $branches);
+                    echo self::scheduleRow((string) $index, $row);
                 }
             }
 
             echo '</tbody>';
             echo '</table>';
-            echo '<template data-rspku-schedule-template>' . self::scheduleRow('__INDEX__', [], $branches) . '</template>';
+            echo '<template data-rspku-schedule-template>' . self::scheduleRow('__INDEX__', []) . '</template>';
             echo '<p><button type="button" class="button button-secondary" data-rspku-add-schedule>' . esc_html__('Tambah Jadwal', 'rspku-theme') . '</button></p>';
         }
         echo '</div>';
@@ -166,7 +164,6 @@ final class RSPKU_CPT_DoctorFields
             $schedule = self::sanitizeSchedule(wp_unslash($_POST['rspku_doctor_schedule']));
             update_post_meta($postId, '_rspku_doctor_schedule', $schedule);
             self::replaceIndexedMeta($postId, '_rspku_schedule_day', array_column($schedule, 'day'));
-            self::replaceIndexedMeta($postId, '_rspku_schedule_branch', array_column($schedule, 'branch_id'));
         }
     }
 
@@ -272,16 +269,14 @@ final class RSPKU_CPT_DoctorFields
     }
 
     /**
-     * @param array<int,array<string,mixed>> $branches
      * @param array<string,mixed> $row
      */
-    private static function scheduleRow(string $index, array $row, array $branches): string
+    private static function scheduleRow(string $index, array $row): string
     {
         $days = self::days();
         $day = sanitize_key((string) ($row['day'] ?? ''));
         $start = (string) ($row['start_time'] ?? '');
         $end = (string) ($row['end_time'] ?? '');
-        $branchId = absint($row['branch_id'] ?? $row['branch'] ?? 0);
         $room = (string) ($row['room'] ?? '');
         $consultation = (string) ($row['consultation_type'] ?? '');
 
@@ -300,41 +295,12 @@ final class RSPKU_CPT_DoctorFields
             </td>
             <td><input type="time" name="rspku_doctor_schedule[<?php echo esc_attr($index); ?>][start_time]" value="<?php echo esc_attr($start); ?>"></td>
             <td><input type="time" name="rspku_doctor_schedule[<?php echo esc_attr($index); ?>][end_time]" value="<?php echo esc_attr($end); ?>"></td>
-            <td>
-                <select name="rspku_doctor_schedule[<?php echo esc_attr($index); ?>][branch]">
-                    <option value=""><?php echo esc_html__('Pilih cabang', 'rspku-theme'); ?></option>
-                    <?php foreach ($branches as $branch) : ?>
-                        <option value="<?php echo esc_attr((string) ($branch['id'] ?? 0)); ?>" <?php selected($branchId, (int) ($branch['id'] ?? 0)); ?>>
-                            <?php echo esc_html((string) ($branch['title'] ?? '')); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </td>
             <td><input type="text" class="widefat" name="rspku_doctor_schedule[<?php echo esc_attr($index); ?>][room]" value="<?php echo esc_attr($room); ?>"></td>
             <td><input type="text" class="widefat" name="rspku_doctor_schedule[<?php echo esc_attr($index); ?>][consultation_type]" value="<?php echo esc_attr($consultation); ?>"></td>
             <td><button type="button" class="button-link-delete" data-rspku-remove-schedule><?php echo esc_html__('Hapus', 'rspku-theme'); ?></button></td>
         </tr>
         <?php
         return (string) ob_get_clean();
-    }
-
-    /**
-     * @return array<int,array<string,mixed>>
-     */
-    private static function branchOptions(): array
-    {
-        $posts = get_posts([
-            'post_type' => 'cabang-rs',
-            'post_status' => 'publish',
-            'posts_per_page' => 200,
-            'orderby' => 'title',
-            'order' => 'ASC',
-        ]);
-
-        return array_map(static fn (\WP_Post $post): array => [
-            'id' => (int) $post->ID,
-            'title' => get_the_title($post),
-        ], $posts);
     }
 
     /**
@@ -385,7 +351,6 @@ final class RSPKU_CPT_DoctorFields
             $day = sanitize_key((string) ($row['day'] ?? ''));
             $start = self::time((string) ($row['start_time'] ?? ''));
             $end = self::time((string) ($row['end_time'] ?? ''));
-            $branchId = absint($row['branch'] ?? $row['branch_id'] ?? 0);
             $room = sanitize_text_field((string) ($row['room'] ?? ''));
             $consultation = sanitize_text_field((string) ($row['consultation_type'] ?? ''));
 
@@ -401,7 +366,6 @@ final class RSPKU_CPT_DoctorFields
                 'day' => $day,
                 'start_time' => $start,
                 'end_time' => $end,
-                'branch_id' => $branchId,
                 'room' => $room,
                 'consultation_type' => $consultation,
             ];
