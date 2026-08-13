@@ -18,7 +18,7 @@
             {% if doctor.photo and doctor.photo.url %}
               <img src="{{ doctor.photo.url }}" alt="{{ doctor.name }}" class="h-full w-full object-cover">
             {% else %}
-              <div class="grid h-full w-full place-items-center bg-[linear-gradient(180deg,#eef6f0_0%,#f8fbf8_100%)] text-lg font-semibold text-hospital-700">{{ doctor.name|slice(0, 1) }}</div>
+        <div class="grid h-full w-full place-items-center bg-[linear-gradient(180deg,#eaf6ff_0%,#f8fbff_100%)] text-lg font-semibold text-hospital-700">{{ doctor.name|slice(0, 1) }}</div>
             {% endif %}
           </div>
           <div class="min-w-0 flex-1">
