@@ -253,6 +253,7 @@ final class TemplateController
             }
 
             if (is_post_type_archive('manajemen-rs')) {
+                $context['posts'] = $contentRepository->managementItems($GLOBALS['wp_query']->posts ?? []);
                 $context['management_archive'] = [
                     'title' => __('Manajemen RS', 'rspku-theme'),
                     'description' => __('Profil pimpinan dan jajaran manajemen RS PKU Muhammadiyah Yogyakarta yang disusun lebih rapi agar struktur kepemimpinan lebih mudah dipahami.', 'rspku-theme'),

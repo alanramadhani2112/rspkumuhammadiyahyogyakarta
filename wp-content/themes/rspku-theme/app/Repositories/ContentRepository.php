@@ -541,19 +541,19 @@ final class ContentRepository
             return null;
         }
 
-        $photo = $this->image($postId, 'foto_profile', 'rspku-card');
+        $item = $this->normalizeManagement($post);
+        $item['content'] = apply_filters('the_content', $post->post_content);
 
-        return [
-            'id' => $postId,
-            'title' => get_the_title($post),
-            'name' => $this->field($postId, 'nama', get_the_title($post)),
-            'position' => $this->field($postId, 'jabatan'),
-            'url' => get_permalink($post),
-            'content' => apply_filters('the_content', $post->post_content),
-            'excerpt' => has_excerpt($post) ? get_the_excerpt($post) : wp_trim_words(wp_strip_all_tags($post->post_content), 24),
-            'photo' => $photo,
-            'views' => (int) get_post_meta($postId, 'views', true),
-        ];
+        return $item;
+    }
+
+    /**
+     * @param array<int,WP_Post> $posts
+     * @return array<int,array<string,mixed>>
+     */
+    public function managementItems(array $posts): array
+    {
+        return array_values(array_map(fn (WP_Post $post): array => $this->normalizeManagement($post), $posts));
     }
 
     /**
@@ -704,6 +704,28 @@ final class ContentRepository
             'excerpt' => $this->field($postId, 'deskripsi', wp_trim_words(wp_strip_all_tags($post->post_content), 24)),
             'image' => $this->galleryImage($postId),
             'rate' => $this->field($postId, 'tarif_per_hari_rp', ''),
+            'views' => (int) get_post_meta($postId, 'views', true),
+        ];
+    }
+
+    /**
+     * @return array<string,mixed>
+     */
+    private function normalizeManagement(WP_Post $post): array
+    {
+        $postId = (int) $post->ID;
+        $title = get_the_title($post);
+        $photo = $this->image($postId, 'foto_profile', 'rspku-card');
+
+        return [
+            'id' => $postId,
+            'title' => $title,
+            'name' => $this->field($postId, 'nama', $title),
+            'position' => $this->field($postId, 'jabatan'),
+            'url' => get_permalink($post),
+            'excerpt' => has_excerpt($post) ? get_the_excerpt($post) : wp_trim_words(wp_strip_all_tags($post->post_content), 24),
+            'image' => $photo,
+            'photo' => $photo,
             'views' => (int) get_post_meta($postId, 'views', true),
         ];
     }

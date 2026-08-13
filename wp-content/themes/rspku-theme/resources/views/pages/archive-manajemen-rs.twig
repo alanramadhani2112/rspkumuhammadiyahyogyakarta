@@ -31,12 +31,9 @@
               {% include 'components/content-card.twig' with {
                 item: {
                   title: item.title,
-                  url: item.link,
-                  excerpt: item.preview.length(18),
-                  image: item.thumbnail ? {
-                    url: item.thumbnail.src('rspku-card'),
-                    alt: item.title
-                  } : null,
+                  url: item.url,
+                  excerpt: item.excerpt,
+                  image: item.image,
                   badge: 'Manajemen RS',
                   show_link: false
                 }
