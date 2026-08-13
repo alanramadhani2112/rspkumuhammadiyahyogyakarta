@@ -151,9 +151,9 @@ final class RSPKU_Settings_API
      */
     public static function renderBrandColorsCSS(): void
     {
-        $primary = self::get('brand_color_primary', '#0c8f45');
-        $primaryDark = self::get('brand_color_primary_dark', '#086d35');
-        $accent = self::get('brand_color_accent', '#9fd45b');
+        $primary = self::get('brand_color_primary', '#004DAA');
+        $primaryDark = self::get('brand_color_primary_dark', '#003f8c');
+        $accent = self::get('brand_color_accent', '#F5BD15');
 
         if (!is_string($primary) || !is_string($primaryDark) || !is_string($accent)) {
             return;
@@ -165,7 +165,9 @@ final class RSPKU_Settings_API
         $css .= "  --rspku-brand:{$palette[600]};\n";
         $css .= "  --rspku-brand-dark:{$palette[700]};\n";
         $css .= "  --rspku-brand-soft:{$palette[50]};\n";
+        $css .= "  --rspku-brand-secondary:{$palette[500]};\n";
         $css .= "  --rspku-accent:{$accent};\n";
+        $css .= "  --rspku-danger:#D82C35;\n";
         $css .= "}\n";
 
         // Override every hospital-* shade used in Tailwind utilities.
@@ -215,6 +217,21 @@ final class RSPKU_Settings_API
      */
     private static function generatePalette(string $primaryHex, string $darkHex): array
     {
+        if (strcasecmp($primaryHex, '#004DAA') === 0) {
+            return [
+                50 => '#eaf6ff',
+                100 => '#d5edff',
+                200 => '#aadfff',
+                300 => '#75ccff',
+                400 => '#38b8f5',
+                500 => '#009EE6',
+                600 => '#004DAA',
+                700 => '#003f8c',
+                800 => '#00336f',
+                900 => '#002653',
+            ];
+        }
+
         $hsl = self::hexToHsl($primaryHex);
         $darkHsl = self::hexToHsl($darkHex);
 

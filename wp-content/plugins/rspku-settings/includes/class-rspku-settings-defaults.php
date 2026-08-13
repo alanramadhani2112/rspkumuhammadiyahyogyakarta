@@ -86,9 +86,9 @@ final class RSPKU_Settings_Defaults
             'metric_3_label' => 'Spesialisasi medis',
 
             // Branding
-            'brand_color_primary' => '#0c8f45',
-            'brand_color_primary_dark' => '#086d35',
-            'brand_color_accent' => '#9fd45b',
+            'brand_color_primary' => '#004DAA',
+            'brand_color_primary_dark' => '#003f8c',
+            'brand_color_accent' => '#F5BD15',
 
             // Features Toggle
             'feature_reading_progress' => true,

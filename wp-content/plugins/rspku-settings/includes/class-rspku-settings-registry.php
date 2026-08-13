@@ -108,7 +108,7 @@ final class RSPKU_Settings_Registry
                         'fields' => [
                             ['key' => 'hero_image_id', 'label' => 'Gambar Hero Homepage', 'type' => 'image', 'help' => 'Gambar utama di hero section homepage (rasio 4:3, min 1200px lebar)'],
                             ['key' => 'hero_eyebrow', 'label' => 'Badge Text', 'type' => 'text'],
-                            ['key' => 'hero_title', 'label' => 'Judul Utama', 'type' => 'textarea', 'help' => 'Boleh HTML. Gunakan <span class="text-hospital-600">...</span> untuk highlight hijau'],
+                            ['key' => 'hero_title', 'label' => 'Judul Utama', 'type' => 'textarea', 'help' => 'Boleh HTML. Gunakan <span class="text-hospital-600">...</span> untuk highlight warna utama'],
                             ['key' => 'hero_description', 'label' => 'Deskripsi', 'type' => 'textarea'],
                             ['key' => 'hero_cta_primary_text', 'label' => 'Tombol Utama - Teks', 'type' => 'text'],
                             ['key' => 'hero_cta_primary_url', 'label' => 'Tombol Utama - URL', 'type' => 'text'],
