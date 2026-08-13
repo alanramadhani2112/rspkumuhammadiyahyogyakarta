@@ -149,6 +149,9 @@ final class RSPKU_Settings_Defaults
     {
         $options = get_option(RSPKU_SETTINGS_OPTION_KEY, []);
         $defaults = self::all();
+        if (!is_array($options)) {
+            $options = [];
+        }
 
         if (isset($options[$key]) && $options[$key] !== '') {
             return $options[$key];

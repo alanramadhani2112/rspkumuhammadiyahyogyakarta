@@ -462,8 +462,12 @@ final class RSPKU_Settings_Admin
             $active_tab = array_key_first($tabs);
         }
 
-        $options = get_option(RSPKU_SETTINGS_OPTION_KEY, []);
         $defaults = RSPKU_Settings_Defaults::all();
+        $options = get_option(RSPKU_SETTINGS_OPTION_KEY, []);
+        if (!is_array($options)) {
+            $options = [];
+        }
+        $options = array_merge($defaults, $options);
         ?>
         <div class="wrap rspku-settings-wrap">
             <div class="rspku-settings-header">
