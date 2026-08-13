@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RSPKU Custom Post Types
- * Description: Registers RS PKU custom post types (dokter, poliklinik, layanan, jurnal, manajemen-rs, rawat-inap, cabang-rs), taxonomies (spesialisasi-dokter, kategori-layanan, jenis-konsultasi), and the doctor meta box previously bundled with the theme. Keeping content types in a plugin means switching themes does not hide the underlying data in wp-admin.
+ * Description: Registers RS PKU custom post types (dokter, poliklinik, layanan, jurnal, manajemen-rs, rawat-inap), taxonomies (spesialisasi-dokter, kategori-layanan, jenis-konsultasi), and the doctor meta box previously bundled with the theme. Keeping content types in a plugin means switching themes does not hide the underlying data in wp-admin.
  * Version: 0.1.0
  * Requires at least: 6.5
  * Requires PHP: 8.3

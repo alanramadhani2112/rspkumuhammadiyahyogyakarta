@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 
 /**
  * Registers the custom post types used across RS PKU (dokter, poliklinik,
- * layanan, jurnal, cabang-rs, manajemen-rs, rawat-inap). Moved from the
+ * layanan, jurnal, manajemen-rs, rawat-inap). Moved from the
  * theme in M6 so content remains accessible even if the active theme is
  * swapped out.
  */
@@ -25,7 +25,6 @@ final class RSPKU_CPT_PostTypes
         self::polyclinic();
         self::service();
         self::journal();
-        self::branch();
         self::management();
         self::room();
     }
@@ -78,19 +77,6 @@ final class RSPKU_CPT_PostTypes
             'has_archive' => false,
             'rewrite' => ['slug' => 'e-jurnal', 'with_front' => false],
             'menu_icon' => 'dashicons-media-document',
-            'supports' => ['title', 'thumbnail', 'revisions'],
-        ]);
-    }
-
-    private static function branch(): void
-    {
-        register_post_type('cabang-rs', [
-            'labels' => self::labels('Cabang', 'Cabang', 'Cabang RS'),
-            'public' => true,
-            'show_in_rest' => true,
-            'has_archive' => 'cabang',
-            'rewrite' => ['slug' => 'cabang', 'with_front' => false],
-            'menu_icon' => 'dashicons-location-alt',
             'supports' => ['title', 'thumbnail', 'revisions'],
         ]);
     }
