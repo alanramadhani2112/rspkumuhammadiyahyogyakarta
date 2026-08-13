@@ -481,7 +481,6 @@ final class DoctorRepository
             'appointment_url' => $this->field($postId, '_rspku_appointment_url'),
             'consultation_type' => $this->field($postId, '_rspku_consultation_type'),
             'schedule' => $schedule,
-            'branches' => $this->branchSummaries($postId),
             'services' => $this->relatedServices($postId),
             'social_links' => $this->socialLinks($postId),
         ];
@@ -590,14 +589,11 @@ final class DoctorRepository
             }
 
             $day = $this->normalizeDayKey((string) ($row['day'] ?? $row['hari'] ?? $row['hari_praktek'] ?? ''));
-            $branchId = absint($row['branch'] ?? $row['branch_id'] ?? $row['cabang'] ?? 0);
             $rows[] = [
                 'day' => $day,
                 'day_label' => self::DAYS[$day] ?? ($row['hari'] ?? $row['day_label'] ?? ''),
                 'start_time' => (string) ($row['start_time'] ?? $row['jam_mulai'] ?? $row['mulai'] ?? ''),
                 'end_time' => (string) ($row['end_time'] ?? $row['jam_selesai'] ?? $row['selesai'] ?? ''),
-                'branch_id' => $branchId,
-                'branch' => $branchId > 0 ? get_the_title($branchId) : (string) ($row['branch_label'] ?? $row['cabang'] ?? ''),
                 'room' => (string) ($row['room'] ?? $row['ruangan'] ?? ''),
                 'consultation_type' => (string) ($row['consultation_type'] ?? $row['jenis_konsultasi'] ?? ''),
             ];
@@ -620,21 +616,6 @@ final class DoctorRepository
             'minggu' => 'sunday',
             default => $day,
         };
-    }
-
-    /**
-     * @return array<int,array<string,mixed>>
-     */
-    private function branchSummaries(int $postId): array
-    {
-        $branchIds = array_map('absint', get_post_meta($postId, '_rspku_schedule_branch', false));
-        $branchIds = array_values(array_unique(array_filter($branchIds)));
-
-        return array_map(static fn (int $branchId): array => [
-            'id' => $branchId,
-            'title' => get_the_title($branchId),
-            'url' => get_permalink($branchId),
-        ], $branchIds);
     }
 
     /**
