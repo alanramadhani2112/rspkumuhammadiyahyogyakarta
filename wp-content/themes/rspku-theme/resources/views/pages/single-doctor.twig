@@ -182,7 +182,7 @@
                 {% set doctor_appointment_fallback_url = rspku.doctor_appointment_fallback_url|default('/kontak/') %}
                 {% set doctor_appointment_fallback_href = doctor_appointment_fallback_url starts with 'http' or doctor_appointment_fallback_url starts with 'tel:' or doctor_appointment_fallback_url starts with 'mailto:' ? doctor_appointment_fallback_url : site.url ~ doctor_appointment_fallback_url %}
                 {% include 'components/button.twig' with {
-                  text: rspku.doctor_appointment_cta_text|default('Buat janji sekarang'),
+                  text: rspku.doctor_appointment_cta_text|default('Buat Janji'),
                   url: doctor.appointment_url ?: doctor_appointment_fallback_href,
                   variant: 'primary',
                   icon: 'calendar-check',

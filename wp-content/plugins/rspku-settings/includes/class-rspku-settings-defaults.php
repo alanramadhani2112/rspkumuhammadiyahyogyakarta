@@ -74,7 +74,7 @@ final class RSPKU_Settings_Defaults
             'home_cta_primary_url' => '/dokter/',
             'home_cta_secondary_text' => 'Hubungi IGD',
             'home_cta_secondary_url' => 'tel:0274512321',
-            'doctor_appointment_cta_text' => 'Buat janji sekarang',
+            'doctor_appointment_cta_text' => 'Buat Janji',
             'doctor_appointment_fallback_url' => '/kontak/',
 
             // Metrics
