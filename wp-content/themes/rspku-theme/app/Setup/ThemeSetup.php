@@ -160,7 +160,7 @@ final class ThemeSetup
 
     public static function yoastRobots(string $robots): string
     {
-        if (is_search() || is_post_type_archive('cabang-rs') || is_singular('cabang-rs')) {
+        if (is_search()) {
             return 'noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
         }
 
