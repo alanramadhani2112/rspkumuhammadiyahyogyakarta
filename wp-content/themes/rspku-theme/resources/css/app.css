@@ -6,14 +6,16 @@
 @tailwind utilities;
 
 :root {
-  --rspku-ink: #181f2c;
+  --rspku-ink: #1D1D29;
   --rspku-muted: #697284;
   --rspku-line: #dce2e7;
-  --rspku-surface: #f5f7f4;
-  --rspku-brand: #0c8f45;
-  --rspku-brand-dark: #086d35;
-  --rspku-brand-soft: #dff4e7;
-  --rspku-accent: #9fd45b;
+  --rspku-surface: #FFFFFF;
+  --rspku-brand: #004DAA;
+  --rspku-brand-secondary: #009EE6;
+  --rspku-brand-dark: #003f8c;
+  --rspku-brand-soft: #eaf6ff;
+  --rspku-accent: #F5BD15;
+  --rspku-danger: #D82C35;
   --rspku-heading-font: "Inter", "Segoe UI", sans-serif;
   --rspku-body-font: "Inter", "Segoe UI", sans-serif;
 }
@@ -178,7 +180,7 @@ svg.lucide {
   color: var(--rspku-brand-dark);
   font-weight: 600;
   text-decoration: underline;
-  text-decoration-color: rgba(12, 143, 69, 0.3);
+  text-decoration-color: rgba(0, 77, 170, 0.3);
   text-underline-offset: 0.2em;
   transition: text-decoration-color 180ms ease;
 }
@@ -504,8 +506,8 @@ svg.lucide {
 
 .rspku-input:focus,
 .rspku-select:focus {
-  border-color: rgba(12, 143, 69, 0.65);
-  box-shadow: 0 0 0 0.28rem rgba(12, 143, 69, 0.12);
+  border-color: rgba(0, 77, 170, 0.65);
+  box-shadow: 0 0 0 0.28rem rgba(0, 77, 170, 0.12);
 }
 
 .rspku-icon-button {
@@ -523,7 +525,7 @@ svg.lucide {
 
 .rspku-icon-button:hover {
   transform: translateY(-1px);
-  border-color: rgba(12, 143, 69, 0.35);
+  border-color: rgba(0, 77, 170, 0.35);
   color: var(--rspku-brand-dark);
 }
 
@@ -871,7 +873,7 @@ svg.lucide {
 }
 
 .rspku-journal-card:hover {
-  border-color: rgba(12, 143, 69, 0.24);
+  border-color: rgba(0, 77, 170, 0.24);
   background: #fcfefd;
 }
 
@@ -994,8 +996,8 @@ svg.lucide {
 
 .rspku-schedule-input:focus,
 .rspku-schedule-select:focus {
-  border-color: rgba(12, 143, 69, 0.55);
-  box-shadow: 0 0 0 0.22rem rgba(12, 143, 69, 0.1);
+  border-color: rgba(0, 77, 170, 0.55);
+  box-shadow: 0 0 0 0.22rem rgba(0, 77, 170, 0.1);
 }
 
 .rspku-schedule-table-shell {
@@ -1022,9 +1024,9 @@ svg.lucide {
   position: sticky;
   top: 0;
   z-index: 2;
-  background: #eef6f0;
+  background: var(--rspku-brand-soft);
   padding: 1rem 1rem;
-  border-bottom: 1px solid #d7e3da;
+  border-bottom: 1px solid #d5edff;
   color: #0f172a;
   font-size: 0.8125rem;
   font-weight: 700;
@@ -1051,7 +1053,7 @@ svg.lucide {
 
 .rspku-schedule-table tbody tr:hover th,
 .rspku-schedule-table tbody tr:hover td {
-  background: #f8fcf8;
+  background: #f8fbff;
 }
 
 .rspku-schedule-table tbody th.column-doctor {
@@ -1071,8 +1073,8 @@ svg.lucide {
   min-height: 1.75rem;
   align-items: center;
   border-radius: 0.7rem;
-  border: 1px solid #d6e3da;
-  background: #fafcfb;
+  border: 1px solid #d5edff;
+  background: #f8fbff;
   padding-inline: 0.65rem;
   font-size: 0.6875rem;
   font-weight: 500;
@@ -1085,13 +1087,13 @@ svg.lucide {
   align-items: center;
   white-space: nowrap;
   border-radius: 0.5rem;
-  border: 1px solid #d6e3da;
-  background: #f0fdf4;
+  border: 1px solid #d5edff;
+  background: var(--rspku-brand-soft);
   padding: 0.3rem 0.6rem;
   font-size: 0.8125rem;
   font-weight: 500;
   line-height: 1.3;
-  color: #065f2e;
+  color: var(--rspku-brand-dark);
 }
 
 .rspku-schedule-empty {
@@ -1108,7 +1110,7 @@ svg.lucide {
 
   .rspku-schedule-table thead th.column-doctor,
   .rspku-schedule-table thead th.column-specialization {
-    background: #eef6f0;
+    background: var(--rspku-brand-soft);
   }
 
   .rspku-schedule-table tbody th.column-doctor,
@@ -1125,7 +1127,7 @@ svg.lucide {
 
   .rspku-schedule-table tbody tr:hover th.column-doctor,
   .rspku-schedule-table tbody tr:hover td.column-specialization {
-    background: #f8fcf8;
+    background: #f8fbff;
   }
 }
 
@@ -1206,8 +1208,8 @@ svg.lucide {
 
 .rspku-pagination-links a:hover,
 .rspku-pagination-button:hover:not(:disabled) {
-  border-color: rgba(12, 143, 69, 0.28);
-  background: #f8fcf8;
+  border-color: rgba(0, 77, 170, 0.28);
+  background: #f8fbff;
   color: var(--rspku-brand-dark);
 }
 
