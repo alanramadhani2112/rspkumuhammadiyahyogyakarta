@@ -48,7 +48,7 @@
                 eager: true
               } only %}
             {% else %}
-              <div class="grid aspect-[16/10] place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(159,212,91,0.18),_transparent_35%),linear-gradient(180deg,#f8fbf8_0%,#eef6f0_100%)] p-8 text-center">
+              <div class="grid aspect-[16/10] place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(0,158,230,0.18),_transparent_35%),linear-gradient(180deg,#f8fbff_0%,#eaf6ff_100%)] p-8 text-center">
                 <div class="space-y-4">
                   <div class="mx-auto grid h-16 w-16 place-items-center rounded-lg border border-hospital-200 bg-white text-hospital-700">
                     {{ icon('hospital', { class: 'h-8 w-8' }) }}
@@ -70,7 +70,7 @@
                   {% if item.image and item.image.url %}
                     <img src="{{ item.image.url }}" alt="{{ item.title }}" class="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-[1.03]">
                   {% else %}
-                    <div class="grid aspect-[16/11] place-items-center bg-[linear-gradient(180deg,#f8fbf8_0%,#eef6f0_100%)] p-8 text-center">
+                    <div class="grid aspect-[16/11] place-items-center bg-[linear-gradient(180deg,#f8fbff_0%,#eaf6ff_100%)] p-8 text-center">
                       <div class="space-y-4">
                         <div class="mx-auto grid h-14 w-14 place-items-center rounded border border-hospital-200 bg-white text-hospital-700">
                           {{ icon('building-2', { class: 'h-7 w-7' }) }}
