@@ -81,7 +81,7 @@
         <div class="rspku-container">
           <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {% for item in service_archive.items %}
-              <a href="{{ item.url }}" class="group flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:border-hospital-300">
+              <a href="{{ item.url }}" class="group flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:border-hospital-300 focus-visible:border-hospital-300">
                 {# Image Header #}
                 <div class="relative aspect-[16/9] overflow-hidden bg-slate-100">
                   {% if item.image and item.image.url %}
@@ -100,14 +100,14 @@
 
                 {# Content #}
                 <div class="flex flex-1 flex-col p-5">
-                  <h2 class="text-base font-semibold leading-snug text-slate-950 transition group-hover:text-hospital-700">{{ item.title }}</h2>
+                  <h2 class="text-base font-semibold leading-snug text-slate-950 transition group-hover:text-hospital-700 group-focus-visible:text-hospital-700">{{ item.title }}</h2>
                   {% if item.excerpt %}
                     <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-600">{{ item.excerpt }}</p>
                   {% endif %}
                   <div class="mt-auto flex items-center justify-between gap-3 pt-4">
                     <span class="text-xs font-semibold uppercase tracking-wide text-hospital-700">Lihat detail</span>
-                    <span class="grid h-7 w-7 place-items-center rounded-sm bg-hospital-50 text-hospital-700 transition group-hover:bg-hospital-600 group-hover:text-white">
-                      {{ icon('arrow-up-right', { class: 'h-3.5 w-3.5' }) }}
+                    <span class="grid h-7 w-7 place-items-center rounded-sm bg-hospital-50 text-hospital-700 transition group-hover:bg-hospital-600 group-hover:text-white group-focus-visible:bg-hospital-600 group-focus-visible:text-white">
+                      {{ icon('arrow-up-right', { class: 'h-3.5 w-3.5 transition group-hover:text-white group-focus-visible:text-white' }) }}
                     </span>
                   </div>
                 </div>

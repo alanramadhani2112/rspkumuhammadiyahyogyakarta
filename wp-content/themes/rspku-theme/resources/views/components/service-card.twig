@@ -16,8 +16,8 @@
 {% set link_text = item.link_text|default('Lihat detail') %}
 
 <a href="{{ item.url }}" class="group block rounded-xl border border-slate-200 bg-white p-6 transition hover:border-hospital-200">
-  <div class="mb-4 grid h-11 w-11 place-items-center rounded-lg bg-hospital-50 text-hospital-700 transition group-hover:bg-hospital-600 group-hover:text-white">
-    {{ icon(icon_name, { class: 'h-5 w-5' }) }}
+  <div class="mb-4 grid h-11 w-11 place-items-center rounded-lg bg-hospital-50 text-hospital-700 transition group-hover:bg-hospital-600 group-hover:text-white group-focus-visible:bg-hospital-600 group-focus-visible:text-white">
+    {{ icon(icon_name, { class: 'h-5 w-5 transition group-hover:text-white group-focus-visible:text-white' }) }}
   </div>
   <h3 class="text-lg font-semibold text-slate-950">{{ item.title }}</h3>
   {% if item.excerpt %}
