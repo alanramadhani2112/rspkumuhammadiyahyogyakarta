@@ -87,7 +87,6 @@ Settings → Permalinks → klik **Save Changes** supaya custom post type & taxo
 | `jurnal`      | E-Journal     |
 | `manajemen-rs`| Manajemen RS  |
 | `rawat-inap`  | Rawat Inap    |
-| `cabang-rs`   | Cabang RS     |
 
 ## Taksonomi Custom
 

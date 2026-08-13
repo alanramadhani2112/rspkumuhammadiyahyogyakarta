@@ -9,7 +9,7 @@ Dokumen ini menjelaskan cara mengelola konten website WordPress RS PKU Muhammadi
 Website memakai WordPress dengan theme custom `rspku-theme` dan beberapa plugin custom:
 
 - `RSPKU Core`: fungsi inti website.
-- `RSPKU Custom Post Types`: tipe konten khusus seperti Dokter, Layanan, Poliklinik, Rawat Inap, Manajemen RS, Jurnal, Cabang.
+- `RSPKU Custom Post Types`: tipe konten khusus seperti Dokter, Layanan, Poliklinik, Rawat Inap, Manajemen RS, dan Jurnal.
 - `RSPKU Settings`: pengaturan identitas, kontak, sosial media, homepage, CTA, footer.
 - `RSPKU Schema`: data schema/SEO teknis.
 - `Advanced Custom Fields PRO`: field tambahan untuk konten dinamis.
@@ -31,7 +31,6 @@ Data publish saat panduan dibuat:
 | Manajemen RS | 9 | Profil direksi/manajemen |
 | Rawat Inap | 1 | Fasilitas kamar/rawat inap |
 | E-Jurnal | 1 | File/halaman jurnal |
-| Cabang RS | 0 | Cabang bila nanti dipakai |
 
 ## 2. Dashboard Admin
 
