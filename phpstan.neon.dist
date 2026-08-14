@@ -1,0 +1,49 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+    - phpstan-baseline.neon
+
+parameters:
+    level: 5
+
+    # Project-relative paths analysed on every run
+    paths:
+        - wp-content/themes/rspku-theme/app
+        - wp-content/themes/rspku-theme/functions.php
+        - wp-content/themes/rspku-theme/index.php
+        - wp-content/plugins/rspku-core
+        - wp-content/plugins/rspku-schema
+        - wp-content/plugins/rspku-cpt
+        - wp-content/plugins/rspku-settings
+
+    # Paths that should not be analysed at all. Note: we still want
+    # Timber's src scanned (see scanDirectories below) so we don't blanket-
+    # exclude the theme vendor directory.
+    excludePaths:
+        - wp-content/themes/rspku-theme/vendor/composer
+        - wp-content/themes/rspku-theme/vendor/symfony
+        - wp-content/themes/rspku-theme/vendor/twig
+        - wp-content/themes/rspku-theme/node_modules
+        - wp-content/themes/rspku-theme/public
+        - wp-content/themes/rspku-theme/scripts
+        - wp-content/themes/rspku-theme/.playwright-cli
+        - wp-content/themes/rspku-theme/output
+        - vendor
+        - wp-admin
+        - wp-includes
+
+    # Pull Timber classes into the symbol table so we can type-check
+    # subclasses (e.g. Rspku\Models\EnhancedPost extends Timber\Post).
+    scanDirectories:
+        - wp-content/themes/rspku-theme/vendor/timber/timber/src
+
+    # Keep PHPStan lean so it runs within Laragon's default 512M memory
+    # limit: disable parallel workers (each worker duplicates memory).
+    parallel:
+        maximumNumberOfProcesses: 1
+
+    # Cache path kept inside vendor so it's covered by .gitignore
+    tmpDir: vendor/.phpstan-cache
+
+    # Reporting knobs
+    reportUnmatchedIgnoredErrors: true
+    treatPhpDocTypesAsCertain: false
