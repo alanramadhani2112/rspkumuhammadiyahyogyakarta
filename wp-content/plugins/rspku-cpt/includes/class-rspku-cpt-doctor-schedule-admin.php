@@ -365,13 +365,9 @@ final class RSPKU_CPT_DoctorScheduleAdmin
      */
     private static function syncManagedTerms(int $doctorId, array $newManagedTerms): void
     {
-        $oldManagedTerms = wp_parse_id_list(get_post_meta($doctorId, RSPKU_CPT_DoctorSchedule::MANAGED_TERMS_META_KEY, true));
-        $currentTerms = wp_get_post_terms($doctorId, 'spesialisasi-dokter', ['fields' => 'ids']);
-        $currentTerms = is_array($currentTerms) ? wp_parse_id_list($currentTerms) : [];
-        $curatedTerms = array_values(array_diff($currentTerms, $oldManagedTerms));
-        $mergedTerms = array_values(array_unique(array_merge($curatedTerms, $newManagedTerms)));
+        $newManagedTerms = array_values(array_unique(wp_parse_id_list($newManagedTerms)));
 
-        wp_set_object_terms($doctorId, $mergedTerms, 'spesialisasi-dokter', false);
+        wp_set_object_terms($doctorId, $newManagedTerms, 'spesialisasi-dokter', false);
 
         if ($newManagedTerms === []) {
             delete_post_meta($doctorId, RSPKU_CPT_DoctorSchedule::MANAGED_TERMS_META_KEY);
