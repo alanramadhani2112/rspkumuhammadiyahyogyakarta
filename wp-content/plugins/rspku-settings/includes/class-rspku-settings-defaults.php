@@ -20,7 +20,7 @@ final class RSPKU_Settings_Defaults
         return [
             // General
             'site_name' => 'RS PKU Muhammadiyah Yogyakarta',
-            'tagline' => 'Melayani dengan sepenuh hati sejak 1923',
+            'tagline' => 'Menjaga kesehatan keluarga sejak 1923',
             'founded_year' => '1923',
 
             // Contact
@@ -59,12 +59,12 @@ final class RSPKU_Settings_Defaults
             'social_linkedin_handle' => '',
 
             // Hero Homepage
-            'hero_eyebrow' => 'Melayani dengan sepenuh hati sejak 1923',
-            'hero_title' => 'Pelayanan kesehatan <span class="text-hospital-600">terpercaya</span> untuk keluarga Anda',
-            'hero_description' => 'RS PKU Muhammadiyah Yogyakarta melayani dengan profesional, ramah, dan berlandaskan nilai Islami.',
+            'hero_eyebrow' => 'Menjaga kesehatan keluarga sejak 1923',
+            'hero_title' => 'Layanan kesehatan <span class="text-hospital-600">terpercaya</span> untuk Anda dan keluarga',
+            'hero_description' => 'Lebih dari satu abad mendampingi masyarakat Yogyakarta dan sekitarnya dengan layanan kesehatan yang profesional, humanis, dan berlandaskan nilai Islami.',
             'hero_cta_primary_text' => 'Cari Dokter',
             'hero_cta_primary_url' => '/dokter/',
-            'hero_cta_secondary_text' => 'Lihat Poliklinik',
+            'hero_cta_secondary_text' => 'Lihat Layanan',
             'hero_cta_secondary_url' => '/poliklinik/',
 
             // Global CTA destinations
@@ -126,7 +126,7 @@ final class RSPKU_Settings_Defaults
 
             // Footer
             'footer_copyright' => '© 2026 RS PKU Muhammadiyah Yogyakarta. Hak Cipta Dilindungi.',
-            'footer_tagline' => 'Rumah sakit Islami modern dengan pelayanan kesehatan berstandar internasional.',
+            'footer_tagline' => 'Mendampingi kesehatan Anda dan keluarga dengan pelayanan profesional yang berlandaskan nilai Islami.',
             'footer_disclaimer' => 'Informasi medis di situs ini bersifat umum dan tidak menggantikan konsultasi dokter.',
             'footer_quick_links' => [
                 ['label' => 'Dokter', 'url' => '/dokter/'],
