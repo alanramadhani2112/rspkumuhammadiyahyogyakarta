@@ -94,6 +94,9 @@ final class RSPKU_Settings_API
     {
         $defaults = RSPKU_Settings_Defaults::all();
         $saved = get_option(RSPKU_SETTINGS_OPTION_KEY, []);
+        if (is_array($saved)) {
+            $saved = RSPKU_Settings_Defaults::normalizeLegacyContactDefaults($saved);
+        }
         $settings = array_merge($defaults, is_array($saved) ? $saved : []);
 
         $settings['footer_quick_links'] = self::normalizeFooterQuickLinks(

@@ -24,14 +24,14 @@ final class RSPKU_Settings_Defaults
             'founded_year' => '1923',
 
             // Contact
-            'phone_igd' => '0274 512321',
-            'phone_igd_link' => '+62274512321',
-            'phone_main' => '0274 512653',
-            'phone_main_link' => '+62274512653',
-            'whatsapp' => '0888 6412345',
-            'whatsapp_link' => '628886412345',
-            'email' => 'info@rspkujogja.co.id',
-            'address_street' => 'Jl. KH. Ahmad Dahlan No. 20',
+            'phone_igd' => '0274 512653',
+            'phone_igd_link' => '+62274512653',
+            'phone_main' => '+62 8886412345',
+            'phone_main_link' => '+628886412345',
+            'whatsapp' => '0274 566129',
+            'whatsapp_link' => '+62274566129',
+            'email' => 'info@rspkujogja.com',
+            'address_street' => 'Jl. KH. Ahmad Dahlan No.20',
             'address_district' => 'Ngupasan, Kec. Gondomanan',
             'address_city' => 'Kota Yogyakarta',
             'address_province' => 'Daerah Istimewa Yogyakarta 55122',
@@ -72,8 +72,8 @@ final class RSPKU_Settings_Defaults
             'header_cta_url' => '/dokter/',
             'home_cta_primary_text' => 'Buat janji sekarang',
             'home_cta_primary_url' => '/dokter/',
-            'home_cta_secondary_text' => 'Hubungi IGD',
-            'home_cta_secondary_url' => 'tel:0274512321',
+            'home_cta_secondary_text' => 'Hubungi Call Center',
+            'home_cta_secondary_url' => 'tel:+62274512653',
             'doctor_appointment_cta_text' => 'Buat Janji',
             'doctor_appointment_fallback_url' => '/kontak/',
 
@@ -130,7 +130,7 @@ final class RSPKU_Settings_Defaults
             'header_sticky' => true,
             'header_topbar_enabled' => true,
             'header_emergency_enabled' => true,
-            'header_emergency_label' => 'IGD 24/7',
+            'header_emergency_label' => 'Call Center 1',
 
             // Footer
             'footer_copyright' => '© 2026 RS PKU Muhammadiyah Yogyakarta. Hak Cipta Dilindungi.',
@@ -161,10 +161,39 @@ final class RSPKU_Settings_Defaults
             $options = [];
         }
 
+        $options = self::normalizeLegacyContactDefaults($options);
+
         if (isset($options[$key]) && $options[$key] !== '') {
             return $options[$key];
         }
 
         return $defaults[$key] ?? $fallback;
+    }
+
+    /**
+     * @param array<string,mixed> $options
+     * @return array<string,mixed>
+     */
+    public static function normalizeLegacyContactDefaults(array $options): array
+    {
+        foreach ([
+            'phone_igd' => '0274 512321',
+            'phone_igd_link' => '+62274512321',
+            'phone_main' => '0274 512653',
+            'phone_main_link' => '+62274512653',
+            'whatsapp' => '0888 6412345',
+            'whatsapp_link' => '628886412345',
+            'email' => 'info@rspkujogja.co.id',
+            'address_street' => 'Jl. KH. Ahmad Dahlan No. 20',
+            'header_emergency_label' => 'IGD 24/7',
+            'home_cta_secondary_text' => 'Hubungi IGD',
+            'home_cta_secondary_url' => 'tel:0274512321',
+        ] as $key => $legacyDefault) {
+            if (($options[$key] ?? null) === $legacyDefault) {
+                unset($options[$key]);
+            }
+        }
+
+        return $options;
     }
 }
