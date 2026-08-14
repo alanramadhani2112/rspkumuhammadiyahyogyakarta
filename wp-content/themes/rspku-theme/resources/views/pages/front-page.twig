@@ -108,6 +108,8 @@
     </div>
   </section>
 
+  {% include 'partials/promo-slider.twig' with { slides: rspku.promo_slides|default([]), site: site } only %}
+
   {# Services Section - Reusable Cards with Links #}
   {% if service_cards %}
     <section class="bg-slate-50/50 py-16">
@@ -341,3 +343,4 @@
     </div>
   </section>
 {% endblock %}
+

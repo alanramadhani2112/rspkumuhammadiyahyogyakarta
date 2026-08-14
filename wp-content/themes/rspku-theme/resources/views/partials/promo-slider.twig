@@ -1,0 +1,112 @@
+{% set slides = slides|default([]) %}
+{% set slide_count = slides|length %}
+
+{% if slide_count > 0 %}
+  <section class="py-8 sm:py-10" aria-label="Promo RS PKU">
+    <div class="rspku-container">
+      {% if slide_count == 1 %}
+        {% set slide = slides|first %}
+        {% set cta_href = slide.cta_url starts with 'https://' ? slide.cta_url : (slide.cta_url starts with '/' ? site.url ~ slide.cta_url : '') %}
+        <article class="relative overflow-hidden rounded-3xl bg-slate-950 text-white shadow-xl shadow-slate-900/10">
+          {% include 'partials/responsive-image.twig' with {
+            id: slide.image_id,
+            url: slide.image_url,
+            alt: slide.title,
+            class: 'aspect-[8/3] min-h-[320px] w-full object-cover sm:min-h-0',
+            sizes: '(min-width: 1280px) 1180px, 100vw',
+            width: 1600,
+            height: 600
+          } only %}
+          <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/55 to-slate-950/10"></div>
+          <div class="absolute inset-0 flex items-center p-6 sm:p-10 lg:p-12">
+            <div class="max-w-xl space-y-4">
+              <p class="inline-flex rounded-full bg-white/15 px-4 py-1 text-sm font-semibold text-white backdrop-blur">Promo RS PKU</p>
+              <h2 class="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">{{ slide.title }}</h2>
+              {% if slide.description %}
+                <p class="text-base leading-relaxed text-white/85 sm:text-lg">{{ slide.description }}</p>
+              {% endif %}
+              {% if slide.cta_text and cta_href %}
+                {% include 'components/button.twig' with { text: slide.cta_text, url: cta_href, variant: 'white', size: 'lg', icon: 'arrow-right', icon_position: 'right' } only %}
+              {% endif %}
+            </div>
+          </div>
+        </article>
+      {% else %}
+        <div
+          x-data="promoSlider()"
+          x-init="setup({{ slide_count }})"
+          x-on:mouseenter="pause()"
+          x-on:mouseleave="resume()"
+          x-on:focusin="pause()"
+          x-on:focusout="resume()"
+          x-on:keydown="onKeydown($event)"
+          class="relative overflow-hidden rounded-3xl bg-slate-950 text-white shadow-xl shadow-slate-900/10"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Promo RS PKU"
+          aria-live="off"
+          tabindex="0"
+        >
+          {% for slide in slides %}
+            {% set cta_href = slide.cta_url starts with 'https://' ? slide.cta_url : (slide.cta_url starts with '/' ? site.url ~ slide.cta_url : '') %}
+            <article
+              x-show="index === {{ loop.index0 }}"
+              {% if not loop.first %}style="display: none;"{% endif %}
+              class="relative"
+              aria-roledescription="slide"
+              aria-label="Promo {{ loop.index }} dari {{ slide_count }}"
+            >
+              {% include 'partials/responsive-image.twig' with {
+                id: slide.image_id,
+                url: slide.image_url,
+                alt: slide.title,
+                class: 'aspect-[8/3] min-h-[340px] w-full object-cover sm:min-h-0',
+                sizes: '(min-width: 1280px) 1180px, 100vw',
+                width: 1600,
+                height: 600
+              } only %}
+              <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/55 to-slate-950/10"></div>
+              <div class="absolute inset-0 flex items-center p-6 sm:p-10 lg:p-12">
+                <div class="max-w-xl space-y-4">
+                  <p class="inline-flex rounded-full bg-white/15 px-4 py-1 text-sm font-semibold text-white backdrop-blur">Promo RS PKU</p>
+                  <h2 class="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">{{ slide.title }}</h2>
+                  {% if slide.description %}
+                    <p class="text-base leading-relaxed text-white/85 sm:text-lg">{{ slide.description }}</p>
+                  {% endif %}
+                  {% if slide.cta_text and cta_href %}
+                    {% include 'components/button.twig' with { text: slide.cta_text, url: cta_href, variant: 'white', size: 'lg', icon: 'arrow-right', icon_position: 'right' } only %}
+                  {% endif %}
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+
+          <button type="button" class="absolute left-4 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-slate-950 shadow-lg transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Promo sebelumnya" x-on:click="prev()">
+            {{ icon('chevron-left', { class: 'h-5 w-5' }) }}
+          </button>
+          <button type="button" class="absolute right-4 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-slate-950 shadow-lg transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Promo berikutnya" x-on:click="next()">
+            {{ icon('chevron-right', { class: 'h-5 w-5' }) }}
+          </button>
+
+          <button
+            type="button"
+            class="absolute right-4 top-4 inline-flex min-h-11 items-center justify-center rounded-full bg-slate-950/70 px-4 text-sm font-semibold text-white backdrop-blur transition hover:bg-slate-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            x-on:click="toggleAutoplay()"
+            x-bind:aria-label="userPaused ? 'Putar otomatis promo' : 'Jeda putar otomatis promo'"
+            x-bind:aria-pressed="userPaused"
+          >
+            <span x-text="userPaused ? 'Putar' : 'Jeda'"></span>
+          </button>
+
+          <div class="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2" role="tablist" aria-label="Pilih promo">
+            {% for slide in slides %}
+              <button type="button" class="h-11 w-11 rounded-full p-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Tampilkan promo {{ loop.index }}" x-on:click="goTo({{ loop.index0 }})">
+                <span class="block h-3 w-3 rounded-full transition" x-bind:class="index === {{ loop.index0 }} ? 'bg-white' : 'bg-white/45'"></span>
+              </button>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
