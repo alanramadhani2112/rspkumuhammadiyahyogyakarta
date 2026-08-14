@@ -123,10 +123,7 @@ final class DoctorRepository
     }
 
     /**
-     * Get doctors related to a polyclinic via:
-     * 1. pilih_poliklinik_dokter meta (direct relation)
-     * 2. _rspku_related_polyclinic meta (secondary relation)
-     * 3. Spesialisasi that matches polyclinic title
+     * Get doctors related to a polyclinic via explicit relation meta.
      *
      * @return array<int,array<string,mixed>>
      */
@@ -138,7 +135,6 @@ final class DoctorRepository
 
         $doctorIds = [];
 
-        // Strategy 1: Direct meta relation
         $direct = new WP_Query([
             'post_type' => 'dokter',
             'post_status' => 'publish',
@@ -177,18 +173,6 @@ final class DoctorRepository
 
         foreach ($direct->posts as $id) {
             $doctorIds[(int) $id] = true;
-        }
-
-        // Strategy 2: Match by specialization name vs polyclinic title
-        if (count($doctorIds) < $limit) {
-            $polyclinicPost = get_post($polyclinicId);
-            if ($polyclinicPost) {
-                $polyclinicName = $polyclinicPost->post_title;
-                $matches = $this->findBySpecializationKeyword($polyclinicName, $limit - count($doctorIds), array_keys($doctorIds));
-                foreach ($matches as $id) {
-                    $doctorIds[$id] = true;
-                }
-            }
         }
 
         if ($doctorIds === []) {
