@@ -41,32 +41,39 @@
       aria-live="off"
       tabindex="0"
     >
-      {% for slide in slides %}
-        {% set cta_href = slide.cta_url starts with 'https://' ? slide.cta_url : (slide.cta_url starts with '/' ? site.url ~ slide.cta_url : '') %}
-        <article
-          x-show="index === {{ loop.index0 }}"
-          {% if not loop.first %}style="display: none;"{% endif %}
-          aria-roledescription="slide"
-          aria-label="Promo {{ loop.index }} dari {{ slide_count }}"
-        >
-          {% if cta_href %}
-            <a href="{{ cta_href }}" class="block" aria-label="{{ slide.image_alt|default('Promo RS PKU') }}">
-          {% endif %}
-              {% include 'partials/responsive-image.twig' with {
-                id: slide.image_id,
-                url: slide.image_url,
-                alt: slide.image_alt|default('Promo RS PKU'),
-                class: 'aspect-[4/3] w-full object-cover',
-                sizes: '(min-width: 1024px) 50vw, 100vw',
-                width: 1200,
-                height: 900,
-                eager: loop.first
-              } only %}
-          {% if cta_href %}
-            </a>
-          {% endif %}
-        </article>
-      {% endfor %}
+      <div
+        class="flex"
+        x-bind:class="reducedMotion ? 'transition-none' : 'transition-transform duration-500 ease-out'"
+        x-bind:style="`transform: translateX(-${index * 100}%);`"
+      >
+        {% for slide in slides %}
+          {% set cta_href = slide.cta_url starts with 'https://' ? slide.cta_url : (slide.cta_url starts with '/' ? site.url ~ slide.cta_url : '') %}
+          <article
+            class="w-full shrink-0"
+            x-bind:aria-hidden="index !== {{ loop.index0 }}"
+            x-bind:inert="index !== {{ loop.index0 }}"
+            aria-roledescription="slide"
+            aria-label="Promo {{ loop.index }} dari {{ slide_count }}"
+          >
+            {% if cta_href %}
+              <a href="{{ cta_href }}" class="block" aria-label="{{ slide.image_alt|default('Promo RS PKU') }}">
+            {% endif %}
+                {% include 'partials/responsive-image.twig' with {
+                  id: slide.image_id,
+                  url: slide.image_url,
+                  alt: slide.image_alt|default('Promo RS PKU'),
+                  class: 'aspect-[4/3] w-full object-cover',
+                  sizes: '(min-width: 1024px) 50vw, 100vw',
+                  width: 1200,
+                  height: 900,
+                  eager: loop.first
+                } only %}
+            {% if cta_href %}
+              </a>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
 
       <button type="button" class="absolute left-4 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-slate-950 shadow-lg transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Promo sebelumnya" x-on:click="prev()">
         {{ icon('chevron-left', { class: 'h-5 w-5' }) }}
