@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 /**
- * Read-only reconciliation dry-run for source 2026 data.
- * Default behavior writes evidence JSON only; it never mutates WordPress.
+ * Source 2026 reconciliation command.
+ * Default behavior is read-only. Apply mode creates approved drafts only.
  */
 
 $root = dirname(__DIR__, 1);
@@ -19,12 +19,29 @@ $evidenceDir = $projectRoot . '/.sisyphus/evidence';
 $wpLoad = $projectRoot . '/wp-load.php';
 
 $args = array_slice($argv, 1);
-if (in_array('--apply', $args, true)) {
-    fwrite(STDERR, "Apply mode is intentionally not implemented in T1-T3. Use dry-run only.\n");
-    exit(2);
+$applyMode = in_array('--apply', $args, true);
+$preflightMode = in_array('--preflight', $args, true);
+$makeApprovalPackage = in_array('--approval-package', $args, true);
+
+function argument_value(array $args, string $name): ?string
+{
+    $prefix = $name . '=';
+    foreach ($args as $arg) {
+        if (str_starts_with($arg, $prefix)) {
+            return substr($arg, strlen($prefix));
+        }
+    }
+
+    return null;
 }
 
-$makeApprovalPackage = in_array('--approval-package', $args, true);
+$approvedFile = argument_value($args, '--approved-file');
+$batchId = argument_value($args, '--batch-id');
+
+if (($applyMode || $preflightMode) && ($approvedFile === null || $batchId === null || $batchId === '')) {
+    fwrite(STDERR, "Apply/preflight requires --approved-file=<path> and --batch-id=<id>.\n");
+    exit(2);
+}
 
 if (!is_file($auditPath)) {
     fwrite(STDERR, "Missing audit report: {$auditPath}\n");
@@ -86,6 +103,180 @@ function parse_matrix(string $markdown, string $heading, string $sourcePrefix): 
 function write_json(string $path, array $payload): void
 {
     file_put_contents($path, json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+}
+
+function matching_post_ids(array $queryArgs): array
+{
+    $query = new WP_Query(array_merge([
+        'post_status' => ['publish', 'draft', 'pending', 'private', 'future'],
+        'posts_per_page' => -1,
+        'fields' => 'ids',
+    ], $queryArgs));
+
+    return array_map('intval', $query->posts);
+}
+
+function apply_approved_drafts(string $approvedFile, string $batchId, string $projectRoot, bool $write = true): array
+{
+    $resolvedFile = $approvedFile;
+    if (!str_starts_with($resolvedFile, '/') && !preg_match('/^[A-Za-z]:[\\\\\/]/', $resolvedFile)) {
+        $resolvedFile = $projectRoot . '/' . ltrim(str_replace('\\', '/', $resolvedFile), '/');
+    }
+
+    if (!is_file($resolvedFile)) {
+        throw new RuntimeException("Approval file not found: {$resolvedFile}");
+    }
+
+    $approvalJson = ltrim((string) file_get_contents($resolvedFile), "\xEF\xBB\xBF");
+    $package = json_decode($approvalJson, true, 512, JSON_THROW_ON_ERROR);
+    $rows = $package['approvals'] ?? null;
+    if (!is_array($rows)) {
+        throw new RuntimeException('Approval file must contain an approvals array.');
+    }
+
+    $allowedPostTypes = ['dokter', 'layanan', 'poliklinik', 'rawat-inap'];
+    $preflight = [];
+    $errors = [];
+
+    foreach ($rows as $row) {
+        if (($row['decision'] ?? 'skip') !== 'create-draft') {
+            continue;
+        }
+
+        $sourceId = trim((string) ($row['source_id'] ?? ''));
+        $title = trim((string) ($row['canonical_title'] ?? $row['source_name'] ?? ''));
+        $postType = (string) ($row['target_cpt'] ?? '');
+        $approvedBy = trim((string) ($row['approved_by'] ?? ''));
+        $approvedAt = trim((string) ($row['approved_at'] ?? ''));
+        $reason = trim((string) ($row['reason'] ?? ''));
+        $classification = (string) ($row['classification'] ?? 'missing');
+        $slug = sanitize_title($title);
+
+        if ($sourceId === '' || $title === '' || !in_array($postType, $allowedPostTypes, true)) {
+            $errors[] = "Invalid approved row: {$sourceId}";
+            continue;
+        }
+        if ($approvedBy === '' || $approvedAt === '' || $reason === '' || $reason === 'Pending human review. Default is safe no-op.') {
+            $errors[] = "Missing human approval metadata: {$sourceId}";
+            continue;
+        }
+        if (($row['allow_slug_change'] ?? false) !== false || ($row['allow_term_create'] ?? false) !== false || ($row['allow_term_assign'] ?? false) !== false) {
+            $errors[] = "Batch 1 forbids slug/taxonomy mutation: {$sourceId}";
+            continue;
+        }
+
+        $sourceMatches = matching_post_ids([
+            'post_type' => $postType,
+            'meta_key' => '_source_2026_key',
+            'meta_value' => $sourceId,
+        ]);
+        $titleMatches = matching_post_ids([
+            'post_type' => $postType,
+            'title' => $title,
+        ]);
+        $slugMatches = matching_post_ids([
+            'post_type' => $postType,
+            'name' => $slug,
+        ]);
+
+        if ($sourceMatches !== [] || $titleMatches !== [] || $slugMatches !== []) {
+            $errors[] = sprintf(
+                'Collision for %s (source=%s title=%s slug=%s)',
+                $sourceId,
+                implode(',', $sourceMatches),
+                implode(',', $titleMatches),
+                implode(',', $slugMatches)
+            );
+            continue;
+        }
+
+        $preflight[] = [
+            'source_id' => $sourceId,
+            'source_name' => (string) ($row['source_name'] ?? $title),
+            'canonical_title' => $title,
+            'slug' => $slug,
+            'target_cpt' => $postType,
+            'classification' => $classification,
+            'approved_by' => $approvedBy,
+            'approved_at' => $approvedAt,
+            'reason' => $reason,
+        ];
+    }
+
+    if ($errors !== []) {
+        throw new RuntimeException("Preflight blocked apply:\n- " . implode("\n- ", $errors));
+    }
+    if ($preflight === []) {
+        throw new RuntimeException('No create-draft approvals found. Nothing applied.');
+    }
+
+    if (!$write) {
+        return [
+            'manifest' => null,
+            'created' => [],
+            'preflight' => $preflight,
+        ];
+    }
+
+    $created = [];
+    try {
+        foreach ($preflight as $item) {
+            $postId = wp_insert_post([
+                'post_type' => $item['target_cpt'],
+                'post_status' => 'draft',
+                'post_title' => $item['canonical_title'],
+                'post_name' => $item['slug'],
+            ], true);
+
+            if (is_wp_error($postId)) {
+                throw new RuntimeException($postId->get_error_message());
+            }
+
+            $postId = (int) $postId;
+            update_post_meta($postId, '_source_2026_key', $item['source_id']);
+            update_post_meta($postId, '_source_2026_hash', hash('sha256', json_encode($item, JSON_UNESCAPED_UNICODE)));
+            update_post_meta($postId, '_reconcile_batch_id', $batchId);
+            update_post_meta($postId, '_reconcile_classification', $item['classification']);
+            update_post_meta($postId, '_reconcile_approved_by', $item['approved_by']);
+            update_post_meta($postId, '_reconcile_approved_at', $item['approved_at']);
+
+            $created[] = array_merge($item, [
+                'post_id' => $postId,
+                'status' => get_post_status($postId),
+                'previous_values' => null,
+                'new_values' => [
+                    'post_type' => $item['target_cpt'],
+                    'post_status' => 'draft',
+                    'post_title' => $item['canonical_title'],
+                    'post_name' => $item['slug'],
+                    '_source_2026_key' => $item['source_id'],
+                    '_reconcile_batch_id' => $batchId,
+                ],
+                'rollback' => "Delete draft post {$postId} only if batch rollback is approved.",
+            ]);
+        }
+    } catch (Throwable $error) {
+        foreach ($created as $item) {
+            if (($item['status'] ?? null) === 'draft') {
+                wp_delete_post((int) $item['post_id'], true);
+            }
+        }
+        throw $error;
+    }
+
+    $manifest = [
+        'batch_id' => $batchId,
+        'applied_at' => date(DATE_ATOM),
+        'approval_file' => $approvedFile,
+        'created_count' => count($created),
+        'updated_count' => 0,
+        'deleted_existing_count' => 0,
+        'created' => $created,
+    ];
+    $manifestPath = $projectRoot . '/.sisyphus/evidence/reconcile-apply-manifest-' . slug_key($batchId) . '.json';
+    write_json($manifestPath, $manifest);
+
+    return ['manifest' => $manifestPath, 'created' => $created];
 }
 
 $audit = file_get_contents($auditPath);
@@ -239,10 +430,34 @@ if ($makeApprovalPackage) {
     file_put_contents($projectRoot . '/.sisyphus/drafts/reconcile-source-2026-review-guide.md', $guide);
 }
 
+$applyResult = null;
+if ($applyMode || $preflightMode) {
+    if (!is_file($wpLoad)) {
+        fwrite(STDERR, "Missing WordPress bootstrap: {$wpLoad}\n");
+        exit(1);
+    }
+
+    try {
+        $applyResult = apply_approved_drafts((string) $approvedFile, (string) $batchId, $projectRoot, $applyMode);
+    } catch (Throwable $error) {
+        fwrite(STDERR, $error->getMessage() . PHP_EOL);
+        exit(3);
+    }
+}
+
 echo 'DRY_RUN_OK' . PHP_EOL;
 echo 'doctors=' . count($doctors) . PHP_EOL;
 echo 'services=' . count($services) . PHP_EOL;
 echo 'evidence=' . $evidenceDir . PHP_EOL;
 if ($makeApprovalPackage) {
     echo 'approval_package=.sisyphus/drafts/reconcile-source-2026-approvals.review.json' . PHP_EOL;
+}
+if ($applyResult !== null && $preflightMode) {
+    echo 'PREFLIGHT_OK' . PHP_EOL;
+    echo 'approved=' . count($applyResult['preflight']) . PHP_EOL;
+}
+if ($applyResult !== null && $applyMode) {
+    echo 'APPLY_OK' . PHP_EOL;
+    echo 'created=' . count($applyResult['created']) . PHP_EOL;
+    echo 'manifest=' . $applyResult['manifest'] . PHP_EOL;
 }
