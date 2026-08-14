@@ -12,7 +12,7 @@
   ] %}
   {% set home_cta_primary_url = rspku.home_cta_primary_url|default('/dokter/') %}
   {% set home_cta_primary_href = home_cta_primary_url starts with 'http' or home_cta_primary_url starts with 'tel:' or home_cta_primary_url starts with 'mailto:' ? home_cta_primary_url : site.url ~ home_cta_primary_url %}
-  {% set home_cta_secondary_url = rspku.home_cta_secondary_url|default('tel:0274512321') %}
+  {% set home_cta_secondary_url = rspku.home_cta_secondary_url|default('tel:+62274512653') %}
   {% set home_cta_secondary_href = home_cta_secondary_url starts with 'http' or home_cta_secondary_url starts with 'tel:' or home_cta_secondary_url starts with 'mailto:' ? home_cta_secondary_url : site.url ~ home_cta_secondary_url %}
 
   {# Hero Section - Green Gradient Only #}

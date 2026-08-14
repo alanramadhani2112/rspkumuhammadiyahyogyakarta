@@ -53,12 +53,20 @@
       <div class="flex items-center gap-x-5 gap-y-1">
         <a href="tel:{{ rspku.phone_igd_link }}" class="inline-flex items-center gap-2 font-medium transition hover:text-hospital-700">
           {{ icon('phone', { class: 'h-3.5 w-3.5 text-hospital-600' }) }}
-          <span class="hidden sm:inline">IGD 24 Jam:</span>
+          <span class="hidden sm:inline">Call Center 1:</span>
           <span class="font-semibold">{{ rspku.phone_igd }}</span>
+        </a>
+        <a href="tel:{{ rspku.phone_main_link }}" class="hidden items-center gap-2 font-medium transition hover:text-hospital-700 lg:inline-flex">
+          <span>Call Center 2:</span>
+          <span class="font-semibold">{{ rspku.phone_main }}</span>
+        </a>
+        <a href="tel:{{ rspku.whatsapp_link }}" class="hidden items-center gap-2 font-medium transition hover:text-hospital-700 xl:inline-flex">
+          <span>Call Center 3:</span>
+          <span class="font-semibold">{{ rspku.whatsapp }}</span>
         </a>
         <a href="{{ site.url }}/kontak/" class="hidden items-center gap-2 font-medium transition hover:text-hospital-700 md:inline-flex">
           {{ icon('map-pin', { class: 'h-3.5 w-3.5 text-hospital-600' }) }}
-          <span>{{ rspku.address_street }}, {{ rspku.address_city }}</span>
+          <span>{{ rspku.address_street }}, {{ rspku.address_district }}, {{ rspku.address_city }}, {{ rspku.address_province }}</span>
         </a>
       </div>
       <div class="flex items-center gap-3">
@@ -321,14 +329,23 @@
             {{ icon('map-pin', { class: 'h-4 w-4 shrink-0 text-hospital-600 mt-0.5' }) }}
             <div>
               <p class="font-medium text-slate-700">Alamat</p>
-              <p class="mt-0.5 leading-relaxed">{{ rspku.address_street }}, {{ rspku.address_city }}</p>
+              <p class="mt-0.5 leading-relaxed">{{ rspku.address_street }}, {{ rspku.address_district }}, {{ rspku.address_city }}, {{ rspku.address_province }}</p>
             </div>
           </li>
           <li class="flex items-start gap-3">
             {{ icon('phone', { class: 'h-4 w-4 shrink-0 text-hospital-600 mt-0.5' }) }}
             <div>
-              <p class="font-medium text-slate-700">Telepon</p>
-              <a href="tel:{{ rspku.phone_igd_link }}" class="mt-0.5 block leading-relaxed hover:text-hospital-700">{{ rspku.phone_igd }}</a>
+              <p class="font-medium text-slate-700">Pusat Panggilan</p>
+              <a href="tel:{{ rspku.phone_igd_link }}" class="mt-0.5 block leading-relaxed hover:text-hospital-700">Call Center 1: {{ rspku.phone_igd }}</a>
+              <a href="tel:{{ rspku.phone_main_link }}" class="mt-0.5 block leading-relaxed hover:text-hospital-700">Call Center 2: {{ rspku.phone_main }}</a>
+              <a href="tel:{{ rspku.whatsapp_link }}" class="mt-0.5 block leading-relaxed hover:text-hospital-700">Call Center 3: {{ rspku.whatsapp }}</a>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            {{ icon('mail', { class: 'h-4 w-4 shrink-0 text-hospital-600 mt-0.5' }) }}
+            <div>
+              <p class="font-medium text-slate-700">Email</p>
+              <a href="mailto:{{ rspku.email }}" class="mt-0.5 block leading-relaxed hover:text-hospital-700">{{ rspku.email }}</a>
             </div>
           </li>
           <li class="flex items-start gap-3">
