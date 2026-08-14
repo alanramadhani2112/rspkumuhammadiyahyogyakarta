@@ -106,7 +106,7 @@ final class RSPKU_Settings_API
 
     /**
      * @param array<string,mixed> $settings
-     * @return list<array{image_id:int,image_url:string,title:string,description:string,cta_text:string,cta_url:string}>
+     * @return list<array{image_id:int,image_url:string,image_alt:string,cta_url:string}>
      */
     private static function promoSlides(array $settings): array
     {
@@ -116,18 +116,15 @@ final class RSPKU_Settings_API
             $prefix = 'promo_slide_' . $i;
             $imageId = absint($settings[$prefix . '_image_id'] ?? 0);
             $imageUrl = (string) ($settings[$prefix . '_image_id_url'] ?? '');
-            $title = trim((string) ($settings[$prefix . '_title'] ?? ''));
 
-            if (empty($settings[$prefix . '_enabled']) || $imageId < 1 || $imageUrl === '' || $title === '') {
+            if ($imageId < 1 || $imageUrl === '') {
                 continue;
             }
 
             $slides[] = [
                 'image_id' => $imageId,
                 'image_url' => $imageUrl,
-                'title' => $title,
-                'description' => trim((string) ($settings[$prefix . '_description'] ?? '')),
-                'cta_text' => trim((string) ($settings[$prefix . '_cta_text'] ?? '')),
+                'image_alt' => trim((string) get_post_meta($imageId, '_wp_attachment_image_alt', true)) ?: get_the_title($imageId),
                 'cta_url' => trim((string) ($settings[$prefix . '_cta_url'] ?? '')),
             ];
         }

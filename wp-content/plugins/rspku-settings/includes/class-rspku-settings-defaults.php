@@ -78,23 +78,11 @@ final class RSPKU_Settings_Defaults
             'doctor_appointment_fallback_url' => '/kontak/',
 
             // Homepage promo slider
-            'promo_slide_1_enabled' => false,
             'promo_slide_1_image_id' => 0,
-            'promo_slide_1_title' => '',
-            'promo_slide_1_description' => '',
-            'promo_slide_1_cta_text' => '',
             'promo_slide_1_cta_url' => '',
-            'promo_slide_2_enabled' => false,
             'promo_slide_2_image_id' => 0,
-            'promo_slide_2_title' => '',
-            'promo_slide_2_description' => '',
-            'promo_slide_2_cta_text' => '',
             'promo_slide_2_cta_url' => '',
-            'promo_slide_3_enabled' => false,
             'promo_slide_3_image_id' => 0,
-            'promo_slide_3_title' => '',
-            'promo_slide_3_description' => '',
-            'promo_slide_3_cta_text' => '',
             'promo_slide_3_cta_url' => '',
 
             // Metrics
