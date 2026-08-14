@@ -128,7 +128,7 @@ final class RSPKU_Settings_Registry
                     ],
                     'promo_slider' => [
                         'title' => 'Promo Slider',
-                        'description' => 'Tiga slot promo tetap yang tampil setelah Quick Actions di homepage.',
+                        'description' => 'Tiga slot promo tetap yang menggantikan gambar hero di sisi kanan homepage.',
                         'fields' => [
                             ['key' => 'promo_slide_1_enabled', 'label' => 'Promo 1 - Aktif', 'type' => 'toggle'],
                             ['key' => 'promo_slide_1_image_id', 'label' => 'Promo 1 - Gambar', 'type' => 'image', 'help' => 'Rasio rekomendasi 16:6, minimal 1600px lebar.'],
