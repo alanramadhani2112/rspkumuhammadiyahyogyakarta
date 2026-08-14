@@ -647,13 +647,13 @@ final class TemplateController
             $socials[] = ['name' => 'YouTube', 'handle' => $s('social_youtube_handle') ?: 'YouTube Channel', 'url' => $s('social_youtube'), 'icon' => 'circle-play'];
         }
 
-        $phoneIgd = $s('phone_igd') ?: '0274 512321';
-        $phoneIgdLink = $s('phone_igd_link') ?: '+62274512321';
-        $phoneMain = $s('phone_main') ?: $phoneIgd;
-        $phoneMainLink = $s('phone_main_link') ?: $phoneIgdLink;
-        $whatsapp = $s('whatsapp') ?: '';
-        $whatsappLink = $s('whatsapp_link') ?: '';
-        $email = $s('email') ?: 'info@rspkujogja.co.id';
+        $phoneIgd = $s('phone_igd') ?: '0274 512653';
+        $phoneIgdLink = $s('phone_igd_link') ?: '+62274512653';
+        $phoneMain = $s('phone_main') ?: '+62 8886412345';
+        $phoneMainLink = $s('phone_main_link') ?: '+628886412345';
+        $whatsapp = $s('whatsapp') ?: '0274 566129';
+        $whatsappLink = $s('whatsapp_link') ?: '+62274566129';
+        $email = $s('email') ?: 'info@rspkujogja.com';
 
         return [
             'eyebrow' => __('Informasi Kontak', 'rspku-theme'),
@@ -663,27 +663,33 @@ final class TemplateController
             'map_link' => $s('google_maps_link') ?: 'https://maps.app.goo.gl/RSPKUJogja',
             'emergency' => [
                 'icon' => 'siren',
-                'label' => __('Darurat 24 Jam', 'rspku-theme'),
-                'title' => __('IGD Siaga 24/7', 'rspku-theme'),
-                'description' => __('Untuk kondisi darurat medis, segera hubungi IGD kami yang siap melayani Anda kapan saja.', 'rspku-theme'),
+                'label' => __('Pusat Panggilan', 'rspku-theme'),
+                'title' => __('Call Center 1', 'rspku-theme'),
+                'description' => __('Hubungi pusat panggilan RS PKU Muhammadiyah Yogyakarta untuk informasi layanan umum.', 'rspku-theme'),
                 'phone' => $phoneIgdLink,
                 'phone_display' => $phoneIgd,
-                'extension' => '118',
             ],
             'quick_contacts' => array_filter([
                 [
                     'icon' => 'phone',
-                    'title' => __('Pendaftaran & Informasi', 'rspku-theme'),
+                    'title' => __('Call Center 1', 'rspku-theme'),
+                    'value' => $phoneIgd,
+                    'url' => 'tel:' . $phoneIgdLink,
+                    'description' => __('Pusat panggilan', 'rspku-theme'),
+                ],
+                [
+                    'icon' => 'phone',
+                    'title' => __('Call Center 2', 'rspku-theme'),
                     'value' => $phoneMain,
                     'url' => 'tel:' . $phoneMainLink,
-                    'description' => __('Senin - Jumat, 08.00 - 16.00 WIB', 'rspku-theme'),
+                    'description' => __('Pusat panggilan', 'rspku-theme'),
                 ],
                 $whatsapp ? [
-                    'icon' => 'message-circle',
-                    'title' => __('WhatsApp', 'rspku-theme'),
+                    'icon' => 'phone',
+                    'title' => __('Call Center 3', 'rspku-theme'),
                     'value' => $whatsapp,
-                    'url' => 'https://wa.me/' . $whatsappLink,
-                    'description' => __('Chat untuk janji temu & informasi', 'rspku-theme'),
+                    'url' => 'tel:' . $whatsappLink,
+                    'description' => __('Pusat panggilan', 'rspku-theme'),
                 ] : null,
                 [
                     'icon' => 'mail',
@@ -694,7 +700,7 @@ final class TemplateController
                 ],
             ]),
             'address' => [
-                'street' => $s('address_street') ?: 'Jl. KH. Ahmad Dahlan No. 20',
+                'street' => $s('address_street') ?: 'Jl. KH. Ahmad Dahlan No.20',
                 'district' => $s('address_district') ?: 'Ngupasan, Kec. Gondomanan',
                 'city' => $s('address_city') ?: 'Kota Yogyakarta',
                 'province' => $s('address_province') ?: 'Daerah Istimewa Yogyakarta 55122',
