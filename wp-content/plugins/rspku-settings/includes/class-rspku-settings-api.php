@@ -56,6 +56,8 @@ final class RSPKU_Settings_API
             $settings[$urlKey] = $id > 0 ? (wp_get_attachment_image_url($id, 'rspku-hero') ?: '') : '';
         }
 
+        $settings['promo_slides'] = self::promoSlides($settings);
+
         $context['rspku'] = $settings;
 
         return $context;
@@ -72,6 +74,9 @@ final class RSPKU_Settings_API
 
         return [
             'hero_image_id',
+            'promo_slide_1_image_id',
+            'promo_slide_2_image_id',
+            'promo_slide_3_image_id',
             'home_feature_image',
             'home_cta_image',
             'image_dokter_archive',
@@ -97,6 +102,37 @@ final class RSPKU_Settings_API
         );
 
         return $settings;
+    }
+
+    /**
+     * @param array<string,mixed> $settings
+     * @return list<array{image_id:int,image_url:string,title:string,description:string,cta_text:string,cta_url:string}>
+     */
+    private static function promoSlides(array $settings): array
+    {
+        $slides = [];
+
+        for ($i = 1; $i <= 3; $i++) {
+            $prefix = 'promo_slide_' . $i;
+            $imageId = absint($settings[$prefix . '_image_id'] ?? 0);
+            $imageUrl = (string) ($settings[$prefix . '_image_id_url'] ?? '');
+            $title = trim((string) ($settings[$prefix . '_title'] ?? ''));
+
+            if (empty($settings[$prefix . '_enabled']) || $imageId < 1 || $imageUrl === '' || $title === '') {
+                continue;
+            }
+
+            $slides[] = [
+                'image_id' => $imageId,
+                'image_url' => $imageUrl,
+                'title' => $title,
+                'description' => trim((string) ($settings[$prefix . '_description'] ?? '')),
+                'cta_text' => trim((string) ($settings[$prefix . '_cta_text'] ?? '')),
+                'cta_url' => trim((string) ($settings[$prefix . '_cta_url'] ?? '')),
+            ];
+        }
+
+        return $slides;
     }
 
     /**
@@ -444,6 +480,7 @@ final class RSPKU_Settings_API
                 ['value' => (string) ($all['metric_2_value'] ?? ''), 'label' => (string) ($all['metric_2_label'] ?? '')],
                 ['value' => (string) ($all['metric_3_value'] ?? ''), 'label' => (string) ($all['metric_3_label'] ?? '')],
             ],
+            'promo_slides' => self::promoSlides(array_merge($all, $imageUrls)),
             'branding' => [
                 'primary' => (string) ($all['brand_color_primary'] ?? ''),
                 'primary_dark' => (string) ($all['brand_color_primary_dark'] ?? ''),

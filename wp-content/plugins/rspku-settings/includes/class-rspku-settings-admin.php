@@ -295,7 +295,7 @@ final class RSPKU_Settings_Admin
                     $clean[$key] = array_slice($clean[$key], 0, $maxItems);
                 }
             } elseif (self::isUrlField($key)) {
-                $clean[$key] = esc_url_raw((string) $value);
+                $clean[$key] = str_starts_with($key, 'promo_slide_') ? self::sanitizePromoUrl((string) $value) : esc_url_raw((string) $value);
             } elseif ($key === 'email') {
                 $clean[$key] = sanitize_email((string) $value);
             } elseif (str_starts_with($key, 'brand_color_')) {
@@ -304,6 +304,8 @@ final class RSPKU_Settings_Admin
                 $clean[$key] = absint($value);
             } elseif ($key === 'hero_title' || $key === 'hero_description') {
                 $clean[$key] = wp_kses_post((string) $value);
+            } elseif (str_starts_with($key, 'promo_slide_') && str_ends_with($key, '_description')) {
+                $clean[$key] = sanitize_textarea_field((string) $value);
             } else {
                 $clean[$key] = sanitize_text_field((string) $value);
             }
@@ -383,9 +385,27 @@ final class RSPKU_Settings_Admin
             'home_cta_primary_url',
             'home_cta_secondary_url',
             'doctor_appointment_fallback_url',
+            'promo_slide_1_cta_url',
+            'promo_slide_2_cta_url',
+            'promo_slide_3_cta_url',
         ];
 
         return in_array($key, $urlKeys, true);
+    }
+
+    private static function sanitizePromoUrl(string $url): string
+    {
+        $url = trim($url);
+
+        if ($url === '') {
+            return '';
+        }
+
+        if (str_starts_with($url, '/') && !str_starts_with($url, '//')) {
+            return esc_url_raw($url);
+        }
+
+        return wp_parse_url($url, PHP_URL_SCHEME) === 'https' ? esc_url_raw($url) : '';
     }
 
     /**
@@ -404,6 +424,9 @@ final class RSPKU_Settings_Admin
     {
         return [
             'hero_image_id',
+            'promo_slide_1_image_id',
+            'promo_slide_2_image_id',
+            'promo_slide_3_image_id',
             'home_feature_image',
             'home_cta_image',
             'image_dokter_archive',
