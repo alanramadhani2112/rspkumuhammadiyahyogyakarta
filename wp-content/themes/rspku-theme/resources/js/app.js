@@ -347,6 +347,65 @@ Alpine.data('accordionItem', () => ({
   },
 }));
 
+Alpine.data('promoSlider', () => ({
+  index: 0,
+  count: 0,
+  userPaused: false,
+  interacting: false,
+  reducedMotion: false,
+  timer: null,
+  setup(count) {
+    this.count = count;
+    this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.start();
+  },
+  start() {
+    this.stop();
+    if (this.count < 2 || this.reducedMotion || this.userPaused || this.interacting) {
+      return;
+    }
+    this.timer = window.setInterval(() => this.next(), 8000);
+  },
+  stop() {
+    if (this.timer) {
+      window.clearInterval(this.timer);
+      this.timer = null;
+    }
+  },
+  pause() {
+    this.interacting = true;
+    this.stop();
+  },
+  resume() {
+    this.interacting = false;
+    this.start();
+  },
+  toggleAutoplay() {
+    this.userPaused = !this.userPaused;
+    this.userPaused ? this.stop() : this.start();
+  },
+  goTo(index) {
+    this.index = (index + this.count) % this.count;
+    this.start();
+  },
+  next() {
+    this.goTo(this.index + 1);
+  },
+  prev() {
+    this.goTo(this.index - 1);
+  },
+  onKeydown(event) {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      this.prev();
+    }
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      this.next();
+    }
+  },
+}));
+
 Alpine.data('reviewsCarousel', () => ({
   dragging: false,
   startX: 0,
@@ -531,3 +590,4 @@ Alpine.data('tocHighlight', () => ({
 }));
 
 Alpine.start();
+
