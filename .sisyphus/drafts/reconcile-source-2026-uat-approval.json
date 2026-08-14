@@ -1,0 +1,38 @@
+{
+  "environment": "UAT",
+  "batch_id": "source-2026-batch1-uat-pending",
+  "source_batch_id": "source-2026-batch1-20260814",
+  "decision": "blocked",
+  "approved_by": null,
+  "approved_at": null,
+  "reason": "Content review blocked: all eight local drafts have empty content and excerpt fields.",
+  "preconditions": {
+    "content_owner_approved": false,
+    "all_drafts_have_reviewed_content": false,
+    "uat_backup_complete": false,
+    "uat_preflight_passed": false,
+    "collision_count": null
+  },
+  "scope": {
+    "create_drafts": 8,
+    "publish": 0,
+    "update_existing": 0,
+    "delete_existing": 0,
+    "allow_slug_change": false,
+    "allow_term_create": false,
+    "allow_term_assign": false,
+    "allow_schedule_write": false,
+    "allow_media_write": false
+  },
+  "records": [
+    {"source_id": "service::klinik-nyeri-terpadu::layanan-rawat-jalan-lainnya-layanan-rawat-jalan", "target_cpt": "poliklinik", "title": "Klinik Nyeri Terpadu"},
+    {"source_id": "service::klinik-tb-dots::layanan-rawat-jalan-lainnya-layanan-rawat-jalan", "target_cpt": "poliklinik", "title": "Klinik TB-DOTS"},
+    {"source_id": "service::klinik-berhenti-merokok::layanan-rawat-jalan-lainnya-layanan-rawat-jalan", "target_cpt": "poliklinik", "title": "Klinik Berhenti Merokok"},
+    {"source_id": "service::klinik-keluarga-sakinah::layanan-rawat-jalan-lainnya-layanan-rawat-jalan", "target_cpt": "poliklinik", "title": "Klinik Keluarga Sakinah"},
+    {"source_id": "service::klinik-laktasi::layanan-rawat-jalan-lainnya-layanan-rawat-jalan", "target_cpt": "poliklinik", "title": "Klinik Laktasi"},
+    {"source_id": "service::cancer-centre::centre-of-excellence", "target_cpt": "layanan", "title": "Cancer Centre"},
+    {"source_id": "service::uronephrology-centre::centre-of-excellence", "target_cpt": "layanan", "title": "Uronephrology Centre"},
+    {"source_id": "service::emergency-and-critical-care::centre-of-excellence", "target_cpt": "layanan", "title": "Emergency and Critical Care"}
+  ],
+  "approval_instruction": "Set decision to approved and fill approved_by/approved_at only after every precondition is true and the user gives explicit UAT apply approval."
+}
