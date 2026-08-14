@@ -109,13 +109,6 @@
           </a>
         </noscript>
         {% endif %}
-        {# IGD Badge #}
-        {% if rspku.header_emergency_enabled is not defined or rspku.header_emergency_enabled %}
-        <a href="tel:{{ rspku.phone_igd_link }}" class="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-700 transition hover:bg-red-100">
-          {{ icon('siren', { class: 'h-3.5 w-3.5' }) }}
-          <span>{{ rspku.header_emergency_label|default('IGD 24/7') }}</span>
-        </a>
-        {% endif %}
       </div>
     </div>
   </div>
