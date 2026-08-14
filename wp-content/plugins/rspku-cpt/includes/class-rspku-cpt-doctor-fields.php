@@ -48,8 +48,8 @@ final class RSPKU_CPT_DoctorFields
         echo '<div class="rspku-doctor-fields">';
         if ($isSyncedFromSchedule) {
             echo '<div style="margin-bottom:1rem;padding:1rem 1.125rem;border:1px solid #d7e3da;background:#f7fbf8;color:#166534;">';
-            echo '<strong>' . esc_html__('Profil dokter ini tersinkron dari tabel Jadwal Dokter.', 'rspku-theme') . '</strong>';
-            echo '<p style="margin:0.5rem 0 0;">' . esc_html__('Perubahan nama dokter, spesialisasi, dan jadwal praktik sebaiknya dilakukan dari tabel jadwal utama agar data profil tetap konsisten.', 'rspku-theme') . '</p>';
+            echo '<strong>' . esc_html__('Profil dokter ini tersinkron dari Jadwal Dokter.', 'rspku-theme') . '</strong>';
+            echo '<p style="margin:0.5rem 0 0;">' . esc_html__('Nama dokter, spesialisasi, dan jadwal praktik dikelola dari Jadwal Dokter agar data profil tetap konsisten.', 'rspku-theme') . '</p>';
             echo '</div>';
         }
         self::fieldInput('rspku_degree', __('Gelar', 'rspku-theme'), self::value((int) $post->ID, '_rspku_degree'));
