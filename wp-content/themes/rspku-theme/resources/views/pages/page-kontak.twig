@@ -20,7 +20,7 @@
       </div>
     </section>
 
-    {# Emergency Alert Banner #}
+    {# Call Center Banner #}
     {% if contact_page.emergency %}
       <section class="pb-8">
         <div class="rspku-container">
@@ -61,14 +61,14 @@
           </div>
           <div class="grid gap-4 md:grid-cols-3">
             {% for contact in contact_page.quick_contacts %}
-              <a href="{{ contact.url }}" {% if contact.url starts with 'http' %}target="_blank" rel="noopener"{% endif %} class="group rounded-md border border-slate-200 bg-white p-5 transition hover:border-hospital-300">
+              <a href="{{ contact.url }}" {% if contact.url starts with 'http' %}target="_blank" rel="noopener"{% endif %} class="group min-w-0 rounded-md border border-slate-200 bg-white p-5 transition hover:border-hospital-300">
                 <div class="flex items-start gap-4">
                   <div class="grid h-11 w-11 shrink-0 place-items-center rounded-sm bg-hospital-50 text-hospital-700 transition group-hover:bg-hospital-600 group-hover:text-white">
                     {{ icon(contact.icon, { class: 'h-5 w-5' }) }}
                   </div>
                   <div class="min-w-0 flex-1">
                     <p class="text-xs font-medium uppercase tracking-wide text-slate-500">{{ contact.title }}</p>
-                    <p class="mt-1 text-base font-semibold text-slate-950 transition group-hover:text-hospital-700">{{ contact.value }}</p>
+                    <p class="mt-1 break-words text-base font-semibold text-slate-950 transition group-hover:text-hospital-700">{{ contact.value }}</p>
                     <p class="mt-1 text-xs text-slate-500">{{ contact.description }}</p>
                   </div>
                 </div>
@@ -201,7 +201,7 @@
           </div>
           <div class="grid gap-3 sm:grid-cols-3">
             {% for social in contact_page.socials %}
-              <a href="{{ social.url }}" target="_blank" rel="noopener" class="group flex items-center gap-4 rounded-md border border-slate-200 bg-white p-5 transition hover:border-hospital-300">
+              <a href="{{ social.url }}" target="_blank" rel="noopener" class="group flex min-w-0 items-center gap-4 rounded-md border border-slate-200 bg-white p-5 transition hover:border-hospital-300">
                 <div class="grid h-10 w-10 shrink-0 place-items-center rounded-sm bg-slate-50 text-slate-600 transition group-hover:bg-hospital-50 group-hover:text-hospital-700">
                   {{ icon(social.icon, { class: 'h-5 w-5' }) }}
                 </div>
