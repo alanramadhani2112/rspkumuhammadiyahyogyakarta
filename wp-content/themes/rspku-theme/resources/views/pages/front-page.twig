@@ -65,7 +65,9 @@
         {# Hero Visual - Clean #}
         <div>
           <div class="overflow-hidden rounded-2xl bg-slate-100">
-            {% if rspku.hero_image_id or rspku.hero_image_url %}
+            {% if rspku.promo_slides|default([]) %}
+              {% include 'partials/promo-slider.twig' with { slides: rspku.promo_slides, site: site } only %}
+            {% elseif rspku.hero_image_id or rspku.hero_image_url %}
               {% include 'partials/responsive-image.twig' with {
                 id: rspku.hero_image_id,
                 url: rspku.hero_image_url,
@@ -107,8 +109,6 @@
       </div>
     </div>
   </section>
-
-  {% include 'partials/promo-slider.twig' with { slides: rspku.promo_slides|default([]), site: site } only %}
 
   {# Services Section - Reusable Cards with Links #}
   {% if service_cards %}
