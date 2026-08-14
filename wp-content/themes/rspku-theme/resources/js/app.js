@@ -43,6 +43,71 @@ Alpine.data('siteNavigation', () => ({
   },
 }));
 
+Alpine.data('searchableSelect', () => ({
+  open: false,
+  query: '',
+  value: '',
+  selectedLabel: '',
+  highlightedIndex: 0,
+  options: [],
+  init() {
+    this.select = this.$el.querySelector('select');
+    this.refresh();
+    this.select?.addEventListener('change', () => this.refresh());
+    this.select?.form?.addEventListener('reset', () => window.setTimeout(() => this.refresh()));
+  },
+  get filteredOptions() {
+    const query = this.query.trim().toLowerCase();
+    return query ? this.options.filter((option) => option.label.toLowerCase().includes(query)) : this.options;
+  },
+  refresh() {
+    if (!this.select) {
+      return;
+    }
+
+    this.options = Array.from(this.select.options).map((option) => ({
+      value: option.value,
+      label: option.textContent.trim(),
+    }));
+    this.value = this.select.value;
+    this.selectedLabel = this.options.find((option) => option.value === this.value)?.label || this.options[0]?.label || '';
+  },
+  toggle() {
+    this.open ? this.close() : this.openList();
+  },
+  openList() {
+    this.open = true;
+    this.query = '';
+    this.highlightedIndex = Math.max(0, this.options.findIndex((option) => option.value === this.value));
+    this.$nextTick(() => this.$refs.search?.focus());
+  },
+  close() {
+    this.open = false;
+    this.query = '';
+  },
+  next() {
+    this.highlightedIndex = Math.min(this.highlightedIndex + 1, this.filteredOptions.length - 1);
+  },
+  previous() {
+    this.highlightedIndex = Math.max(this.highlightedIndex - 1, 0);
+  },
+  chooseHighlighted() {
+    const option = this.filteredOptions[this.highlightedIndex] || this.filteredOptions[0];
+    if (option) {
+      this.choose(option);
+    }
+  },
+  choose(option) {
+    if (!this.select) {
+      return;
+    }
+
+    this.select.value = option.value;
+    this.select.dispatchEvent(new Event('change', { bubbles: true }));
+    this.close();
+  },
+}));
+
 Alpine.data('scheduleTable', () => ({
   query: '',
   specialization: '',
@@ -145,8 +210,10 @@ Alpine.data('scheduleTable', () => ({
   reset() {
     this.query = '';
     this.specialization = '';
-    if (this.$refs.specialization) {
-      this.$refs.specialization.value = '';
+    const specialization = this.$refs.specialization || this.$el.querySelector('#schedule-specialization');
+    if (specialization) {
+      specialization.value = '';
+      specialization.dispatchEvent(new Event('change', { bubbles: true }));
     }
     this.applyFilters(true);
   },

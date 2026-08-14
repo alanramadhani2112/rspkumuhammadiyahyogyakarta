@@ -28,17 +28,35 @@
       class="rspku-input"
     >
 
-    <label class="sr-only" for="{{ id_prefix|default('doctor-search') }}-specialization">Spesialisasi</label>
-    <select
-      id="{{ id_prefix|default('doctor-search') }}-specialization"
-      name="specialization"
-      class="rspku-select"
-    >
-      <option value="">Semua spesialisasi</option>
-      {% for specialization in filter_options.specializations|default([]) %}
-        <option value="{{ specialization.slug }}" {{ filters.specialization|default('') == specialization.slug ? 'selected' : '' }}>{{ specialization.name }}</option>
-      {% endfor %}
-    </select>
+    <label class="sr-only" id="{{ id_prefix|default('doctor-search') }}-specialization-label">Spesialisasi</label>
+    <div class="rspku-searchable-select" x-data="searchableSelect">
+      <select
+        id="{{ id_prefix|default('doctor-search') }}-specialization"
+        name="specialization"
+        class="rspku-select rspku-searchable-select-native"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <option value="">Semua spesialisasi</option>
+        {% for specialization in filter_options.specializations|default([]) %}
+          <option value="{{ specialization.slug }}" {{ filters.specialization|default('') == specialization.slug ? 'selected' : '' }}>{{ specialization.name }}</option>
+        {% endfor %}
+      </select>
+      <button type="button" class="rspku-searchable-select-trigger rspku-select" @click="toggle" @keydown.escape.prevent="close" :aria-expanded="open.toString()" aria-haspopup="listbox" aria-labelledby="{{ id_prefix|default('doctor-search') }}-specialization-label">
+        <span x-text="selectedLabel"></span>
+      </button>
+      <div class="rspku-searchable-select-panel" x-show="open" x-cloak @click.outside="close">
+        <input type="search" class="rspku-searchable-select-search" x-model="query" x-ref="search" @keydown.escape.prevent="close" @keydown.arrow-down.prevent="next" @keydown.arrow-up.prevent="previous" @keydown.enter.prevent="chooseHighlighted" placeholder="Cari spesialisasi">
+        <ul class="rspku-searchable-select-list" role="listbox">
+          <template x-for="(option, index) in filteredOptions" :key="option.value">
+            <li>
+              <button type="button" class="rspku-searchable-select-option" :class="{ 'is-active': index === highlightedIndex, 'is-selected': option.value === value }" role="option" :aria-selected="(option.value === value).toString()" @mouseenter="highlightedIndex = index" @click="choose(option)" x-text="option.label"></button>
+            </li>
+          </template>
+          <li class="rspku-searchable-select-empty" x-show="filteredOptions.length === 0">Spesialisasi tidak ditemukan</li>
+        </ul>
+      </div>
+    </div>
 
     <button type="submit" class="rspku-button rspku-button-primary min-w-[11rem]">{{ icon('search', { class: 'h-4 w-4' }) }}<span>{{ button_label }}</span></button>
   </form>

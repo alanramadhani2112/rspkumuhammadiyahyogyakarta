@@ -14,7 +14,7 @@
         <div class="space-y-6">
           <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">Jadwal layanan</span>
           <h1 class="text-3xl font-bold leading-tight text-slate-950 sm:text-4xl">{{ post.title }}</h1>
-          <p class="max-w-2xl text-base leading-relaxed text-slate-600">Jadwal praktik dokter diambil dari data jadwal resmi internal. Saat admin memperbarui modul jadwal, daftar dokter, spesialisasi, dan detail praktik akan ikut tersinkron.</p>
+          <p class="max-w-2xl text-base leading-relaxed text-slate-600">Cek jadwal praktik dokter RS PKU Muhammadiyah Yogyakarta, lalu pilih waktu kunjungan yang paling sesuai untuk Anda.</p>
         </div>
 
         <div class="grid gap-4 md:grid-cols-2">
@@ -23,14 +23,14 @@
             label: 'Dokter terjadwal',
             value: schedule_page.summary.doctor_count|default(0),
             value_bind: 'visibleRows',
-            description: 'Jumlah dokter yang tampil setelah pencarian dan filter spesialisasi diterapkan.'
+            description: 'Dokter yang dapat Anda temukan sesuai pencarian dan pilihan spesialisasi.'
           } only %}
 
           {% include 'components/stat-card.twig' with {
             icon: 'filter',
             label: 'Kategori spesialisasi',
             value: schedule_page.summary.specialization_count|default(0),
-            description: 'Semua spesialisasi mengikuti data dokter dan taxonomy resmi.'
+            description: 'Pilih spesialisasi untuk melihat dokter yang sesuai kebutuhan Anda.'
           } only %}
         </div>
       </div>
@@ -40,21 +40,37 @@
       <div class="grid gap-4 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.8fr)_auto] lg:items-end">
         <div class="space-y-2">
           <label for="schedule-search" class="block text-sm font-medium text-slate-600">Cari dokter atau spesialisasi</label>
-          <input id="schedule-search" x-model.debounce.250ms="query" @input="filterRows" type="search" placeholder="Contoh: dr. H. Zamroni, Penyakit Saraf" class="rspku-schedule-input">
+          <input id="schedule-search" x-model="query" @input.debounce.250ms="query = $event.target.value; filterRows()" @keydown.enter.prevent="query = $event.target.value; filterRows()" type="search" placeholder="Contoh: dr. H. Zamroni, Penyakit Saraf" class="rspku-schedule-input">
         </div>
 
         <div class="space-y-2">
-          <label for="schedule-specialization" class="block text-sm font-medium text-slate-600">Filter spesialisasi</label>
-          <select id="schedule-specialization" x-model="specialization" x-ref="specialization" @change="filterRows" class="rspku-schedule-select">
-            <option value="">Semua spesialisasi</option>
-            {% for group in schedule_page.specialization_groups|default([]) %}
-              <optgroup label="{{ group.title }}">
-                {% for item in group.items %}
-                  <option value="{{ item.slug }}">{{ item.name }}</option>
-                {% endfor %}
-              </optgroup>
-            {% endfor %}
-          </select>
+          <label id="schedule-specialization-label" class="block text-sm font-medium text-slate-600">Filter spesialisasi</label>
+          <div class="rspku-searchable-select" x-data="searchableSelect">
+            <select id="schedule-specialization" x-model="specialization" x-ref="specialization" @change="filterRows" class="rspku-schedule-select rspku-searchable-select-native" tabindex="-1" aria-hidden="true">
+              <option value="">Semua spesialisasi</option>
+              {% for group in schedule_page.specialization_groups|default([]) %}
+                <optgroup label="{{ group.title }}">
+                  {% for item in group.items %}
+                    <option value="{{ item.slug }}">{{ item.name }}</option>
+                  {% endfor %}
+                </optgroup>
+              {% endfor %}
+            </select>
+            <button type="button" class="rspku-searchable-select-trigger rspku-schedule-select" @click="toggle" @keydown.escape.prevent="close" :aria-expanded="open.toString()" aria-haspopup="listbox" aria-labelledby="schedule-specialization-label">
+              <span x-text="selectedLabel"></span>
+            </button>
+            <div class="rspku-searchable-select-panel" x-show="open" x-cloak @click.outside="close">
+              <input type="search" class="rspku-searchable-select-search" x-model="query" x-ref="search" @keydown.escape.prevent="close" @keydown.arrow-down.prevent="next" @keydown.arrow-up.prevent="previous" @keydown.enter.prevent="chooseHighlighted" placeholder="Cari spesialisasi">
+              <ul class="rspku-searchable-select-list" role="listbox">
+                <template x-for="(option, index) in filteredOptions" :key="option.value">
+                  <li>
+                    <button type="button" class="rspku-searchable-select-option" :class="{ 'is-active': index === highlightedIndex, 'is-selected': option.value === value }" role="option" :aria-selected="(option.value === value).toString()" @mouseenter="highlightedIndex = index" @click="choose(option)" x-text="option.label"></button>
+                  </li>
+                </template>
+                <li class="rspku-searchable-select-empty" x-show="filteredOptions.length === 0">Spesialisasi tidak ditemukan</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <div class="flex gap-3 lg:justify-end">
@@ -67,7 +83,7 @@
       </div>
 
       <div class="flex flex-col gap-3 text-[15px] text-slate-600 lg:flex-row lg:items-center lg:justify-between">
-        <p>Data jadwal bersumber dari modul jadwal dokter internal dan hanya menggunakan satu lokasi rumah sakit.</p>
+        <p>Jadwal dapat berubah sewaktu-waktu. Silakan cek kembali sebelum berkunjung.</p>
         <div class="inline-flex min-h-11 items-center gap-2 rounded-full border border-slate-200 bg-[#f7faf7] px-4 text-sm">
           {{ icon('calendar-days', { class: 'h-4 w-4 text-hospital-600' }) }}
           <span>Geser tabel ke samping pada layar kecil</span>
@@ -81,7 +97,6 @@
               <thead>
                 <tr>
                   <th class="column-doctor">Dokter</th>
-                  <th class="column-specialization">Spesialisasi</th>
                   {% for day in schedule_page.day_headers %}
                     <th>{{ day.label }}</th>
                   {% endfor %}
@@ -96,14 +111,11 @@
                     data-schedule-category="{{ row.specialization_category_slug|e('html_attr') }}"
                   >
                     <th scope="row" class="column-doctor">
-                      <div class="space-y-0.5">
+                      <div class="space-y-2">
                         <p class="text-sm font-semibold leading-snug text-slate-950">{{ row.name }}</p>
-                        <p class="text-xs text-slate-500">{{ row.specialization_category }}</p>
+                        <span class="rspku-schedule-badge">{{ row.specialization }}</span>
                       </div>
                     </th>
-                    <td class="column-specialization">
-                      <span class="rspku-schedule-badge">{{ row.specialization }}</span>
-                    </td>
                     {% for day in schedule_page.day_headers %}
                       {% set dayCell = row.days[day.key] %}
                       <td>
