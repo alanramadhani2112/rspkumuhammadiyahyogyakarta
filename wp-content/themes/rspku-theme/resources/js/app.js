@@ -590,4 +590,3 @@ Alpine.data('tocHighlight', () => ({
 }));
 
 Alpine.start();
-
