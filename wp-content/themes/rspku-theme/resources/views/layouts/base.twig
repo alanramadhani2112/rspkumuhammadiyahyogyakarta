@@ -236,7 +236,7 @@
             <span class="grid h-12 w-12 place-items-center rounded-xl bg-hospital-700 text-lg font-black text-white">PKU</span>
           {% endif %}
         </a>
-        <p class="max-w-sm text-sm leading-relaxed text-slate-600">{{ rspku.footer_tagline|default('Rumah sakit islami dan unggul untuk layanan kesehatan, informasi medis, dan edukasi publik yang mudah diakses.') }}</p>
+        <p class="max-w-sm text-sm leading-relaxed text-slate-600">{{ rspku.footer_tagline|default('Mendampingi kesehatan Anda dan keluarga dengan pelayanan profesional yang berlandaskan nilai Islami.') }}</p>
 
         {# Emergency Contact - Prominent #}
         <a href="tel:{{ rspku.phone_igd_link }}" class="inline-flex items-center gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3 transition hover:bg-red-100">
@@ -348,11 +348,11 @@
     <div class="rspku-container py-5">
       <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
         <p class="text-xs text-slate-500">{{ rspku.footer_copyright|default('&copy; ' ~ "now"|date("Y") ~ ' RS PKU Muhammadiyah Yogyakarta. Hak Cipta Dilindungi.') }}</p>
-        <div class="flex items-center gap-2 text-xs text-slate-500">
-          <span>Dikembangkan oleh</span>
-          <a href="https://labs.muhammadiyah.or.id" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-semibold text-slate-700 transition hover:text-hospital-700" title="Muhammadiyah Software Labs (LabMu) — Unit pengembangan teknologi internal Majelis Pustaka dan Informasi PP Muhammadiyah">
+        <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs text-slate-500 sm:justify-end">
+          <span class="shrink-0">Dikembangkan oleh</span>
+          <a href="https://labs.muhammadiyah.or.id" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center font-semibold text-slate-700 transition hover:text-hospital-700" title="Muhammadiyah Software Labs (LabMu) — Unit pengembangan teknologi internal Majelis Pustaka dan Informasi PP Muhammadiyah">
             {% if labmu_logo.url is defined and labmu_logo.url %}
-              <img src="{{ labmu_logo.url }}" alt="LabMu — Muhammadiyah Software Labs" class="h-5 w-auto object-contain">
+              <img src="{{ labmu_logo.url }}" alt="LabMu — Muhammadiyah Software Labs" class="h-4 w-auto max-w-28 object-contain sm:h-5 sm:max-w-32">
             {% else %}
               <span>LabMu</span>
             {% endif %}

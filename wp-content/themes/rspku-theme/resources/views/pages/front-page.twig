@@ -5,10 +5,10 @@
   {% set service_cards = home.services %}
   {% set first_feature = home.services|first ?: home.polyclinics|first %}
   {% set home_actions = [
-    { title: 'Cari Dokter', text: 'Temukan dokter dari jadwal resmi.', url: site.url ~ '/dokter/', icon: 'search' },
-    { title: 'Poliklinik', text: 'Telusuri klinik dan layanan rawat jalan.', url: site.url ~ '/poliklinik/', icon: 'stethoscope' },
-    { title: 'Rawat Inap', text: 'Cek fasilitas kamar dan perawatan.', url: site.url ~ '/rawat-inap/', icon: 'building-2' },
-    { title: 'Jadwal Dokter', text: 'Lihat praktik terbaru dan filter spesialisasi.', url: site.url ~ '/jadwal-dokter/', icon: 'calendar-days' }
+    { title: 'Cari Dokter', text: 'Temukan dokter sesuai kebutuhan Anda.', url: site.url ~ '/dokter/', icon: 'search' },
+    { title: 'Layanan', text: 'Temukan layanan dan poliklinik yang tersedia.', url: site.url ~ '/poliklinik/', icon: 'stethoscope' },
+    { title: 'Rawat Inap', text: 'Lihat pilihan kamar dan fasilitas perawatan.', url: site.url ~ '/rawat-inap/', icon: 'building-2' },
+    { title: 'Jadwal Dokter', text: 'Cek jadwal praktik dokter terbaru.', url: site.url ~ '/jadwal-dokter/', icon: 'calendar-days' }
   ] %}
   {% set home_cta_primary_url = rspku.home_cta_primary_url|default('/dokter/') %}
   {% set home_cta_primary_href = home_cta_primary_url starts with 'http' or home_cta_primary_url starts with 'tel:' or home_cta_primary_url starts with 'mailto:' ? home_cta_primary_url : site.url ~ home_cta_primary_url %}
@@ -130,8 +130,8 @@
       <div class="rspku-container space-y-12">
         <div class="text-center">
           <span class="inline-block rounded-full bg-hospital-50 px-4 py-1 text-sm font-medium text-hospital-700">Layanan unggulan</span>
-          <h2 class="mx-auto mt-4 max-w-3xl text-3xl font-bold text-slate-950 sm:text-4xl">Layanan Kesehatan Andalan Kami</h2>
-          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">Berbagai layanan unggulan kami dirancang khusus untuk memberikan solusi kesehatan yang tepat, aman, nyaman, dan terjangkau.</p>
+          <h2 class="mx-auto mt-4 max-w-3xl text-3xl font-bold text-slate-950 sm:text-4xl">Keunggulan Layanan untuk Kebutuhan yang Kompleks</h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">Didukung tim multidisiplin, tenaga medis berpengalaman, dan fasilitas yang terintegrasi untuk memberikan pelayanan yang komprehensif bagi pasien dan keluarga.</p>
         </div>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {% for item in service_cards|slice(0, 6) %}
@@ -150,7 +150,7 @@
           <div class="space-y-6">
             <span class="inline-block rounded-full bg-hospital-50 px-4 py-1 text-sm font-medium text-hospital-700">Layanan medis</span>
             <h2 class="text-3xl font-bold text-slate-950 sm:text-4xl">Pelayanan Profesional Berlandaskan Nilai Islami</h2>
-            <p class="text-lg text-slate-600">Kami berkomitmen memberikan pelayanan kesehatan terbaik dengan alur informasi yang rapi, tampilan yang bersih, dan pengalaman pasien yang lebih mudah dipahami.</p>
+            <p class="text-lg text-slate-600">Didukung dokter spesialis dan tim medis profesional, respons yang cepat dan terintegrasi, serta fasilitas modern yang terhubung dengan ICU dan ruang operasi.</p>
             
             <div class="space-y-4">
               <div class="flex items-start gap-3">
@@ -211,7 +211,7 @@
         <div class="text-center">
           <span class="inline-block rounded-full bg-hospital-50 px-4 py-1 text-sm font-medium text-hospital-700">Dokter pilihan</span>
           <h2 class="mx-auto mt-4 max-w-3xl text-3xl font-bold text-slate-950 sm:text-4xl">Dokter Berpengalaman dan Terpercaya</h2>
-          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">Temukan dokter spesialis sesuai kebutuhan Anda dengan jadwal praktik yang jelas dan mudah diakses.</p>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">Cari dokter berdasarkan spesialisasi dan lihat jadwal praktik terbaru untuk membuat janji dengan lebih mudah.</p>
         </div>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {% for doctor in home.doctors|slice(0, 6) %}
@@ -318,9 +318,9 @@
       <div class="overflow-hidden rounded-2xl bg-gradient-to-br from-hospital-600 to-hospital-700 p-12 lg:p-16">
         <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
           <div class="space-y-6 text-white">
-            <span class="inline-block rounded-full bg-white/20 px-4 py-1 text-sm font-medium">Mudah dan cepat</span>
-            <h2 class="text-3xl font-bold sm:text-4xl">Jaga Kesehatan Anda Bersama Kami</h2>
-            <p class="max-w-2xl text-lg text-white/90">Kesehatan Anda prioritas kami. Buat janji dengan dokter spesialis pilihan Anda sekarang juga.</p>
+            <span class="inline-block rounded-full bg-white/20 px-4 py-1 text-sm font-medium">Kami siap membantu Anda</span>
+            <h2 class="text-3xl font-bold sm:text-4xl">Mulai Perjalanan Kesehatan Anda Bersama Kami</h2>
+            <p class="max-w-2xl text-lg text-white/90">Temukan dokter, layanan, dan jadwal yang sesuai dengan kebutuhan Anda.</p>
             
             <div class="flex flex-wrap gap-3">
               {% include 'components/button.twig' with {
