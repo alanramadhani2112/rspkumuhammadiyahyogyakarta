@@ -1,0 +1,175 @@
+{
+    "verified_at": "2026-08-14T16:51:16+00:00",
+    "batch_id": "source-2026-batch1-20260814",
+    "created_count": 8,
+    "updated_count": 0,
+    "deleted_existing_count": 0,
+    "counts_after_apply": {
+        "dokter": {
+            "publish": 100,
+            "draft": 0
+        },
+        "layanan": {
+            "publish": 15,
+            "draft": 3
+        },
+        "poliklinik": {
+            "publish": 37,
+            "draft": 5
+        },
+        "rawat-inap": {
+            "publish": 1,
+            "draft": 0
+        }
+    },
+    "records": [
+        {
+            "post_id": 20749,
+            "post_type": "poliklinik",
+            "status": "draft",
+            "title": "Klinik Nyeri Terpadu",
+            "slug": "klinik-nyeri-terpadu",
+            "audit_meta": {
+                "_source_2026_key": "service::klinik-nyeri-terpadu::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+                "_source_2026_hash": "7f89cb2091c04d4c34dc0e305d792cf4313b97a671a867519c5529dc0ddf61af",
+                "_reconcile_batch_id": "source-2026-batch1-20260814",
+                "_reconcile_classification": "missing",
+                "_reconcile_approved_by": "User approval: approve batch 1",
+                "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+            },
+            "public_permalink_status": 404
+        },
+        {
+            "post_id": 20750,
+            "post_type": "poliklinik",
+            "status": "draft",
+            "title": "Klinik TB-DOTS",
+            "slug": "klinik-tb-dots",
+            "audit_meta": {
+                "_source_2026_key": "service::klinik-tb-dots::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+                "_source_2026_hash": "b4547e9bd8d0e1fcbcfc78aede8a18a3eace69f59a8ad0c0e9f757d9a698d3f5",
+                "_reconcile_batch_id": "source-2026-batch1-20260814",
+                "_reconcile_classification": "missing",
+                "_reconcile_approved_by": "User approval: approve batch 1",
+                "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+            },
+            "public_permalink_status": 404
+        },
+        {
+            "post_id": 20751,
+            "post_type": "poliklinik",
+            "status": "draft",
+            "title": "Klinik Berhenti Merokok",
+            "slug": "klinik-berhenti-merokok",
+            "audit_meta": {
+                "_source_2026_key": "service::klinik-berhenti-merokok::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+                "_source_2026_hash": "bef80237662dc2c25cc60efd16a7c3f00cddb38106bf8f5cf7eae603f3b11b3f",
+                "_reconcile_batch_id": "source-2026-batch1-20260814",
+                "_reconcile_classification": "missing",
+                "_reconcile_approved_by": "User approval: approve batch 1",
+                "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+            },
+            "public_permalink_status": 404
+        },
+        {
+            "post_id": 20752,
+            "post_type": "poliklinik",
+            "status": "draft",
+            "title": "Klinik Keluarga Sakinah",
+            "slug": "klinik-keluarga-sakinah",
+            "audit_meta": {
+                "_source_2026_key": "service::klinik-keluarga-sakinah::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+                "_source_2026_hash": "51db5bca7aaa1fcf3fdef1a0f2cafa35b7632651a7ac924039785dcf6235bc65",
+                "_reconcile_batch_id": "source-2026-batch1-20260814",
+                "_reconcile_classification": "missing",
+                "_reconcile_approved_by": "User approval: approve batch 1",
+                "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+            },
+            "public_permalink_status": 404
+        },
+        {
+            "post_id": 20753,
+            "post_type": "poliklinik",
+            "status": "draft",
+            "title": "Klinik Laktasi",
+            "slug": "klinik-laktasi",
+            "audit_meta": {
+                "_source_2026_key": "service::klinik-laktasi::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+                "_source_2026_hash": "d09f84cefa0b6ffbcd860c191980ec62b2d15c17574c42d346f4fcb928e42ca4",
+                "_reconcile_batch_id": "source-2026-batch1-20260814",
+                "_reconcile_classification": "missing",
+                "_reconcile_approved_by": "User approval: approve batch 1",
+                "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+            },
+            "public_permalink_status": 404
+        },
+        {
+            "post_id": 20754,
+            "post_type": "layanan",
+            "status": "draft",
+            "title": "Cancer Centre",
+            "slug": "cancer-centre",
+            "audit_meta": {
+                "_source_2026_key": "service::cancer-centre::centre-of-excellence",
+                "_source_2026_hash": "73f3f0b9ae39ba9ebbd54d5270f146d72f8189e592a107f4b321d8e8eb61c919",
+                "_reconcile_batch_id": "source-2026-batch1-20260814",
+                "_reconcile_classification": "missing",
+                "_reconcile_approved_by": "User approval: approve batch 1",
+                "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+            },
+            "public_permalink_status": 404
+        },
+        {
+            "post_id": 20755,
+            "post_type": "layanan",
+            "status": "draft",
+            "title": "Uronephrology Centre",
+            "slug": "uronephrology-centre",
+            "audit_meta": {
+                "_source_2026_key": "service::uronephrology-centre::centre-of-excellence",
+                "_source_2026_hash": "a800685b2b571973ad76c19be1a71ba2a3fb52a7a915d2607e00868e87b2b345",
+                "_reconcile_batch_id": "source-2026-batch1-20260814",
+                "_reconcile_classification": "missing",
+                "_reconcile_approved_by": "User approval: approve batch 1",
+                "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+            },
+            "public_permalink_status": 404
+        },
+        {
+            "post_id": 20756,
+            "post_type": "layanan",
+            "status": "draft",
+            "title": "Emergency and Critical Care",
+            "slug": "emergency-and-critical-care",
+            "audit_meta": {
+                "_source_2026_key": "service::emergency-and-critical-care::centre-of-excellence",
+                "_source_2026_hash": "76384266aef51dae93148da8abf7e07122094ba4e809796667b38a33820d4db4",
+                "_reconcile_batch_id": "source-2026-batch1-20260814",
+                "_reconcile_classification": "missing",
+                "_reconcile_approved_by": "User approval: approve batch 1",
+                "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+            },
+            "public_permalink_status": 404
+        }
+    ],
+    "public_checks": {
+        "archives_http_status": 200,
+        "draft_links_in_archives": 0,
+        "published_search_results_for_sample_titles": 0,
+        "draft_permalink_http_status": 404
+    },
+    "rollback": {
+        "requires_explicit_approval": true,
+        "draft_post_ids": [
+            20749,
+            20750,
+            20751,
+            20752,
+            20753,
+            20754,
+            20755,
+            20756
+        ],
+        "database_backup": ".sisyphus/backups/source-2026-pre-batch1-20260814-2315.sql"
+    }
+}
