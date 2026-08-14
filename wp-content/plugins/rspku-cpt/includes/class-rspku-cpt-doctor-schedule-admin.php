@@ -347,7 +347,17 @@ final class RSPKU_CPT_DoctorScheduleAdmin
      */
     private static function termIds(array $rows): array
     {
-        return array_values(array_unique(array_filter(array_map(static fn (array $row): int => absint($row['specialization_term_id'] ?? 0), $rows))));
+        $termIds = [];
+        foreach ($rows as $row) {
+            $termId = absint($row['specialization_term_id'] ?? 0);
+            if ($termId <= 0 || !term_exists($termId, 'spesialisasi-dokter')) {
+                continue;
+            }
+
+            $termIds[] = $termId;
+        }
+
+        return array_values(array_unique($termIds));
     }
 
     /**
