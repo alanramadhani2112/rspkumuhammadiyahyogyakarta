@@ -1,0 +1,242 @@
+{
+    "batch_id": "source-2026-batch1-20260814",
+    "applied_at": "2026-08-14T16:28:03+00:00",
+    "approval_file": ".sisyphus/drafts/reconcile-source-2026-approvals.review.json",
+    "created_count": 8,
+    "updated_count": 0,
+    "deleted_existing_count": 0,
+    "created": [
+        {
+            "source_id": "service::klinik-nyeri-terpadu::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "source_name": "Klinik Nyeri Terpadu",
+            "canonical_title": "Klinik Nyeri Terpadu",
+            "slug": "klinik-nyeri-terpadu",
+            "target_cpt": "poliklinik",
+            "classification": "missing",
+            "approved_by": "User approval: approve batch 1",
+            "approved_at": "2026-08-14T23:15:45+07:00",
+            "reason": "Approved by user for batch 1 as draft-only poliklinik. No publish, slug change, taxonomy mutation, schedule, or media changes.",
+            "post_id": 20749,
+            "status": "draft",
+            "rollback": "Delete draft post 20749 only if batch rollback is approved.",
+            "previous_values": null,
+            "new_values": {
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Nyeri Terpadu",
+                "post_name": "klinik-nyeri-terpadu",
+                "audit_meta": {
+                    "_source_2026_key": "service::klinik-nyeri-terpadu::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+                    "_source_2026_hash": "7f89cb2091c04d4c34dc0e305d792cf4313b97a671a867519c5529dc0ddf61af",
+                    "_reconcile_batch_id": "source-2026-batch1-20260814",
+                    "_reconcile_classification": "missing",
+                    "_reconcile_approved_by": "User approval: approve batch 1",
+                    "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+                }
+            }
+        },
+        {
+            "source_id": "service::klinik-tb-dots::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "source_name": "Klinik TB-DOTS",
+            "canonical_title": "Klinik TB-DOTS",
+            "slug": "klinik-tb-dots",
+            "target_cpt": "poliklinik",
+            "classification": "missing",
+            "approved_by": "User approval: approve batch 1",
+            "approved_at": "2026-08-14T23:15:45+07:00",
+            "reason": "Approved by user for batch 1 as draft-only poliklinik. No publish, slug change, taxonomy mutation, schedule, or media changes.",
+            "post_id": 20750,
+            "status": "draft",
+            "rollback": "Delete draft post 20750 only if batch rollback is approved.",
+            "previous_values": null,
+            "new_values": {
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik TB-DOTS",
+                "post_name": "klinik-tb-dots",
+                "audit_meta": {
+                    "_source_2026_key": "service::klinik-tb-dots::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+                    "_source_2026_hash": "b4547e9bd8d0e1fcbcfc78aede8a18a3eace69f59a8ad0c0e9f757d9a698d3f5",
+                    "_reconcile_batch_id": "source-2026-batch1-20260814",
+                    "_reconcile_classification": "missing",
+                    "_reconcile_approved_by": "User approval: approve batch 1",
+                    "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+                }
+            }
+        },
+        {
+            "source_id": "service::klinik-berhenti-merokok::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "source_name": "Klinik Berhenti Merokok",
+            "canonical_title": "Klinik Berhenti Merokok",
+            "slug": "klinik-berhenti-merokok",
+            "target_cpt": "poliklinik",
+            "classification": "missing",
+            "approved_by": "User approval: approve batch 1",
+            "approved_at": "2026-08-14T23:15:45+07:00",
+            "reason": "Approved by user for batch 1 as draft-only poliklinik. No publish, slug change, taxonomy mutation, schedule, or media changes.",
+            "post_id": 20751,
+            "status": "draft",
+            "rollback": "Delete draft post 20751 only if batch rollback is approved.",
+            "previous_values": null,
+            "new_values": {
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Berhenti Merokok",
+                "post_name": "klinik-berhenti-merokok",
+                "audit_meta": {
+                    "_source_2026_key": "service::klinik-berhenti-merokok::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+                    "_source_2026_hash": "bef80237662dc2c25cc60efd16a7c3f00cddb38106bf8f5cf7eae603f3b11b3f",
+                    "_reconcile_batch_id": "source-2026-batch1-20260814",
+                    "_reconcile_classification": "missing",
+                    "_reconcile_approved_by": "User approval: approve batch 1",
+                    "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+                }
+            }
+        },
+        {
+            "source_id": "service::klinik-keluarga-sakinah::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "source_name": "Klinik Keluarga Sakinah",
+            "canonical_title": "Klinik Keluarga Sakinah",
+            "slug": "klinik-keluarga-sakinah",
+            "target_cpt": "poliklinik",
+            "classification": "missing",
+            "approved_by": "User approval: approve batch 1",
+            "approved_at": "2026-08-14T23:15:45+07:00",
+            "reason": "Approved by user for batch 1 as draft-only poliklinik. No publish, slug change, taxonomy mutation, schedule, or media changes.",
+            "post_id": 20752,
+            "status": "draft",
+            "rollback": "Delete draft post 20752 only if batch rollback is approved.",
+            "previous_values": null,
+            "new_values": {
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Keluarga Sakinah",
+                "post_name": "klinik-keluarga-sakinah",
+                "audit_meta": {
+                    "_source_2026_key": "service::klinik-keluarga-sakinah::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+                    "_source_2026_hash": "51db5bca7aaa1fcf3fdef1a0f2cafa35b7632651a7ac924039785dcf6235bc65",
+                    "_reconcile_batch_id": "source-2026-batch1-20260814",
+                    "_reconcile_classification": "missing",
+                    "_reconcile_approved_by": "User approval: approve batch 1",
+                    "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+                }
+            }
+        },
+        {
+            "source_id": "service::klinik-laktasi::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "source_name": "Klinik Laktasi",
+            "canonical_title": "Klinik Laktasi",
+            "slug": "klinik-laktasi",
+            "target_cpt": "poliklinik",
+            "classification": "missing",
+            "approved_by": "User approval: approve batch 1",
+            "approved_at": "2026-08-14T23:15:45+07:00",
+            "reason": "Approved by user for batch 1 as draft-only poliklinik. No publish, slug change, taxonomy mutation, schedule, or media changes.",
+            "post_id": 20753,
+            "status": "draft",
+            "rollback": "Delete draft post 20753 only if batch rollback is approved.",
+            "previous_values": null,
+            "new_values": {
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Laktasi",
+                "post_name": "klinik-laktasi",
+                "audit_meta": {
+                    "_source_2026_key": "service::klinik-laktasi::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+                    "_source_2026_hash": "d09f84cefa0b6ffbcd860c191980ec62b2d15c17574c42d346f4fcb928e42ca4",
+                    "_reconcile_batch_id": "source-2026-batch1-20260814",
+                    "_reconcile_classification": "missing",
+                    "_reconcile_approved_by": "User approval: approve batch 1",
+                    "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+                }
+            }
+        },
+        {
+            "source_id": "service::cancer-centre::centre-of-excellence",
+            "source_name": "Cancer Centre",
+            "canonical_title": "Cancer Centre",
+            "slug": "cancer-centre",
+            "target_cpt": "layanan",
+            "classification": "missing",
+            "approved_by": "User approval: approve batch 1",
+            "approved_at": "2026-08-14T23:15:45+07:00",
+            "reason": "Approved by user for batch 1 as draft-only layanan parent. Clinical components remain detail candidates and are not created in this batch.",
+            "post_id": 20754,
+            "status": "draft",
+            "rollback": "Delete draft post 20754 only if batch rollback is approved.",
+            "previous_values": null,
+            "new_values": {
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Cancer Centre",
+                "post_name": "cancer-centre",
+                "audit_meta": {
+                    "_source_2026_key": "service::cancer-centre::centre-of-excellence",
+                    "_source_2026_hash": "73f3f0b9ae39ba9ebbd54d5270f146d72f8189e592a107f4b321d8e8eb61c919",
+                    "_reconcile_batch_id": "source-2026-batch1-20260814",
+                    "_reconcile_classification": "missing",
+                    "_reconcile_approved_by": "User approval: approve batch 1",
+                    "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+                }
+            }
+        },
+        {
+            "source_id": "service::uronephrology-centre::centre-of-excellence",
+            "source_name": "Uronephrology Centre",
+            "canonical_title": "Uronephrology Centre",
+            "slug": "uronephrology-centre",
+            "target_cpt": "layanan",
+            "classification": "missing",
+            "approved_by": "User approval: approve batch 1",
+            "approved_at": "2026-08-14T23:15:45+07:00",
+            "reason": "Approved by user for batch 1 as draft-only layanan parent. Procedures remain detail candidates and are not created in this batch.",
+            "post_id": 20755,
+            "status": "draft",
+            "rollback": "Delete draft post 20755 only if batch rollback is approved.",
+            "previous_values": null,
+            "new_values": {
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Uronephrology Centre",
+                "post_name": "uronephrology-centre",
+                "audit_meta": {
+                    "_source_2026_key": "service::uronephrology-centre::centre-of-excellence",
+                    "_source_2026_hash": "a800685b2b571973ad76c19be1a71ba2a3fb52a7a915d2607e00868e87b2b345",
+                    "_reconcile_batch_id": "source-2026-batch1-20260814",
+                    "_reconcile_classification": "missing",
+                    "_reconcile_approved_by": "User approval: approve batch 1",
+                    "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+                }
+            }
+        },
+        {
+            "source_id": "service::emergency-and-critical-care::centre-of-excellence",
+            "source_name": "Emergency and Critical Care",
+            "canonical_title": "Emergency and Critical Care",
+            "slug": "emergency-and-critical-care",
+            "target_cpt": "layanan",
+            "classification": "missing",
+            "approved_by": "User approval: approve batch 1",
+            "approved_at": "2026-08-14T23:15:45+07:00",
+            "reason": "Approved by user for batch 1 as draft-only layanan parent. ICU/ICCU/PICU/HCU remain detail candidates; ambiguous neonatal PICU row stays on editorial hold.",
+            "post_id": 20756,
+            "status": "draft",
+            "rollback": "Delete draft post 20756 only if batch rollback is approved.",
+            "previous_values": null,
+            "new_values": {
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Emergency and Critical Care",
+                "post_name": "emergency-and-critical-care",
+                "audit_meta": {
+                    "_source_2026_key": "service::emergency-and-critical-care::centre-of-excellence",
+                    "_source_2026_hash": "76384266aef51dae93148da8abf7e07122094ba4e809796667b38a33820d4db4",
+                    "_reconcile_batch_id": "source-2026-batch1-20260814",
+                    "_reconcile_classification": "missing",
+                    "_reconcile_approved_by": "User approval: approve batch 1",
+                    "_reconcile_approved_at": "2026-08-14T23:15:45+07:00"
+                }
+            }
+        }
+    ]
+}
