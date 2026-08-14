@@ -1,0 +1,1036 @@
+{
+    "generated_at": "2026-08-14T15:06:03+00:00",
+    "mode": "dry-run",
+    "mutates_wordpress": false,
+    "summary": {
+        "doctors": {
+            "match": 92,
+            "editorial-review": 7,
+            "missing": 25,
+            "possible-match": 2
+        },
+        "services": {
+            "missing": 57,
+            "possible-match": 4,
+            "match": 37,
+            "editorial-review": 6
+        }
+    },
+    "blocked_known_false_matches": [
+        "Klinik Kesehatan Anak != Klinik Kecantikan Ayna",
+        "Klinik Urologi != Klinik Patologi",
+        "Klinik Bedah Kepala Leher != Klinik Bedah Syaraf"
+    ],
+    "requires_approval": [
+        {
+            "source_id": "doctor::prof-dr-djauhar-ismail-mph-ph-d-sp-a-k::klinik-tumbuh-kembang-dokter-spesialis-subspesialis",
+            "classification": "editorial-review",
+            "source_name": "Prof. dr. Djauhar Ismail, MPH,Ph.D,Sp.A.(K).",
+            "source_group": "Klinik Tumbuh Kembang / Dokter Spesialis/Subspesialis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Prof. dr. Djauhar Ismail, MPH,Ph.D,Sp.A.(K).",
+            "recommended_action": "Validate spelling/credentials before create or match."
+        },
+        {
+            "source_id": "doctor::dr-dr-nurnaningsih-sp-a-k::klinik-intensif-anak-dokter-spesialis-subspesialis",
+            "classification": "editorial-review",
+            "source_name": "Dr.dr. Nurnaningsih, Sp.A(K).",
+            "source_group": "Klinik Intensif Anak / Dokter Spesialis/Subspesialis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Dr.dr. Nurnaningsih, Sp.A(K).",
+            "recommended_action": "Validate spelling/credentials before create or match."
+        },
+        {
+            "source_id": "doctor::dr-muhammad-ariffudin-sp-ot::klinik-orthopedi-dokter-spesialis-subspesialis",
+            "classification": "missing",
+            "source_name": "dr. Muhammad Ariffudin, Sp.OT.",
+            "source_group": "Klinik Orthopedi / Dokter Spesialis/Subspesialis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Muhammad Ariffudin, Sp.OT.",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-iri-kuswadi-sp-pd-kgh-finasim::klinik-ginjal-dan-hipertensi-dokter-spesialis-subspesialis",
+            "classification": "editorial-review",
+            "source_name": "dr. Iri Kuswadi, Sp.PD-KGH,FINASIM.",
+            "source_group": "Klinik Ginjal dan Hipertensi / Dokter Spesialis/Subspesialis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Iri Kuswadi, Sp.PD-KGH,FINASIM.",
+            "recommended_action": "Validate spelling/credentials before create or match."
+        },
+        {
+            "source_id": "doctor::dr-mutiara-putri-sp-jp::klinik-jantung-dan-pembuluh-darah-dokter-spesialis-subspesialis",
+            "classification": "missing",
+            "source_name": "dr. Mutiara Putri, Sp.JP",
+            "source_group": "Klinik Jantung dan Pembuluh Darah / Dokter Spesialis/Subspesialis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Mutiara Putri, Sp.JP",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-yusrizal-djam-an-saleh-sp-p-k::klinik-paru-dan-respirasi-dokter-spesialis-subspesialis",
+            "classification": "possible-match",
+            "source_name": "dr. Yusrizal Djam'an Saleh, Sp.P(K).",
+            "source_group": "Klinik Paru dan Respirasi / Dokter Spesialis/Subspesialis",
+            "current_wp_cpt": "dokter",
+            "matched_existing_title": "dr. H. Yusrizal Djam&#8217;an Shaleh, Sp.P(K), FCCP, FISR",
+            "canonical_title": "dr. Yusrizal Djam'an Saleh, Sp.P(K).",
+            "recommended_action": "Human confirm same doctor; then keep existing CPT and adjust canonical display if needed."
+        },
+        {
+            "source_id": "doctor::dr-yosylina-pramudya-wardhani-sp-m::klinik-mata-dokter-spesialis-subspesialis",
+            "classification": "missing",
+            "source_name": "dr. Yosylina Pramudya Wardhani, Sp. M.",
+            "source_group": "Klinik Mata / Dokter Spesialis/Subspesialis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Yosylina Pramudya Wardhani, Sp. M.",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-nafiah-chusniyati-m-sc-sp-dve-finsdv-faadv::klinik-dermatologi-venereologi-dan-estetika-dokter-spesialis-subspesialis",
+            "classification": "possible-match",
+            "source_name": "dr. Nafiah Chusniyati, M.Sc, Sp. DVE, FINSDV, FAADV.",
+            "source_group": "Klinik Dermatologi, Venereologi, dan Estetika / Dokter Spesialis/Subspesialis",
+            "current_wp_cpt": "dokter",
+            "matched_existing_title": "dr. Hj. Nafiah Chusniati, Sp.DVE, M.Sc.",
+            "canonical_title": "dr. Nafiah Chusniyati, M.Sc, Sp. DVE, FINSDV, FAADV.",
+            "recommended_action": "Human confirm same doctor; then keep existing CPT and adjust canonical display if needed."
+        },
+        {
+            "source_id": "doctor::drg-shavira-amanda-muhandri-sp-kga::klinik-konservasi-gigi-anak-dokter-gigi-gigi-spesialis",
+            "classification": "missing",
+            "source_name": "drg. Shavira Amanda Muhandri, Sp.KGA",
+            "source_group": "Klinik Konservasi Gigi Anak / Dokter Gigi/Gigi Spesialis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "drg. Shavira Amanda Muhandri, Sp.KGA",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::drg-muhammad-sulchan-ardiansyah-sp-ort::klinik-ortodonsia-dokter-gigi-gigi-spesialis",
+            "classification": "editorial-review",
+            "source_name": "drg.Muhammad Sulchan Ardiansyah,Sp.Ort.",
+            "source_group": "Klinik Ortodonsia / Dokter Gigi/Gigi Spesialis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "drg.Muhammad Sulchan Ardiansyah,Sp.Ort.",
+            "recommended_action": "Validate spelling/credentials before create or match."
+        },
+        {
+            "source_id": "doctor::dr-akhmad-yun-jufan-sp-an-msc-kic::dokter-spesialis-anestesi-dokter-spesialis-penunjang-lainnya",
+            "classification": "editorial-review",
+            "source_name": "dr. Akhmad Yun Jufan, Sp.An,MSc(KIC).",
+            "source_group": "Dokter Spesialis Anestesi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Akhmad Yun Jufan, Sp.An,MSc(KIC).",
+            "recommended_action": "Validate spelling/credentials before create or match."
+        },
+        {
+            "source_id": "doctor::dr-dhanty-dwita-sari-sp-an-ti::dokter-spesialis-anestesi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Dhanty Dwita Sari, Sp.An-TI.",
+            "source_group": "Dokter Spesialis Anestesi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Dhanty Dwita Sari, Sp.An-TI.",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-hendi-prihatna-sp-an::dokter-spesialis-anestesi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Hendi Prihatna, Sp.An.",
+            "source_group": "Dokter Spesialis Anestesi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Hendi Prihatna, Sp.An.",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-mahmud-sp-an-kmn-msc-fipm::dokter-spesialis-anestesi-dokter-spesialis-penunjang-lainnya",
+            "classification": "editorial-review",
+            "source_name": "dr. Mahmud,Sp, An(KMN), MSc,FIPM.",
+            "source_group": "Dokter Spesialis Anestesi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Mahmud,Sp, An(KMN), MSc,FIPM.",
+            "recommended_action": "Validate spelling/credentials before create or match."
+        },
+        {
+            "source_id": "doctor::dr-pandit-sarosa-hadisajoga-sp-an-k::dokter-spesialis-anestesi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Pandit Sarosa Hadisajoga, Sp.An(K).",
+            "source_group": "Dokter Spesialis Anestesi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Pandit Sarosa Hadisajoga, Sp.An(K).",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-dr-andaru-dahesihdewi-sp-pk-k-m-kes::dokter-spesialis-laboratorium-dokter-spesialis-penunjang-lainnya",
+            "classification": "editorial-review",
+            "source_name": "Dr.dr. Andaru Dahesihdewi, Sp.PK(K) M.Kes.",
+            "source_group": "Dokter Spesialis Laboratorium / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Dr.dr. Andaru Dahesihdewi, Sp.PK(K) M.Kes.",
+            "recommended_action": "Validate spelling/credentials before create or match."
+        },
+        {
+            "source_id": "doctor::dr-tri-yunanto-arliono-sp-em-kdm::dokter-spesialis-emergency-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Tri Yunanto Arliono, Sp.EM-KDM",
+            "source_group": "Dokter Spesialis Emergency / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Tri Yunanto Arliono, Sp.EM-KDM",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-bombong-nurpagino-sp-mk::dokter-spesialis-mikrobiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Bombong Nurpagino, Sp.MK.",
+            "source_group": "Dokter Spesialis Mikrobiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Bombong Nurpagino, Sp.MK.",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-kunyun-masindro-sp-rad::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Kunyun Masindro, Sp.Rad.",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Kunyun Masindro, Sp.Rad.",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-nur-hayati-sp-rad::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Nur Hayati, Sp.Rad.",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Nur Hayati, Sp.Rad.",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-alita-bossa-rossila::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Alita Bossa Rossila",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Alita Bossa Rossila",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-atika-zahro-nirmala::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Atika Zahro Nirmala",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Atika Zahro Nirmala",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-dewi-masyithoh-mubarok::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Dewi Masyithoh Mubarok",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Dewi Masyithoh Mubarok",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-eka-yoga-wiratama::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Eka Yoga Wiratama",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Eka Yoga Wiratama",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-firman-setyawan-mmr::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Firman Setyawan, MMR",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Firman Setyawan, MMR",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-huma-laila-ramadhani::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Huma Laila Ramadhani",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Huma Laila Ramadhani",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-ihsan-yudhitama::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Ihsan Yudhitama",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Ihsan Yudhitama",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-ika-resti-afriani-mmr::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Ika Resti Afriani, MMR",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Ika Resti Afriani, MMR",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-isna-maulida-hanum::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Isna Maulida Hanum",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Isna Maulida Hanum",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-mega-susanti::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Mega Susanti",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Mega Susanti",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-riski-februaminayanti::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Riski Februaminayanti",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Riski Februaminayanti",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-sugik-nur-irbandini-mars::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Sugik Nur Irbandini, MARS",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Sugik Nur Irbandini, MARS",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-tiffany-dyah-rinanti::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Tiffany Dyah Rinanti",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Tiffany Dyah Rinanti",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "doctor::dr-wahyuni-hafid::dokter-spesialis-radiologi-dokter-spesialis-penunjang-lainnya",
+            "classification": "missing",
+            "source_name": "dr. Wahyuni Hafid",
+            "source_group": "Dokter Spesialis Radiologi / Dokter Spesialis Penunjang/Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "dr. Wahyuni Hafid",
+            "recommended_action": "Create/update published `dokter` after HR/medical secretary validation."
+        },
+        {
+            "source_id": "service::klinik-kesehatan-anak::layanan-spesialis-dan-sub-spesialis-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Kesehatan Anak",
+            "source_group": "Layanan Spesialis dan Sub Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Kesehatan Anak",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-tumbuh-kembang::layanan-spesialis-dan-sub-spesialis-layanan-rawat-jalan",
+            "classification": "possible-match",
+            "source_name": "Klinik Tumbuh Kembang",
+            "source_group": "Layanan Spesialis dan Sub Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": "poliklinik",
+            "matched_existing_title": "Terapi Tumbuh Kembang Anak",
+            "canonical_title": "Klinik Tumbuh Kembang",
+            "recommended_action": "Human confirm existing title; then canonicalize title/taxonomy if needed."
+        },
+        {
+            "source_id": "service::klinik-bedah-kepala-leher::layanan-spesialis-dan-sub-spesialis-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Bedah Kepala Leher",
+            "source_group": "Layanan Spesialis dan Sub Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Bedah Kepala Leher",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-ortopedi::layanan-spesialis-dan-sub-spesialis-layanan-rawat-jalan",
+            "classification": "editorial-review",
+            "source_name": "Klinik Ortopedi",
+            "source_group": "Layanan Spesialis dan Sub Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": "poliklinik",
+            "matched_existing_title": "Klinik Bedah Orthopedi",
+            "canonical_title": "Klinik Ortopedi",
+            "recommended_action": "Editorial validation first; likely destination `poliklinik`."
+        },
+        {
+            "source_id": "service::klinik-urologi::layanan-spesialis-dan-sub-spesialis-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Urologi",
+            "source_group": "Layanan Spesialis dan Sub Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Urologi",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-neurologi-saraf::layanan-spesialis-dan-sub-spesialis-layanan-rawat-jalan",
+            "classification": "editorial-review",
+            "source_name": "Klinik Neurologi / Saraf",
+            "source_group": "Layanan Spesialis dan Sub Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Neurologi / Saraf",
+            "recommended_action": "Editorial validation first; likely destination `poliklinik`."
+        },
+        {
+            "source_id": "service::klinik-psikiatri-kesehatan-jiwa::layanan-spesialis-dan-sub-spesialis-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Psikiatri / Kesehatan Jiwa",
+            "source_group": "Layanan Spesialis dan Sub Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Psikiatri / Kesehatan Jiwa",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-telinga-hidung-tenggorokan-dan-kepala-leher::layanan-spesialis-dan-sub-spesialis-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Telinga, Hidung, Tenggorokan, dan Kepala Leher",
+            "source_group": "Layanan Spesialis dan Sub Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Telinga, Hidung, Tenggorokan, dan Kepala Leher",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-dermatologi-venereologi-dan-estetika::layanan-spesialis-dan-sub-spesialis-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Dermatologi, Venereologi, dan Estetika",
+            "source_group": "Layanan Spesialis dan Sub Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Dermatologi, Venereologi, dan Estetika",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-kedokteran-fisik-dan-rehabilitasi::layanan-spesialis-dan-sub-spesialis-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Kedokteran Fisik dan Rehabilitasi",
+            "source_group": "Layanan Spesialis dan Sub Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Kedokteran Fisik dan Rehabilitasi",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-gigi-dan-mulut::layanan-gigi-dan-gigi-spesialis-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Gigi dan Mulut",
+            "source_group": "Layanan Gigi dan Gigi Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Gigi dan Mulut",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-konservasi-gigi::layanan-gigi-dan-gigi-spesialis-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Konservasi Gigi",
+            "source_group": "Layanan Gigi dan Gigi Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Konservasi Gigi",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-konservasi-gigi-anak::layanan-gigi-dan-gigi-spesialis-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Konservasi Gigi Anak",
+            "source_group": "Layanan Gigi dan Gigi Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Konservasi Gigi Anak",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-periodonsia::layanan-gigi-dan-gigi-spesialis-layanan-rawat-jalan",
+            "classification": "possible-match",
+            "source_name": "Klinik Periodonsia",
+            "source_group": "Layanan Gigi dan Gigi Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": "poliklinik",
+            "matched_existing_title": "Klinik Gigi Periodonti",
+            "canonical_title": "Klinik Periodonsia",
+            "recommended_action": "Human confirm existing title; then canonicalize title/taxonomy if needed."
+        },
+        {
+            "source_id": "service::klinik-ortodonsia::layanan-gigi-dan-gigi-spesialis-layanan-rawat-jalan",
+            "classification": "possible-match",
+            "source_name": "Klinik Ortodonsia",
+            "source_group": "Layanan Gigi dan Gigi Spesialis / Layanan Rawat Jalan",
+            "current_wp_cpt": "poliklinik",
+            "matched_existing_title": "Klinik Gigi Ortodonti",
+            "canonical_title": "Klinik Ortodonsia",
+            "recommended_action": "Human confirm existing title; then canonicalize title/taxonomy if needed."
+        },
+        {
+            "source_id": "service::klinik-nyeri-terpadu::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Nyeri Terpadu",
+            "source_group": "Layanan Rawat Jalan Lainnya / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Nyeri Terpadu",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-gemphita-vct-pitc-hiv-aids::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Gemphita (VCT-PITC HIV/AIDS)",
+            "source_group": "Layanan Rawat Jalan Lainnya / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Gemphita (VCT-PITC HIV/AIDS)",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-tb-dots::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik TB-DOTS",
+            "source_group": "Layanan Rawat Jalan Lainnya / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik TB-DOTS",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-vaksin::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "classification": "possible-match",
+            "source_name": "Klinik Vaksin",
+            "source_group": "Layanan Rawat Jalan Lainnya / Layanan Rawat Jalan",
+            "current_wp_cpt": "layanan",
+            "matched_existing_title": "Vaksin Center",
+            "canonical_title": "Klinik Vaksin",
+            "recommended_action": "Human confirm existing title; then canonicalize title/taxonomy if needed."
+        },
+        {
+            "source_id": "service::klinik-berhenti-merokok::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Berhenti Merokok",
+            "source_group": "Layanan Rawat Jalan Lainnya / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Berhenti Merokok",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-keluarga-sakinah::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Keluarga Sakinah",
+            "source_group": "Layanan Rawat Jalan Lainnya / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Keluarga Sakinah",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::klinik-laktasi::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Klinik Laktasi",
+            "source_group": "Layanan Rawat Jalan Lainnya / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Klinik Laktasi",
+            "recommended_action": "Create/reconcile as `poliklinik` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::ayna-skin-care::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "Ayna Skin Care",
+            "source_group": "Layanan Rawat Jalan Lainnya / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Ayna Skin Care",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::one-day-care::layanan-rawat-jalan-lainnya-layanan-rawat-jalan",
+            "classification": "missing",
+            "source_name": "One Day Care",
+            "source_group": "Layanan Rawat Jalan Lainnya / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "One Day Care",
+            "recommended_action": "Create/reconcile as `rawat-inap` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::minimal-invasive-surgery::bedah-sentral-layanan-rawat-jalan",
+            "classification": "editorial-review",
+            "source_name": "Minimal invasive surgery",
+            "source_group": "Bedah Sentral / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Minimal invasive surgery",
+            "recommended_action": "Editorial validation first; likely destination `layanan`."
+        },
+        {
+            "source_id": "service::c-arm::bedah-sentral-layanan-rawat-jalan",
+            "classification": "editorial-review",
+            "source_name": "C-arm",
+            "source_group": "Bedah Sentral / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "C-arm",
+            "recommended_action": "Editorial validation first; likely destination `layanan`."
+        },
+        {
+            "source_id": "service::endoscopy::bedah-sentral-layanan-rawat-jalan",
+            "classification": "editorial-review",
+            "source_name": "Endoscopy",
+            "source_group": "Bedah Sentral / Layanan Rawat Jalan",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Endoscopy",
+            "recommended_action": "Editorial validation first; likely destination `layanan`."
+        },
+        {
+            "source_id": "service::retrograde-intrarenal-surgery-rirs::layanan-uronefrologi-uronephrology-centre",
+            "classification": "missing",
+            "source_name": "Retrograde Intrarenal Surgery (RIRS)",
+            "source_group": "### Layanan Uronefrologi / Uronephrology Centre",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Retrograde Intrarenal Surgery (RIRS)",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::ureterorenoscopy-urs::layanan-uronefrologi-uronephrology-centre",
+            "classification": "missing",
+            "source_name": "Ureterorenoscopy (URS)",
+            "source_group": "### Layanan Uronefrologi / Uronephrology Centre",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Ureterorenoscopy (URS)",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::conventional-turp::layanan-uronefrologi-uronephrology-centre",
+            "classification": "missing",
+            "source_name": "Conventional TURP",
+            "source_group": "### Layanan Uronefrologi / Uronephrology Centre",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Conventional TURP",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::holmium-laser-enucleation-of-the-prostate-holep::layanan-uronefrologi-uronephrology-centre",
+            "classification": "missing",
+            "source_name": "Holmium Laser Enucleation of the Prostate (HoLEP)",
+            "source_group": "### Layanan Uronefrologi / Uronephrology Centre",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Holmium Laser Enucleation of the Prostate (HoLEP)",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::extracorporeal-shock-wave-lithotripsy-eswl::layanan-uronefrologi-uronephrology-centre",
+            "classification": "missing",
+            "source_name": "Extracorporeal Shock Wave Lithotripsy (ESWL)",
+            "source_group": "### Layanan Uronefrologi / Uronephrology Centre",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Extracorporeal Shock Wave Lithotripsy (ESWL)",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::layanan-tumor-paru::layanan-pusat-kanker-cancer-centre",
+            "classification": "missing",
+            "source_name": "Layanan Tumor Paru",
+            "source_group": "### Layanan Pusat Kanker / Cancer Centre",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Layanan Tumor Paru",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::layanan-tumor-otak::layanan-pusat-kanker-cancer-centre",
+            "classification": "missing",
+            "source_name": "Layanan Tumor Otak",
+            "source_group": "### Layanan Pusat Kanker / Cancer Centre",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Layanan Tumor Otak",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::terapi-okupasi::rehabilitasi-medis-penunjang-medis",
+            "classification": "missing",
+            "source_name": "Terapi Okupasi",
+            "source_group": "Rehabilitasi Medis / Penunjang Medis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Terapi Okupasi",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::bank-darah::laboratorium-medis-penunjang-medis",
+            "classification": "missing",
+            "source_name": "Bank Darah",
+            "source_group": "Laboratorium Medis / Penunjang Medis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Bank Darah",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::multi-slice-ct-scan::radiologi-penunjang-medis",
+            "classification": "missing",
+            "source_name": "Multi slice CT scan",
+            "source_group": "Radiologi / Penunjang Medis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Multi slice CT scan",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::digital-x-ray::radiologi-penunjang-medis",
+            "classification": "missing",
+            "source_name": "Digital X-ray",
+            "source_group": "Radiologi / Penunjang Medis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Digital X-ray",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::dental-x-ray::radiologi-penunjang-medis",
+            "classification": "missing",
+            "source_name": "Dental X-ray",
+            "source_group": "Radiologi / Penunjang Medis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Dental X-ray",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::usg-4-dimensi::radiologi-penunjang-medis",
+            "classification": "missing",
+            "source_name": "USG 4 dimensi",
+            "source_group": "Radiologi / Penunjang Medis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "USG 4 dimensi",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::echocardiography::radiologi-penunjang-medis",
+            "classification": "missing",
+            "source_name": "Echocardiography",
+            "source_group": "Radiologi / Penunjang Medis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Echocardiography",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::electrocardiography-ecg::pemeriksaan-penunjang-lain-penunjang-medis",
+            "classification": "missing",
+            "source_name": "Electrocardiography (ECG)",
+            "source_group": "Pemeriksaan Penunjang Lain / Penunjang Medis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Electrocardiography (ECG)",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::treadmill::pemeriksaan-penunjang-lain-penunjang-medis",
+            "classification": "missing",
+            "source_name": "Treadmill",
+            "source_group": "Pemeriksaan Penunjang Lain / Penunjang Medis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Treadmill",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::electroencephalography-eeg::pemeriksaan-penunjang-lain-penunjang-medis",
+            "classification": "missing",
+            "source_name": "Electroencephalography (EEG)",
+            "source_group": "Pemeriksaan Penunjang Lain / Penunjang Medis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Electroencephalography (EEG)",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::spirometry::pemeriksaan-penunjang-lain-penunjang-medis",
+            "classification": "missing",
+            "source_name": "Spirometry",
+            "source_group": "Pemeriksaan Penunjang Lain / Penunjang Medis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Spirometry",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::audiometry::pemeriksaan-penunjang-lain-penunjang-medis",
+            "classification": "missing",
+            "source_name": "Audiometry",
+            "source_group": "Pemeriksaan Penunjang Lain / Penunjang Medis",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Audiometry",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::steam-prevaccum::layanan-sterilisasi-suhu-tinggi-central-sterile-supply-department-cssd",
+            "classification": "missing",
+            "source_name": "Steam prevaccum",
+            "source_group": "Layanan Sterilisasi Suhu Tinggi / Central Sterile Supply Department (CSSD)",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Steam prevaccum",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::autoreader-indicator-protein-dan-biologi::layanan-sterilisasi-suhu-tinggi-central-sterile-supply-department-cssd",
+            "classification": "missing",
+            "source_name": "Autoreader indicator protein dan biologi",
+            "source_group": "Layanan Sterilisasi Suhu Tinggi / Central Sterile Supply Department (CSSD)",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Autoreader indicator protein dan biologi",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::sealer::layanan-sterilisasi-suhu-tinggi-central-sterile-supply-department-cssd",
+            "classification": "missing",
+            "source_name": "Sealer",
+            "source_group": "Layanan Sterilisasi Suhu Tinggi / Central Sterile Supply Department (CSSD)",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Sealer",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::ethylene-oxide::layanan-sterilisasi-suhu-rendah-central-sterile-supply-department-cssd",
+            "classification": "missing",
+            "source_name": "Ethylene oxide",
+            "source_group": "Layanan Sterilisasi Suhu Rendah / Central Sterile Supply Department (CSSD)",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Ethylene oxide",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::autoreader-indicator-protein-dan-biologi::layanan-sterilisasi-suhu-rendah-central-sterile-supply-department-cssd",
+            "classification": "missing",
+            "source_name": "Autoreader indicator protein dan biologi",
+            "source_group": "Layanan Sterilisasi Suhu Rendah / Central Sterile Supply Department (CSSD)",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Autoreader indicator protein dan biologi",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::sealer::layanan-sterilisasi-suhu-rendah-central-sterile-supply-department-cssd",
+            "classification": "missing",
+            "source_name": "Sealer",
+            "source_group": "Layanan Sterilisasi Suhu Rendah / Central Sterile Supply Department (CSSD)",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Sealer",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::antar-jemput-pasien::ambulan-layanan-unggulan-lainnya",
+            "classification": "missing",
+            "source_name": "Antar Jemput Pasien",
+            "source_group": "Ambulan / Layanan Unggulan Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Antar Jemput Pasien",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::layanan-vaksin::layanan-lainnya-layanan-unggulan-lainnya",
+            "classification": "missing",
+            "source_name": "Layanan Vaksin",
+            "source_group": "Layanan Lainnya / Layanan Unggulan Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Layanan Vaksin",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::layanan-bimbingan-rohani-islam::layanan-lainnya-layanan-unggulan-lainnya",
+            "classification": "missing",
+            "source_name": "Layanan Bimbingan Rohani Islam",
+            "source_group": "Layanan Lainnya / Layanan Unggulan Lainnya",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Layanan Bimbingan Rohani Islam",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::kelas-iii::layanan-medis-rs-pku-muhammadiyah-yogyakarta-bangsal-rawat-inap",
+            "classification": "missing",
+            "source_name": "Kelas III",
+            "source_group": ". Layanan Medis RS PKU Muhammadiyah Yogyakarta / Bangsal Rawat Inap",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Kelas III",
+            "recommended_action": "Create/reconcile as `rawat-inap` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::kelas-ii::layanan-medis-rs-pku-muhammadiyah-yogyakarta-bangsal-rawat-inap",
+            "classification": "missing",
+            "source_name": "Kelas II",
+            "source_group": ". Layanan Medis RS PKU Muhammadiyah Yogyakarta / Bangsal Rawat Inap",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Kelas II",
+            "recommended_action": "Create/reconcile as `rawat-inap` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::kelas-i::layanan-medis-rs-pku-muhammadiyah-yogyakarta-bangsal-rawat-inap",
+            "classification": "missing",
+            "source_name": "Kelas I",
+            "source_group": ". Layanan Medis RS PKU Muhammadiyah Yogyakarta / Bangsal Rawat Inap",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Kelas I",
+            "recommended_action": "Create/reconcile as `rawat-inap` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::kelas-vip::layanan-medis-rs-pku-muhammadiyah-yogyakarta-bangsal-rawat-inap",
+            "classification": "missing",
+            "source_name": "Kelas VIP",
+            "source_group": ". Layanan Medis RS PKU Muhammadiyah Yogyakarta / Bangsal Rawat Inap",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Kelas VIP",
+            "recommended_action": "Create/reconcile as `rawat-inap` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::kelas-vvip::layanan-medis-rs-pku-muhammadiyah-yogyakarta-bangsal-rawat-inap",
+            "classification": "missing",
+            "source_name": "Kelas VVIP",
+            "source_group": ". Layanan Medis RS PKU Muhammadiyah Yogyakarta / Bangsal Rawat Inap",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Kelas VVIP",
+            "recommended_action": "Create/reconcile as `rawat-inap` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::emergensi-terpadu::centre-of-excellence-rs-pku-muhammadiyah-yogyakarta-emergency-and-critical-care",
+            "classification": "missing",
+            "source_name": "Emergensi Terpadu",
+            "source_group": ". Centre of Excellence RS PKU Muhammadiyah Yogyakarta / Emergency and Critical Care",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Emergensi Terpadu",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::perawatan-intensif::centre-of-excellence-rs-pku-muhammadiyah-yogyakarta-emergency-and-critical-care",
+            "classification": "missing",
+            "source_name": "Perawatan Intensif",
+            "source_group": ". Centre of Excellence RS PKU Muhammadiyah Yogyakarta / Emergency and Critical Care",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Perawatan Intensif",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::intensive-care-unit-icu::centre-of-excellence-rs-pku-muhammadiyah-yogyakarta-emergency-and-critical-care",
+            "classification": "missing",
+            "source_name": "Intensive Care Unit (ICU)",
+            "source_group": ". Centre of Excellence RS PKU Muhammadiyah Yogyakarta / Emergency and Critical Care",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Intensive Care Unit (ICU)",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::intensive-cardiac-care-unit-iccu::centre-of-excellence-rs-pku-muhammadiyah-yogyakarta-emergency-and-critical-care",
+            "classification": "missing",
+            "source_name": "Intensive Cardiac Care Unit (ICCU)",
+            "source_group": ". Centre of Excellence RS PKU Muhammadiyah Yogyakarta / Emergency and Critical Care",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Intensive Cardiac Care Unit (ICCU)",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::pediatric-intensive-care-unit-picu::centre-of-excellence-rs-pku-muhammadiyah-yogyakarta-emergency-and-critical-care",
+            "classification": "missing",
+            "source_name": "Pediatric Intensive Care Unit (PICU)",
+            "source_group": ". Centre of Excellence RS PKU Muhammadiyah Yogyakarta / Emergency and Critical Care",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Pediatric Intensive Care Unit (PICU)",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        },
+        {
+            "source_id": "service::neonatal-intensive-care-unit-picu::centre-of-excellence-rs-pku-muhammadiyah-yogyakarta-emergency-and-critical-care",
+            "classification": "editorial-review",
+            "source_name": "Neonatal Intensive Care Unit (PICU)",
+            "source_group": ". Centre of Excellence RS PKU Muhammadiyah Yogyakarta / Emergency and Critical Care",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "Neonatal Intensive Care Unit (NICU)",
+            "recommended_action": "Editorial validation first; likely destination `layanan`."
+        },
+        {
+            "source_id": "service::high-care-unit-hcu::centre-of-excellence-rs-pku-muhammadiyah-yogyakarta-emergency-and-critical-care",
+            "classification": "missing",
+            "source_name": "High Care Unit (HCU)",
+            "source_group": ". Centre of Excellence RS PKU Muhammadiyah Yogyakarta / Emergency and Critical Care",
+            "current_wp_cpt": null,
+            "matched_existing_title": null,
+            "canonical_title": "High Care Unit (HCU)",
+            "recommended_action": "Create/reconcile as `layanan` only after owner, scope, and public-facing copy are validated."
+        }
+    ]
+}
