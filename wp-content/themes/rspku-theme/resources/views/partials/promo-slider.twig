@@ -76,16 +76,20 @@
       </div>
 
       <button type="button" class="absolute left-4 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-slate-950 shadow-lg transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Promo sebelumnya" x-on:click="prev()">
-        {{ icon('chevron-left', { class: 'h-5 w-5' }) }}
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m15 18-6-6 6-6" />
+        </svg>
       </button>
       <button type="button" class="absolute right-4 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-slate-950 shadow-lg transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Promo berikutnya" x-on:click="next()">
-        {{ icon('chevron-right', { class: 'h-5 w-5' }) }}
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m9 18 6-6-6-6" />
+        </svg>
       </button>
 
-      <div class="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2" role="tablist" aria-label="Pilih promo">
+      <div class="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-0.5" role="tablist" aria-label="Pilih promo">
         {% for slide in slides %}
-          <button type="button" class="h-11 w-11 rounded-full p-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Tampilkan promo {{ loop.index }}" x-on:click="goTo({{ loop.index0 }})">
-            <span class="block h-3 w-3 rounded-full shadow-sm transition" x-bind:class="index === {{ loop.index0 }} ? 'bg-white' : 'bg-white/60'"></span>
+          <button type="button" class="grid h-11 w-7 place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" aria-label="Tampilkan promo {{ loop.index }}" x-on:click="goTo({{ loop.index0 }})">
+            <span class="block h-2.5 w-2.5 rounded-full shadow-sm transition" x-bind:class="index === {{ loop.index0 }} ? 'bg-white' : 'bg-white/60'"></span>
           </button>
         {% endfor %}
       </div>
