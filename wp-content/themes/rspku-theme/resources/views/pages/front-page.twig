@@ -63,7 +63,7 @@
         </div>
 
         {# Hero Visual - Clean #}
-        <div class="relative">
+        <div>
           <div class="overflow-hidden rounded-2xl bg-slate-100">
             {% if rspku.hero_image_id or rspku.hero_image_url %}
               {% include 'partials/responsive-image.twig' with {
@@ -92,18 +92,6 @@
             {% endif %}
           </div>
           
-          {# Emergency Contact - Simple Card #}
-          <div class="absolute -bottom-4 left-6 right-6 rounded-xl bg-white p-4 shadow-md">
-            <div class="flex items-center gap-4">
-              <div class="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-hospital-600 text-white">
-                {{ icon('phone', { class: 'h-6 w-6' }) }}
-              </div>
-              <div class="flex-1">
-                <p class="text-xs font-medium text-slate-500">IGD 24 Jam</p>
-                <a href="tel:{{ rspku.phone_igd_link }}" class="text-lg font-bold text-slate-950 hover:text-hospital-700">{{ rspku.phone_igd }}</a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
