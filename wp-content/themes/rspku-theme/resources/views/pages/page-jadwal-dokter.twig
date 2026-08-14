@@ -14,7 +14,7 @@
         <div class="space-y-6">
           <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">Jadwal layanan</span>
           <h1 class="text-3xl font-bold leading-tight text-slate-950 sm:text-4xl">{{ post.title }}</h1>
-          <p class="max-w-2xl text-base leading-relaxed text-slate-600">Jadwal praktik dokter diambil langsung dari tabel operasional resmi. Saat data sumber diperbarui, daftar dokter, spesialisasi, dan detail jadwal akan ikut tersinkron secara otomatis.</p>
+          <p class="max-w-2xl text-base leading-relaxed text-slate-600">Jadwal praktik dokter diambil dari data jadwal resmi internal. Saat admin memperbarui modul jadwal, daftar dokter, spesialisasi, dan detail praktik akan ikut tersinkron.</p>
         </div>
 
         <div class="grid gap-4 md:grid-cols-2">
@@ -30,7 +30,7 @@
             icon: 'filter',
             label: 'Kategori spesialisasi',
             value: schedule_page.summary.specialization_count|default(0),
-            description: 'Semua spesialisasi diturunkan langsung dari tabel jadwal dokter.'
+            description: 'Semua spesialisasi mengikuti data dokter dan taxonomy resmi.'
           } only %}
         </div>
       </div>
@@ -67,7 +67,7 @@
       </div>
 
       <div class="flex flex-col gap-3 text-[15px] text-slate-600 lg:flex-row lg:items-center lg:justify-between">
-        <p>Data jadwal bersumber dari tabel resmi dan hanya menggunakan satu lokasi rumah sakit.</p>
+        <p>Data jadwal bersumber dari modul jadwal dokter internal dan hanya menggunakan satu lokasi rumah sakit.</p>
         <div class="inline-flex min-h-11 items-center gap-2 rounded-full border border-slate-200 bg-[#f7faf7] px-4 text-sm">
           {{ icon('calendar-days', { class: 'h-4 w-4 text-hospital-600' }) }}
           <span>Geser tabel ke samping pada layar kecil</span>
@@ -92,7 +92,7 @@
                   <tr
                     data-schedule-row
                     data-schedule-name="{{ row.name|lower|e('html_attr') }}"
-                    data-schedule-specialization="{{ row.specialization_slug|e('html_attr') }}"
+                    data-schedule-specialization="{{ row.specialization_slugs|default([row.specialization_slug])|join(' ')|e('html_attr') }}"
                     data-schedule-category="{{ row.specialization_category_slug|e('html_attr') }}"
                   >
                     <th scope="row" class="column-doctor">

@@ -14,34 +14,12 @@ final class DoctorDirectorySync
 
     public static function register(): void
     {
-        add_action('init', [self::class, 'maybeSync'], 140);
+        // Native schedule module owns persistence. TablePress import is explicit.
     }
 
     public static function maybeSync(): void
     {
-        if (!self::shouldRunSync()) {
-            return;
-        }
-
-        if (!class_exists(\TablePress::class)) {
-            return;
-        }
-
-        $repository = new DoctorScheduleRepository();
-        $records = $repository->records();
-        $hash = md5(self::SYNC_VERSION . '|' . $repository->sourceHash());
-
-        if ($records === [] || $hash === '') {
-            return;
-        }
-
-        $storedHash = (string) get_option(self::HASH_OPTION, '');
-        if ($storedHash === $hash) {
-            return;
-        }
-
-        self::sync($records, $repository);
-        update_option(self::HASH_OPTION, $hash, false);
+        return;
     }
 
     /**

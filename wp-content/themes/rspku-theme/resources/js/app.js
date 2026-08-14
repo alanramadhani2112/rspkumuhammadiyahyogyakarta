@@ -72,10 +72,11 @@ Alpine.data('scheduleTable', () => ({
     this.rows.forEach((row) => {
       const name = (row.dataset.scheduleName || '').toLowerCase();
       const spec = (row.dataset.scheduleSpecialization || '').toLowerCase();
+      const specs = spec.split(/\s+/).filter(Boolean);
       const category = (row.dataset.scheduleCategory || '').toLowerCase();
       const text = row.textContent?.toLowerCase() || '';
       const queryMatch = keyword === '' || name.includes(keyword) || spec.includes(keyword) || category.includes(keyword) || text.includes(keyword);
-      const specializationMatch = specialization === '' || spec === specialization || category === specialization;
+      const specializationMatch = specialization === '' || specs.includes(specialization) || category === specialization;
       const match = queryMatch && specializationMatch;
 
       if (match) {

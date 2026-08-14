@@ -4,18 +4,10 @@ declare(strict_types=1);
 
 namespace Rspku\Repositories;
 
-use TablePress;
 use WP_Post;
 
 final class DoctorScheduleRepository
 {
-    private const TABLE_ID = '1';
-
-    /**
-     * @var array<string,mixed>|null
-     */
-    private static ?array $tableCache = null;
-
     /**
      * @var array<int,array<string,mixed>>|null
      */
@@ -29,17 +21,28 @@ final class DoctorScheduleRepository
         $records = $this->records();
         $specializations = [];
         $categories = [];
+        $scheduledCount = 0;
 
         foreach ($records as $record) {
-            $specializations[(string) ($record['specialization'] ?? '')] = true;
-            $categories[(string) ($record['specialization_category'] ?? 'Lainnya')] = true;
+            if (!empty($record['has_schedule'])) {
+                $scheduledCount++;
+            }
+
+            foreach ((array) ($record['specializations'] ?? []) as $specialization) {
+                if (!is_array($specialization)) {
+                    continue;
+                }
+
+                $specializations[(string) ($specialization['name'] ?? '')] = true;
+                $categories[(string) ($specialization['category'] ?? 'Lainnya')] = true;
+            }
         }
 
         return [
-            'table_id' => self::TABLE_ID,
-            'table_name' => (string) ($this->table()['name'] ?? 'Jadwal Dokter'),
-            'last_modified' => (string) ($this->table()['last_modified'] ?? ''),
-            'doctor_count' => count($records),
+            'source' => 'native',
+            'table_name' => 'Jadwal Dokter Native',
+            'last_modified' => '',
+            'doctor_count' => $scheduledCount,
             'specialization_count' => count(array_filter(array_keys($specializations))),
             'category_count' => count(array_filter(array_keys($categories))),
         ];
@@ -51,10 +54,8 @@ final class DoctorScheduleRepository
     public function dayHeaders(): array
     {
         $headers = [];
-        $table = $this->table();
-        $rows = is_array($table['data'] ?? null) ? $table['data'] : [];
 
-        foreach ($this->headers($rows[0] ?? []) as $dayKey) {
+        foreach ($this->dayKeys() as $dayKey) {
             $headers[] = [
                 'key' => $dayKey,
                 'label' => $this->dayLabel($dayKey),
@@ -73,19 +74,22 @@ final class DoctorScheduleRepository
             return self::$recordsCache;
         }
 
-        $table = $this->table();
-        $data = $table['data'] ?? [];
         $records = [];
+        $posts = get_posts([
+            'post_type' => 'dokter',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'orderby' => 'title',
+            'order' => 'ASC',
+            'no_found_rows' => true,
+        ]);
 
-        if (!is_array($data) || $data === []) {
-            return self::$recordsCache = [];
-        }
+        foreach ($posts as $post) {
+            if (!$post instanceof WP_Post) {
+                continue;
+            }
 
-        $headers = $this->headers($data[0] ?? []);
-
-        for ($index = 1, $limit = count($data); $index < $limit; $index++) {
-            $row = is_array($data[$index] ?? null) ? $data[$index] : [];
-            $record = $this->parseRow($row, $headers, $index);
+            $record = $this->recordFromDoctor($post);
             if ($record !== null) {
                 $records[] = $record;
             }
@@ -102,16 +106,22 @@ final class DoctorScheduleRepository
         $items = [];
 
         foreach ($this->records() as $record) {
-            $spec = (string) ($record['specialization'] ?? '');
-            if ($spec === '') {
-                continue;
-            }
+            foreach ((array) ($record['specializations'] ?? []) as $specialization) {
+                if (!is_array($specialization)) {
+                    continue;
+                }
 
-            $items[$spec] = [
-                'name' => $spec,
-                'slug' => sanitize_title($spec),
-                'category' => (string) ($record['specialization_category'] ?? 'Lainnya'),
-            ];
+                $spec = (string) ($specialization['name'] ?? '');
+                if ($spec === '') {
+                    continue;
+                }
+
+                $items[$spec] = [
+                    'name' => $spec,
+                    'slug' => (string) ($specialization['slug'] ?? sanitize_title($spec)),
+                    'category' => (string) ($specialization['category'] ?? 'Lainnya'),
+                ];
+            }
         }
 
         ksort($items);
@@ -175,8 +185,10 @@ final class DoctorScheduleRepository
     {
         $normalized = $this->normalizeText($specialization);
         foreach ($this->records() as $record) {
-            if ($this->normalizeText((string) $record['specialization']) === $normalized) {
-                return $record;
+            foreach ((array) ($record['specializations'] ?? []) as $item) {
+                if (is_array($item) && $this->normalizeText((string) ($item['name'] ?? '')) === $normalized) {
+                    return $record;
+                }
             }
         }
 
@@ -189,26 +201,145 @@ final class DoctorScheduleRepository
     }
 
     /**
-     * @return array<string,mixed>
+     * @return array<int,string>
      */
-    public function table(): array
+    private function dayKeys(): array
     {
-        if (self::$tableCache !== null) {
-            return self::$tableCache;
+        return ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    }
+
+    /**
+     * @return array<string,mixed>|null
+     */
+    private function recordFromDoctor(WP_Post $post): ?array
+    {
+        $postId = (int) $post->ID;
+        $terms = $this->doctorSpecializations($postId);
+        $primaryTerm = $terms[0] ?? null;
+        $specialization = $primaryTerm['name'] ?? '';
+        $category = $primaryTerm['category'] ?? 'Lainnya';
+        $schedule = $this->doctorSchedule($postId, $terms);
+        $days = [];
+
+        foreach ($this->dayKeys() as $dayKey) {
+            $days[$dayKey] = [
+                'key' => $dayKey,
+                'label' => $this->dayLabel($dayKey),
+                'raw' => '',
+                'slots' => [],
+            ];
         }
 
-        if (!class_exists(TablePress::class)) {
-            return self::$tableCache = [];
+        foreach ($schedule as $slot) {
+            $day = (string) ($slot['day'] ?? '');
+            if (!isset($days[$day])) {
+                continue;
+            }
+
+            $days[$day]['slots'][] = $slot;
         }
 
-        $model = TablePress::load_model('table');
-        $table = $model->load(self::TABLE_ID, true, true);
+        return [
+            'row_index' => $postId,
+            'id' => $postId,
+            'name' => get_the_title($post),
+            'slug' => $post->post_name,
+            'specialization' => $specialization,
+            'specialization_slug' => $primaryTerm['slug'] ?? '',
+            'specializations' => $terms,
+            'specialization_slugs' => array_values(array_unique(array_map(static fn (array $term): string => (string) ($term['slug'] ?? ''), $terms))),
+            'specialization_category' => $category,
+            'specialization_category_slug' => sanitize_title($category),
+            'days' => $days,
+            'schedule' => $schedule,
+            'has_schedule' => $schedule !== [],
+            'schedule_summary' => $this->scheduleSummary($schedule) ?: __('Jadwal belum tersedia', 'rspku-theme'),
+            'summary' => get_the_excerpt($post),
+            'profile' => '',
+            'education' => '',
+            'experience' => '',
+            'consultation_type' => (string) get_post_meta($postId, '_rspku_consultation_type', true),
+            'related_services' => [],
+            'related_polyclinics' => [],
+            'raw' => [],
+        ];
+    }
 
-        if (is_wp_error($table)) {
-            return self::$tableCache = [];
+    /**
+     * @param array<int,array<string,string>> $terms
+     * @return array<int,array<string,mixed>>
+     */
+    private function doctorSchedule(int $postId, array $terms): array
+    {
+        $raw = get_post_meta($postId, '_rspku_doctor_schedule', true);
+        if (!is_array($raw) || $raw === []) {
+            $raw = function_exists('get_field') ? get_field('jadwal_praktek', $postId) : get_post_meta($postId, 'jadwal_praktek', true);
         }
 
-        return self::$tableCache = $table;
+        if (!is_array($raw)) {
+            return [];
+        }
+
+        $termById = [];
+        foreach ($terms as $term) {
+            $termById[(int) ($term['id'] ?? 0)] = $term;
+        }
+
+        $rows = [];
+        foreach ($raw as $row) {
+            if (!is_array($row)) {
+                continue;
+            }
+
+            $day = $this->normalizeDayKey((string) ($row['day'] ?? $row['hari'] ?? $row['hari_praktek'] ?? ''));
+            if (!in_array($day, $this->dayKeys(), true)) {
+                continue;
+            }
+
+            $termId = absint($row['specialization_term_id'] ?? 0);
+            $term = $termById[$termId] ?? null;
+            $start = (string) ($row['start_time'] ?? $row['jam_mulai'] ?? '');
+            $end = (string) ($row['end_time'] ?? $row['jam_selesai'] ?? '');
+            $label = (string) ($row['label'] ?? trim($start . ' - ' . $end));
+
+            $rows[] = [
+                'day' => $day,
+                'day_label' => $this->dayLabel($day),
+                'start_time' => $start,
+                'end_time' => $end,
+                'label' => $label !== ' -' ? $label : '',
+                'room' => (string) ($row['room'] ?? ''),
+                'consultation_type' => (string) ($row['consultation_type'] ?? ''),
+                'specialization_term_id' => $termId,
+                'specialization' => $term['name'] ?? '',
+                'specialization_slug' => $term['slug'] ?? '',
+                'note' => (string) ($row['note'] ?? ''),
+            ];
+        }
+
+        return $rows;
+    }
+
+    /**
+     * @return array<int,array{id:int,name:string,slug:string,category:string}>
+     */
+    private function doctorSpecializations(int $postId): array
+    {
+        $terms = get_the_terms($postId, 'spesialisasi-dokter');
+        if (!is_array($terms)) {
+            return [];
+        }
+
+        return array_map(function (\WP_Term $term): array {
+            $parent = $term->parent > 0 ? get_term($term->parent, 'spesialisasi-dokter') : null;
+
+            return [
+                'id' => (int) $term->term_id,
+                'name' => $term->name,
+                'slug' => $term->slug,
+                'category' => $parent instanceof \WP_Term ? $parent->name : 'Lainnya',
+            ];
+        }, array_values($terms));
     }
 
     /**
