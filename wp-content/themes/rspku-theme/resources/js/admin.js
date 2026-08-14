@@ -6,7 +6,7 @@ const rowsSelector = '[data-rspku-schedule-rows]';
 const templateSelector = '[data-rspku-schedule-template]';
 
 function getContainer(target) {
-  return target.closest('.rspku-doctor-fields');
+  return target.closest('.rspku-doctor-fields, [data-rspku-schedule-admin]');
 }
 
 function addRow(container) {
@@ -41,12 +41,15 @@ document.addEventListener('click', (event) => {
     const container = getContainer(target);
     if (container) {
       addRow(container);
+      container.dispatchEvent(new Event('rspku:schedule-change', { bubbles: true }));
     }
   }
 
   if (target.matches(removeButtonSelector)) {
     event.preventDefault();
+    const container = getContainer(target);
     removeRow(target);
+    container?.dispatchEvent(new Event('rspku:schedule-change', { bubbles: true }));
   }
 });
 
@@ -62,4 +65,69 @@ document.addEventListener('DOMContentLoaded', () => {
     acfBoxes[acfBoxes.length - 1].after(yoastBox);
     yoastBox.classList.add('closed');
   }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('[data-rspku-schedule-admin-form]');
+  const status = document.querySelector('#rspku-doctor-schedule-status');
+
+  if (!(form instanceof HTMLFormElement) || !(status instanceof HTMLElement)) {
+    return;
+  }
+
+  let isDirty = false;
+
+  form.addEventListener('input', () => {
+    isDirty = true;
+  });
+
+  form.addEventListener('change', () => {
+    isDirty = true;
+  });
+
+  form.addEventListener('rspku:schedule-change', () => {
+    isDirty = true;
+  });
+
+  form.addEventListener('submit', (event) => {
+    const errors = Array.from(form.querySelectorAll('[data-rspku-schedule-rows] tr')).flatMap((row, index) => {
+      const term = row.querySelector('select[name$="[specialization_term_id]"]')?.value || '';
+      const day = row.querySelector('select[name$="[day]"]')?.value || '';
+      const start = row.querySelector('input[name$="[start_time]"]')?.value || '';
+      const end = row.querySelector('input[name$="[end_time]"]')?.value || '';
+
+      if (!term && !day && !start && !end) {
+        return [];
+      }
+
+      if (!term || !day || !start || !end) {
+        return [`Slot ${index + 1}: spesialisasi, hari, jam mulai, jam selesai wajib diisi.`];
+      }
+
+      if (start >= end) {
+        return [`Slot ${index + 1}: jam mulai harus lebih awal dari jam selesai.`];
+      }
+
+      return [];
+    });
+
+    if (errors.length === 0) {
+      isDirty = false;
+      return;
+    }
+
+    event.preventDefault();
+
+    status.className = 'notice notice-error';
+    status.innerHTML = `<p>${errors.join('<br>')}</p>`;
+  });
+
+  window.addEventListener('beforeunload', (event) => {
+    if (!isDirty) {
+      return;
+    }
+
+    event.preventDefault();
+    event.returnValue = '';
+  });
 });

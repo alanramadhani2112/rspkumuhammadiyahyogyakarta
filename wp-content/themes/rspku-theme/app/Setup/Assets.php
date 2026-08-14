@@ -77,9 +77,10 @@ final class Assets
         // Only load admin JS on edit screens for our custom post types.
         // Other admin pages (dashboard, settings, tools) don't need it.
         $relevantTypes = ['dokter', 'layanan', 'poliklinik', 'jurnal', 'rawat-inap', 'manajemen-rs'];
-        $relevantBases = ['post', 'post-new'];
+        $relevantBases = ['post', 'post-new', 'dokter_page_rspku-doctor-schedule'];
+        $isDoctorSchedulePage = (string) $screen->base === 'dokter_page_rspku-doctor-schedule';
 
-        if (!in_array((string) $screen->post_type, $relevantTypes, true)) {
+        if (!$isDoctorSchedulePage && !in_array((string) $screen->post_type, $relevantTypes, true)) {
             return;
         }
 

@@ -20,7 +20,9 @@ define('RSPKU_CPT_PATH', __DIR__);
 
 require_once RSPKU_CPT_PATH . '/includes/class-rspku-cpt-post-types.php';
 require_once RSPKU_CPT_PATH . '/includes/class-rspku-cpt-taxonomies.php';
+require_once RSPKU_CPT_PATH . '/includes/class-rspku-cpt-doctor-schedule.php';
 require_once RSPKU_CPT_PATH . '/includes/class-rspku-cpt-doctor-fields.php';
+require_once RSPKU_CPT_PATH . '/includes/class-rspku-cpt-doctor-schedule-admin.php';
 
 final class RSPKU_CPT {
 
@@ -28,6 +30,7 @@ final class RSPKU_CPT {
         RSPKU_CPT_PostTypes::register();
         RSPKU_CPT_Taxonomies::register();
         RSPKU_CPT_DoctorFields::register();
+        RSPKU_CPT_DoctorScheduleAdmin::register();
     }
 
     /**

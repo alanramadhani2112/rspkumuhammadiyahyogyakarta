@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 /**
  * Doctor meta box + structured post meta registration. Moved from the
  * theme in M6. Provides the "Detail Dokter" admin meta box with schedule
- * editor and registers the underlying _rspku_* post meta with the REST
+ * summary and registers the underlying _rspku_* post meta with the REST
  * API.
  *
  * Text domain kept as "rspku-theme" so existing translations continue to
@@ -70,58 +70,31 @@ final class RSPKU_CPT_DoctorFields
         echo '<hr style="margin: 1.5rem 0;">';
         echo '<h3 style="margin-top:0;">' . esc_html__('Jadwal Praktik', 'rspku-theme') . '</h3>';
 
-        if ($isSyncedFromSchedule) {
-            echo '<p style="margin-top:-0.25rem;color:#6b7280;">' . esc_html__('Jadwal praktik di bawah ini ditampilkan sebagai referensi dan akan diperbarui otomatis dari tabel jadwal dokter.', 'rspku-theme') . '</p>';
-            echo '<table class="widefat striped" style="margin-bottom:1rem;">';
-            echo '<thead><tr>';
-            echo '<th>' . esc_html__('Hari', 'rspku-theme') . '</th>';
-            echo '<th>' . esc_html__('Mulai', 'rspku-theme') . '</th>';
-            echo '<th>' . esc_html__('Selesai', 'rspku-theme') . '</th>';
-            echo '<th>' . esc_html__('Ruangan', 'rspku-theme') . '</th>';
-            echo '<th>' . esc_html__('Jenis Konsultasi', 'rspku-theme') . '</th>';
-            echo '</tr></thead><tbody>';
+        echo '<p style="margin-top:-0.25rem;color:#6b7280;">' . esc_html__('Jadwal dikelola dari menu Dokter > Jadwal Dokter. Ringkasan di bawah ini hanya baca.', 'rspku-theme') . '</p>';
+        echo '<table class="widefat striped" style="margin-bottom:1rem;">';
+        echo '<thead><tr>';
+        echo '<th>' . esc_html__('Hari', 'rspku-theme') . '</th>';
+        echo '<th>' . esc_html__('Mulai', 'rspku-theme') . '</th>';
+        echo '<th>' . esc_html__('Selesai', 'rspku-theme') . '</th>';
+        echo '<th>' . esc_html__('Ruangan', 'rspku-theme') . '</th>';
+        echo '<th>' . esc_html__('Jenis Konsultasi', 'rspku-theme') . '</th>';
+        echo '</tr></thead><tbody>';
 
-            if ($schedule === []) {
-                echo '<tr><td colspan="5">' . esc_html__('Jadwal praktik belum tersedia dari tabel sumber.', 'rspku-theme') . '</td></tr>';
-            } else {
-                foreach ($schedule as $row) {
-                    echo '<tr>';
-                    echo '<td>' . esc_html((string) ($row['day_label'] ?? self::days()[(string) ($row['day'] ?? '')] ?? '')) . '</td>';
-                    echo '<td>' . esc_html((string) ($row['start_time'] ?? '')) . '</td>';
-                    echo '<td>' . esc_html((string) ($row['end_time'] ?? '')) . '</td>';
-                    echo '<td>' . esc_html((string) ($row['room'] ?? '-')) . '</td>';
-                    echo '<td>' . esc_html((string) ($row['consultation_type'] ?? '-')) . '</td>';
-                    echo '</tr>';
-                }
-            }
-
-            echo '</tbody></table>';
+        if ($schedule === []) {
+            echo '<tr><td colspan="5">' . esc_html__('Jadwal belum tersedia.', 'rspku-theme') . '</td></tr>';
         } else {
-            echo '<p style="margin-top:-0.25rem;color:#6b7280;">' . esc_html__('Gunakan field terstruktur, bukan textarea. Setiap baris mewakili satu slot praktik.', 'rspku-theme') . '</p>';
-            echo '<table class="widefat striped" style="margin-bottom:1rem;">';
-            echo '<thead><tr>';
-            echo '<th>' . esc_html__('Hari', 'rspku-theme') . '</th>';
-            echo '<th>' . esc_html__('Mulai', 'rspku-theme') . '</th>';
-            echo '<th>' . esc_html__('Selesai', 'rspku-theme') . '</th>';
-            echo '<th>' . esc_html__('Ruangan', 'rspku-theme') . '</th>';
-            echo '<th>' . esc_html__('Jenis Konsultasi', 'rspku-theme') . '</th>';
-            echo '<th></th>';
-            echo '</tr></thead>';
-            echo '<tbody data-rspku-schedule-rows>';
-
-            if ($schedule === []) {
-                echo self::scheduleRow('__INDEX__', []);
-            } else {
-                foreach (array_values($schedule) as $index => $row) {
-                    echo self::scheduleRow((string) $index, $row);
-                }
+            foreach ($schedule as $row) {
+                echo '<tr>';
+                echo '<td>' . esc_html((string) ($row['day_label'] ?? self::days()[(string) ($row['day'] ?? '')] ?? '')) . '</td>';
+                echo '<td>' . esc_html((string) ($row['start_time'] ?? '')) . '</td>';
+                echo '<td>' . esc_html((string) ($row['end_time'] ?? '')) . '</td>';
+                echo '<td>' . esc_html((string) ($row['room'] ?? '-')) . '</td>';
+                echo '<td>' . esc_html((string) ($row['consultation_type'] ?? '-')) . '</td>';
+                echo '</tr>';
             }
-
-            echo '</tbody>';
-            echo '</table>';
-            echo '<template data-rspku-schedule-template>' . self::scheduleRow('__INDEX__', []) . '</template>';
-            echo '<p><button type="button" class="button button-secondary" data-rspku-add-schedule>' . esc_html__('Tambah Jadwal', 'rspku-theme') . '</button></p>';
         }
+
+        echo '</tbody></table>';
         echo '</div>';
     }
 
@@ -159,12 +132,7 @@ final class RSPKU_CPT_DoctorFields
         update_post_meta($postId, '_rspku_related_services', $services);
         self::replaceIndexedMeta($postId, '_rspku_related_service', $services);
 
-        $isSyncedFromSchedule = (string) get_post_meta($postId, '_rspku_synced_from_schedule', true) === '1';
-        if (!$isSyncedFromSchedule && isset($_POST['rspku_doctor_schedule']) && is_array($_POST['rspku_doctor_schedule'])) {
-            $schedule = self::sanitizeSchedule(wp_unslash($_POST['rspku_doctor_schedule']));
-            update_post_meta($postId, '_rspku_doctor_schedule', $schedule);
-            self::replaceIndexedMeta($postId, '_rspku_schedule_day', array_column($schedule, 'day'));
-        }
+        // Jadwal disimpan terpusat dari Dokter > Jadwal Dokter.
     }
 
     private static function registerPostMeta(): void
@@ -211,10 +179,7 @@ final class RSPKU_CPT_DoctorFields
             'type' => 'array',
             'show_in_rest' => [
                 'schema' => [
-                    'type' => 'array',
-                    'items' => [
-                        'type' => 'object',
-                    ],
+                    ...RSPKU_CPT_DoctorSchedule::restSchema(),
                 ],
             ],
             'auth_callback' => static fn (): bool => current_user_can('edit_posts'),
@@ -342,41 +307,7 @@ final class RSPKU_CPT_DoctorFields
      */
     private static function sanitizeSchedule(array $rows): array
     {
-        $sanitized = [];
-        foreach ($rows as $row) {
-            if (!is_array($row)) {
-                continue;
-            }
-
-            $day = sanitize_key((string) ($row['day'] ?? ''));
-            $start = self::time((string) ($row['start_time'] ?? ''));
-            $end = self::time((string) ($row['end_time'] ?? ''));
-            $room = sanitize_text_field((string) ($row['room'] ?? ''));
-            $consultation = sanitize_text_field((string) ($row['consultation_type'] ?? ''));
-
-            if ($day === '' && $start === '' && $end === '' && $branchId === 0 && $room === '' && $consultation === '') {
-                continue;
-            }
-
-            if (!isset(self::days()[$day])) {
-                continue;
-            }
-
-            $sanitized[] = [
-                'day' => $day,
-                'start_time' => $start,
-                'end_time' => $end,
-                'room' => $room,
-                'consultation_type' => $consultation,
-            ];
-        }
-
-        return array_values($sanitized);
-    }
-
-    private static function time(string $value): string
-    {
-        return preg_match('/^\d{2}:\d{2}$/', $value) ? $value : '';
+        return RSPKU_CPT_DoctorSchedule::sanitizeRows($rows);
     }
 
     /**
@@ -384,15 +315,7 @@ final class RSPKU_CPT_DoctorFields
      */
     private static function days(): array
     {
-        return [
-            'monday' => __('Senin', 'rspku-theme'),
-            'tuesday' => __('Selasa', 'rspku-theme'),
-            'wednesday' => __('Rabu', 'rspku-theme'),
-            'thursday' => __('Kamis', 'rspku-theme'),
-            'friday' => __('Jumat', 'rspku-theme'),
-            'saturday' => __('Sabtu', 'rspku-theme'),
-            'sunday' => __('Minggu', 'rspku-theme'),
-        ];
+        return RSPKU_CPT_DoctorSchedule::days();
     }
 
     /**
