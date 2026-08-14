@@ -350,7 +350,6 @@ Alpine.data('accordionItem', () => ({
 Alpine.data('promoSlider', () => ({
   index: 0,
   count: 0,
-  userPaused: false,
   interacting: false,
   reducedMotion: false,
   timer: null,
@@ -361,10 +360,10 @@ Alpine.data('promoSlider', () => ({
   },
   start() {
     this.stop();
-    if (this.count < 2 || this.reducedMotion || this.userPaused || this.interacting) {
+    if (this.count < 2 || this.reducedMotion || this.interacting) {
       return;
     }
-    this.timer = window.setInterval(() => this.next(), 8000);
+    this.timer = window.setInterval(() => this.next(), 3000);
   },
   stop() {
     if (this.timer) {
@@ -379,10 +378,6 @@ Alpine.data('promoSlider', () => ({
   resume() {
     this.interacting = false;
     this.start();
-  },
-  toggleAutoplay() {
-    this.userPaused = !this.userPaused;
-    this.userPaused ? this.stop() : this.start();
   },
   goTo(index) {
     this.index = (index + this.count) % this.count;
