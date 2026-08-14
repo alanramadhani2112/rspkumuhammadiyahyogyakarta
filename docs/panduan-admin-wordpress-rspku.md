@@ -14,7 +14,7 @@ Website memakai WordPress dengan theme custom `rspku-theme` dan beberapa plugin 
 - `RSPKU Schema`: data schema/SEO teknis.
 - `Advanced Custom Fields PRO`: field tambahan untuk konten dinamis.
 - `Yoast SEO`: pengaturan SEO tiap konten.
-- `TablePress`: tabel, bila dipakai untuk data terstruktur.
+- `TablePress`: tabel lama/arsip. Jadwal dokter tidak lagi dikelola dari TablePress setelah modul jadwal native aktif.
 - `GTranslate`: terjemahan bahasa.
 - `UpdraftPlus`: backup/restore.
 - `WPS Hide Login`: URL login admin tersembunyi.
@@ -186,7 +186,7 @@ Field ACF dokter:
 | Foto Dokter | Foto profil dokter |
 | Profil Dokter | Deskripsi/profil singkat dokter |
 | Spesialis | Kategori spesialisasi dokter |
-| Jadwal Praktek | Jadwal praktik dokter, biasanya repeater |
+| Jadwal Praktek | Ringkasan jadwal. Editing utama dilakukan dari menu **Dokter > Jadwal Dokter** |
 | Pendidikan Dokter | Riwayat pendidikan |
 | Pengalaman Dokter | Riwayat pengalaman |
 | Pelatihan Dokter | Riwayat pelatihan |
@@ -199,8 +199,8 @@ Cara tambah/edit dokter:
 3. Isi field **Nama Dokter**.
 4. Upload **Foto Dokter**.
 5. Isi profil, pendidikan, pengalaman, dan pelatihan bila tersedia.
-6. Pilih spesialisasi dan jenis konsultasi.
-7. Isi jadwal praktik.
+6. Pilih spesialisasi dokter dari taxonomy resmi.
+7. Kelola jadwal dari **Dokter > Jadwal Dokter**.
 8. Relasikan ke poliklinik bila field tersedia.
 9. Klik **Perbarui/Terbitkan**.
 
@@ -211,6 +211,35 @@ Checklist dokter:
 - Jadwal hari/jam benar.
 - Poliklinik/spesialisasi sesuai.
 - Jangan hapus dokter lama tanpa arahan; ubah status ke draft bila sementara tidak tampil.
+
+### Mengelola Jadwal Dokter
+
+Jadwal dokter dikelola dari menu **Dokter > Jadwal Dokter**. Modul ini memakai data dokter dan taxonomy **Spesialisasi Dokter** yang sudah ada, sehingga admin tidak perlu mengedit TablePress untuk jadwal praktik.
+
+Alur edit jadwal:
+
+1. Buka **Dokter > Jadwal Dokter**.
+2. Pilih dokter yang ingin diatur.
+3. Tambahkan baris jadwal berisi spesialisasi, hari, jam mulai, jam selesai, dan catatan bila perlu.
+4. Pilih spesialisasi dari daftar yang sudah tersedia. Jika spesialisasi belum ada, buat dulu di **Dokter > Spesialisasi Dokter**.
+5. Klik **Simpan Jadwal**.
+6. Cek halaman **Jadwal Dokter** dan profil dokter terkait.
+
+Aturan penting:
+
+- **Spesialisasi dibuat di Dokter > Spesialisasi Dokter**, bukan dari form jadwal.
+- Dokter boleh punya lebih dari satu spesialisasi.
+- Jika semua slot jadwal dikosongkan, profil dokter tetap publish dan menampilkan teks **Jadwal belum tersedia**.
+- TablePress hanya dipakai sebagai arsip/import lama. Jangan edit TablePress sebagai sumber jadwal baru setelah cutover.
+
+Rollback teknis bila migrasi jadwal bermasalah:
+
+1. Minta technical admin menjalankan audit/restore dari snapshot migrasi terakhir.
+2. Restore meta jadwal dokter, taxonomy spesialisasi, dan index hari dari file snapshot.
+3. Flush cache WordPress dan rewrite rules.
+4. Cek ulang halaman **Jadwal Dokter** dan minimal 3 profil dokter.
+
+Catatan: rollback tidak dilakukan dari dashboard biasa. Jangan mengubah TablePress sebagai workaround tanpa arahan technical admin.
 
 ## 8. Mengelola Poliklinik
 
