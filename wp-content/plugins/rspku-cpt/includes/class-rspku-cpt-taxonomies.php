@@ -38,6 +38,14 @@ final class RSPKU_CPT_Taxonomies
             'rewrite' => ['slug' => 'layanan-medis', 'with_front' => false],
         ]);
 
+        // Source/master-data grouping; does not replace curated kategori-layanan.
+        register_taxonomy('master-layanan-medis', ['layanan', 'poliklinik', 'rawat-inap'], [
+            'labels' => self::labels('Master Layanan Medis', 'Master Layanan Medis'),
+            'public' => false,
+            'show_in_rest' => true,
+            'hierarchical' => true,
+        ]);
+
         register_taxonomy('jenis-konsultasi', ['dokter'], [
             'labels' => self::labels('Jenis Konsultasi', 'Jenis Konsultasi'),
             'public' => true,
