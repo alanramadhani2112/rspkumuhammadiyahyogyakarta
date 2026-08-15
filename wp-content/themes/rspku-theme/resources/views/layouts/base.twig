@@ -50,8 +50,8 @@
   {% if rspku.header_topbar_enabled is not defined or rspku.header_topbar_enabled %}
   <div class="border-b border-slate-200 bg-[#f4f5f2]">
     <div class="rspku-container flex items-center justify-between gap-3 py-2 text-sm text-slate-600 sm:gap-4">
-      <div class="flex min-w-0 items-center gap-3 sm:gap-4">
-        <a href="{{ site.url }}/kontak/" class="hidden min-w-0 flex-1 items-center gap-2 whitespace-nowrap font-medium transition hover:text-hospital-700 md:inline-flex">
+      <div class="flex min-w-0 items-center gap-2 sm:gap-4">
+        <a href="{{ site.url }}/kontak/" class="hidden min-w-0 flex-1 items-center gap-2 whitespace-nowrap font-medium transition hover:text-hospital-700 lg:inline-flex">
           {{ icon('map-pin', { class: 'h-3.5 w-3.5 shrink-0 text-hospital-600' }) }}
           <span>Jl. KH. Ahmad Dahlan No.20, Yogyakarta</span>
         </a>
@@ -59,15 +59,9 @@
           {{ icon('phone', { class: 'h-3.5 w-3.5 shrink-0 text-hospital-600' }) }}
           <span class="hidden sm:inline">Call Center:</span>
           <a href="tel:{{ rspku.phone_igd_link }}" class="font-semibold transition hover:text-hospital-700" aria-label="Call Center {{ rspku.phone_igd }}">{{ rspku.phone_igd }}</a>
-          <a href="tel:{{ rspku.phone_igd_link }}" class="ml-1 inline-flex shrink-0 items-center gap-1.5 rounded-full bg-red-600 px-2.5 py-1 text-xs font-bold leading-none text-white shadow-sm transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-[#f4f5f2]" title="IGD 24 Jam Ext. 118" aria-label="IGD 24 Jam {{ rspku.phone_igd }}, Ext. 118">
-            <svg class="h-3.5 w-3.5 shrink-0 fill-current" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
-              <path d="M10 2.25 1.8 17h16.4L10 2.25Zm0 4.6c.46 0 .82.36.82.82v4.72a.82.82 0 0 1-1.64 0V7.67c0-.46.36-.82.82-.82Zm0 8.35a1.05 1.05 0 1 1 0-2.1 1.05 1.05 0 0 1 0 2.1Z" />
-            </svg>
-            <span class="whitespace-nowrap">IGD 24 Jam</span>
-          </a>
         </div>
       </div>
-      <div class="flex shrink-0 items-center gap-3">
+      <div class="flex min-w-0 shrink-0 items-center gap-2 sm:gap-4">
         {% if rspku.feature_gtranslate %}
         <div class="gtranslate_wrapper sr-only" aria-hidden="true">{{ function('do_shortcode', '[gtranslate]') }}</div>
         {# Language Switcher - Clean Flags Only #}
@@ -109,6 +103,12 @@
           </a>
         </noscript>
         {% endif %}
+        <a href="tel:{{ rspku.phone_igd_link }}" class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-white shadow-sm transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-[#f4f5f2] sm:px-2.5" title="IGD 24 Jam Ext. 118" aria-label="IGD 24 Jam {{ rspku.phone_igd }}, Ext. 118">
+          <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 20 20" fill="#ffffff" stroke="none" aria-hidden="true" focusable="false">
+            <path d="M10 2.25 1.8 17h16.4L10 2.25Zm0 4.6c.46 0 .82.36.82.82v4.72a.82.82 0 0 1-1.64 0V7.67c0-.46.36-.82.82-.82Zm0 8.35a1.05 1.05 0 1 1 0-2.1 1.05 1.05 0 0 1 0 2.1Z" fill="#ffffff" stroke="none" />
+          </svg>
+          <span class="whitespace-nowrap">IGD 24 Jam</span>
+        </a>
       </div>
     </div>
   </div>
