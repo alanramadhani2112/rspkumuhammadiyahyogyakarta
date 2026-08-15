@@ -3,6 +3,7 @@
 {% set total = total|default(0) %}
 {% set per_page = per_page|default(0) %}
 {% set show_single = show_single|default(false) %}
+{% set show_summary = show_summary|default(true) %}
 {% set item_label = item_label|default('item') %}
 {% set start_item = total > 0 and per_page > 0 ? ((current_page - 1) * per_page) + 1 : 0 %}
 {% set page_end_candidate = current_page * per_page %}
@@ -10,7 +11,7 @@
 
 {% if pagination or show_single %}
   <nav class="rspku-pagination-shell {{ class|default('') }}" aria-label="{{ label|default('Pagination') }}">
-    {% if total > 0 and per_page > 0 %}
+    {% if show_summary and total > 0 and per_page > 0 %}
       <p class="rspku-pagination-summary">Menampilkan {{ start_item }}-{{ end_item }} dari {{ total }} {{ item_label }}</p>
     {% endif %}
     {% if pagination %}

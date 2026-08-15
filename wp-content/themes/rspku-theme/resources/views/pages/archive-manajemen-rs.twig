@@ -82,6 +82,7 @@
           current_page: pagination_meta.current_page|default(1),
           total_pages: pagination_meta.total_pages|default(1),
           show_single: pagination_meta.total|default(0) > 0,
+          show_summary: false,
           item_label: pagination_meta.item_label|default('profil')
         } only %}
       </div>
