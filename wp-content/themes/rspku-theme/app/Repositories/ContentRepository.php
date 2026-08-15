@@ -557,6 +557,60 @@ final class ContentRepository
     }
 
     /**
+     * @param array<int,array<string,mixed>> $items
+     * @return array<int,array{title:string,items:array<int,array<string,mixed>>}>
+     */
+    public function managementSections(array $items): array
+    {
+        $sections = [
+            'Badan Pembina Harian RS PKU Muhammadiyah Yogyakarta' => [],
+            'Direksi RS PKU Muhammadiyah Yogyakarta Periode 2026-2030' => [],
+        ];
+
+        foreach ($items as $index => $item) {
+            $position = strtolower((string) ($item['position'] ?? ''));
+            $section = str_contains($position, 'badan pembina harian')
+                ? 'Badan Pembina Harian RS PKU Muhammadiyah Yogyakarta'
+                : 'Direksi RS PKU Muhammadiyah Yogyakarta Periode 2026-2030';
+
+            $sections[$section][] = ['index' => $index, 'item' => $item];
+        }
+
+        $rankedSort = function (array $ranks): callable {
+            return function (array $left, array $right) use ($ranks): int {
+                $leftPosition = strtolower((string) ($left['item']['position'] ?? ''));
+                $rightPosition = strtolower((string) ($right['item']['position'] ?? ''));
+                $leftRank = count($ranks);
+                $rightRank = count($ranks);
+
+                foreach ($ranks as $rank => $needle) {
+                    if (str_contains($leftPosition, $needle)) {
+                        $leftRank = $rank;
+                    }
+
+                    if (str_contains($rightPosition, $needle)) {
+                        $rightRank = $rank;
+                    }
+                }
+
+                return [$leftRank, $left['index']] <=> [$rightRank, $right['index']];
+            };
+        };
+
+        usort($sections['Badan Pembina Harian RS PKU Muhammadiyah Yogyakarta'], $rankedSort(['ketua', 'sekretaris', 'anggota']));
+        usort($sections['Direksi RS PKU Muhammadiyah Yogyakarta Periode 2026-2030'], $rankedSort(['direktur utama']));
+
+        return array_values(array_map(
+            fn (string $title, array $sectionItems): array => [
+                'title' => $title,
+                'items' => array_column($sectionItems, 'item'),
+            ],
+            array_keys($sections),
+            $sections
+        ));
+    }
+
+    /**
      * @return array<int,array<string,mixed>>
      */
     public function popularArticles(int $limit = 5, int $excludeId = 0): array
