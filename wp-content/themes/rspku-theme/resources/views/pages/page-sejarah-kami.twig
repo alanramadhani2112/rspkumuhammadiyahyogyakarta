@@ -122,7 +122,8 @@
 
                   </div>
                   {% if loop.index == 1 %}
-                    <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:mb-12 lg:max-w-3xl" data-history-slot="history_pioneers">
+                    <div class="pt-10 pb-8 lg:pb-12">
+                      <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:max-w-3xl" data-history-slot="history_pioneers">
                       {% if history_pioneers %}
                         {% include 'partials/responsive-image.twig' with {
                           id: history_pioneers.image_id,
@@ -142,10 +143,12 @@
                       {% else %}
                         {{ _self.history_placeholder('aspect-[16/9]', 'Pionir dan Tokoh Awal') }}
                       {% endif %}
-                    </figure>
+                      </figure>
+                    </div>
                   {% endif %}
                   {% if loop.index == 2 %}
-                    <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:mb-12 lg:max-w-3xl" data-history-slot="history_child_service">
+                    <div class="pt-10 pb-8 lg:pb-12">
+                      <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:max-w-3xl" data-history-slot="history_child_service">
                       {% if history_child_service %}
                         {% include 'partials/responsive-image.twig' with {
                           id: history_child_service.image_id,
@@ -165,10 +168,12 @@
                       {% else %}
                         {{ _self.history_placeholder('aspect-[16/9]', 'Layanan Anak Awal') }}
                       {% endif %}
-                    </figure>
+                      </figure>
+                    </div>
                   {% endif %}
                   {% if loop.index == 3 %}
-                    <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:mb-12 lg:max-w-3xl" data-history-slot="history_first_stone">
+                    <div class="pt-10 pb-8 lg:pb-12">
+                      <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:max-w-3xl" data-history-slot="history_first_stone">
                       {% if history_first_stone %}
                         {% include 'partials/responsive-image.twig' with {
                           id: history_first_stone.image_id,
@@ -188,7 +193,8 @@
                       {% else %}
                         {{ _self.history_placeholder('aspect-[16/9]', 'Peletakan Batu Pertama') }}
                       {% endif %}
-                    </figure>
+                      </figure>
+                    </div>
                   {% endif %}
                 {% endfor %}
               </div>
