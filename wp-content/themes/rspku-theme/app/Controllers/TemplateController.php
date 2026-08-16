@@ -726,6 +726,7 @@ final class TemplateController
             'eyebrow' => __('Perjalanan Kami', 'rspku-theme'),
             'title' => __('Sejarah RS PKU Muhammadiyah Yogyakarta', 'rspku-theme'),
             'description' => __('Perjalanan lebih dari 100 tahun pelayanan kesehatan umat yang berakar dari gerakan sosial, berkembang menjadi rumah sakit islami modern, dan tetap berpijak pada nilai dakwah serta kemanusiaan.', 'rspku-theme'),
+            'gallery' => self::historyGalleryContext(),
             'stats' => [
                 ['value' => '100+', 'label' => __('Tahun Melayani', 'rspku-theme')],
                 ['value' => '75+', 'label' => __('Dokter Spesialis', 'rspku-theme')],
@@ -806,6 +807,46 @@ final class TemplateController
                 ['letter' => 'N', 'name' => __('Nyaman', 'rspku-theme'), 'desc' => __('Menciptakan pengalaman layanan yang tenang dan menenteramkan.', 'rspku-theme')],
             ],
         ];
+    }
+
+    private static function historyGalleryContext(): array
+    {
+        if (!function_exists('rspku_setting')) {
+            return [];
+        }
+
+        $gallery = [];
+        $slots = [
+            'history_hero',
+            'history_pioneers',
+            'history_child_service',
+            'history_first_stone',
+            'history_modernization',
+        ];
+
+        foreach ($slots as $slot) {
+            $imageId = absint(rspku_setting($slot . '_image_id', 0));
+            $year = trim((string) rspku_setting($slot . '_year', ''));
+            $title = trim((string) rspku_setting($slot . '_title', ''));
+            $caption = trim((string) rspku_setting($slot . '_caption', ''));
+            $alt = trim((string) rspku_setting($slot . '_alt', ''));
+
+            if ($imageId < 1 || !wp_attachment_is_image($imageId) || $year === '' || $title === '' || $caption === '' || $alt === '') {
+                continue;
+            }
+
+            $gallery[] = [
+                'key' => $slot,
+                'image_id' => $imageId,
+                'image_url' => wp_get_attachment_image_url($imageId, 'rspku-hero') ?: '',
+                'year' => $year,
+                'title' => $title,
+                'caption' => $caption,
+                'alt' => $alt,
+            ];
+        }
+
+        return $gallery;
     }
 
     private static function publishCount(string $postType): int
