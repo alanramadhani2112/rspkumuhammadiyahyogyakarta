@@ -181,6 +181,67 @@ final class RSPKU_Settings_Registry
                     ],
                 ],
             ],
+            'sejarah' => [
+                'label' => 'Sejarah',
+                'icon' => 'dashicons-media-archive',
+                'sections' => [
+                    'history_hero' => [
+                        'title' => 'Hero Bangunan Bersejarah',
+                        'description' => 'Slot foto arsip untuk hero halaman /sejarah-kami.',
+                        'fields' => [
+                            ['key' => 'history_hero_image_id', 'label' => 'Gambar', 'type' => 'image', 'help' => 'Gambar plus tahun, judul, caption, dan alt wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_hero_year', 'label' => 'Tahun', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_hero_title', 'label' => 'Judul', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_hero_caption', 'label' => 'Caption', 'type' => 'textarea', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_hero_alt', 'label' => 'Alt Text', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                        ],
+                    ],
+                    'history_pioneers' => [
+                        'title' => 'Pionir dan Tokoh Awal',
+                        'description' => 'Slot foto arsip untuk pionir dan tokoh awal.',
+                        'fields' => [
+                            ['key' => 'history_pioneers_image_id', 'label' => 'Gambar', 'type' => 'image', 'help' => 'Gambar plus tahun, judul, caption, dan alt wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_pioneers_year', 'label' => 'Tahun', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_pioneers_title', 'label' => 'Judul', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_pioneers_caption', 'label' => 'Caption', 'type' => 'textarea', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_pioneers_alt', 'label' => 'Alt Text', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                        ],
+                    ],
+                    'history_child_service' => [
+                        'title' => 'Layanan Anak Awal',
+                        'description' => 'Slot foto arsip untuk layanan anak awal.',
+                        'fields' => [
+                            ['key' => 'history_child_service_image_id', 'label' => 'Gambar', 'type' => 'image', 'help' => 'Gambar plus tahun, judul, caption, dan alt wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_child_service_year', 'label' => 'Tahun', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_child_service_title', 'label' => 'Judul', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_child_service_caption', 'label' => 'Caption', 'type' => 'textarea', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_child_service_alt', 'label' => 'Alt Text', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                        ],
+                    ],
+                    'history_first_stone' => [
+                        'title' => 'Peletakan Batu Pertama',
+                        'description' => 'Slot foto arsip untuk peletakan batu pertama.',
+                        'fields' => [
+                            ['key' => 'history_first_stone_image_id', 'label' => 'Gambar', 'type' => 'image', 'help' => 'Gambar plus tahun, judul, caption, dan alt wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_first_stone_year', 'label' => 'Tahun', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_first_stone_title', 'label' => 'Judul', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_first_stone_caption', 'label' => 'Caption', 'type' => 'textarea', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_first_stone_alt', 'label' => 'Alt Text', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                        ],
+                    ],
+                    'history_modernization' => [
+                        'title' => 'Radiologi dan Modernisasi',
+                        'description' => 'Slot foto arsip untuk radiologi dan modernisasi.',
+                        'fields' => [
+                            ['key' => 'history_modernization_image_id', 'label' => 'Gambar', 'type' => 'image', 'help' => 'Gambar plus tahun, judul, caption, dan alt wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_modernization_year', 'label' => 'Tahun', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_modernization_title', 'label' => 'Judul', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_modernization_caption', 'label' => 'Caption', 'type' => 'textarea', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                            ['key' => 'history_modernization_alt', 'label' => 'Alt Text', 'type' => 'text', 'help' => 'Wajib terisi sebelum slot tampil di /sejarah-kami. Metadata harus resmi dan tidak boleh disimpulkan dari scan.'],
+                        ],
+                    ],
+                ],
+            ],
             'gambar' => [
                 'label' => 'Gambar',
                 'icon' => 'dashicons-format-image',

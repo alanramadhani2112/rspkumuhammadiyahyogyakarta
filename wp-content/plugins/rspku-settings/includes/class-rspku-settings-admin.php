@@ -301,9 +301,11 @@ final class RSPKU_Settings_Admin
             } elseif (str_starts_with($key, 'brand_color_')) {
                 $clean[$key] = sanitize_hex_color((string) $value) ?: ($hasStored ? (string) $stored[$key] : (string) $default);
             } elseif (self::isImageField($key)) {
-                $clean[$key] = absint($value);
+                $clean[$key] = self::sanitizeImageId($value);
             } elseif ($key === 'hero_title' || $key === 'hero_description') {
                 $clean[$key] = wp_kses_post((string) $value);
+            } elseif (self::isHistoryCaptionField($key)) {
+                $clean[$key] = sanitize_textarea_field((string) $value);
             } elseif (str_starts_with($key, 'promo_slide_') && str_ends_with($key, '_description')) {
                 $clean[$key] = sanitize_textarea_field((string) $value);
             } else {
@@ -417,6 +419,27 @@ final class RSPKU_Settings_Admin
         return in_array($key, self::imageKeys(), true);
     }
 
+    private static function isHistoryCaptionField(string $key): bool
+    {
+        return in_array($key, [
+            'history_hero_caption',
+            'history_pioneers_caption',
+            'history_child_service_caption',
+            'history_first_stone_caption',
+            'history_modernization_caption',
+        ], true);
+    }
+
+    /**
+     * @param mixed $value
+     */
+    private static function sanitizeImageId($value): int
+    {
+        $id = absint($value);
+
+        return $id > 0 && wp_attachment_is_image($id) ? $id : 0;
+    }
+
     /**
      * @return list<string>
      */
@@ -434,6 +457,11 @@ final class RSPKU_Settings_Admin
             'image_berita',
             'image_poliklinik',
             'image_layanan',
+            'history_hero_image_id',
+            'history_pioneers_image_id',
+            'history_child_service_image_id',
+            'history_first_stone_image_id',
+            'history_modernization_image_id',
         ];
     }
 
