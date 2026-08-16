@@ -122,6 +122,7 @@ pass('REST public API payload has no history_ keys');
 assert_contains($source['twig'], 'history_page.gallery|default([])', 'Twig reads history_page.gallery|default([])');
 foreach ($slots as $slot) {
     assert_contains($source['twig'], "history_gallery_slots.{$slot}|default(null)", "Twig maps slot variable: {$slot}");
+    assert_contains($source['twig'], "data-history-slot=\"{$slot}\"", "Twig renders stable slot marker: {$slot}");
 }
 
 $responsiveIncludes = substr_count($source['twig'], "include 'partials/responsive-image.twig'");
@@ -130,9 +131,34 @@ if ($responsiveIncludes !== 5) {
 }
 pass('Twig includes responsive image partial five times');
 
+$placeholderMarkers = substr_count($source['twig'], 'data-history-placeholder="true"');
+if ($placeholderMarkers !== 1) {
+    fail("Twig defines one reusable placeholder marker, found {$placeholderMarkers}");
+}
+pass('Twig defines one reusable placeholder marker');
+
+$placeholderStateCalls = substr_count($source['twig'], "_self.history_placeholder(");
+if ($placeholderStateCalls !== 5) {
+    fail("Twig renders five placeholder states, found {$placeholderStateCalls}");
+}
+pass('Twig renders five placeholder states');
+
+assert_contains($source['twig'], 'Foto sejarah belum tersedia', 'Twig placeholder state text exists');
+foreach (['Hero Bangunan Bersejarah', 'Pionir dan Tokoh Awal', 'Layanan Anak Awal', 'Peletakan Batu Pertama', 'Radiologi dan Modernisasi'] as $label) {
+    assert_contains($source['twig'], $label, "Twig placeholder semantic label exists: {$label}");
+}
+
+$slotMarkerCount = substr_count($source['twig'], 'data-history-slot=');
+if ($slotMarkerCount !== 5) {
+    fail("Twig renders five slot markers, found {$slotMarkerCount}");
+}
+pass('Twig renders five slot markers');
+
 assert_regex($source['twig'], '~<figure\b~', 'Twig renders <figure>');
 assert_regex($source['twig'], '~<figcaption\b~', 'Twig renders <figcaption>');
 assert_regex($source['twig'], '~history_hero\.image_id.*?eager:\s*true~s', 'Twig hero image include is eager');
+assert_regex($source['twig'], '~history_placeholder\(\'aspect-\[4/3\]\',\s*\'Hero Bangunan Bersejarah\'\)~', 'Twig hero placeholder uses 4:3 aspect ratio');
+assert_regex($source['twig'], '~history_placeholder\(\'aspect-\[16/9\]\',\s*\'Pionir dan Tokoh Awal\'\).*history_placeholder\(\'aspect-\[16/9\]\',\s*\'Layanan Anak Awal\'\).*history_placeholder\(\'aspect-\[16/9\]\',\s*\'Peletakan Batu Pertama\'\).*history_placeholder\(\'aspect-\[16/9\]\',\s*\'Radiologi dan Modernisasi\'\)~s', 'Twig non-hero placeholders use 16:9 aspect ratio');
 assert_not_regex($source['twig'], '~(?:sejarah|history)[^\'"\s>]*\.(?:png|jpe?g|webp|avif)~i', 'Twig has no hardcoded local history image paths');
 
 pass('history gallery contract');

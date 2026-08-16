@@ -12,6 +12,19 @@
     {% set history_child_service = history_gallery_slots.history_child_service|default(null) %}
     {% set history_first_stone = history_gallery_slots.history_first_stone|default(null) %}
     {% set history_modernization = history_gallery_slots.history_modernization|default(null) %}
+    {% macro history_placeholder(aspect_class, label) %}
+      <div class="{{ aspect_class }} grid w-full place-items-center border-b border-slate-200 bg-slate-50 px-6 text-center" data-history-placeholder="true">
+        <div>
+          <svg class="mx-auto h-10 w-10 text-slate-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="m7 15 3.25-3.25L13 14.5l2-2L18 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="15.5" cy="9" r="1.25" fill="currentColor"/>
+          </svg>
+          <span class="mt-3 block text-sm font-semibold text-slate-700">Foto sejarah belum tersedia</span>
+          <span class="mt-1 block text-xs font-semibold uppercase tracking-wide text-slate-500">{{ label }}</span>
+        </div>
+      </div>
+    {% endmacro %}
 
     {# Hero Section - Clean, Medical Look #}
     <section class="rspku-section pb-8">
@@ -23,15 +36,15 @@
           ]
         } only %}
 
-        <div class="mt-6 {% if history_hero %}grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center{% else %}max-w-4xl{% endif %}">
+        <div class="mt-6 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div class="space-y-5">
             <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_page.eyebrow }}</span>
             <h1 class="text-3xl font-bold leading-tight text-slate-950 sm:text-4xl lg:text-5xl">{{ history_page.title }}</h1>
             <p class="max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">{{ history_page.description }}</p>
           </div>
 
-          {% if history_hero %}
-            <figure class="overflow-hidden rounded-md border border-slate-200 bg-slate-100">
+          <figure class="overflow-hidden rounded-md border border-slate-200 bg-slate-100" data-history-slot="history_hero">
+            {% if history_hero %}
               {% include 'partials/responsive-image.twig' with {
                 id: history_hero.image_id,
                 url: history_hero.image_url,
@@ -48,8 +61,10 @@
                 <span class="mt-1 block font-semibold text-slate-950">{{ history_hero.title }}</span>
                 <span class="mt-1 block">{{ history_hero.caption }}</span>
               </figcaption>
-            </figure>
-          {% endif %}
+            {% else %}
+              {{ _self.history_placeholder('aspect-[4/3]', 'Hero Bangunan Bersejarah') }}
+            {% endif %}
+          </figure>
         </div>
 
         {# Stats Row #}
@@ -106,61 +121,73 @@
                     </div>
 
                   </div>
-                  {% if loop.index == 1 and history_pioneers %}
-                    <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:mb-12 lg:max-w-3xl">
-                      {% include 'partials/responsive-image.twig' with {
-                        id: history_pioneers.image_id,
-                        url: history_pioneers.image_url,
-                        alt: history_pioneers.alt,
-                        class: 'aspect-[16/9] w-full object-cover',
-                        sizes: '(min-width: 1024px) 768px, 100vw',
-                        width: 1200,
-                        height: 675,
-                        default_size: 'rspku-hero'
-                      } only %}
-                      <figcaption class="border-t border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600">
-                        <span class="block text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_pioneers.year }}</span>
-                        <span class="mt-1 block font-semibold text-slate-950">{{ history_pioneers.title }}</span>
-                        <span class="mt-1 block">{{ history_pioneers.caption }}</span>
-                      </figcaption>
+                  {% if loop.index == 1 %}
+                    <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:mb-12 lg:max-w-3xl" data-history-slot="history_pioneers">
+                      {% if history_pioneers %}
+                        {% include 'partials/responsive-image.twig' with {
+                          id: history_pioneers.image_id,
+                          url: history_pioneers.image_url,
+                          alt: history_pioneers.alt,
+                          class: 'aspect-[16/9] w-full object-cover',
+                          sizes: '(min-width: 1024px) 768px, 100vw',
+                          width: 1200,
+                          height: 675,
+                          default_size: 'rspku-hero'
+                        } only %}
+                        <figcaption class="border-t border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600">
+                          <span class="block text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_pioneers.year }}</span>
+                          <span class="mt-1 block font-semibold text-slate-950">{{ history_pioneers.title }}</span>
+                          <span class="mt-1 block">{{ history_pioneers.caption }}</span>
+                        </figcaption>
+                      {% else %}
+                        {{ _self.history_placeholder('aspect-[16/9]', 'Pionir dan Tokoh Awal') }}
+                      {% endif %}
                     </figure>
                   {% endif %}
-                  {% if loop.index == 2 and history_child_service %}
-                    <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:mb-12 lg:max-w-3xl">
-                      {% include 'partials/responsive-image.twig' with {
-                        id: history_child_service.image_id,
-                        url: history_child_service.image_url,
-                        alt: history_child_service.alt,
-                        class: 'aspect-[16/9] w-full object-cover',
-                        sizes: '(min-width: 1024px) 768px, 100vw',
-                        width: 1200,
-                        height: 675,
-                        default_size: 'rspku-hero'
-                      } only %}
-                      <figcaption class="border-t border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600">
-                        <span class="block text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_child_service.year }}</span>
-                        <span class="mt-1 block font-semibold text-slate-950">{{ history_child_service.title }}</span>
-                        <span class="mt-1 block">{{ history_child_service.caption }}</span>
-                      </figcaption>
+                  {% if loop.index == 2 %}
+                    <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:mb-12 lg:max-w-3xl" data-history-slot="history_child_service">
+                      {% if history_child_service %}
+                        {% include 'partials/responsive-image.twig' with {
+                          id: history_child_service.image_id,
+                          url: history_child_service.image_url,
+                          alt: history_child_service.alt,
+                          class: 'aspect-[16/9] w-full object-cover',
+                          sizes: '(min-width: 1024px) 768px, 100vw',
+                          width: 1200,
+                          height: 675,
+                          default_size: 'rspku-hero'
+                        } only %}
+                        <figcaption class="border-t border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600">
+                          <span class="block text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_child_service.year }}</span>
+                          <span class="mt-1 block font-semibold text-slate-950">{{ history_child_service.title }}</span>
+                          <span class="mt-1 block">{{ history_child_service.caption }}</span>
+                        </figcaption>
+                      {% else %}
+                        {{ _self.history_placeholder('aspect-[16/9]', 'Layanan Anak Awal') }}
+                      {% endif %}
                     </figure>
                   {% endif %}
-                  {% if loop.index == 3 and history_first_stone %}
-                    <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:mb-12 lg:max-w-3xl">
-                      {% include 'partials/responsive-image.twig' with {
-                        id: history_first_stone.image_id,
-                        url: history_first_stone.image_url,
-                        alt: history_first_stone.alt,
-                        class: 'aspect-[16/9] w-full object-cover',
-                        sizes: '(min-width: 1024px) 768px, 100vw',
-                        width: 1200,
-                        height: 675,
-                        default_size: 'rspku-hero'
-                      } only %}
-                      <figcaption class="border-t border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600">
-                        <span class="block text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_first_stone.year }}</span>
-                        <span class="mt-1 block font-semibold text-slate-950">{{ history_first_stone.title }}</span>
-                        <span class="mt-1 block">{{ history_first_stone.caption }}</span>
-                      </figcaption>
+                  {% if loop.index == 3 %}
+                    <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:mb-12 lg:max-w-3xl" data-history-slot="history_first_stone">
+                      {% if history_first_stone %}
+                        {% include 'partials/responsive-image.twig' with {
+                          id: history_first_stone.image_id,
+                          url: history_first_stone.image_url,
+                          alt: history_first_stone.alt,
+                          class: 'aspect-[16/9] w-full object-cover',
+                          sizes: '(min-width: 1024px) 768px, 100vw',
+                          width: 1200,
+                          height: 675,
+                          default_size: 'rspku-hero'
+                        } only %}
+                        <figcaption class="border-t border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600">
+                          <span class="block text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_first_stone.year }}</span>
+                          <span class="mt-1 block font-semibold text-slate-950">{{ history_first_stone.title }}</span>
+                          <span class="mt-1 block">{{ history_first_stone.caption }}</span>
+                        </figcaption>
+                      {% else %}
+                        {{ _self.history_placeholder('aspect-[16/9]', 'Peletakan Batu Pertama') }}
+                      {% endif %}
                     </figure>
                   {% endif %}
                 {% endfor %}
@@ -174,8 +201,8 @@
               </div>
               <div class="rounded-sm bg-hospital-50 px-4 py-2 text-sm font-semibold text-hospital-700 lg:mt-14">Hari Ini</div>
             </div>
-            {% if history_modernization %}
-              <figure class="mt-8 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:max-w-3xl">
+            <figure class="mt-8 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:max-w-3xl" data-history-slot="history_modernization">
+              {% if history_modernization %}
                 {% include 'partials/responsive-image.twig' with {
                   id: history_modernization.image_id,
                   url: history_modernization.image_url,
@@ -191,8 +218,10 @@
                   <span class="mt-1 block font-semibold text-slate-950">{{ history_modernization.title }}</span>
                   <span class="mt-1 block">{{ history_modernization.caption }}</span>
                 </figcaption>
-              </figure>
-            {% endif %}
+              {% else %}
+                {{ _self.history_placeholder('aspect-[16/9]', 'Radiologi dan Modernisasi') }}
+              {% endif %}
+            </figure>
           </div>
         </div>
       </section>
