@@ -8,6 +8,17 @@ use WP_Post;
 
 final class DoctorScheduleRepository
 {
+    private const UNVERIFIED_SPECIALIZATION_SLUGS = [
+        'bedah-vaskuler',
+        'poli-covid',
+        'poli-pcr',
+        'poli-rta',
+        'poli-saliva-pcr',
+        'asy-syifa',
+        'p054',
+        'p082',
+    ];
+
     /**
      * @var array<int,array<string,mixed>>|null
      */
@@ -112,13 +123,14 @@ final class DoctorScheduleRepository
                 }
 
                 $spec = (string) ($specialization['name'] ?? '');
-                if ($spec === '') {
+                $slug = (string) ($specialization['slug'] ?? sanitize_title($spec));
+                if ($spec === '' || self::isUnverifiedSpecialization($slug)) {
                     continue;
                 }
 
                 $items[$spec] = [
                     'name' => $spec,
-                    'slug' => (string) ($specialization['slug'] ?? sanitize_title($spec)),
+                    'slug' => $slug,
                     'category' => (string) ($specialization['category'] ?? 'Lainnya'),
                 ];
             }
@@ -495,6 +507,11 @@ final class DoctorScheduleRepository
         [$hour, $minute] = array_map('intval', explode(':', $value));
 
         return sprintf('%02d:%02d', $hour, $minute);
+    }
+
+    private static function isUnverifiedSpecialization(string $slug): bool
+    {
+        return in_array(sanitize_title($slug), self::UNVERIFIED_SPECIALIZATION_SLUGS, true);
     }
 
     private function scheduleSummary(array $slots): string
