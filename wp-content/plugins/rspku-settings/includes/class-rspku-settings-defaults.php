@@ -24,7 +24,7 @@ final class RSPKU_Settings_Defaults
             'founded_year' => '1923',
 
             // Contact
-            'phone_igd' => '0274 512653',
+            'phone_igd' => '0274-512653 (ext. 118)',
             'phone_igd_link' => '+62274512653',
             'phone_main' => '+62 8886412345',
             'phone_main_link' => '+628886412345',
@@ -204,8 +204,8 @@ final class RSPKU_Settings_Defaults
     public static function normalizeLegacyContactDefaults(array $options): array
     {
         foreach ([
-            'phone_igd' => '0274 512321',
-            'phone_igd_link' => '+62274512321',
+            'phone_igd' => '0274-512653 (ext. 118)',
+            'phone_igd_link' => '+62274512653',
             'phone_main' => '0274 512653',
             'phone_main_link' => '+62274512653',
             'whatsapp' => '0888 6412345',
@@ -214,7 +214,7 @@ final class RSPKU_Settings_Defaults
             'address_street' => 'Jl. KH. Ahmad Dahlan No. 20',
             'header_emergency_label' => 'IGD 24/7',
             'home_cta_secondary_text' => 'Hubungi IGD',
-            'home_cta_secondary_url' => 'tel:0274512321',
+            'home_cta_secondary_url' => 'tel:+62274512653',
         ] as $key => $legacyDefault) {
             if (($options[$key] ?? null) === $legacyDefault) {
                 unset($options[$key]);
