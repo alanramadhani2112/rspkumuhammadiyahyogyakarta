@@ -38,13 +38,10 @@ final class TemplateController
         if (is_front_page()) {
             // Dynamic pickers: use admin-selected IDs if available,
             // otherwise fall back to auto-populated content.
-            $featuredServiceIds = self::settingArray('home_featured_services');
             $featuredDoctorIds = self::settingArray('home_featured_doctors');
             $featuredReviews = self::settingArray('home_featured_reviews');
 
-            $services = $featuredServiceIds !== []
-                ? self::postsByIds($featuredServiceIds, 'layanan', fn (\WP_Post $p) => $contentRepository->normalizeServicePublic($p))
-                : $contentRepository->featuredServices(8);
+            $services = self::officialFeaturedServices();
 
             $doctors = $featuredDoctorIds !== []
                 ? self::postsByIds($featuredDoctorIds, 'dokter', fn (\WP_Post $p) => $doctorRepository->normalize($p))
@@ -912,5 +909,42 @@ final class TemplateController
         ]);
 
         return array_map($normalizer, $posts);
+    }
+
+    /**
+     * @return array<int,array<string,string>>
+     */
+    private static function officialFeaturedServices(): array
+    {
+        return [
+            [
+                'title' => 'Uronefrologi (HoLEP)',
+                'url' => home_url('/poliklinik/klinik-bedah-urologi/'),
+            ],
+            [
+                'title' => 'Onkologi / Cancer Centre',
+                'url' => home_url('/poliklinik/klinik-bedah-onkologi/'),
+            ],
+            [
+                'title' => 'Intensive Care',
+                'url' => home_url('/layanan/'),
+            ],
+            [
+                'title' => 'Emergency / Critical Care Terintegrasi',
+                'url' => home_url('/poliklinik/umum-instalasi-gawat-darurat-igd/'),
+            ],
+            [
+                'title' => 'Vaccine Centre',
+                'url' => home_url('/layanan/vaksin-center/'),
+            ],
+            [
+                'title' => 'Medical Check Up',
+                'url' => home_url('/layanan/medical-check-up-mcu/'),
+            ],
+            [
+                'title' => 'Husnul Khatimah',
+                'url' => home_url('/layanan/husnul-khotimah/'),
+            ],
+        ];
     }
 }
