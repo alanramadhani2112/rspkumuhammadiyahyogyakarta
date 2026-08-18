@@ -1,0 +1,131 @@
+{
+  "verdict": "APPROVE",
+  "live_admin_status": {
+    "attempted": true,
+    "url": "http://rspkudev.test/wp-admin/admin.php?page=rspku-settings",
+    "result": "Still blocked: HTTP 302 to http://rspkudev.test/404/, final HTTP 404 from prior F3 curl evidence.",
+    "dom_available": false
+  },
+  "equivalent_rendered_dom": {
+    "status": "PASS",
+    "method": "Bootstrapped WordPress from a temporary PHP script outside the repo, set current user context to existing user ID 1, selected tab=umum, captured RSPKU_Settings_Admin::renderPage() output, wrote temporary HTML outside repo, inlined plugin assets/admin.css plus minimal WP admin/button CSS shim, served from http://127.0.0.1:8765/rspku-f3-settings-render.html.",
+    "safety": "Rendering only; no option update, no admin-post handler, no user creation, no DB writes performed by the proof script.",
+    "temp_files": [
+      "C:/Users/LENOVO/AppData/Local/Temp/opencode/rspku-f3-render.php",
+      "C:/Users/LENOVO/AppData/Local/Temp/opencode/rspku-f3-settings-render.html"
+    ],
+    "render_summary": {
+      "markup_bytes": 12127,
+      "html_bytes_after_rebuild": 31007,
+      "actions_count_in_markup": 1,
+      "current_user_can_manage_options": true
+    }
+  },
+  "measurements": {
+    "1440": {
+      "viewport": 1440,
+      "documentElement_scrollWidth": 1440,
+      "body_scrollWidth": 1440,
+      "no_horizontal_overflow": true,
+      "actions": {
+        "count": 1,
+        "position": "static",
+        "bottom": "auto",
+        "zIndex": "auto",
+        "rect": { "left": 182, "top": 622.5, "right": 1258, "bottom": 684.1000022888184, "width": 1076, "height": 61.60000228881836 },
+        "overlaps_field_controls_count": 0,
+        "overlaps_footer_probe": false
+      }
+    },
+    "1024": {
+      "viewport": 1024,
+      "documentElement_scrollWidth": 1024,
+      "body_scrollWidth": 1024,
+      "no_horizontal_overflow": true,
+      "actions": {
+        "count": 1,
+        "position": "static",
+        "bottom": "auto",
+        "zIndex": "auto",
+        "rect": { "left": 28, "top": 622.5, "right": 996, "bottom": 684.1000022888184, "width": 968, "height": 61.60000228881836 },
+        "overlaps_field_controls_count": 0,
+        "overlaps_footer_probe": false
+      }
+    },
+    "782": {
+      "viewport": 782,
+      "documentElement_scrollWidth": 782,
+      "body_scrollWidth": 782,
+      "no_horizontal_overflow": true,
+      "actions": {
+        "count": 1,
+        "position": "static",
+        "bottom": "auto",
+        "zIndex": "auto",
+        "rect": { "left": 28, "top": 660.5, "right": 754.4000244140625, "bottom": 722.1000022888184, "width": 726.4000244140625, "height": 61.60000228881836 },
+        "overlaps_field_controls_count": 0,
+        "overlaps_footer_probe": false
+      }
+    },
+    "360": {
+      "viewport": 360,
+      "documentElement_scrollWidth": 360,
+      "body_scrollWidth": 360,
+      "no_horizontal_overflow": true,
+      "actions": {
+        "count": 1,
+        "position": "static",
+        "bottom": "auto",
+        "zIndex": "auto",
+        "rect": { "left": 24, "top": 855.1000366210938, "right": 336, "bottom": 946.3000411987305, "width": 312, "height": 91.20000457763672 },
+        "overlaps_field_controls_count": 0,
+        "overlaps_footer_probe": false
+      }
+    }
+  },
+  "accessibility": {
+    "status": "PASS_EQUIVALENT_RENDERED_DOM_PLUS_STATIC_TESTS",
+    "rendered_dom": {
+      "unnamed_visible_controls_count": 0,
+      "section_toggles": [
+        { "aria-expanded": "true", "aria-controls": "rspku-section-identity-body", "controls_exists": true }
+      ],
+      "controls_with_aria_describedby": 2,
+      "elements_with_aria_label": 14,
+      "focusable_elements_count": 18,
+      "first_tab_focus": { "tag": "A", "class": "nav-tab nav-tab-active", "outline_style": "solid", "outline_width": "1.6px" },
+      "focus_visible_selectors_present_in_cssom": true
+    },
+    "static_test_coverage": "tests/admin-css.test.mjs asserts deterministic aria-describedby IDs, pair aria-describedby, image/repeater aria-labels, aria-current active tab, section button aria-expanded/aria-controls contract, JS aria-expanded synchronization, focus-visible selectors, and no collapse remove/detach/disable."
+  },
+  "limitations": [
+    "Live wp-admin URL remains unavailable because local unauthenticated admin access redirects to /404/.",
+    "Equivalent proof used captured rendered admin markup for the Umum tab with plugin admin.css and a minimal WP admin/button shim, not the full WordPress admin chrome.",
+    "Only the active rendered tab was browser-measured for layout; cross-tab accessibility/layout contracts remain covered by static tests and source review."
+  ],
+  "verification": {
+    "commands": [
+      {
+        "command": "php C:/Users/LENOVO/AppData/Local/Temp/opencode/rspku-f3-render.php",
+        "cwd": "C:/laragon/www/rspkudev",
+        "result": "rendered temporary HTML outside repo; actions_count=1; current_user_can_manage_options=yes"
+      },
+      {
+        "command": "browser measurements via Playwright MCP at widths 1440, 1024, 782, 360",
+        "url": "http://127.0.0.1:8765/rspku-f3-settings-render.html?rebuilt=1",
+        "result": "all required widths had no horizontal overflow, one action bar, static positioning, no field-control overlap, no footer-probe overlap"
+      },
+      {
+        "command": "npm run build:css && npm test && php -l includes/class-rspku-settings-admin.php",
+        "cwd": "C:/laragon/www/rspkudev/wp-content/plugins/rspku-settings",
+        "result": "passed, exit code 0"
+      }
+    ],
+    "lsp_diagnostics": {
+      "includes/class-rspku-settings-admin.php": "no diagnostics",
+      "assets/admin.js": "no diagnostics",
+      "tests/admin-css.test.mjs": "no diagnostics",
+      "assets/admin.source.css": "pre-existing Biome warnings for !important and descending specificity"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+﻿# T8 Security Regression Gate 2026-07-31T21:50:42.2700543+07:00
+## debug constants
+WP_DEBUG=false
+WP_DEBUG_DISPLAY=false
+WP_DEBUG_LOG=false
+WP_DISABLE_FATAL_ERROR_HANDLER=false
+## dev URL grep in theme templates/assets
+PASS: no rspkudev.test in theme resources
+## hero raw sink grep
+PASS: no target hero raw sink
+## trusted proxy spoof static check
+C:\laragon\www\rspkudev\wp-content\themes\rspku-theme\app\Services\DoctorSearch.php:152:if ($remote !== null && self::isTrustedProxy($remote)) {
+C:\laragon\www\rspkudev\wp-content\themes\rspku-theme\app\Services\DoctorSearch.php:153:foreach (['HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP'] as $header) {
+C:\laragon\www\rspkudev\wp-content\themes\rspku-theme\app\Services\DoctorSearch.php:177:private static function isTrustedProxy(string $remote): bool
+C:\laragon\www\rspkudev\wp-content\themes\rspku-theme\app\Services\DoctorSearch.php:179:$trusted = defined('RSPKU_TRUSTED_PROXY_IPS') ? constant('RSPKU_TRUSTED_PROXY_IPS') : [];
+C:\laragon\www\rspkudev\wp-content\themes\rspku-theme\app\Services\DoctorSearch.php:180:$trusted = apply_filters('rspku_trusted_proxy_ips', $trusted);
+C:\laragon\www\rspkudev\wp-content\plugins\rspku-core\rspku-core.php:1422:if ($remote !== null && self::is_trusted_proxy($remote)) {
+C:\laragon\www\rspkudev\wp-content\plugins\rspku-core\rspku-core.php:1423:foreach (['HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP'] as $header) {
+C:\laragon\www\rspkudev\wp-content\plugins\rspku-core\rspku-core.php:1446:private static function is_trusted_proxy(string $remote): bool {
+C:\laragon\www\rspkudev\wp-content\plugins\rspku-core\rspku-core.php:1447:$trusted = defined('RSPKU_TRUSTED_PROXY_IPS') ? constant('RSPKU_TRUSTED_PROXY_IPS') : [];
+C:\laragon\www\rspkudev\wp-content\plugins\rspku-core\rspku-core.php:1448:$trusted = apply_filters('rspku_trusted_proxy_ips', $trusted);
+## rate-limit spoof runtime
+poisoned-search
+HTTP/1.1 429 Too Many Requests
+Date: Fri, 31 Jul 2026 14:50:47 GMT
+Server: Apache/2.4.54 (Win64) OpenSSL/1.1.1q PHP/8.3.27
+X-Powered-By: PHP/8.3.27
+X-Robots-Tag: noindex
+Link: <http://rspkudev.test/wp-json/>; rel="https://api.w.org/"
+X-Content-Type-Options: nosniff
+Access-Control-Expose-Headers: X-WP-Total, X-WP-TotalPages, Link
+Access-Control-Allow-Headers: Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type
+Retry-After: 60
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 0
+Allow: GET
+Vary: Origin
+Content-Length: 100
+Content-Type: application/json; charset=UTF-8
+
+{"code":"rspku_rate_limited","message":"Too many requests. Please slow down.","data":{"status":429}}
+cleaned-search

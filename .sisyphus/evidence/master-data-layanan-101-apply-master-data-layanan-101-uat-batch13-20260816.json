@@ -1,0 +1,415 @@
+{
+    "import": "master-data-layanan-medis-101",
+    "taxonomy": "master-layanan-medis",
+    "mode": "apply",
+    "batch_id": "master-data-layanan-101-uat-batch13-20260816",
+    "source": ".sisyphus/source/master-data-layanan-medis-rs-pku-muhammadiyah-yogyakarta.xlsx",
+    "source_sha256": "D7F3F839594CBFD71F5D9BAC32CFE2F813074A9748C14395048C4B72249CD48A",
+    "source_size": 12590,
+    "approved_file": ".sisyphus/drafts/master-data-layanan-101-approvals.master-data-layanan-101-uat-batch13-20260816.json",
+    "applied_at": "2026-08-16T17:50:47+00:00",
+    "preflight": {
+        "import": "master-data-layanan-medis-101",
+        "taxonomy": "master-layanan-medis",
+        "mode": "preflight",
+        "batch_id": "master-data-layanan-101-uat-batch13-20260816",
+        "source": ".sisyphus/source/master-data-layanan-medis-rs-pku-muhammadiyah-yogyakarta.xlsx",
+        "source_sha256": "D7F3F839594CBFD71F5D9BAC32CFE2F813074A9748C14395048C4B72249CD48A",
+        "source_size": 12590,
+        "approved_file": ".sisyphus/drafts/master-data-layanan-101-approvals.master-data-layanan-101-uat-batch13-20260816.json",
+        "db_writes": 0,
+        "apply_ready": true,
+        "blocking_errors": [],
+        "warnings": [
+            "skip decisions are read-only holds"
+        ],
+        "counts": {
+            "source_rows": 101,
+            "mapping": 104,
+            "target_cpt": {
+                "poliklinik": 40,
+                "layanan": 59,
+                "rawat-inap": 5
+            },
+            "approvals": 104
+        },
+        "match_counts": {
+            "matched-by-identity": 30,
+            "possible-existing-title": 12,
+            "missing": 62,
+            "collision": 0
+        },
+        "approval_decisions": {
+            "skip": 94,
+            "review-required": 0,
+            "create": 10,
+            "update": 0,
+            "assign": 0,
+            "actionable": 10
+        },
+        "wordpress_bootstrapped": true
+    },
+    "db_writes": 90,
+    "created_count": 10,
+    "updated_count": 0,
+    "assigned_count": 0,
+    "deleted_existing_count": 0,
+    "published_count": 0,
+    "created": [
+        {
+            "source_id": "xlsx-row-44",
+            "post_id": 20893,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20893,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Layanan Home Care",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-17 00:50:46",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "44",
+                    "_rspku_source_name_raw": "Layanan Home Care",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "layanan|layanan home care|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "824e9f2c73986c20064bc7f149df861710a65deb2cea9c06668098ba23171394",
+                    "_rspku_verified_title": "Layanan Home Care",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20893 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-45",
+            "post_id": 20894,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20894,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Layanan Extramural &amp; Medical Event Support",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-17 00:50:46",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "45",
+                    "_rspku_source_name_raw": "Layanan Extramural & Medical Event Support",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "layanan|layanan extramural & medical event support|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "a0715fc0339383c9b588c6b5df966ffff631f77e8423fa41cd01d4597ef43924",
+                    "_rspku_verified_title": "Layanan Extramural & Medical Event Support",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20894 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-46",
+            "post_id": 20895,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20895,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Minimal invasive surgery",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-17 00:50:46",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "46",
+                    "_rspku_source_name_raw": "Minimal invasive surgery",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Bedah Sentral",
+                    "_rspku_source_identity_key": "layanan|minimal invasive surgery|layanan rawat jalan|bedah sentral",
+                    "_rspku_source_hash": "3da290b0c476181c926dec39ab53690d28c3ca326f27cd197b3d87146eede22b",
+                    "_rspku_verified_title": "Minimal invasive surgery",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20895 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-47",
+            "post_id": 20896,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20896,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "C-arm",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-17 00:50:46",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "47",
+                    "_rspku_source_name_raw": "C-arm",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Bedah Sentral",
+                    "_rspku_source_identity_key": "layanan|c-arm|layanan rawat jalan|bedah sentral",
+                    "_rspku_source_hash": "780758056b9cbb9d52b077dea7dc16dfd16cf744ac8499350ec4c74e0879f036",
+                    "_rspku_verified_title": "C-arm",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20896 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-48",
+            "post_id": 20897,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20897,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Endoscopy",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-17 00:50:46",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "48",
+                    "_rspku_source_name_raw": "Endoscopy",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Bedah Sentral",
+                    "_rspku_source_identity_key": "layanan|endoscopy|layanan rawat jalan|bedah sentral",
+                    "_rspku_source_hash": "73a4eda489fb21dda1ef36654a6a1afb534599b8affc8a7bef5bab9743866501",
+                    "_rspku_verified_title": "Endoscopy",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20897 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-49",
+            "post_id": 20898,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20898,
+                "post_type": "rawat-inap",
+                "post_status": "draft",
+                "post_title": "Kelas III",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-17 00:50:47",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "49",
+                    "_rspku_source_name_raw": "Kelas III",
+                    "_rspku_source_category_raw": "Bangsal Rawat Inap",
+                    "_rspku_source_parent_raw": "Bangsal Rawat Inap",
+                    "_rspku_source_identity_key": "rawat-inap|kelas iii|bangsal rawat inap|bangsal rawat inap",
+                    "_rspku_source_hash": "d261e17bdfcf40af79979f735a9c647a668975d2ab11516e7539ac14507ebdb9",
+                    "_rspku_verified_title": "Kelas III",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20898 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-50",
+            "post_id": 20899,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20899,
+                "post_type": "rawat-inap",
+                "post_status": "draft",
+                "post_title": "Kelas II",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-17 00:50:47",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "50",
+                    "_rspku_source_name_raw": "Kelas II",
+                    "_rspku_source_category_raw": "Bangsal Rawat Inap",
+                    "_rspku_source_parent_raw": "Bangsal Rawat Inap",
+                    "_rspku_source_identity_key": "rawat-inap|kelas ii|bangsal rawat inap|bangsal rawat inap",
+                    "_rspku_source_hash": "06d9cb08e741173160d8201cd0ee0f854717b98f32a8a2c2cf12838d19d24c69",
+                    "_rspku_verified_title": "Kelas II",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20899 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-51",
+            "post_id": 20900,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20900,
+                "post_type": "rawat-inap",
+                "post_status": "draft",
+                "post_title": "Kelas I",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-17 00:50:47",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "51",
+                    "_rspku_source_name_raw": "Kelas I",
+                    "_rspku_source_category_raw": "Bangsal Rawat Inap",
+                    "_rspku_source_parent_raw": "Bangsal Rawat Inap",
+                    "_rspku_source_identity_key": "rawat-inap|kelas i|bangsal rawat inap|bangsal rawat inap",
+                    "_rspku_source_hash": "4de3b59a9b09fdf8a9d65c000dcfdcfbd4869c732a05bc067891bb201b38831e",
+                    "_rspku_verified_title": "Kelas I",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20900 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-52",
+            "post_id": 20901,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20901,
+                "post_type": "rawat-inap",
+                "post_status": "draft",
+                "post_title": "Kelas VIP",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-17 00:50:47",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "52",
+                    "_rspku_source_name_raw": "Kelas VIP",
+                    "_rspku_source_category_raw": "Bangsal Rawat Inap",
+                    "_rspku_source_parent_raw": "Bangsal Rawat Inap",
+                    "_rspku_source_identity_key": "rawat-inap|kelas vip|bangsal rawat inap|bangsal rawat inap",
+                    "_rspku_source_hash": "c652d7070dadfb2dae88df09c17e3b71fb5c53dce5ab6555bdb9621709656cac",
+                    "_rspku_verified_title": "Kelas VIP",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20901 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-53",
+            "post_id": 20902,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20902,
+                "post_type": "rawat-inap",
+                "post_status": "draft",
+                "post_title": "Kelas VVIP",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-17 00:50:47",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "53",
+                    "_rspku_source_name_raw": "Kelas VVIP",
+                    "_rspku_source_category_raw": "Bangsal Rawat Inap",
+                    "_rspku_source_parent_raw": "Bangsal Rawat Inap",
+                    "_rspku_source_identity_key": "rawat-inap|kelas vvip|bangsal rawat inap|bangsal rawat inap",
+                    "_rspku_source_hash": "d45b1b85eea3ab683a0d5f3510ba2f111839b247efe68f1d9853021e0fe08f38",
+                    "_rspku_verified_title": "Kelas VVIP",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20902 only if rollback is explicitly approved for this failed or applied batch."
+        }
+    ],
+    "updated": [],
+    "assigned": [],
+    "operations": [
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-44",
+            "post_id": 20893
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-45",
+            "post_id": 20894
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-46",
+            "post_id": 20895
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-47",
+            "post_id": 20896
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-48",
+            "post_id": 20897
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-49",
+            "post_id": 20898
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-50",
+            "post_id": 20899
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-51",
+            "post_id": 20900
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-52",
+            "post_id": 20901
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-53",
+            "post_id": 20902
+        }
+    ],
+    "rollback_notes": "Created drafts may be deleted only by explicit rollback approval; existing posts restore audit meta or master-layanan-medis terms from prior_values."
+}

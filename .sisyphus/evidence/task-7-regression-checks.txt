@@ -1,0 +1,14 @@
+PASS valid unique schedule term extraction skips duplicates and invalid terms
+PASS invalid term skip leaves no derived terms
+PASS exact replacement semantics ignores existing taxonomy terms
+PASS empty schedule clears derived taxonomy terms
+PASS termIds reads specialization_term_id from schedule rows
+PASS termIds validates taxonomy term existence before deriving terms
+PASS syncManagedTerms replaces exact derived taxonomy terms
+PASS syncManagedTerms does not merge existing doctor specialization terms
+PASS syncManagedTerms does not merge existing object terms
+PASS empty schedule clears derived terms through syncManagedTerms
+PASS DoctorRepository::forPolyclinic has no specialization keyword fallback
+PASS DoctorRepository::forPolyclinic does not query specialization taxonomy
+PASS DoctorRepository::forService retains specialization keyword helper usage
+PASS no WordPress bootstrap or mutation executed

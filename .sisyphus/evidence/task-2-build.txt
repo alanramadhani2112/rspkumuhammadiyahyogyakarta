@@ -1,0 +1,62 @@
+﻿# Task 2 Build Gate Evidence
+Generated: 2026-07-31T12:33:30.6134884+07:00
+
+## composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
+Installing dependencies from lock file
+Verifying lock file contents can be installed on current platform.
+Nothing to install, update or remove
+Generating optimized autoload files
+5 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+Exit code: 0
+
+## npm ci
+
+added 96 packages, and audited 97 packages in 24s
+
+25 packages are looking for funding
+  run `npm fund` for details
+
+2 high severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+Exit code: 0
+
+## npm run build
+
+> rspku-theme@1.0.0 build
+> vite build
+
+[36mvite v6.4.2 [32mbuilding for production...[36m[39m
+transforming...
+[32mΓ£ô[39m 6 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mpublic/build/[22m[32m.vite/manifest.json                                   [39m[1m[2m 2.75 kB[22m[1m[22m[2m Γöé gzip:  0.47 kB[22m
+[2mpublic/build/[22m[32massets/inter-vietnamese-wght-normal-CBcvBZtf.woff2    [39m[1m[2m10.25 kB[22m[1m[22m
+[2mpublic/build/[22m[32massets/inter-greek-ext-wght-normal-DlzME5K_.woff2     [39m[1m[2m11.23 kB[22m[1m[22m
+[2mpublic/build/[22m[32massets/inter-cyrillic-wght-normal-DqGufNeO.woff2      [39m[1m[2m18.75 kB[22m[1m[22m
+[2mpublic/build/[22m[32massets/inter-greek-wght-normal-CkhJZR-_.woff2         [39m[1m[2m19.00 kB[22m[1m[22m
+[2mpublic/build/[22m[32massets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2  [39m[1m[2m25.96 kB[22m[1m[22m
+[2mpublic/build/[22m[32massets/inter-latin-wght-normal-Dx4kXJAl.woff2         [39m[1m[2m48.26 kB[22m[1m[22m
+[2mpublic/build/[22m[32massets/inter-latin-ext-wght-normal-DO1Apj_S.woff2     [39m[1m[2m85.07 kB[22m[1m[22m
+[2mpublic/build/[22m[35massets/admin-BRZMTYm0.css                             [39m[1m[2m 3.68 kB[22m[1m[22m[2m Γöé gzip:  0.88 kB[22m
+[2mpublic/build/[22m[35massets/app-Da06qUkZ.css                               [39m[1m[2m59.80 kB[22m[1m[22m[2m Γöé gzip: 12.01 kB[22m
+[2mpublic/build/[22m[36massets/admin-Cu7xTv8Q.js                              [39m[1m[2m 0.92 kB[22m[1m[22m[2m Γöé gzip:  0.50 kB[22m
+[2mpublic/build/[22m[36massets/editorBlocks-DtWsorCv.js                       [39m[1m[2m 2.17 kB[22m[1m[22m[2m Γöé gzip:  0.86 kB[22m
+[2mpublic/build/[22m[36massets/app-3QDlLpp5.js                                [39m[1m[2m52.34 kB[22m[1m[22m[2m Γöé gzip: 18.77 kB[22m
+[32mΓ£ô built in 3.54s[39m
+Exit code: 0
+
+## node_modules check
+## git status --short
+?? .sisyphus/
+node_modules absent from git status
+## node_modules check
+Test-Path wp-content/themes/rspku-theme/node_modules: True
+## git status --short (GIT_MASTER rerun)
+?? .sisyphus/
+node_modules absent from git status

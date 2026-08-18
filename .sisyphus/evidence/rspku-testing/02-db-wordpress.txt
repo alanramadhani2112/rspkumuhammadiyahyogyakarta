@@ -1,0 +1,15 @@
+﻿# T3 DB WordPress Bootstrap 2026-07-31T21:32:08.7001223+07:00
+## mysql identity
+mysql: [Warning] Using a password on the command line interface can be insecure.
+db-rspkujogja
+MYSQL_IDENTITY_EXIT=0
+## options count and URLs
+mysql: [Warning] Using a password on the command line interface can be insecure.
+709
+home	http://rspkudev.test
+siteurl	http://rspkudev.test
+MYSQL_OPTIONS_EXIT=0
+## wp bootstrap
+http://rspkudev.test
+RS PKU Muhammadiyah Yogyakarta
+WP_BOOTSTRAP_EXIT=0

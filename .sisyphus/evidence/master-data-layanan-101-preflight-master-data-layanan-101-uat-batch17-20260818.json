@@ -1,0 +1,41 @@
+{
+    "import": "master-data-layanan-medis-101",
+    "taxonomy": "master-layanan-medis",
+    "mode": "preflight",
+    "batch_id": "master-data-layanan-101-uat-batch17-20260818",
+    "source": ".sisyphus/source/master-data-layanan-medis-rs-pku-muhammadiyah-yogyakarta.xlsx",
+    "source_sha256": "D7F3F839594CBFD71F5D9BAC32CFE2F813074A9748C14395048C4B72249CD48A",
+    "source_size": 12590,
+    "approved_file": ".sisyphus/drafts/master-data-layanan-101-approvals.master-data-layanan-101-uat-batch17-20260818.json",
+    "db_writes": 0,
+    "apply_ready": true,
+    "blocking_errors": [],
+    "warnings": [
+        "skip decisions are read-only holds"
+    ],
+    "counts": {
+        "source_rows": 101,
+        "mapping": 104,
+        "target_cpt": {
+            "poliklinik": 40,
+            "layanan": 59,
+            "rawat-inap": 5
+        },
+        "approvals": 104
+    },
+    "match_counts": {
+        "matched-by-identity": 70,
+        "possible-existing-title": 12,
+        "missing": 22,
+        "collision": 0
+    },
+    "approval_decisions": {
+        "skip": 94,
+        "review-required": 0,
+        "create": 10,
+        "update": 0,
+        "assign": 0,
+        "actionable": 10
+    },
+    "wordpress_bootstrapped": true
+}

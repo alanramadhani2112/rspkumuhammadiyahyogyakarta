@@ -1,0 +1,175 @@
+﻿# T6 Browser Smoke and Content Route Matrix
+
+Plan: .sisyphus/plans/rspku-testing-plan.md
+Base URL: http://rspkudev.test/
+Run date: 2026-07-31
+Method: Playwright MCP browser navigation + curl HTTP status probe
+Source edits: none
+DB mutation: none
+Plugin changes: none
+
+## Browser Availability
+
+Playwright MCP loaded and browser navigation worked.
+Initial batch evaluate script failed because page object is not available inside browser_evaluate page context; per-route browser navigation/evaluation was used instead.
+
+## Fatal/Error Text Checks
+
+Patterns checked in visible body text:
+- Database Connection Error
+- Error establishing a database connection
+- Fatal error
+- PHP Warning
+- PHP Notice
+- PHP Fatal error
+- PHP Parse error
+- Stack trace
+
+Result: no route showed matching DB/Fatal/PHP error text.
+
+## Console Summary
+
+Total console messages observed via Playwright route checks: 0
+Console errors: 0
+Console warnings: 0
+Fatal/error count: 0
+
+## Route Matrix
+
+| Route | HTTP status | Browser title | Visible key marker | Console errors | Console warnings | DB/Fatal/PHP text |
+| --- | ---: | --- | --- | ---: | ---: | --- |
+| / | 200 | Beranda - RS PKU Muhammadiyah Yogyakarta | Pelayanan kesehatan terpercaya untuk keluarga Anda | 0 | 0 | no |
+| /dokter/ | 200 | Dokter Arsip - RS PKU Muhammadiyah Yogyakarta | Cari dokter berdasarkan jadwal praktik | 0 | 0 | no |
+| /berita-artikel/ | 200 | Berita & Artikel - RS PKU Muhammadiyah Yogyakarta | Berita & Artikel | 0 | 0 | no |
+| /ihex-2026/ | 200 | 5 Pegawai RS PKU Muhammadiyah Yogyakarta Lolos Finalis MUKISI Innovation di International Islamic Healthcare Conference and Expo (IHEX 2026) - RS PKU Muhammadiyah Yogyakarta | 5 Pegawai RS PKU Muhammadiyah Yogyakarta Lolos Finalis MUKISI Innovation di International Islamic Healthcare Conference and Expo (IHEX 2026) | 0 | 0 | no |
+
+## Discoverable Content URL
+
+Chosen URL: http://rspkudev.test/ihex-2026/
+Discovered from /berita-artikel/ link text: "5 Pegawai RS PKU Muhammadiyah Yogyakarta Lolos Finalis MUKISI Innovation di International Islamic Healthcare Conference and Expo (IHEX 2026)"
+Navigation note: Playwright browser_navigate timed out once, but page state after timeout was complete at http://rspkudev.test/ihex-2026/ with expected title and marker. Curl status probe returned 200.
+
+## Raw Route Notes
+
+### /
+
+curl:
+```text
+200 http://rspkudev.test/
+```
+
+Playwright:
+```text
+Page URL: http://rspkudev.test/
+Page Title: Beranda - RS PKU Muhammadiyah Yogyakarta
+Snapshot: .playwright-mcp\page-2026-07-31T14-44-46-984Z.yml
+```
+
+Visible headings sampled:
+```text
+Pelayanan kesehatan terpercaya untuk keluarga Anda
+Layanan Kesehatan Andalan Kami
+Dental Clinic
+Home Care
+Klinik Kecantikan Ayna
+Medical Check Up (MCU)
+Radiologi
+Vaksin Center
+Pelayanan Profesional Berlandaskan Nilai Islami
+Dokter Berpengalaman dan Terpercaya
+```
+
+Console:
+```text
+Total messages: 0 (Errors: 0, Warnings: 0)
+```
+
+### /dokter/
+
+curl:
+```text
+200 http://rspkudev.test/dokter/
+```
+
+Playwright:
+```text
+Page URL: http://rspkudev.test/dokter/
+Page Title: Dokter Arsip - RS PKU Muhammadiyah Yogyakarta
+Snapshot: .playwright-mcp\page-2026-07-31T14-45-14-525Z.yml
+```
+
+Visible headings sampled:
+```text
+Cari dokter berdasarkan jadwal praktik
+Dokter yang tersedia dari jadwal resmi
+dr. Amanatus Solikhah, M.Sc., Sp.PK
+dr. Andrianto Selohandono, Sp.N M.Sc.
+dr. Anggita Putri Kantilaras, Sp.Rad(K) RI
+dr. Anis Widyasari, Sp.OG, Subsp. Urogin-RE
+dr. Ardorisye Saptati Fornia, Sp.P., M.Kes.
+dr. Arif Budi Prakoso, Sp.N, MMR
+dr. Arum Linangkung, Sp.B, Subsp. BD(K)., M.Sc.
+dr. Aufaa Shafira Widowati, Sp.M
+```
+
+Console:
+```text
+Total messages: 0 (Errors: 0, Warnings: 0)
+```
+
+### /berita-artikel/
+
+curl:
+```text
+200 http://rspkudev.test/berita-artikel/
+```
+
+Playwright:
+```text
+Page URL: http://rspkudev.test/berita-artikel/
+Page Title: Berita & Artikel - RS PKU Muhammadiyah Yogyakarta
+Snapshot: .playwright-mcp\page-2026-07-31T14-45-34-962Z.yml
+```
+
+Visible headings sampled:
+```text
+Berita & Artikel
+5 Pegawai RS PKU Muhammadiyah Yogyakarta Lolos Finalis MUKISI Innovation di International Islamic Healthcare Conference and Expo (IHEX 2026)
+Pengumuman Hasil Seleksi Calon Perawat, Teknik Sipil dan Radiografer RS PKU Muhammadiyah Yogyakarta Tahun 2026
+Pengumuman Hasil Seleksi Calon Perawat RS PKU Muhammadiyah Yogyakarta Tahun 2026
+Pengumuman Hasil Seleksi Calon Pegawai RS PKU Muhammadiyah Yogyakarta Tahun 2026
+INFEKSI SALURAN PERNAFSAN AKUT (ISPA)
+RS PKU Muhammadiyah Yogyakarta Melayani Vaksin International
+Medical Chek Up (Tarif Terbaru 2023)
+Pesan ketua Umum PP Muhammadiyah di Satu Abad Perjalanan PKU Jogja dan Gamping
+Pembinaan Pegawai Rumah Sakit
+```
+
+Console:
+```text
+Total messages: 0 (Errors: 0, Warnings: 0)
+```
+
+### /ihex-2026/
+
+curl:
+```text
+200 http://rspkudev.test/ihex-2026/
+```
+
+Playwright page state after navigation timeout:
+```text
+Page URL: http://rspkudev.test/ihex-2026/
+Page Title: 5 Pegawai RS PKU Muhammadiyah Yogyakarta Lolos Finalis MUKISI Innovation di International Islamic Healthcare Conference and Expo (IHEX 2026) - RS PKU Muhammadiyah Yogyakarta
+readyState: complete
+```
+
+Visible key marker:
+```text
+5 Pegawai RS PKU Muhammadiyah Yogyakarta Lolos Finalis MUKISI Innovation di International Islamic Healthcare Conference and Expo (IHEX 2026)
+```
+
+Console:
+```text
+Total messages: 0 (Errors: 0, Warnings: 0)
+```

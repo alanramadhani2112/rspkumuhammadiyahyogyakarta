@@ -2,13 +2,15 @@
 {% if item.badge|default('')|lower starts with 'manajemen' %}
   {% set fallback_icon = 'building-2' %}
 {% endif %}
+{% set show_link = item.show_link is not defined or item.show_link %}
+{% set image_class = item.image_class|default('aspect-[16/9]') %}
 
 <article class="group flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:border-hospital-300">
-  <a href="{{ item.url }}" class="block overflow-hidden bg-slate-100">
+  {% if item.url and show_link %}<a href="{{ item.url }}" class="block overflow-hidden bg-slate-100">{% else %}<div class="block overflow-hidden bg-slate-100">{% endif %}
     {% if item.image.url %}
-      <img src="{{ item.image.url }}" alt="{{ item.image.alt|default(item.title) }}" loading="lazy" class="aspect-[16/9] h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+      <img src="{{ item.image.url }}" alt="{{ item.image.alt|default(item.title) }}" loading="lazy" class="{{ image_class }} h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
     {% else %}
-      <div class="grid aspect-[16/9] place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(0,158,230,0.16),_transparent_32%),linear-gradient(180deg,#f8fbff_0%,#eaf6ff_100%)] p-8 text-center">
+      <div class="grid {{ image_class }} place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(0,158,230,0.16),_transparent_32%),linear-gradient(180deg,#f8fbff_0%,#eaf6ff_100%)] p-8 text-center">
         <div class="space-y-4">
           <div class="mx-auto grid h-14 w-14 place-items-center rounded-sm border border-hospital-200 bg-white text-hospital-700">
             {{ icon(fallback_icon, { class: 'h-7 w-7' }) }}
@@ -17,10 +19,10 @@
         </div>
       </div>
     {% endif %}
-  </a>
+  {% if item.url and show_link %}</a>{% else %}</div>{% endif %}
   <div class="flex flex-1 flex-col space-y-3 p-5">
     <h3 class="text-base font-semibold leading-snug text-slate-950">
-      <a href="{{ item.url }}" class="transition hover:text-hospital-700">{{ item.title }}</a>
+      {% if item.url and show_link %}<a href="{{ item.url }}" class="transition hover:text-hospital-700">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}
     </h3>
     {% if item.excerpt %}
       <p class="text-sm leading-relaxed text-slate-600">{{ item.excerpt }}</p>

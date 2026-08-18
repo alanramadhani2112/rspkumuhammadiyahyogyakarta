@@ -1,0 +1,29 @@
+﻿# T5 Doctor Search AJAX UI Regression 2026-07-31T21:37:30.3555365+07:00
+NONCE=4df691ff91
+## valid ajax narrow
+{"success":false,"data":{"message":"Sesi pencarian tidak valid."}}
+HTTP=403 TIME=3.411400 SIZE=66 ERR=
+## invalid nonce
+{"success":false,"data":{"message":"Sesi pencarian tidak valid."}}
+HTTP=403 TIME=2.679640
+## rate limit poison ajax
+poisoned-doctor-ajax
+HTTP/1.1 429 Too Many Requests
+Date: Fri, 31 Jul 2026 14:37:40 GMT
+Server: Apache/2.4.54 (Win64) OpenSSL/1.1.1q PHP/8.3.27
+X-Powered-By: PHP/8.3.27
+X-Robots-Tag: noindex
+X-Content-Type-Options: nosniff
+Expires: Wed, 11 Jan 1984 05:00:00 GMT
+Cache-Control: no-cache, must-revalidate, max-age=0, no-store, private
+Referrer-Policy: strict-origin-when-cross-origin
+X-Frame-Options: SAMEORIGIN
+Content-Security-Policy: frame-ancestors 'self';
+Content-Length: 85
+Content-Type: application/json; charset=UTF-8
+
+{"success":false,"data":{"message":"Terlalu banyak permintaan. Coba lagi sebentar."}}
+cleaned-doctor-ajax
+## static JS checks
+PASS: response.ok present
+PASS: textContent error rendering present

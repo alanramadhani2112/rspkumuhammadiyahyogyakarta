@@ -1,0 +1,20 @@
+VERDICT: APPROVE
+
+F3 runtime/browser QA approves release gate for RSPKU source scope based on Task 8 evidence.
+
+Browser evidence:
+- PASS / loaded HTTP 200 with Console fatal/error count: 0.
+- PASS /dokter/ loaded HTTP 200 with Console fatal/error count: 0.
+- PASS /berita-artikel/ loaded HTTP 200 with Console fatal/error count: 0.
+
+Runtime evidence:
+- PASS homepage no longer times out: final normal retest returned HTTP 200 in 2.950299s warm-cache under all active plugins.
+- PASS debug log tail reports Fatal error count: 0 and Parse error count: 0; latest new fatal/parse errors after continuation tests: none observed in tail.
+- PASS evidence inventory marks production debug config, lint, build, manifest, hero XSS checks, IP trust checks, doctor search handling, REST hardening, asset/dev URL checks, homepage curl, browser smoke, debug log tail, and inventory as PASS.
+
+Homepage speed target:
+- BLOCKER DOCUMENTED: <2s target is not met under all active plugins. Warm-cache homepage is 2.950299s, so do not claim speed gate passed under all plugins.
+- Isolation evidence shows homepage below 2s with only RSPKU plugins (1.373526s) and with no active plugins (1.330806s), so remaining latency is plugin-level/runtime isolation work outside this RSPKU source plan.
+
+Required next work:
+- Identify active third-party plugin latency contributor(s) one group at a time, then configure, replace, or optimize outside this plan.

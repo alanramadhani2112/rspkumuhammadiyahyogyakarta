@@ -2,6 +2,17 @@
 
 {% block content %}
   {% if history_page is defined %}
+    {% set history_gallery = history_page.gallery|default([]) %}
+    {% set history_gallery_slots = {} %}
+    {% for gallery_item in history_gallery %}
+      {% set history_gallery_slots = history_gallery_slots|merge({ (gallery_item.key): gallery_item }) %}
+    {% endfor %}
+    {% set history_hero = history_gallery_slots.history_hero|default(null) %}
+    {% set history_pioneers = history_gallery_slots.history_pioneers|default(null) %}
+    {% set history_child_service = history_gallery_slots.history_child_service|default(null) %}
+    {% set history_first_stone = history_gallery_slots.history_first_stone|default(null) %}
+    {% set history_modernization = history_gallery_slots.history_modernization|default(null) %}
+
     {# Hero Section - Clean, Medical Look #}
     <section class="rspku-section pb-8">
       <div class="rspku-container">
@@ -12,10 +23,33 @@
           ]
         } only %}
 
-        <div class="mt-6 max-w-4xl space-y-5">
-          <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_page.eyebrow }}</span>
-          <h1 class="text-3xl font-bold leading-tight text-slate-950 sm:text-4xl lg:text-5xl">{{ history_page.title }}</h1>
-          <p class="max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">{{ history_page.description }}</p>
+        <div class="mt-6 {% if history_hero %}grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center{% else %}max-w-4xl{% endif %}">
+          <div class="space-y-5">
+            <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_page.eyebrow }}</span>
+            <h1 class="text-3xl font-bold leading-tight text-slate-950 sm:text-4xl lg:text-5xl">{{ history_page.title }}</h1>
+            <p class="max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">{{ history_page.description }}</p>
+          </div>
+
+          {% if history_hero %}
+            <figure class="overflow-hidden rounded-md border border-slate-200 bg-slate-100">
+              {% include 'partials/responsive-image.twig' with {
+                id: history_hero.image_id,
+                url: history_hero.image_url,
+                alt: history_hero.alt,
+                class: 'aspect-[4/3] w-full object-cover',
+                sizes: '(min-width: 1024px) 42vw, 100vw',
+                width: 1200,
+                height: 900,
+                default_size: 'rspku-hero',
+                eager: true
+              } only %}
+              <figcaption class="border-t border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600">
+                <span class="block text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_hero.year }}</span>
+                <span class="mt-1 block font-semibold text-slate-950">{{ history_hero.title }}</span>
+                <span class="mt-1 block">{{ history_hero.caption }}</span>
+              </figcaption>
+            </figure>
+          {% endif %}
         </div>
 
         {# Stats Row #}
@@ -72,6 +106,63 @@
                     </div>
 
                   </div>
+                  {% if loop.index == 1 and history_pioneers %}
+                    <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:mb-12 lg:max-w-3xl">
+                      {% include 'partials/responsive-image.twig' with {
+                        id: history_pioneers.image_id,
+                        url: history_pioneers.image_url,
+                        alt: history_pioneers.alt,
+                        class: 'aspect-[16/9] w-full object-cover',
+                        sizes: '(min-width: 1024px) 768px, 100vw',
+                        width: 1200,
+                        height: 675,
+                        default_size: 'rspku-hero'
+                      } only %}
+                      <figcaption class="border-t border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600">
+                        <span class="block text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_pioneers.year }}</span>
+                        <span class="mt-1 block font-semibold text-slate-950">{{ history_pioneers.title }}</span>
+                        <span class="mt-1 block">{{ history_pioneers.caption }}</span>
+                      </figcaption>
+                    </figure>
+                  {% endif %}
+                  {% if loop.index == 2 and history_child_service %}
+                    <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:mb-12 lg:max-w-3xl">
+                      {% include 'partials/responsive-image.twig' with {
+                        id: history_child_service.image_id,
+                        url: history_child_service.image_url,
+                        alt: history_child_service.alt,
+                        class: 'aspect-[16/9] w-full object-cover',
+                        sizes: '(min-width: 1024px) 768px, 100vw',
+                        width: 1200,
+                        height: 675,
+                        default_size: 'rspku-hero'
+                      } only %}
+                      <figcaption class="border-t border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600">
+                        <span class="block text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_child_service.year }}</span>
+                        <span class="mt-1 block font-semibold text-slate-950">{{ history_child_service.title }}</span>
+                        <span class="mt-1 block">{{ history_child_service.caption }}</span>
+                      </figcaption>
+                    </figure>
+                  {% endif %}
+                  {% if loop.index == 3 and history_first_stone %}
+                    <figure class="relative ml-14 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:mb-12 lg:max-w-3xl">
+                      {% include 'partials/responsive-image.twig' with {
+                        id: history_first_stone.image_id,
+                        url: history_first_stone.image_url,
+                        alt: history_first_stone.alt,
+                        class: 'aspect-[16/9] w-full object-cover',
+                        sizes: '(min-width: 1024px) 768px, 100vw',
+                        width: 1200,
+                        height: 675,
+                        default_size: 'rspku-hero'
+                      } only %}
+                      <figcaption class="border-t border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600">
+                        <span class="block text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_first_stone.year }}</span>
+                        <span class="mt-1 block font-semibold text-slate-950">{{ history_first_stone.title }}</span>
+                        <span class="mt-1 block">{{ history_first_stone.caption }}</span>
+                      </figcaption>
+                    </figure>
+                  {% endif %}
                 {% endfor %}
               </div>
             </div>
@@ -83,6 +174,25 @@
               </div>
               <div class="rounded-sm bg-hospital-50 px-4 py-2 text-sm font-semibold text-hospital-700 lg:mt-14">Hari Ini</div>
             </div>
+            {% if history_modernization %}
+              <figure class="mt-8 overflow-hidden rounded-md border border-slate-200 bg-slate-100 lg:mx-auto lg:max-w-3xl">
+                {% include 'partials/responsive-image.twig' with {
+                  id: history_modernization.image_id,
+                  url: history_modernization.image_url,
+                  alt: history_modernization.alt,
+                  class: 'aspect-[16/9] w-full object-cover',
+                  sizes: '(min-width: 1024px) 768px, 100vw',
+                  width: 1200,
+                  height: 675,
+                  default_size: 'rspku-hero'
+                } only %}
+                <figcaption class="border-t border-slate-200 bg-white px-4 py-3 text-sm leading-relaxed text-slate-600">
+                  <span class="block text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ history_modernization.year }}</span>
+                  <span class="mt-1 block font-semibold text-slate-950">{{ history_modernization.title }}</span>
+                  <span class="mt-1 block">{{ history_modernization.caption }}</span>
+                </figcaption>
+              </figure>
+            {% endif %}
           </div>
         </div>
       </section>

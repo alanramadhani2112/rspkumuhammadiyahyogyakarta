@@ -1,0 +1,46 @@
+{
+    "batch_id": "master-data-layanan-101-uat-batch19-20260818",
+    "taxonomy": "master-layanan-medis",
+    "assigned_at": "2026-08-18T16:33:26+00:00",
+    "backup": {
+        "path": ".sisyphus/backups/master-data-layanan-101-uat-pre-taxonomy-batch19-20260818.sql",
+        "size": 82971844
+    },
+    "existing_terms": [
+        {
+            "term_id": 374,
+            "name": "Hub Layanan Unggulan"
+        },
+        {
+            "term_id": 375,
+            "name": "Pusat Layanan Unggulan"
+        }
+    ],
+    "created_term_ids": [],
+    "assignments": [
+        {
+            "post_id": 20954,
+            "term_ids": [
+                374,
+                375
+            ],
+            "term_names": [
+                "Hub Layanan Unggulan",
+                "Pusat Layanan Unggulan"
+            ]
+        },
+        {
+            "post_id": 20955,
+            "term_ids": [
+                374,
+                375
+            ],
+            "term_names": [
+                "Hub Layanan Unggulan",
+                "Pusat Layanan Unggulan"
+            ]
+        }
+    ],
+    "published_count": 0,
+    "rollback": "Only with explicit approval: remove term IDs 374 and 375 from posts 20954 and 20955; never delete these pre-existing terms; restore the DB backup only as a last resort."
+}

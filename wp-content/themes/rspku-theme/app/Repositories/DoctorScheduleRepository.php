@@ -300,14 +300,17 @@ final class DoctorScheduleRepository
             $term = $termById[$termId] ?? null;
             $start = (string) ($row['start_time'] ?? $row['jam_mulai'] ?? '');
             $end = (string) ($row['end_time'] ?? $row['jam_selesai'] ?? '');
-            $label = (string) ($row['label'] ?? trim($start . ' - ' . $end));
+            $label = trim((string) ($row['label'] ?? ''));
+            if ($label === '') {
+                $label = trim($start . ' - ' . $end);
+            }
 
             $rows[] = [
                 'day' => $day,
                 'day_label' => $this->dayLabel($day),
                 'start_time' => $start,
                 'end_time' => $end,
-                'label' => $label !== ' -' ? $label : '',
+                'label' => $label !== '-' ? $label : '',
                 'room' => (string) ($row['room'] ?? ''),
                 'consultation_type' => (string) ($row['consultation_type'] ?? ''),
                 'specialization_term_id' => $termId,

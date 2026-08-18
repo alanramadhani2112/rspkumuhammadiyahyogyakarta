@@ -1,0 +1,93 @@
+﻿# T7 Admin Settings CSS and Settings Save Smoke 2026-07-31T21:41:17.1020562+07:00
+## admin-css.test.mjs
+
+≡ƒôï CSS Syntax
+  Γ£ô CSS parses without syntax errors
+
+≡ƒôï Required Class Selectors
+  Γ£ô Contains ".rspku-settings-wrap"
+  Γ£ô Contains ".rspku-settings-header"
+  Γ£ô Contains ".rspku-settings-tabs"
+  Γ£ô Contains ".nav-tab"
+  Γ£ô Contains ".nav-tab-active"
+  Γ£ô Contains ".rspku-settings-section"
+  Γ£ô Contains ".rspku-settings-section-header"
+  Γ£ô Contains ".rspku-settings-section-body"
+  Γ£ô Contains ".rspku-settings-field"
+  Γ£ô Contains ".rspku-toggle"
+  Γ£ô Contains ".rspku-toggle-slider"
+  Γ£ô Contains ".rspku-repeater"
+  Γ£ô Contains ".rspku-repeater-row"
+  Γ£ô Contains ".rspku-repeater-row--links"
+  Γ£ô Contains ".rspku-repeater-row--review"
+  Γ£ô Contains ".rspku-checkbox-picker"
+  Γ£ô Contains ".rspku-checkbox-picker-grid"
+  Γ£ô Contains ".rspku-checkbox-picker-item"
+  Γ£ô Contains ".rspku-checkbox-picker-label"
+  Γ£ô Contains ".rspku-image-upload"
+  Γ£ô Contains ".rspku-image-preview"
+  Γ£ô Contains ".rspku-image-remove"
+  Γ£ô Contains ".rspku-image-select"
+  Γ£ô Contains ".rspku-info-card"
+  Γ£ô Contains ".rspku-tools-grid"
+  Γ£ô Contains ".rspku-tools-card"
+  Γ£ô Contains ".rspku-settings-actions"
+
+≡ƒôï Design Tokens
+  Γ£ô Token "--s-ink" defined
+  Γ£ô Token "--s-sub" defined
+  Γ£ô Token "--s-muted" defined
+  Γ£ô Token "--s-line" defined
+  Γ£ô Token "--s-bg" defined
+  Γ£ô Token "--s-brand" defined
+  Γ£ô Token "--s-brand-deep" defined
+  Γ£ô Token "--s-brand-hover" defined
+  Γ£ô Token "--s-brand-light" defined
+  Γ£ô Token "--s-radius" defined
+  Γ£ô Token "--s-radius-lg" defined
+  Γ£ô Token "--s-font" defined
+
+≡ƒôï Responsive Breakpoints
+  Γ£ô Large desktop breakpoint (ΓëÑ1280px)
+  Γ£ô Tablet breakpoint (783ΓÇô1024px)
+  Γ£ô Mobile breakpoint (Γëñ782px)
+
+≡ƒôï Toggle/Checkbox Isolation
+  Γ£ô Checkbox styles exclude sr-only/peer (toggle controller)
+  Γ£ô sr-only rule uses !important to stay hidden
+
+≡ƒôï Constraints
+  Γ£ô No Tailwind CDN reference
+  Γ£ô No @tailwind directives
+  Γ£ô No external Google Fonts
+  Γ£ô !important count is reasonable: 32 instances (< 40 allowed)
+  Γ£ô !important not used on global selectors (no body/html/#wpcontent overrides)
+
+≡ƒôï Post Picker / Checkbox Picker
+  Γ£ô Override for PHP inline grid-template-columns
+  Γ£ô Forces 2-column grid for picker
+  Γ£ô Forces 3-column grid on large desktop
+
+≡ƒôï rs-* Utility Fallbacks
+  Γ£ô Fallback for "rs-grid"
+  Γ£ô Fallback for "rs-flex"
+  Γ£ô Fallback for "rs-items-center"
+  Γ£ô Fallback for "rs-gap-2"
+  Γ£ô Fallback for "rs-p-3"
+  Γ£ô Fallback for "rs-text-xs"
+  Γ£ô Fallback for "rs-bg-white"
+  Γ£ô Fallback for "rs-border"
+  Γ£ô Fallback for "rs-rounded"
+  Γ£ô Fallback for "rs-max-w-xl"
+
+≡ƒôï File Size
+  Γ£ô File size reasonable: 26.7 KB (< 30 KB)
+  Γ£ô File not empty/truncated: 26.7 KB (> 5 KB)
+
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+  Results: 65 passed, 0 failed
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+
+ADMIN_CSS_TEST_EXIT=0
+## admin auth smoke
+BLOCKED: authenticated admin browser session not provided; no settings values changed.

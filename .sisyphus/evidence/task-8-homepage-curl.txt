@@ -1,0 +1,57 @@
+﻿Task 8 Homepage Curl Evidence
+Generated: 2026-07-31
+Updated: 2026-07-31 root-cause continuation
+
+Required command:
+curl.exe -L --max-time 10 -s -o NUL -w "%{http_code} %{time_total}" http://rspkudev.test/
+
+Original warmup run:
+200 3.033984
+
+Original warm-cache measurement run:
+200 2.787795
+
+Continuation baseline before new diagnosis:
+Command: curl.exe -L --max-time 10 -s -o NUL -w "%{http_code} %{time_total} %{size_download}" http://rspkudev.test/
+200 2.811482 173412
+Command: curl.exe -L --max-time 10 -s -o NUL -w "%{http_code} %{time_total} %{size_download}" http://rspkudev.test/wp-json/rspku/v1/site
+200 2.197067 2182
+Command: curl.exe -L --max-time 10 -s -o NUL -w "%{http_code} %{time_total} %{size_download}" http://rspkudev.test/wp-json/rspku/v1/home
+200 2.576327 84364
+
+RSPKU handler/theme cost probes, temporary files removed:
+CLI SHORTINIT: 0.086242s
+CLI full wp-load bootstrap: 1.250699s, 13 active plugins, 22 queries after bootstrap
+CLI RSPKU_Core::get_site() handler after bootstrap: 0.003320s
+CLI RSPKU_Core::get_home() handler after bootstrap: 0.264841s
+CLI theme homepage full data assembly: 0.124921s
+CLI theme rendered-only data assembly: 0.009132s
+
+Generic WordPress REST comparison with all plugins active:
+Command: curl.exe -L --max-time 10 -s -o NUL -w "%{http_code} %{time_total} %{size_download}" http://rspkudev.test/?rest_route=/
+200 3.000562 333976
+Command: curl.exe -L --max-time 10 -s -o NUL -w "%{http_code} %{time_total} %{size_download}" http://rspkudev.test/wp-json/wp/v2/posts?per_page=1
+200 2.950214 20696
+
+Temporary plugin isolation probe, restored immediately:
+mode=all /wp-json/: 200 2.706759 333976
+mode=all homepage: 200 3.060711 173412
+mode=rspku-only /wp-json/: 200 0.965651 281198
+mode=rspku-only homepage: 200 1.373526 170075
+mode=no active plugins /wp-json/: 200 0.900386 192288
+mode=no active plugins homepage: 200 1.330806 160257
+probe_removed True
+
+Final normal retest after probe removal and all plugins restored:
+Warmup homepage: 200 3.157000 173412
+Warm-cache homepage: 200 2.950299 173412
+RSPKU /site: 200 2.486498 2182
+RSPKU /home: 200 2.691602 84364
+
+Acceptance:
+FAIL - warm-cache homepage returned HTTP 200 but time_total 2.950299 >= 2.000000 seconds.
+
+Root cause classification:
+BLOCKED outside proven RSPKU theme/plugin source scope. Static assets return ~0.01s, RSPKU handler costs are 0.003s (/site) and 0.265s (/home) after bootstrap, and theme homepage context cost is ~0.125s. Generic WordPress REST endpoints are also ~2.95-3.00s with all active plugins. A temporary restored mu-plugin filter proves homepage drops below 2s when third-party plugins are filtered out (1.373526s with only RSPKU plugins; 1.330806s with no active plugins). Therefore source tuning in RSPKU theme/plugin is not the exact root-cause fix for the failing <2s gate.
+
+No persistent source changes were made during continuation.

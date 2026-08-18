@@ -1,0 +1,8 @@
+PASS
+CT Scan => detail of Radiologi
+Digital X-ray => detail of Radiologi
+ECG => detail of Jantung dan Pembuluh Darah
+Treadmill => detail of Jantung dan Pembuluh Darah
+ESWL => detail of Uronephrology Centre
+Ambulance variants => detail of Ambulans
+Top-level centres require explicit approval; batch 1 approvals recorded for Cancer Centre, Uronephrology Centre, Emergency and Critical Care.

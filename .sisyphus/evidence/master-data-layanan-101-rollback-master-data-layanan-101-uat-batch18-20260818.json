@@ -1,0 +1,312 @@
+{
+    "import": "master-data-layanan-medis-101",
+    "batch_id": "master-data-layanan-101-uat-batch18-20260818",
+    "source_sha256": "D7F3F839594CBFD71F5D9BAC32CFE2F813074A9748C14395048C4B72249CD48A",
+    "apply_manifest": "/home/dev-rspkujogja/htdocs/dev-rspkujogja.com/.sisyphus/evidence/master-data-layanan-101-apply-master-data-layanan-101-uat-batch18-20260818.json",
+    "created": [
+        {
+            "source_id": "xlsx-row-94",
+            "post_id": 20944,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20944,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Ambulan Emergensi",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 18:41:42",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "94",
+                    "_rspku_source_name_raw": "Ambulan Emergensi",
+                    "_rspku_source_category_raw": "Layanan Unggulan Lainnya",
+                    "_rspku_source_parent_raw": "Ambulan",
+                    "_rspku_source_identity_key": "layanan|ambulan emergensi|layanan unggulan lainnya|ambulan",
+                    "_rspku_source_hash": "3ed24090e6665ddec2de4d4eaf8fb4ae44a3032a4445dbb422ed81b8dd63eff3",
+                    "_rspku_verified_title": "Ambulan Emergensi",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20944 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-95",
+            "post_id": 20945,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20945,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Ambulan Transport",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 18:41:43",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "95",
+                    "_rspku_source_name_raw": "Ambulan Transport",
+                    "_rspku_source_category_raw": "Layanan Unggulan Lainnya",
+                    "_rspku_source_parent_raw": "Ambulan",
+                    "_rspku_source_identity_key": "layanan|ambulan transport|layanan unggulan lainnya|ambulan",
+                    "_rspku_source_hash": "76a2e043b078b1832af9d3fe8b7e66c9490b18fe4e24df822d7c3441d537f56a",
+                    "_rspku_verified_title": "Ambulan Transport",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20945 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-96",
+            "post_id": 20946,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20946,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Ambulan Bencana",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 18:41:43",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "96",
+                    "_rspku_source_name_raw": "Ambulan Bencana",
+                    "_rspku_source_category_raw": "Layanan Unggulan Lainnya",
+                    "_rspku_source_parent_raw": "Ambulan",
+                    "_rspku_source_identity_key": "layanan|ambulan bencana|layanan unggulan lainnya|ambulan",
+                    "_rspku_source_hash": "ec2114f0d782bdde91bda55e6427bdfe8efb3b24a641037a418d16374204af91",
+                    "_rspku_verified_title": "Ambulan Bencana",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20946 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-97",
+            "post_id": 20947,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20947,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Ambulan Event Support",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 18:41:43",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "97",
+                    "_rspku_source_name_raw": "AmbulanEvent Support",
+                    "_rspku_source_category_raw": "Layanan Unggulan Lainnya",
+                    "_rspku_source_parent_raw": "Ambulan",
+                    "_rspku_source_identity_key": "layanan|ambulanevent support|layanan unggulan lainnya|ambulan",
+                    "_rspku_source_hash": "8dc7287056f7e69203f50491d521c6a553290d15454b3f211e7b02a9c2475922",
+                    "_rspku_verified_title": "Ambulan Event Support",
+                    "_rspku_source_title_correction": "{\"from\":\"AmbulanEvent Support\",\"to\":\"Ambulan Event Support\",\"reason\":\"verified spacing correction from source typo\"}"
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20947 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-98",
+            "post_id": 20948,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20948,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Antar Jemput Pasien",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 18:41:43",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "98",
+                    "_rspku_source_name_raw": "Antar Jemput Pasien",
+                    "_rspku_source_category_raw": "Layanan Unggulan Lainnya",
+                    "_rspku_source_parent_raw": "Ambulan",
+                    "_rspku_source_identity_key": "layanan|antar jemput pasien|layanan unggulan lainnya|ambulan",
+                    "_rspku_source_hash": "5e548128ba610fcf39ed6dedc0b9288a6e8f9424a55da6053c37002ccec7e8bd",
+                    "_rspku_verified_title": "Antar Jemput Pasien",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20948 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-99",
+            "post_id": 20949,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20949,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Medical Check Up",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 18:41:43",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "99",
+                    "_rspku_source_name_raw": "Medical Check Up",
+                    "_rspku_source_category_raw": "Layanan Unggulan Lainnya",
+                    "_rspku_source_parent_raw": "Layanan Lainnya",
+                    "_rspku_source_identity_key": "layanan|medical check up|layanan unggulan lainnya|layanan lainnya",
+                    "_rspku_source_hash": "7caef8feaee2b35be69fad34a31e985ff2b8a1c67bdebb21cbbc5709edfe185c",
+                    "_rspku_verified_title": "Medical Check Up",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20949 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-100",
+            "post_id": 20950,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20950,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Layanan Vaksin",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 18:41:43",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "100",
+                    "_rspku_source_name_raw": "Layanan Vaksin",
+                    "_rspku_source_category_raw": "Layanan Unggulan Lainnya",
+                    "_rspku_source_parent_raw": "Layanan Lainnya",
+                    "_rspku_source_identity_key": "layanan|layanan vaksin|layanan unggulan lainnya|layanan lainnya",
+                    "_rspku_source_hash": "2702c11c1bcc58fb4269fde83fb19c2292f80ba5309be2c493c1dd92497abed8",
+                    "_rspku_verified_title": "Layanan Vaksin",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20950 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-101",
+            "post_id": 20951,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20951,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Layanan Bimbingan Rohani Islam",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 18:41:43",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "101",
+                    "_rspku_source_name_raw": "Layanan Bimbingan Rohani Islam",
+                    "_rspku_source_category_raw": "Layanan Unggulan Lainnya",
+                    "_rspku_source_parent_raw": "Layanan Lainnya",
+                    "_rspku_source_identity_key": "layanan|layanan bimbingan rohani islam|layanan unggulan lainnya|layanan lainnya",
+                    "_rspku_source_hash": "15966a0b4c4a90ac4c20ac762ac9393c54a1e62d94ec780e9cd97e719fec5d3e",
+                    "_rspku_verified_title": "Layanan Bimbingan Rohani Islam",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20951 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-102",
+            "post_id": 20952,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20952,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Taman Makam Husnul Khotimah",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 18:41:43",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "102",
+                    "_rspku_source_name_raw": "Taman Makam Husnul Khotimah",
+                    "_rspku_source_category_raw": "Layanan Unggulan Lainnya",
+                    "_rspku_source_parent_raw": "Layanan Lainnya",
+                    "_rspku_source_identity_key": "layanan|taman makam husnul khotimah|layanan unggulan lainnya|layanan lainnya",
+                    "_rspku_source_hash": "0f28fb45cac4a939adafa48b6ec73d305d332f8e7c7e26174522997ce1594a6d",
+                    "_rspku_verified_title": "Taman Makam Husnul Khotimah",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20952 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "hub-1",
+            "post_id": 20953,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20953,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Cancer Centre",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 18:41:43",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "",
+                    "_rspku_source_name_raw": "Cancer Centre",
+                    "_rspku_source_category_raw": "Hub Layanan Unggulan",
+                    "_rspku_source_parent_raw": "Pusat Layanan Unggulan",
+                    "_rspku_source_identity_key": "layanan|cancer centre|hub layanan unggulan|pusat layanan unggulan",
+                    "_rspku_source_hash": "88c67eb53bdc44b239b7cda15ce7b9ea2e931eb1aa42d3a291f5141373faba1d",
+                    "_rspku_verified_title": "Cancer Centre",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20953 only if rollback is explicitly approved for this failed or applied batch."
+        }
+    ],
+    "updated": [],
+    "assigned": [],
+    "deleted_existing_count": 0,
+    "rollback_notes": "Created drafts may be deleted only by explicit rollback approval; existing posts restore audit meta or master-layanan-medis terms from prior_values."
+}

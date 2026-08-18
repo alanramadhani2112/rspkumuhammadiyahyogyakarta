@@ -1,0 +1,5 @@
+﻿# Task 2 Manifest Evidence
+Generated: 2026-07-31T12:35:23.4549188+07:00
+
+ok
+resources/js/app.js present

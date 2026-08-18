@@ -1,0 +1,32 @@
+﻿# RSPKU Testing Final Summary 2026-07-31T21:53:57.5318594+07:00
+Decision: BLOCKED_BY_PERFORMANCE
+
+## Evidence completeness
+00-environment.txt exists=True bytes=940
+01-build-lint.txt exists=True bytes=6388
+02-db-wordpress.txt exists=True bytes=490
+03-rest-api.txt exists=True bytes=288676
+04-doctor-search.txt exists=True bytes=1097
+05-browser-smoke.txt exists=True bytes=5336
+06-admin-settings-css.txt exists=True bytes=3938
+07-security-regression.txt exists=True bytes=2683
+08-performance-matrix.txt exists=True bytes=2242
+
+## Task verdicts
+T1 Environment: PASS - homepage HTTP 200, DB port open, Apache/MySQL running, site HTML present.
+T2 Build/Lint: PASS - 39 PHP files lint clean, composer exit 0, npm ci exit 0, npm run build exit 0, manifest present.
+T3 DB/WP Bootstrap: PASS - MySQL login ok, lyxpx_options count 709, home/siteurl local, wp-load bootstrap ok.
+T4 REST API: PASS_WITH_SLOWNESS - endpoints return 200, per_page clamps visible, rate-limit returns 429; /site and /home slow under all plugins.
+T5 Doctor Search: BLOCKED_PARTIAL - invalid nonce 403 and rate-limit 429 pass; static JS response.ok/textContent pass; AJAX happy path returned 403 because /dokter/ did not expose data-nonce/data-ajax-url in raw HTML check.
+T6 Browser Smoke: PASS - /, /dokter/, /berita-artikel/, /ihex-2026/ HTTP 200, console errors 0, no DB/Fatal/PHP text.
+T7 Admin Settings CSS: PASS_WITH_AUTH_BLOCKER - admin CSS test 65 passed/0 failed; browser admin smoke blocked because no authenticated admin session provided.
+T8 Security Regression: PASS - debug off, no dev URL in theme resources, no hero raw sink, trusted proxy logic present, spoofed XFF rate-limit 429.
+T9 Performance: BLOCKED_BY_PERFORMANCE - all plugins >2s: homepage 2.714824s, dokter 2.611799s, berita 2.942911s, /home API 3.093780s; RSPKU-only under 2s; plugin state restored.
+
+## Required next action
+Run separate plugin-level performance isolation/fix. Current evidence points to non-RSPKU plugin/runtime overhead.
+
+## Known blocked items
+- T5 AJAX happy path: doctor search component nonce/ajax URL not found in /dokter/ raw HTML; verify template conditions or route placement before declaring doctor-search UI fully tested.
+- T7 admin browser smoke: needs authenticated admin session.
+- T9 speed: all-plugin runtime exceeds 2s target.

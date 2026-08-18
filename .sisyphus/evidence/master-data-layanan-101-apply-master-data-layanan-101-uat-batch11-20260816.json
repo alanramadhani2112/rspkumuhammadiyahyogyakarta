@@ -1,0 +1,415 @@
+{
+    "import": "master-data-layanan-medis-101",
+    "taxonomy": "master-layanan-medis",
+    "mode": "apply",
+    "batch_id": "master-data-layanan-101-uat-batch11-20260816",
+    "source": ".sisyphus/source/master-data-layanan-medis-rs-pku-muhammadiyah-yogyakarta.xlsx",
+    "source_sha256": "D7F3F839594CBFD71F5D9BAC32CFE2F813074A9748C14395048C4B72249CD48A",
+    "source_size": 12590,
+    "approved_file": ".sisyphus/drafts/master-data-layanan-101-approvals.master-data-layanan-101-uat-batch11-20260816.json",
+    "applied_at": "2026-08-16T05:34:17+00:00",
+    "preflight": {
+        "import": "master-data-layanan-medis-101",
+        "taxonomy": "master-layanan-medis",
+        "mode": "preflight",
+        "batch_id": "master-data-layanan-101-uat-batch11-20260816",
+        "source": ".sisyphus/source/master-data-layanan-medis-rs-pku-muhammadiyah-yogyakarta.xlsx",
+        "source_sha256": "D7F3F839594CBFD71F5D9BAC32CFE2F813074A9748C14395048C4B72249CD48A",
+        "source_size": 12590,
+        "approved_file": ".sisyphus/drafts/master-data-layanan-101-approvals.master-data-layanan-101-uat-batch11-20260816.json",
+        "db_writes": 0,
+        "apply_ready": true,
+        "blocking_errors": [],
+        "warnings": [
+            "skip decisions are read-only holds"
+        ],
+        "counts": {
+            "source_rows": 101,
+            "mapping": 104,
+            "target_cpt": {
+                "poliklinik": 40,
+                "layanan": 59,
+                "rawat-inap": 5
+            },
+            "approvals": 104
+        },
+        "match_counts": {
+            "matched-by-identity": 10,
+            "possible-existing-title": 12,
+            "missing": 82,
+            "collision": 0
+        },
+        "approval_decisions": {
+            "skip": 94,
+            "review-required": 0,
+            "create": 10,
+            "update": 0,
+            "assign": 0,
+            "actionable": 10
+        },
+        "wordpress_bootstrapped": true
+    },
+    "db_writes": 90,
+    "created_count": 10,
+    "updated_count": 0,
+    "assigned_count": 0,
+    "deleted_existing_count": 0,
+    "published_count": 0,
+    "created": [
+        {
+            "source_id": "xlsx-row-21",
+            "post_id": 20868,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20868,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Psikiatri / Kesehatan Jiwa",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 12:34:16",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "21",
+                    "_rspku_source_name_raw": "Klinik Psikiatri / Kesehatan Jiwa",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Spesialis dan Sub Spesialis",
+                    "_rspku_source_identity_key": "poliklinik|klinik psikiatri / kesehatan jiwa|layanan rawat jalan|layanan spesialis dan sub spesialis",
+                    "_rspku_source_hash": "d3c64f90a290447be777eb961e576f9471e0a4747dff9a01d02d5b26ebab1d91",
+                    "_rspku_verified_title": "Klinik Psikiatri / Kesehatan Jiwa",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20868 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-23",
+            "post_id": 20869,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20869,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Telinga, Hidung, Tenggorokan, dan Kepala Leher",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 12:34:16",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "23",
+                    "_rspku_source_name_raw": "Klinik Telinga, Hidung, Tenggorokan, dan Kepala Leher",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Spesialis dan Sub Spesialis",
+                    "_rspku_source_identity_key": "poliklinik|klinik telinga, hidung, tenggorokan, dan kepala leher|layanan rawat jalan|layanan spesialis dan sub spesialis",
+                    "_rspku_source_hash": "6cdb29d24ae2864debf4b1c9c7ad77a36342471c4b532bcf793e6ae93cfbbfff",
+                    "_rspku_verified_title": "Klinik Telinga, Hidung, Tenggorokan, dan Kepala Leher",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20869 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-24",
+            "post_id": 20870,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20870,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Dermatologi, Venereologi, dan Estetika",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 12:34:16",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "24",
+                    "_rspku_source_name_raw": "Klinik Dermatologi, Venereologi, dan Estetika",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Spesialis dan Sub Spesialis",
+                    "_rspku_source_identity_key": "poliklinik|klinik dermatologi, venereologi, dan estetika|layanan rawat jalan|layanan spesialis dan sub spesialis",
+                    "_rspku_source_hash": "b0cde1744f8f7aba98727e8fb3b8cdeac20ac656833f9a383e50deb5aac39682",
+                    "_rspku_verified_title": "Klinik Dermatologi, Venereologi, dan Estetika",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20870 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-25",
+            "post_id": 20871,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20871,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Kedokteran Fisik dan Rehabilitasi",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 12:34:16",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "25",
+                    "_rspku_source_name_raw": "Klinik Kedokteran Fisik dan Rehabilitasi",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Spesialis dan Sub Spesialis",
+                    "_rspku_source_identity_key": "poliklinik|klinik kedokteran fisik dan rehabilitasi|layanan rawat jalan|layanan spesialis dan sub spesialis",
+                    "_rspku_source_hash": "e2251d3c4001c10f8e4e740701fb3f78acbb8f68236790fed18897b9f4746a57",
+                    "_rspku_verified_title": "Klinik Kedokteran Fisik dan Rehabilitasi",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20871 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-26",
+            "post_id": 20872,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20872,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Gigi dan Mulut",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 12:34:16",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "26",
+                    "_rspku_source_name_raw": "Klinik Gigi dan Mulut",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Gigi dan Gigi Spesialis",
+                    "_rspku_source_identity_key": "poliklinik|klinik gigi dan mulut|layanan rawat jalan|layanan gigi dan gigi spesialis",
+                    "_rspku_source_hash": "1c64bb8eb23d85c5cff6765bbd1accfb7457383ea75ba644c63673d6ebbec631",
+                    "_rspku_verified_title": "Klinik Gigi dan Mulut",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20872 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-28",
+            "post_id": 20873,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20873,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Konservasi Gigi",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 12:34:16",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "28",
+                    "_rspku_source_name_raw": "Klinik Konservasi Gigi",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Gigi dan Gigi Spesialis",
+                    "_rspku_source_identity_key": "poliklinik|klinik konservasi gigi|layanan rawat jalan|layanan gigi dan gigi spesialis",
+                    "_rspku_source_hash": "613aaa72cd914e4c8e3d394e1b4c3648c18120b9338b1cc8dea4bf2f4b0254f3",
+                    "_rspku_verified_title": "Klinik Konservasi Gigi",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20873 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-29",
+            "post_id": 20874,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20874,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Konservasi Gigi Anak",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 12:34:16",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "29",
+                    "_rspku_source_name_raw": "Klinik Konservasi Gigi Anak",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Gigi dan Gigi Spesialis",
+                    "_rspku_source_identity_key": "poliklinik|klinik konservasi gigi anak|layanan rawat jalan|layanan gigi dan gigi spesialis",
+                    "_rspku_source_hash": "e178452cf023557419335c73c412da9550677aafd8c8eabc80694c70ec1506b1",
+                    "_rspku_verified_title": "Klinik Konservasi Gigi Anak",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20874 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-30",
+            "post_id": 20875,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20875,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Periodonsia",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 12:34:16",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "30",
+                    "_rspku_source_name_raw": "Klinik Periodonsia",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Gigi dan Gigi Spesialis",
+                    "_rspku_source_identity_key": "poliklinik|klinik periodonsia|layanan rawat jalan|layanan gigi dan gigi spesialis",
+                    "_rspku_source_hash": "e3167e0398d48e8aa7db31e40c05eee995204c5b488a58a1b29d328c195b8172",
+                    "_rspku_verified_title": "Klinik Periodonsia",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20875 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-31",
+            "post_id": 20876,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20876,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Ortodonsia",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 12:34:16",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "31",
+                    "_rspku_source_name_raw": "Klinik Ortodonsia",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Gigi dan Gigi Spesialis",
+                    "_rspku_source_identity_key": "poliklinik|klinik ortodonsia|layanan rawat jalan|layanan gigi dan gigi spesialis",
+                    "_rspku_source_hash": "ded816b8743c8fe8d0d4cf588c75fd0c69aa21ac8cba9afcd5bbf8c88b334094",
+                    "_rspku_verified_title": "Klinik Ortodonsia",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20876 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-33",
+            "post_id": 20877,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20877,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Gemphita (VCT-PITC HIV/AIDS)",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 12:34:17",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "33",
+                    "_rspku_source_name_raw": "Klinik Gemphita (VCT-PITC HIV/AIDS)",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "poliklinik|klinik gemphita (vct-pitc hiv/aids)|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "0f74c9c55eb1604a88b6d965d73e43bbe07911588e25f8ae82f5dfda8a3a748e",
+                    "_rspku_verified_title": "Klinik Gemphita (VCT-PITC HIV/AIDS)",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20877 only if rollback is explicitly approved for this failed or applied batch."
+        }
+    ],
+    "updated": [],
+    "assigned": [],
+    "operations": [
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-21",
+            "post_id": 20868
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-23",
+            "post_id": 20869
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-24",
+            "post_id": 20870
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-25",
+            "post_id": 20871
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-26",
+            "post_id": 20872
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-28",
+            "post_id": 20873
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-29",
+            "post_id": 20874
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-30",
+            "post_id": 20875
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-31",
+            "post_id": 20876
+        },
+        {
+            "decision": "create",
+            "source_id": "xlsx-row-33",
+            "post_id": 20877
+        }
+    ],
+    "rollback_notes": "Created drafts may be deleted only by explicit rollback approval; existing posts restore audit meta or master-layanan-medis terms from prior_values."
+}

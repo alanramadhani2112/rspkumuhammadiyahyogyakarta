@@ -1,0 +1,25 @@
+# F2 Runtime QA Verdict 2026-07-31
+
+Verdict: APPROVE
+
+## Reviewed Evidence
+
+- 00-environment.txt
+- 05-browser-smoke.txt
+- 08-performance-matrix.txt
+- final-summary.txt
+
+## Findings
+
+- Browser smoke evidence is credible: Playwright MCP navigation worked, curl status probes returned 200, route titles and visible markers were recorded for /, /dokter/, /berita-artikel/, and /ihex-2026/, and console/error-text checks reported zero errors.
+- Runtime blockers are honestly classified: final-summary.txt keeps Decision: BLOCKED_BY_PERFORMANCE, with T4 slowness, T5 partial AJAX blocker, T7 auth blocker, and T9 all-plugin performance blocker explicitly listed.
+- Plugin state restoration is supported: 08-performance-matrix.txt shows active plugins before and after match, with RESTORE_PASS=True.
+- No false go-live claim found: evidence uses BLOCKED_BY_PERFORMANCE and Required next action, not CLEAR TO SHIP, production-ready, or deploy/go-live approval language.
+
+## Spot Check
+
+- curl homepage: 200 4.722408 http://rspkudev.test/
+
+## Decision
+
+APPROVE F2 runtime QA review. Evidence supports blocking go-live on plugin/runtime performance while preserving plugin state and avoiding DB/source mutations.

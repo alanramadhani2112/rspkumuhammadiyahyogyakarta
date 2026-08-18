@@ -124,10 +124,6 @@ final class TemplateController
             $context['room_related'] = $contentRepository->relatedRooms($roomId, 3);
         }
 
-        if (is_singular('manajemen-rs')) {
-            $context['management_single'] = $contentRepository->findManagement((int) get_queried_object_id());
-        }
-
         if (is_singular()) {
             $context['post'] = class_exists(Timber::class) ? Timber::get_post() : get_post();
         }
@@ -248,7 +244,8 @@ final class TemplateController
 
             if (is_post_type_archive('layanan') || is_tax('kategori-layanan')) {
                 $context['service_archive'] = self::serviceArchiveContext(
-                    $contentRepository->serviceItems($GLOBALS['wp_query']->posts ?? [])
+                    $contentRepository->serviceItems($GLOBALS['wp_query']->posts ?? []),
+                    $contentRepository
                 );
             }
 
@@ -257,6 +254,7 @@ final class TemplateController
                 $context['management_archive'] = [
                     'title' => __('Manajemen RS', 'rspku-theme'),
                     'description' => __('Profil pimpinan dan jajaran manajemen RS PKU Muhammadiyah Yogyakarta yang disusun lebih rapi agar struktur kepemimpinan lebih mudah dipahami.', 'rspku-theme'),
+                    'sections' => $contentRepository->managementSections($context['posts']),
                 ];
             }
         }
@@ -567,11 +565,12 @@ final class TemplateController
      * @param array<int,array<string,mixed>> $items
      * @return array<string,mixed>
      */
-    private static function serviceArchiveContext(array $items): array
+    private static function serviceArchiveContext(array $items, ContentRepository|null $contentRepository = null): array
     {
         $queriedObject = get_queried_object();
         $description = trim(wp_strip_all_tags((string) get_the_archive_description()));
         $query = $GLOBALS['wp_query'];
+        $isRootArchive = !$queriedObject instanceof WP_Term;
         $total = $queriedObject instanceof WP_Term
             ? (int) $queriedObject->count
             : self::publishCount('layanan');
@@ -583,24 +582,160 @@ final class TemplateController
                     __('Pilihan layanan %s RS PKU Muhammadiyah Yogyakarta yang disusun agar pasien dan keluarga lebih cepat menemukan kebutuhan perawatan yang tepat.', 'rspku-theme'),
                     strtolower($queriedObject->name)
                 )
-                : __('Kumpulan layanan medis RS PKU Muhammadiyah Yogyakarta yang disusun lebih rapi dan mudah dipahami.', 'rspku-theme');
+                : __('Temukan layanan sesuai kebutuhan Anda, mulai dari klinik spesialis, pemeriksaan penunjang, rawat inap, hingga layanan pendukung pasien dan keluarga.', 'rspku-theme');
         }
 
-        return [
-            'title' => $queriedObject instanceof WP_Term ? $queriedObject->name : __('Layanan Medis', 'rspku-theme'),
+        $groups = $isRootArchive && $contentRepository instanceof ContentRepository
+            ? self::umbrellaServiceGroups($contentRepository)
+            : [];
+        $groupTotal = array_sum(array_map(static fn (array $group): int => count($group['items'] ?? []), $groups));
+
+        $context = [
+            'title' => $queriedObject instanceof WP_Term ? $queriedObject->name : __('Semua Layanan RS PKU Muhammadiyah Yogyakarta', 'rspku-theme'),
             'description' => $description,
             'eyebrow' => self::serviceEyebrow($queriedObject),
             'items' => $items,
             'featured' => self::firstWithImage($items) ?? ($items[0] ?? null),
-            'total' => $total,
+            'total' => $groupTotal > 0 ? $groupTotal : $total,
             'current_page' => self::pageNumber(),
             'total_pages' => max(1, (int) $query->max_num_pages),
             'per_page' => max(1, (int) $query->get('posts_per_page')),
-            'breadcrumb_parent' => [
+            'breadcrumb_parent' => $isRootArchive ? null : [
                 'title' => __('Semua layanan medis', 'rspku-theme'),
                 'url' => home_url('/layanan/'),
             ],
         ];
+
+        if ($groups !== []) {
+            $context['groups'] = $groups;
+            $context['cta'] = [
+                ['title' => __('Cari Dokter', 'rspku-theme'), 'url' => home_url('/dokter/'), 'icon' => 'search'],
+                ['title' => __('Lihat Jadwal Dokter', 'rspku-theme'), 'url' => home_url('/jadwal-dokter/'), 'icon' => 'calendar'],
+                ['title' => __('Hubungi Kami', 'rspku-theme'), 'url' => home_url('/kontak/'), 'icon' => 'phone'],
+            ];
+        }
+
+        return $context;
+    }
+
+    /**
+     * @return array<int,array<string,mixed>>
+     */
+    private static function umbrellaServiceGroups(ContentRepository $contentRepository): array
+    {
+        $groups = self::umbrellaGroupDefinitions();
+
+        foreach (self::publishedPosts('layanan') as $post) {
+            $card = self::umbrellaServiceCard($contentRepository->normalizeServicePublic($post), 'layanan', __('Layanan', 'rspku-theme'));
+            $groups[self::serviceGroupKey($post, $card)]['items'][] = $card;
+        }
+
+        foreach ($contentRepository->allPolyclinics() as $item) {
+            $card = self::umbrellaServiceCard($item, 'poliklinik', __('Poliklinik', 'rspku-theme'));
+            $groups[self::polyclinicGroupKey($card)]['items'][] = $card;
+        }
+
+        foreach ($contentRepository->latestRooms(200) as $item) {
+            $groups['rawat-inap']['items'][] = self::umbrellaServiceCard($item, 'rawat-inap', __('Rawat inap', 'rspku-theme'));
+        }
+
+        return array_values($groups);
+    }
+
+    /**
+     * @return array<string,array<string,mixed>>
+     */
+    private static function umbrellaGroupDefinitions(): array
+    {
+        return [
+            'klinik-spesialis' => ['title' => __('Klinik Spesialis', 'rspku-theme'), 'description' => __('Layanan rawat jalan dokter spesialis untuk kebutuhan konsultasi dan pemeriksaan pasien.', 'rspku-theme'), 'items' => []],
+            'gigi-mulut' => ['title' => __('Gigi & Mulut', 'rspku-theme'), 'description' => __('Perawatan kesehatan gigi dan mulut untuk pasien anak, dewasa, dan keluarga.', 'rspku-theme'), 'items' => []],
+            'pemeriksaan-konsultasi' => ['title' => __('Pemeriksaan & Konsultasi', 'rspku-theme'), 'description' => __('Konsultasi klinis, asesmen, dan layanan pendukung diagnosis awal.', 'rspku-theme'), 'items' => []],
+            'layanan-unggulan' => ['title' => __('Pusat Layanan Unggulan', 'rspku-theme'), 'description' => __('Layanan prioritas rumah sakit dengan dukungan tim dan fasilitas khusus.', 'rspku-theme'), 'items' => []],
+            'tindakan-bedah' => ['title' => __('Tindakan Medis & Bedah', 'rspku-theme'), 'description' => __('Tindakan medis, prosedur, dan layanan bedah sesuai indikasi klinis.', 'rspku-theme'), 'items' => []],
+            'penunjang-medis' => ['title' => __('Penunjang Medis', 'rspku-theme'), 'description' => __('Pemeriksaan laboratorium, radiologi, farmasi, rehabilitasi, dan gizi.', 'rspku-theme'), 'items' => []],
+            'rawat-inap' => ['title' => __('Rawat Inap & Fasilitas', 'rspku-theme'), 'description' => __('Pilihan ruang perawatan dan fasilitas pasien selama rawat inap.', 'rspku-theme'), 'items' => []],
+            'home-care' => ['title' => __('Home Care & Layanan Luar RS', 'rspku-theme'), 'description' => __('Layanan pendukung pasien di rumah dan kebutuhan perawatan luar rumah sakit.', 'rspku-theme'), 'items' => []],
+        ];
+    }
+
+    /**
+     * @return array<int,\WP_Post>
+     */
+    private static function publishedPosts(string $postType): array
+    {
+        return get_posts([
+            'post_type' => $postType,
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'orderby' => 'title',
+            'order' => 'ASC',
+            'no_found_rows' => true,
+        ]);
+    }
+
+    /**
+     * @param array<string,mixed> $item
+     * @return array<string,mixed>
+     */
+    private static function umbrellaServiceCard(array $item, string $sourceType, string $badge): array
+    {
+        return [
+            'title' => (string) ($item['title'] ?? ''),
+            'url' => (string) ($item['url'] ?? ''),
+            'excerpt' => (string) ($item['excerpt'] ?? ''),
+            'image' => $item['image'] ?? null,
+            'source_type' => $sourceType,
+            'badge' => $badge,
+        ];
+    }
+
+    /**
+     * ponytail: curated code list is ceiling; upgrade to admin-managed grouping taxonomy when content team needs frequent edits.
+     * @param array<string,mixed> $card
+     */
+    private static function serviceGroupKey(\WP_Post $post, array $card): string
+    {
+        $title = self::normalizedText((string) ($card['title'] ?? ''));
+
+        if (str_contains($title, 'dental') || str_contains($title, 'gigi')) {
+            return 'gigi-mulut';
+        }
+
+        if (str_contains($title, 'home care')) {
+            return 'home-care';
+        }
+
+        if (str_contains($title, 'radiologi') || str_contains($title, 'gizi') || str_contains($title, 'fisioterapi')) {
+            return 'penunjang-medis';
+        }
+
+        $termSlugs = wp_get_post_terms((int) $post->ID, 'kategori-layanan', ['fields' => 'slugs']);
+        if (is_array($termSlugs) && in_array('layanan-unggulan', $termSlugs, true)) {
+            return 'layanan-unggulan';
+        }
+
+        return 'penunjang-medis';
+    }
+
+    /**
+     * @param array<string,mixed> $card
+     */
+    private static function polyclinicGroupKey(array $card): string
+    {
+        $title = self::normalizedText((string) ($card['title'] ?? ''));
+
+        return match (true) {
+            str_contains($title, 'dental') || str_contains($title, 'gigi') => 'gigi-mulut',
+            str_contains($title, 'fisioterapi') || str_contains($title, 'gizi') || str_contains($title, 'psikologi') => 'pemeriksaan-konsultasi',
+            str_contains($title, 'bedah') || str_contains($title, 'operasi') => 'tindakan-bedah',
+            default => 'klinik-spesialis',
+        };
+    }
+
+    private static function normalizedText(string $value): string
+    {
+        return strtolower(remove_accents($value));
     }
 
     private static function serviceEyebrow(object|null $queriedObject): string
@@ -725,6 +860,7 @@ final class TemplateController
             'eyebrow' => __('Perjalanan Kami', 'rspku-theme'),
             'title' => __('Sejarah RS PKU Muhammadiyah Yogyakarta', 'rspku-theme'),
             'description' => __('Perjalanan lebih dari 100 tahun pelayanan kesehatan umat yang berakar dari gerakan sosial, berkembang menjadi rumah sakit islami modern, dan tetap berpijak pada nilai dakwah serta kemanusiaan.', 'rspku-theme'),
+            'gallery' => self::historyGalleryContext(),
             'stats' => [
                 ['value' => '100+', 'label' => __('Tahun Melayani', 'rspku-theme')],
                 ['value' => '75+', 'label' => __('Dokter Spesialis', 'rspku-theme')],
@@ -805,6 +941,49 @@ final class TemplateController
                 ['letter' => 'N', 'name' => __('Nyaman', 'rspku-theme'), 'desc' => __('Menciptakan pengalaman layanan yang tenang dan menenteramkan.', 'rspku-theme')],
             ],
         ];
+    }
+
+    /**
+     * @return list<array{key:string,image_id:int,image_url:string,year:string,title:string,caption:string,alt:string}>
+     */
+    private static function historyGalleryContext(): array
+    {
+        if (!function_exists('rspku_setting')) {
+            return [];
+        }
+
+        $gallery = [];
+        $slots = [
+            'history_hero',
+            'history_pioneers',
+            'history_child_service',
+            'history_first_stone',
+            'history_modernization',
+        ];
+
+        foreach ($slots as $slot) {
+            $imageId = absint(rspku_setting($slot . '_image_id', 0));
+            $year = trim((string) rspku_setting($slot . '_year', ''));
+            $title = trim((string) rspku_setting($slot . '_title', ''));
+            $caption = trim((string) rspku_setting($slot . '_caption', ''));
+            $alt = trim((string) rspku_setting($slot . '_alt', ''));
+
+            if ($imageId < 1 || !wp_attachment_is_image($imageId) || $year === '' || $title === '' || $caption === '' || $alt === '') {
+                continue;
+            }
+
+            $gallery[] = [
+                'key' => $slot,
+                'image_id' => $imageId,
+                'image_url' => wp_get_attachment_image_url($imageId, 'rspku-hero') ?: '',
+                'year' => $year,
+                'title' => $title,
+                'caption' => $caption,
+                'alt' => $alt,
+            ];
+        }
+
+        return $gallery;
     }
 
     private static function publishCount(string $postType): int

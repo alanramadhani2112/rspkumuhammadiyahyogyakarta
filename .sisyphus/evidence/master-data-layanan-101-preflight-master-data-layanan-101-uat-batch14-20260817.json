@@ -1,0 +1,65 @@
+{
+    "import": "master-data-layanan-medis-101",
+    "taxonomy": "master-layanan-medis",
+    "source": ".sisyphus/source/master-data-layanan-medis-rs-pku-muhammadiyah-yogyakarta.xlsx",
+    "batch_id": "master-data-layanan-101-uat-batch14-20260817",
+    "approved_file": ".sisyphus/drafts/master-data-layanan-101-approvals.master-data-layanan-101-uat-batch14-20260817.json",
+    "preflight": true,
+    "apply": false,
+    "expected_counts": {
+        "source_rows": 101,
+        "total_entities": 104,
+        "poliklinik": 40,
+        "layanan": 59,
+        "rawat_inap": 5
+    },
+    "db_writes": 0,
+    "source_sha256": "D7F3F839594CBFD71F5D9BAC32CFE2F813074A9748C14395048C4B72249CD48A",
+    "source_size": 12590,
+    "sheet": "Master Layanan 1-N",
+    "headers": [
+        "No.",
+        "Domain",
+        "Kategori",
+        "Parent",
+        "Nama Layanan",
+        "Detail / Deskripsi dari Source",
+        "Sumber",
+        "Dokumen",
+        "Catatan Validasi"
+    ],
+    "row_count": 101,
+    "mapping_count": 104,
+    "mapping_counts": {
+        "poliklinik": 40,
+        "layanan": 59,
+        "rawat-inap": 5
+    },
+    "source_identities": 101,
+    "hub_identities": 3,
+    "match_counts": {
+        "matched-by-identity": 40,
+        "possible-existing-title": 12,
+        "missing": 52,
+        "collision": 0
+    },
+    "wordpress_bootstrapped": true,
+    "mapping_artifact": "/home/dev-rspkujogja/htdocs/dev-rspkujogja.com/.sisyphus/evidence/master-data-layanan-101-mapping-master-data-layanan-101-uat-batch14-20260817.json",
+    "approved_file_valid": true,
+    "approval_count": 104,
+    "approval_decisions": {
+        "skip": 94,
+        "review-required": 0,
+        "create": 10,
+        "update": 0,
+        "assign": 0,
+        "actionable": 10
+    },
+    "mode": "preflight",
+    "preflight_artifact": "/home/dev-rspkujogja/htdocs/dev-rspkujogja.com/.sisyphus/evidence/master-data-layanan-101-preflight-master-data-layanan-101-uat-batch14-20260817.json",
+    "apply_ready": true,
+    "blocking_errors": [],
+    "warnings": [
+        "skip decisions are read-only holds"
+    ]
+}

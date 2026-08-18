@@ -13,7 +13,7 @@
 
         <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div class="space-y-6">
-            <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">Arsip</span>
+            <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">Struktur Manajemen</span>
             <h1 class="max-w-3xl text-3xl font-bold leading-tight text-slate-950 sm:text-4xl lg:text-5xl">{{ management_archive.title }}</h1>
             <p class="max-w-2xl text-base leading-relaxed text-slate-600">{{ management_archive.description }}</p>
           </div>
@@ -23,17 +23,48 @@
           </div>
         </div>
 
-        {% if posts %}
+        {% if management_archive.sections|default([]) %}
+          <div class="rspku-divider"></div>
+
+          <div class="space-y-12">
+            {% for section in management_archive.sections %}
+              {% if section.items %}
+                <section class="space-y-6" aria-labelledby="management-section-{{ loop.index }}">
+                  <div class="space-y-2">
+                    <p class="text-sm font-semibold uppercase tracking-wide text-hospital-700">Struktur Manajemen</p>
+                    <h2 id="management-section-{{ loop.index }}" class="text-2xl font-bold leading-tight text-slate-950 sm:text-3xl">{{ section.title }}</h2>
+                  </div>
+
+                  <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+                    {% for item in section.items %}
+                      {% include 'components/content-card.twig' with {
+                        item: {
+                          title: item.title,
+                          excerpt: item.position|default(item.excerpt),
+                          image: item.image,
+                          image_class: 'aspect-[4/5]',
+                          badge: section.title,
+                          show_link: false
+                        }
+                      } %}
+                    {% endfor %}
+                  </div>
+                </section>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% elseif posts %}
           <div class="rspku-divider"></div>
 
           <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {% for item in posts %}
+            {% for post in posts %}
               {% include 'components/content-card.twig' with {
                 item: {
-                  title: item.title,
-                  url: item.url,
-                  excerpt: item.excerpt,
-                  image: item.image,
+                  title: post.title,
+                  url: post.url,
+                  excerpt: post.excerpt,
+                  image: post.image,
+                  image_class: 'aspect-[4/5]',
                   badge: 'Manajemen RS',
                   show_link: false
                 }
@@ -50,7 +81,8 @@
           per_page: pagination_meta.per_page|default(10),
           current_page: pagination_meta.current_page|default(1),
           total_pages: pagination_meta.total_pages|default(1),
-          show_single: pagination_meta.total|default(0) > 0,
+          show_single: false,
+          show_summary: false,
           item_label: pagination_meta.item_label|default('profil')
         } only %}
       </div>

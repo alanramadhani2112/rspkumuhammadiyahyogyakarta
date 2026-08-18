@@ -1,0 +1,5 @@
+No syntax errors detected in wp-content/themes/rspku-theme/scripts/check-specialization-source.php
+No syntax errors detected in wp-content/themes/rspku-theme/scripts/audit-doctor-specialization-source.php
+No syntax errors detected in wp-content/plugins/rspku-cpt/includes/class-rspku-cpt-doctor-schedule-admin.php
+No syntax errors detected in wp-content/plugins/rspku-cpt/includes/class-rspku-cpt-doctor-fields.php
+No syntax errors detected in wp-content/themes/rspku-theme/app/Repositories/DoctorRepository.php

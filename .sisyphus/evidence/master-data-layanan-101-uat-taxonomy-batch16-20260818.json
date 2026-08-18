@@ -1,0 +1,137 @@
+{
+    "batch_id": "master-data-layanan-101-uat-batch16-20260818",
+    "taxonomy": "master-layanan-medis",
+    "assigned_at": "2026-08-18T03:17:08+00:00",
+    "backup": {
+        "path": ".sisyphus/backups/master-data-layanan-101-uat-pre-taxonomy-batch16-20260818.sql",
+        "size": 83209125
+    },
+    "existing_term_ids": [
+        363
+    ],
+    "created_term_ids": [
+        365,
+        366,
+        367
+    ],
+    "term_map": {
+        "Penunjang Medis": 363,
+        "Laboratorium Medis": 365,
+        "Radiologi": 366,
+        "Pemeriksaan Penunjang Lain": 367
+    },
+    "assignments": [
+        {
+            "post_id": 20923,
+            "term_ids": [
+                363,
+                365
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Laboratorium Medis"
+            ]
+        },
+        {
+            "post_id": 20924,
+            "term_ids": [
+                363,
+                365
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Laboratorium Medis"
+            ]
+        },
+        {
+            "post_id": 20925,
+            "term_ids": [
+                363,
+                365
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Laboratorium Medis"
+            ]
+        },
+        {
+            "post_id": 20926,
+            "term_ids": [
+                363,
+                365
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Laboratorium Medis"
+            ]
+        },
+        {
+            "post_id": 20927,
+            "term_ids": [
+                363,
+                366
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Radiologi"
+            ]
+        },
+        {
+            "post_id": 20928,
+            "term_ids": [
+                363,
+                366
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Radiologi"
+            ]
+        },
+        {
+            "post_id": 20929,
+            "term_ids": [
+                363,
+                366
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Radiologi"
+            ]
+        },
+        {
+            "post_id": 20930,
+            "term_ids": [
+                363,
+                366
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Radiologi"
+            ]
+        },
+        {
+            "post_id": 20931,
+            "term_ids": [
+                363,
+                366
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Radiologi"
+            ]
+        },
+        {
+            "post_id": 20932,
+            "term_ids": [
+                363,
+                367
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Pemeriksaan Penunjang Lain"
+            ]
+        }
+    ],
+    "published_count": 0,
+    "rollback": "With explicit approval only: remove listed term assignments from posts 20923-20932; delete only created terms when usage is zero; never delete existing term 363; restore backup only as last resort."
+}

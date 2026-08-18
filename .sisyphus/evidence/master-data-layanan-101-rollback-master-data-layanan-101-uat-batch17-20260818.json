@@ -1,0 +1,312 @@
+{
+    "import": "master-data-layanan-medis-101",
+    "batch_id": "master-data-layanan-101-uat-batch17-20260818",
+    "source_sha256": "D7F3F839594CBFD71F5D9BAC32CFE2F813074A9748C14395048C4B72249CD48A",
+    "apply_manifest": "/home/dev-rspkujogja/htdocs/dev-rspkujogja.com/.sisyphus/evidence/master-data-layanan-101-apply-master-data-layanan-101-uat-batch17-20260818.json",
+    "created": [
+        {
+            "source_id": "xlsx-row-84",
+            "post_id": 20934,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20934,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Treadmill",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 11:33:38",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "84",
+                    "_rspku_source_name_raw": "Treadmill",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Pemeriksaan Penunjang Lain",
+                    "_rspku_source_identity_key": "layanan|treadmill|penunjang medis|pemeriksaan penunjang lain",
+                    "_rspku_source_hash": "8ffa77f362291d43e5322b5189e6d0b496af3904f898d6c9b31b362b6f7f0cad",
+                    "_rspku_verified_title": "Treadmill",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20934 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-85",
+            "post_id": 20935,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20935,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Electroencephalography (EEG)",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 11:33:38",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "85",
+                    "_rspku_source_name_raw": "Electroencephalography (EEG)",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Pemeriksaan Penunjang Lain",
+                    "_rspku_source_identity_key": "layanan|electroencephalography (eeg)|penunjang medis|pemeriksaan penunjang lain",
+                    "_rspku_source_hash": "f5ae72ab1d032b708a612eb3395bfe659a3f33cc899d9d75f35032e49d0b482c",
+                    "_rspku_verified_title": "Electroencephalography (EEG)",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20935 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-86",
+            "post_id": 20936,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20936,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Spirometry",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 11:33:38",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "86",
+                    "_rspku_source_name_raw": "Spirometry",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Pemeriksaan Penunjang Lain",
+                    "_rspku_source_identity_key": "layanan|spirometry|penunjang medis|pemeriksaan penunjang lain",
+                    "_rspku_source_hash": "04eb1e1939961bab19d48ac1bf9acc63a8a7cf6af9dde0db9be4b375f8ce0e1a",
+                    "_rspku_verified_title": "Spirometry",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20936 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-87",
+            "post_id": 20937,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20937,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Audiometry",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 11:33:38",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "87",
+                    "_rspku_source_name_raw": "Audiometry",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Pemeriksaan Penunjang Lain",
+                    "_rspku_source_identity_key": "layanan|audiometry|penunjang medis|pemeriksaan penunjang lain",
+                    "_rspku_source_hash": "86b55f2d01863fed7c9601e6ec2c261bad94ee056c3758197beed7144ff02b62",
+                    "_rspku_verified_title": "Audiometry",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20937 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-88",
+            "post_id": 20938,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20938,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Steam prevaccum",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 11:33:39",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "88",
+                    "_rspku_source_name_raw": "Steam prevaccum",
+                    "_rspku_source_category_raw": "Central Sterile Supply Department (CSSD)",
+                    "_rspku_source_parent_raw": "Layanan Sterilisasi Suhu Tinggi",
+                    "_rspku_source_identity_key": "layanan|steam prevaccum|central sterile supply department (cssd)|layanan sterilisasi suhu tinggi",
+                    "_rspku_source_hash": "b45a90ff9eba5660805f8f6f83a2da6e2abadfe26881cb5b776fa0df3932a4b2",
+                    "_rspku_verified_title": "Steam prevaccum",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20938 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-89",
+            "post_id": 20939,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20939,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Autoreader indicator protein dan biologi",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 11:33:39",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "89",
+                    "_rspku_source_name_raw": "Autoreader indicator protein dan biologi",
+                    "_rspku_source_category_raw": "Central Sterile Supply Department (CSSD)",
+                    "_rspku_source_parent_raw": "Layanan Sterilisasi Suhu Tinggi",
+                    "_rspku_source_identity_key": "layanan|autoreader indicator protein dan biologi|central sterile supply department (cssd)|layanan sterilisasi suhu tinggi",
+                    "_rspku_source_hash": "6e0085d9f71f14e8ddccd4f0916d16e1d5e1bf6260bfb88344af5aec0cbbff29",
+                    "_rspku_verified_title": "Autoreader indicator protein dan biologi",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20939 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-90",
+            "post_id": 20940,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20940,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Sealer",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 11:33:39",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "90",
+                    "_rspku_source_name_raw": "Sealer",
+                    "_rspku_source_category_raw": "Central Sterile Supply Department (CSSD)",
+                    "_rspku_source_parent_raw": "Layanan Sterilisasi Suhu Tinggi",
+                    "_rspku_source_identity_key": "layanan|sealer|central sterile supply department (cssd)|layanan sterilisasi suhu tinggi",
+                    "_rspku_source_hash": "d6fe5bcf11f6763da0e1a910703209321713446aeb9cddfc8c96b4844b68f08f",
+                    "_rspku_verified_title": "Sealer",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20940 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-91",
+            "post_id": 20941,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20941,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Ethylene oxide",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 11:33:39",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "91",
+                    "_rspku_source_name_raw": "Ethylene oxide",
+                    "_rspku_source_category_raw": "Central Sterile Supply Department (CSSD)",
+                    "_rspku_source_parent_raw": "Layanan Sterilisasi Suhu Rendah",
+                    "_rspku_source_identity_key": "layanan|ethylene oxide|central sterile supply department (cssd)|layanan sterilisasi suhu rendah",
+                    "_rspku_source_hash": "2b2522922d6dbb036ffc95d15f422bc2cfe2bfd4b6706af0308affd3e2deb1aa",
+                    "_rspku_verified_title": "Ethylene oxide",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20941 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-92",
+            "post_id": 20942,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20942,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Autoreader indicator protein dan biologi",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 11:33:39",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "92",
+                    "_rspku_source_name_raw": "Autoreader indicator protein dan biologi",
+                    "_rspku_source_category_raw": "Central Sterile Supply Department (CSSD)",
+                    "_rspku_source_parent_raw": "Layanan Sterilisasi Suhu Rendah",
+                    "_rspku_source_identity_key": "layanan|autoreader indicator protein dan biologi|central sterile supply department (cssd)|layanan sterilisasi suhu rendah",
+                    "_rspku_source_hash": "c0d13f9c466bc8f8ec1cd42ee67c304976ef819f5e98bfebecb9c64cf0a2b63e",
+                    "_rspku_verified_title": "Autoreader indicator protein dan biologi",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20942 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-93",
+            "post_id": 20943,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20943,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Sealer",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 11:33:39",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "93",
+                    "_rspku_source_name_raw": "Sealer",
+                    "_rspku_source_category_raw": "Central Sterile Supply Department (CSSD)",
+                    "_rspku_source_parent_raw": "Layanan Sterilisasi Suhu Rendah",
+                    "_rspku_source_identity_key": "layanan|sealer|central sterile supply department (cssd)|layanan sterilisasi suhu rendah",
+                    "_rspku_source_hash": "fafcd7628a1ff2517baa4c49c1fd833f6477343867d536d9e91f6cbfa78ddec6",
+                    "_rspku_verified_title": "Sealer",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20943 only if rollback is explicitly approved for this failed or applied batch."
+        }
+    ],
+    "updated": [],
+    "assigned": [],
+    "deleted_existing_count": 0,
+    "rollback_notes": "Created drafts may be deleted only by explicit rollback approval; existing posts restore audit meta or master-layanan-medis terms from prior_values."
+}

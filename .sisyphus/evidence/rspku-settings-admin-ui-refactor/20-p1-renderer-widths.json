@@ -1,0 +1,81 @@
+{
+  "taskName": "Task 3.1 Satukan Kontrak Renderer Field",
+  "generatedAt": "2026-08-17T22:25:00+07:00",
+  "changedFiles": [
+    "wp-content/plugins/rspku-settings/includes/class-rspku-settings-admin.php",
+    "wp-content/plugins/rspku-settings/assets/admin.source.css",
+    "wp-content/plugins/rspku-settings/assets/admin.css",
+    "wp-content/plugins/rspku-settings/tests/admin-css.test.mjs"
+  ],
+  "verification": {
+    "commands": [
+      {
+        "command": "cd wp-content/plugins/rspku-settings && npm run build:css",
+        "status": "passed",
+        "summary": "Tailwind admin CSS rebuilt successfully; output assets/admin.css regenerated."
+      },
+      {
+        "command": "cd wp-content/plugins/rspku-settings && npm test",
+        "status": "passed",
+        "summary": "Admin CSS test suite passed with 56 passed, 0 failed."
+      },
+      {
+        "command": "cd wp-content/plugins/rspku-settings && php -l includes/class-rspku-settings-admin.php",
+        "status": "passed",
+        "summary": "No syntax errors detected in includes/class-rspku-settings-admin.php."
+      }
+    ],
+    "diagnostics": [
+      {
+        "target": "wp-content/plugins/rspku-settings/includes/class-rspku-settings-admin.php",
+        "status": "clean"
+      },
+      {
+        "target": "wp-content/plugins/rspku-settings/tests/admin-css.test.mjs",
+        "status": "clean"
+      },
+      {
+        "target": "wp-content/plugins/rspku-settings/assets/admin.source.css and assets/admin.css",
+        "status": "pre-existing CSS diagnostics remain",
+        "summary": "Biome reports unknown @tailwind/noImportantStyles/noDescendingSpecificity warnings; build and PostCSS parse passed."
+      }
+    ]
+  },
+  "grepChecks": [
+    {
+      "target": "wp-content/plugins/rspku-settings/includes/*.php",
+      "pattern": "rs-max-w-lg|rspku-settings-input|rspku-settings-textarea|rspku-settings-field__control",
+      "result": "No rs-max-w-lg matches; field contract classes present in renderField()."
+    },
+    {
+      "target": "wp-content/plugins/rspku-settings/assets/*.css",
+      "pattern": "rs-max-w-lg|max-width:520px|max-width: 520px|.rspku-settings-input|.rspku-settings-textarea|.rspku-settings-field__control",
+      "result": "No rs-max-w-lg or 520px field cap matches; field contract selectors present in source and generated CSS."
+    },
+    {
+      "target": "wp-content/plugins/rspku-settings/**/*.{php,css,mjs}",
+      "pattern": "rs-max-w-lg|520px|max-width: 520px",
+      "result": "Only tests/admin-css.test.mjs regression assertion strings matched."
+    }
+  ],
+  "fieldContract": {
+    "entrypoint": "renderField()",
+    "wrapper": ".rspku-settings-field",
+    "label": ".rspku-settings-field__label",
+    "control": ".rspku-settings-field__control",
+    "description": ".rspku-settings-field__description",
+    "defaultInput": ".rspku-settings-input",
+    "defaultTextarea": ".rspku-settings-textarea",
+    "widthBehavior": "Default text, email, URL, and textarea controls fill their container with width: 100% and max-width: none.",
+    "preservedContracts": [
+      "Field names remain rspku_settings[KEY].",
+      "IDs remain rspku-KEY.",
+      "Option key, sanitizers, save flow, media selectors, repeater selectors, checkbox picker selectors, and post picker selectors remain unchanged."
+    ]
+  },
+  "browserBlocked": {
+    "blocked": true,
+    "note": "Authenticated WP admin DOM viewport QA was not claimed; inherited blocker remains unauthenticated redirect to /404/."
+  },
+  "markdownEvidence": ".sisyphus/evidence/rspku-settings-admin-ui-refactor/20-p1-field-contract.md"
+}

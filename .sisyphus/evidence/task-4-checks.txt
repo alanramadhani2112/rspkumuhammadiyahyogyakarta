@@ -1,0 +1,14 @@
+localhost valid
+theme_127=127.0.0.1
+plugin_127=127.0.0.1
+theme_ipv6=::1
+plugin_ipv6=::1
+deterministic key
+ip1=1.1.1.1
+ip2=1.1.1.1
+key1=rspku_rl_doctor_search_rest_e086aa137fa19f67d27b39d0eca18610
+key2=rspku_rl_doctor_search_rest_e086aa137fa19f67d27b39d0eca18610
+keys_match=yes
+syntax checks
+No syntax errors detected in wp-content/themes/rspku-theme/app/Services/DoctorSearch.php
+No syntax errors detected in wp-content/plugins/rspku-core/rspku-core.php

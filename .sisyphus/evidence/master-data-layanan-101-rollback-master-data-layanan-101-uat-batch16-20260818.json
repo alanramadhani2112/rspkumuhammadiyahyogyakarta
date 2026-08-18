@@ -1,0 +1,312 @@
+{
+    "import": "master-data-layanan-medis-101",
+    "batch_id": "master-data-layanan-101-uat-batch16-20260818",
+    "source_sha256": "D7F3F839594CBFD71F5D9BAC32CFE2F813074A9748C14395048C4B72249CD48A",
+    "apply_manifest": "/home/dev-rspkujogja/htdocs/dev-rspkujogja.com/.sisyphus/evidence/master-data-layanan-101-apply-master-data-layanan-101-uat-batch16-20260818.json",
+    "created": [
+        {
+            "source_id": "xlsx-row-74",
+            "post_id": 20923,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20923,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Laboratorium Patologi Klinik",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 08:06:44",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "74",
+                    "_rspku_source_name_raw": "Laboratorium Patologi Klinik",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Laboratorium Medis",
+                    "_rspku_source_identity_key": "layanan|laboratorium patologi klinik|penunjang medis|laboratorium medis",
+                    "_rspku_source_hash": "e95cabed832455a930533cafb366b6b396511c013e911d4765c4f5c8fd00bf77",
+                    "_rspku_verified_title": "Laboratorium Patologi Klinik",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20923 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-75",
+            "post_id": 20924,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20924,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Laboratorium Patologi Anatomi",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 08:06:45",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "75",
+                    "_rspku_source_name_raw": "Laboratorium Patologi Anatomi",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Laboratorium Medis",
+                    "_rspku_source_identity_key": "layanan|laboratorium patologi anatomi|penunjang medis|laboratorium medis",
+                    "_rspku_source_hash": "e0701b385b28ecd1683852326cd27db97c2a2991a43c57d463ff35e360e4369e",
+                    "_rspku_verified_title": "Laboratorium Patologi Anatomi",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20924 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-76",
+            "post_id": 20925,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20925,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Laboratorium Mikrobiologi Klinik",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 08:06:45",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "76",
+                    "_rspku_source_name_raw": "Laboratorium Mikrobiologi Klinik",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Laboratorium Medis",
+                    "_rspku_source_identity_key": "layanan|laboratorium mikrobiologi klinik|penunjang medis|laboratorium medis",
+                    "_rspku_source_hash": "5e9e8236e050148f82c8b9c7229d7aea15b1c47a3e983424c71e671a5740269f",
+                    "_rspku_verified_title": "Laboratorium Mikrobiologi Klinik",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20925 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-77",
+            "post_id": 20926,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20926,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Bank Darah",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 08:06:45",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "77",
+                    "_rspku_source_name_raw": "Bank Darah",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Laboratorium Medis",
+                    "_rspku_source_identity_key": "layanan|bank darah|penunjang medis|laboratorium medis",
+                    "_rspku_source_hash": "aa93383c0fe5b1aba1fb5d776e4798c9bf433afa032bb103c20badc04a704802",
+                    "_rspku_verified_title": "Bank Darah",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20926 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-78",
+            "post_id": 20927,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20927,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Multi slice CT scan",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 08:06:45",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "78",
+                    "_rspku_source_name_raw": "Multi slice CT scan",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Radiologi",
+                    "_rspku_source_identity_key": "layanan|multi slice ct scan|penunjang medis|radiologi",
+                    "_rspku_source_hash": "7ed1761a682612db3d885e2fef71731e09cec48a8444b59749ff42113e700f85",
+                    "_rspku_verified_title": "Multi slice CT scan",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20927 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-79",
+            "post_id": 20928,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20928,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Digital X-ray",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 08:06:45",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "79",
+                    "_rspku_source_name_raw": "Digital X-ray",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Radiologi",
+                    "_rspku_source_identity_key": "layanan|digital x-ray|penunjang medis|radiologi",
+                    "_rspku_source_hash": "a03353d4489ce4f53267e7dfc39374cb966e93a9a2b359879f1c359a61b0fc93",
+                    "_rspku_verified_title": "Digital X-ray",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20928 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-80",
+            "post_id": 20929,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20929,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Dental X-ray",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 08:06:45",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "80",
+                    "_rspku_source_name_raw": "Dental X-ray",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Radiologi",
+                    "_rspku_source_identity_key": "layanan|dental x-ray|penunjang medis|radiologi",
+                    "_rspku_source_hash": "bd8f150dd355bf0d0b4353c5449d761d64b15a72288b349e1490477fa6792af3",
+                    "_rspku_verified_title": "Dental X-ray",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20929 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-81",
+            "post_id": 20930,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20930,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "USG 4 dimensi",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 08:06:45",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "81",
+                    "_rspku_source_name_raw": "USG 4 dimensi",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Radiologi",
+                    "_rspku_source_identity_key": "layanan|usg 4 dimensi|penunjang medis|radiologi",
+                    "_rspku_source_hash": "107ec8d104f824ff8f4e8726c569b2012a0e72c06a45e9bf79dbbd0945a70d2d",
+                    "_rspku_verified_title": "USG 4 dimensi",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20930 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-82",
+            "post_id": 20931,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20931,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Echocardiography",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 08:06:46",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "82",
+                    "_rspku_source_name_raw": "Echocardiography",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Radiologi",
+                    "_rspku_source_identity_key": "layanan|echocardiography|penunjang medis|radiologi",
+                    "_rspku_source_hash": "cd65b4b016033055c6d9191628b75f69a216076af556bedcfa55484bfbf24c8f",
+                    "_rspku_verified_title": "Echocardiography",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20931 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-83",
+            "post_id": 20932,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20932,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Electrocardiography (ECG)",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 08:06:46",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "83",
+                    "_rspku_source_name_raw": "Electrocardiography (ECG)",
+                    "_rspku_source_category_raw": "Penunjang Medis",
+                    "_rspku_source_parent_raw": "Pemeriksaan Penunjang Lain",
+                    "_rspku_source_identity_key": "layanan|electrocardiography (ecg)|penunjang medis|pemeriksaan penunjang lain",
+                    "_rspku_source_hash": "b1e48d18860897c187e61abfdf290f264579ed2b17abb4a4ffcbf2a1504d7005",
+                    "_rspku_verified_title": "Electrocardiography (ECG)",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20932 only if rollback is explicitly approved for this failed or applied batch."
+        }
+    ],
+    "updated": [],
+    "assigned": [],
+    "deleted_existing_count": 0,
+    "rollback_notes": "Created drafts may be deleted only by explicit rollback approval; existing posts restore audit meta or master-layanan-medis terms from prior_values."
+}

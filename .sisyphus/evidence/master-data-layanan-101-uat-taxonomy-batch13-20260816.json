@@ -1,0 +1,87 @@
+{
+    "repaired_term_ids": [
+        352,
+        353
+    ],
+    "created_term_ids": [
+        354,
+        355
+    ],
+    "term_ids": {
+        "Layanan Rawat Jalan": 348,
+        "Layanan Rawat Jalan Lainnya": 351,
+        "Bedah Sentral": 354,
+        "Bangsal Rawat Inap": 355
+    },
+    "assignments": [
+        {
+            "post_id": 20893,
+            "term_ids": [
+                348,
+                351
+            ]
+        },
+        {
+            "post_id": 20894,
+            "term_ids": [
+                348,
+                351
+            ]
+        },
+        {
+            "post_id": 20895,
+            "term_ids": [
+                348,
+                354
+            ]
+        },
+        {
+            "post_id": 20896,
+            "term_ids": [
+                348,
+                354
+            ]
+        },
+        {
+            "post_id": 20897,
+            "term_ids": [
+                348,
+                354
+            ]
+        },
+        {
+            "post_id": 20898,
+            "term_ids": [
+                355
+            ]
+        },
+        {
+            "post_id": 20899,
+            "term_ids": [
+                355
+            ]
+        },
+        {
+            "post_id": 20900,
+            "term_ids": [
+                355
+            ]
+        },
+        {
+            "post_id": 20901,
+            "term_ids": [
+                355
+            ]
+        },
+        {
+            "post_id": 20902,
+            "term_ids": [
+                355
+            ]
+        }
+    ],
+    "published_count": 0,
+    "backup": ".sisyphus/backups/master-data-layanan-101-uat-pre-taxonomy-batch13-20260816.sql",
+    "backup_size": 82900942,
+    "rollback": "Only with explicit approval: remove the listed taxonomy assignments from posts 20893-20902; delete created terms 354 and 355 only when usage is zero; never delete existing terms 348 and 351; malformed terms 352 and 353 were already removed; restore the database backup only as a last resort."
+}

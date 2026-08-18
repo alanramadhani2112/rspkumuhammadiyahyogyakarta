@@ -1,0 +1,7 @@
+VERDICT: APPROVE
+Reasons:
+- Plan has T1-T8 checked and F1-F4 unchecked.
+- Evidence inventory covers task-1 through task-8 files.
+- T8 speed target is honestly failed: warm-cache homepage 2.950299s >= 2s.
+- Approval allowed because blocker is documented outside RSPKU source scope: only RSPKU/no plugins is under 2s, while all-plugin WordPress baseline is ~2.95s.
+- Moving on is justified by workplan continuation rule; fixing third-party plugin/runtime latency is outside this RSPKU source plan.

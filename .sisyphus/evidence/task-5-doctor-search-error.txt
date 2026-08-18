@@ -1,0 +1,71 @@
+Task 5 - Doctor Search API and frontend error handling
+Date: 2026-07-31
+
+Changed files:
+- wp-content/themes/rspku-theme/resources/js/app.js
+
+Server hardening review:
+- wp-content/themes/rspku-theme/app/Services/DoctorSearch.php preserved Task 4 trusted proxy policy: REMOTE_ADDR default; forwarded headers only used when REMOTE_ADDR is trusted by RSPKU_TRUSTED_PROXY_IPS or rspku_trusted_proxy_ips.
+- resources/views/partials/doctor-search-results.twig includes doctor-card.twig and pagination.twig. Timber/Twig auto-escaping protects doctor fields rendered into AJAX HTML; pagination uses WordPress paginate_links output.
+- No DoctorSearch.php changes were needed for Task 5.
+
+Frontend hardening review:
+- app.js now parses JSON safely, checks response.ok before success HTML insertion, and renders server/client errors with textContent via showError().
+- Remaining innerHTML sink is limited to payload.data.html from server-rendered Twig HTML.
+
+Command: php -l wp-content/themes/rspku-theme/app/Services/DoctorSearch.php
+Output:
+No syntax errors detected in wp-content/themes/rspku-theme/app/Services/DoctorSearch.php
+
+Command: npm run build (from wp-content/themes/rspku-theme)
+Output:
+> rspku-theme@1.0.0 build
+> vite build
+vite v6.4.2 building for production...
+6 modules transformed.
+built in 1.47s
+
+LSP diagnostics:
+- wp-content/themes/rspku-theme/app/Services/DoctorSearch.php: No diagnostics found
+- wp-content/themes/rspku-theme/resources/js/app.js: No diagnostics found
+
+HTTP QA: invalid nonce
+Command:
+curl.exe -i -s -X POST "http://rspkudev.test/wp-admin/admin-ajax.php" -d "action=rspku_doctor_search&nonce=invalid&page=1&per_page=1"
+Observed:
+HTTP/1.1 403 Forbidden
+Content-Type: application/json; charset=UTF-8
+{"success":false,"data":{"message":"Sesi pencarian tidak valid."}}
+
+HTTP QA: valid nonce success
+Command:
+$nonce = php -r "require 'wp-load.php'; echo wp_create_nonce('rspku_doctor_search');"; curl.exe -i -s -X POST "http://rspkudev.test/wp-admin/admin-ajax.php" -H "X-Forwarded-For: 203.0.113.252" -d "action=rspku_doctor_search&nonce=$nonce&page=1&per_page=1"
+Observed:
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+{"success":true,"data":{"html":"  <div class=\"grid gap-6 sm:grid-cols-2 xl:grid-cols-3\">...
+
+HTTP QA: rate limit and spoofed X-Forwarded-For cannot bypass untrusted REMOTE_ADDR
+Setup command:
+php -r "require 'wp-load.php'; foreach (array('127.0.0.1','::1','0.0.0.0') as `$ip) { set_transient('rspku_rl_doctor_search_ajax_' . md5(`$ip), 60, 60); echo `$ip, PHP_EOL; }"
+Request command:
+$nonce = php -r "require 'wp-load.php'; echo wp_create_nonce('rspku_doctor_search');"; curl.exe -i -s -X POST "http://rspkudev.test/wp-admin/admin-ajax.php" -H "X-Forwarded-For: 203.0.113.251" -d "action=rspku_doctor_search&nonce=$nonce&page=1&per_page=1"
+Observed:
+HTTP/1.1 429 Too Many Requests
+Content-Type: application/json; charset=UTF-8
+{"success":false,"data":{"message":"Terlalu banyak permintaan. Coba lagi sebentar."}}
+Cleanup command:
+php -r "require 'wp-load.php'; foreach (array('127.0.0.1','::1','0.0.0.0') as `$ip) { delete_transient('rspku_rl_doctor_search_ajax_' . md5(`$ip)); echo 'deleted ', `$ip, PHP_EOL; }"
+Observed cleanup:
+deleted 127.0.0.1
+deleted ::1
+deleted 0.0.0.0
+
+Direct IP policy probe:
+Command:
+php -r "require 'wp-load.php'; `$_SERVER['REMOTE_ADDR']='198.51.100.10'; `$_SERVER['HTTP_X_FORWARDED_FOR']='203.0.113.10'; `$m=(new ReflectionClass('Rspku\\Services\\DoctorSearch'))->getMethod('clientIp'); `$m->setAccessible(true); echo `$m->invoke(null), PHP_EOL;"
+Observed:
+198.51.100.10
+
+Screenshot fallback:
+- Browser screenshot was not created in this narrow CLI verification pass. HTTP responses above are text fallback evidence for 403, 429, spoofed header, and success behavior.

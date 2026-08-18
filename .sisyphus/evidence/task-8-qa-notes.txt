@@ -1,0 +1,5 @@
+PASS http://rspkudev.test/jadwal-dokter/ loaded; 100 schedule rows; 48 specialization filters; no fatal page error.
+PASS http://rspkudev.test/dokter/ loaded; 12 doctor cards on first page; specialization filter present; no fatal page error.
+PASS http://rspkudev.test/poliklinik/anestesi/ loaded; explicit related-doctor panel rendered; no keyword-only doctors; no fatal page error.
+BLOCKED admin save QA: hidden login route found at /rspku-log/; no authenticated browser session or credentials available. No schedule save attempted.
+BLOCKED mutation QA: guarded bulk --apply not executed; dry-run predicts 93 taxonomy changes including 25 clears. Explicit approval required.

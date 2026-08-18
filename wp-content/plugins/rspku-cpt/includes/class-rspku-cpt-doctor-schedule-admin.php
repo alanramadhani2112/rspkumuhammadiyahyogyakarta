@@ -324,6 +324,8 @@ final class RSPKU_CPT_DoctorScheduleAdmin
      */
     private static function persistSchedule(int $doctorId, array $rows): void
     {
+        self::activateDoctor($doctorId);
+
         if ($rows === []) {
             delete_post_meta($doctorId, RSPKU_CPT_DoctorSchedule::META_KEY);
             delete_post_meta($doctorId, RSPKU_CPT_DoctorSchedule::LEGACY_META_KEY);
@@ -339,6 +341,18 @@ final class RSPKU_CPT_DoctorScheduleAdmin
         self::replaceIndexedMeta($doctorId, RSPKU_CPT_DoctorSchedule::DAY_INDEX_META_KEY, array_column($rows, 'day'));
         self::syncManagedTerms($doctorId, self::termIds($rows));
         self::flushCaches($doctorId);
+    }
+
+    private static function activateDoctor(int $doctorId): void
+    {
+        $title = get_the_title($doctorId);
+
+        update_post_meta($doctorId, '_rspku_synced_from_schedule', '1');
+        update_post_meta($doctorId, '_rspku_schedule_source_name', $title);
+
+        if (trim((string) get_post_meta($doctorId, 'nama_dokter', true)) === '' && trim((string) get_post_meta($doctorId, '_rspku_doctor_name', true)) === '') {
+            update_post_meta($doctorId, 'nama_dokter', $title);
+        }
     }
 
     /**

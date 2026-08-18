@@ -124,7 +124,7 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
 
 ## TODOs
 
-- [ ] T1. Define Approval Schema and Source Identity Keys
+- [x] T1. Define Approval Schema and Source Identity Keys
 
   **What to do**: Create approval schema file `.sisyphus/drafts/reconcile-source-2026-approvals.example.json`. Define stable source IDs:
   - Doctor key: `doctor::{normalized_name}::{source_group}`.
@@ -147,9 +147,9 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
   - Source layanan MD: `C:\Users\LENOVO\Downloads\layanan-medis-rs-pku-muhammadiyah-yogyakarta.md`
 
   **Acceptance Criteria**:
-  - [ ] JSON example has all required fields.
-  - [ ] Invalid decision values are documented as rejected.
-  - [ ] `editorial-review` rows require `decision=editorial-hold` or explicit approval; never default apply.
+  - [x] JSON example has all required fields.
+  - [x] Invalid decision values are documented as rejected.
+  - [x] `editorial-review` rows require `decision=editorial-hold` or explicit approval; never default apply.
 
   **QA Scenarios**:
   ```
@@ -168,7 +168,7 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
 
   **Commit**: NO | Message: `docs(data): define reconciliation approval schema` | Files: `.sisyphus/drafts/reconcile-source-2026-approvals.example.json`
 
-- [ ] T2. Build Read-Only Source and WordPress Snapshots
+- [x] T2. Build Read-Only Source and WordPress Snapshots
 
   **What to do**: Implement read-only snapshot generation. Parse both Markdown sources and export normalized records with source line refs. Query WordPress through `wp-load.php` or WP-CLI if available for published `dokter`, `layanan`, `poliklinik`, `rawat-inap`, and terms. Save JSON evidence.
 
@@ -186,10 +186,10 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
   - Taxonomy registration: `wp-content/plugins/rspku-cpt/includes/class-rspku-cpt-taxonomies.php`
 
   **Acceptance Criteria**:
-  - [ ] Source snapshot contains 126 doctor records.
-  - [ ] Source service snapshot contains 104 audited service rows.
-  - [ ] WP snapshot contains published counts: `dokter` 100, `layanan` 15, `poliklinik` 37, `rawat-inap` 1, unless DB changed; if changed, report delta.
-  - [ ] No `INSERT`, `UPDATE`, `DELETE`, `wp_update_post`, `wp_insert_post` in snapshot command.
+  - [x] Source snapshot contains 126 doctor records.
+  - [x] Source service snapshot contains 104 audited service rows.
+  - [x] WP snapshot contains published counts: `dokter` 100, `layanan` 15, `poliklinik` 37, `rawat-inap` 1, unless DB changed; if changed, report delta.
+  - [x] No `INSERT`, `UPDATE`, `DELETE`, `wp_update_post`, `wp_insert_post` in snapshot command.
 
   **QA Scenarios**:
   ```
@@ -208,7 +208,7 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
 
   **Commit**: NO | Message: `feat(data): add read-only source snapshots` | Files: [script path, evidence]
 
-- [ ] T3. Generate Conservative Dry-Run Reconciliation
+- [x] T3. Generate Conservative Dry-Run Reconciliation
 
   **What to do**: Build classifier that outputs `match`, `possible-match`, `missing`, `editorial-review`, `orphan-existing`. Use conservative semantic rules. Never match cross-clinical services by substring only. Services must also classify granularity: `top-level`, `child-detail`, `procedure`, `facility`, `center`, `room`, `orphan-existing`.
 
@@ -226,10 +226,10 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
   - Known false-match corrections in audit summary.
 
   **Acceptance Criteria**:
-  - [ ] Dry-run report contains no match of `Klinik Kesehatan Anak` to `Klinik Kecantikan Ayna`.
-  - [ ] Dry-run report contains no match of `Klinik Urologi` to `Klinik Patologi`.
-  - [ ] Dry-run report contains no match of `Klinik Bedah Kepala Leher` to `Klinik Bedah Syaraf`.
-  - [ ] Remaining possible service matches are only the 4 validated candidates unless new evidence is documented.
+  - [x] Dry-run report contains no match of `Klinik Kesehatan Anak` to `Klinik Kecantikan Ayna`.
+  - [x] Dry-run report contains no match of `Klinik Urologi` to `Klinik Patologi`.
+  - [x] Dry-run report contains no match of `Klinik Bedah Kepala Leher` to `Klinik Bedah Syaraf`.
+  - [x] Remaining possible service matches are only the 4 validated candidates unless new evidence is documented.
 
   **QA Scenarios**:
   ```
@@ -248,7 +248,7 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
 
   **Commit**: NO | Message: `feat(data): add conservative reconciliation dry-run` | Files: [script path, evidence]
 
-- [ ] T4. Prepare Human Approval Package
+- [x] T4. Prepare Human Approval Package
 
   **What to do**: Convert dry-run into review package. Pre-fill approval rows only for `missing`, `possible-match`, `editorial-review`, and `orphan-existing`. Mark all `editorial-review` as blocked. Add exact human decision questions for 2 doctor possible, 4 service possible, 7 doctor editorial, 6 service editorial, and 57 service missing granularity decisions.
 
@@ -266,10 +266,10 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
   - Dry-run output from T3.
 
   **Acceptance Criteria**:
-  - [ ] Approval package includes every non-match row.
-  - [ ] Every row has one allowed decision field.
-  - [ ] No `editorial-review` row defaults to apply.
-  - [ ] Every missing service has proposed `top-level` vs `child-detail` decision pending.
+  - [x] Approval package includes every non-match row.
+  - [x] Every row has one allowed decision field.
+  - [x] No `editorial-review` row defaults to apply.
+  - [x] Every missing service has proposed `top-level` vs `child-detail` decision pending.
 
   **QA Scenarios**:
   ```
@@ -288,7 +288,7 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
 
   **Commit**: NO | Message: `docs(data): prepare source reconciliation approvals` | Files: [approval package]
 
-- [ ] T5. Implement Approved Draft-Only Apply Command
+- [x] T5. Implement Approved Draft-Only Apply Command
 
   **What to do**: Create apply command that requires `--apply --approved-file=... --batch-id=...`. It may create new draft posts and safe metadata only for approved rows. It must never delete. It must preserve existing slugs unless approval explicitly has `allow_slug_change=true`. New slugs must be deterministic and collision-safe; if collision occurs, block and report, do not append random suffix.
 
@@ -306,11 +306,11 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
   - CPTs: `dokter`, `layanan`, `poliklinik`, `rawat-inap`
 
   **Acceptance Criteria**:
-  - [ ] Command without `--apply` performs dry-run only.
-  - [ ] Command with missing approval file exits non-zero.
-  - [ ] New records are `draft`.
-  - [ ] Apply manifest lists every touched post ID, previous values, new values, and rollback note.
-  - [ ] Existing counts increase only by approved draft creates.
+  - [x] Command without `--apply` performs dry-run only.
+  - [x] Command with missing approval file exits non-zero.
+  - [x] New records are `draft`.
+  - [x] Apply manifest lists every touched post ID, previous values, new values, and rollback note.
+  - [x] Existing counts increase only by approved draft creates.
 
   **QA Scenarios**:
   ```
@@ -329,7 +329,7 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
 
   **Commit**: NO | Message: `feat(data): add guarded source reconciliation apply` | Files: [script path]
 
-- [ ] T6. Map Taxonomy and Parent/Detail Policies
+- [x] T6. Map Taxonomy and Parent/Detail Policies
 
   **What to do**: Produce exact mapping table for service granularity:
   - Top-level `poliklinik`: clinical outpatient clinics.
@@ -353,9 +353,9 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
   - Existing taxonomy registration file.
 
   **Acceptance Criteria**:
-  - [ ] `CT Scan`, `Digital X-ray`, `ECG`, `Treadmill`, ambulance variants are not top-level by default.
-  - [ ] `Cancer Centre`, `Uronephrology Centre`, `Emergency and Critical Care` require explicit top-level approval.
-  - [ ] No taxonomy delete/merge operation exists.
+  - [x] `CT Scan`, `Digital X-ray`, `ECG`, `Treadmill`, ambulance variants are not top-level by default.
+  - [x] `Cancer Centre`, `Uronephrology Centre`, `Emergency and Critical Care` require explicit top-level approval.
+  - [x] No taxonomy delete/merge operation exists.
 
   **QA Scenarios**:
   ```
@@ -374,7 +374,7 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
 
   **Commit**: NO | Message: `docs(data): define taxonomy and detail mapping` | Files: [mapping file]
 
-- [ ] T7. Dashboard Review and UAT Content QA
+- [x] T7. Dashboard Review and UAT Content QA
 
   **What to do**: After approved draft apply in UAT/local, review WordPress dashboard lists for created drafts. Verify draft records appear in correct CPT, preserve existing records, and do not pollute public archives until published. Check doctor search and layanan umbrella for no regressions.
 
@@ -392,10 +392,10 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
   - Routes: `/dokter/`, `/jadwal-dokter/`, `/layanan/`, `/poliklinik/`
 
   **Acceptance Criteria**:
-  - [ ] Draft counts equal approved creates.
-  - [ ] Existing published counts and slugs unchanged unless approved.
-  - [ ] Public archives do not show drafts.
-  - [ ] Dashboard can filter/search newly drafted records by title.
+  - [x] Draft counts equal approved creates.
+  - [x] Existing published counts and slugs unchanged unless approved.
+  - [x] Public archives do not show drafts.
+  - [x] Dashboard can filter/search newly drafted records by title. [user accepted equivalent read-only batch/title query evidence because anonymous local wp-admin redirects to `/404/`]
 
   **QA Scenarios**:
   ```
@@ -414,7 +414,7 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
 
   **Commit**: NO | Message: `test(data): verify reconciliation drafts` | Files: [evidence]
 
-- [ ] T8. Build, Route, and Regression Verification
+- [x] T8. Build, Route, and Regression Verification
 
   **What to do**: If any theme/admin UI source changes occurred, run `cd wp-content/themes/rspku-theme && npm run build`; otherwise skip build and record reason. Run PHP lint for added PHP scripts. Verify source-dry-run/apply commands. Verify no `public/build` committed. Verify old and new URL routes.
 
@@ -432,10 +432,10 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
   - Existing UAT deploy note: server lacks npm; production plan must include local build fallback if frontend assets change.
 
   **Acceptance Criteria**:
-  - [ ] `php -l` passes for any PHP script touched.
-  - [ ] `npm run build` passes if theme frontend changed.
-  - [ ] `git status --short -- wp-content/themes/rspku-theme/public/build` empty.
-  - [ ] Route smoke passes.
+  - [x] `php -l` passes for any PHP script touched.
+  - [x] `npm run build` passes if theme frontend changed. [not applicable: no theme/admin frontend source changed]
+  - [x] `git status --short -- wp-content/themes/rspku-theme/public/build` empty.
+  - [x] Route smoke passes.
 
   **QA Scenarios**:
   ```
@@ -454,7 +454,7 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
 
   **Commit**: NO | Message: `test(data): verify reconciliation routes` | Files: [evidence]
 
-- [ ] T9. Rollback and Production Handoff
+- [x] T9. Rollback and Production Handoff
 
   **What to do**: Create `.sisyphus/drafts/reconcile-source-2026-handoff.md` with batch ID, touched IDs, draft IDs, pre/post counts, manifest path, rollback steps, production preflight, and exact approval status. Rollback options: delete only new draft posts from batch, restore previous field values from manifest for approved updates, restore DB backup if broader issue. Production requires explicit user confirmation after UAT approval.
 
@@ -472,10 +472,10 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
   - Evidence from T7/T8.
 
   **Acceptance Criteria**:
-  - [ ] Handoff lists every touched post ID and status.
-  - [ ] Handoff includes rollback commands/steps.
-  - [ ] Handoff states production not touched unless explicitly approved.
-  - [ ] Handoff states credentials/secrets must not be copied into docs.
+  - [x] Handoff lists every touched post ID and status.
+  - [x] Handoff includes rollback commands/steps.
+  - [x] Handoff states production not touched unless explicitly approved.
+  - [x] Handoff states credentials/secrets must not be copied into docs.
 
   **QA Scenarios**:
   ```
@@ -497,10 +497,10 @@ Wave 3: T7 dashboard review support, T8 UAT verification, T9 rollback/handoff
 ## Final Verification Wave
 > 4 review agents run in PARALLEL. ALL must APPROVE. Present consolidated results to user and get explicit `okay` before completing.
 > Do NOT auto-proceed after verification. Wait for user's explicit approval before marking work complete.
-- [ ] F1. Plan Compliance Audit — oracle
-- [ ] F2. Code Quality Review — unspecified-high
-- [ ] F3. Real Manual QA — unspecified-high
-- [ ] F4. Scope Fidelity Check — deep
+- [x] F1. Plan Compliance Audit — oracle [dashboard UI blocker resolved by explicit user acceptance of equivalent read-only query evidence]
+- [x] F2. Code Quality Review — unspecified-high
+- [x] F3. Real Manual QA — unspecified-high
+- [x] F4. Scope Fidelity Check — deep
 
 ## Commit Strategy
 - No commit unless user explicitly requests.

@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-14T15:06:01+00:00",
+    "generated_at": "2026-08-14T16:43:12+00:00",
     "mode": "read-only",
     "post_types": {
         "dokter": [
@@ -713,6 +713,13 @@
                 "url": "http://rspkudev.test/layanan/ambulans/"
             },
             {
+                "id": 20754,
+                "title": "Cancer Centre",
+                "slug": "cancer-centre",
+                "status": "draft",
+                "url": "http://rspkudev.test/?post_type=layanan&p=20754"
+            },
+            {
                 "id": 1178,
                 "title": "CSSD (Central Sterile Supply Department)",
                 "slug": "cssd-central-sterile-supply-department",
@@ -725,6 +732,13 @@
                 "slug": "dental-clinic",
                 "status": "publish",
                 "url": "http://rspkudev.test/layanan/dental-clinic/"
+            },
+            {
+                "id": 20756,
+                "title": "Emergency and Critical Care",
+                "slug": "emergency-and-critical-care",
+                "status": "draft",
+                "url": "http://rspkudev.test/?post_type=layanan&p=20756"
             },
             {
                 "id": 1192,
@@ -804,6 +818,13 @@
                 "url": "http://rspkudev.test/layanan/radiologi/"
             },
             {
+                "id": 20755,
+                "title": "Uronephrology Centre",
+                "slug": "uronephrology-centre",
+                "status": "draft",
+                "url": "http://rspkudev.test/?post_type=layanan&p=20755"
+            },
+            {
                 "id": 1188,
                 "title": "Vaksin Center",
                 "slug": "vaksin-center",
@@ -881,6 +902,13 @@
                 "slug": "klinik-bedah-urologi",
                 "status": "publish",
                 "url": "http://rspkudev.test/poliklinik/klinik-bedah-urologi/"
+            },
+            {
+                "id": 20751,
+                "title": "Klinik Berhenti Merokok",
+                "slug": "klinik-berhenti-merokok",
+                "status": "draft",
+                "url": "http://rspkudev.test/?post_type=poliklinik&p=20751"
             },
             {
                 "id": 16950,
@@ -974,6 +1002,13 @@
                 "url": "http://rspkudev.test/poliklinik/klinik-kandungan-obsgyn/"
             },
             {
+                "id": 20752,
+                "title": "Klinik Keluarga Sakinah",
+                "slug": "klinik-keluarga-sakinah",
+                "status": "draft",
+                "url": "http://rspkudev.test/?post_type=poliklinik&p=20752"
+            },
+            {
                 "id": 16978,
                 "title": "Klinik Kulit dan Kelamin",
                 "slug": "klinik-kulit-dan-kelamin",
@@ -981,11 +1016,25 @@
                 "url": "http://rspkudev.test/poliklinik/klinik-kulit-dan-kelamin/"
             },
             {
+                "id": 20753,
+                "title": "Klinik Laktasi",
+                "slug": "klinik-laktasi",
+                "status": "draft",
+                "url": "http://rspkudev.test/?post_type=poliklinik&p=20753"
+            },
+            {
                 "id": 16982,
                 "title": "Klinik Mata",
                 "slug": "klinik-mata",
                 "status": "publish",
                 "url": "http://rspkudev.test/poliklinik/klinik-mata/"
+            },
+            {
+                "id": 20749,
+                "title": "Klinik Nyeri Terpadu",
+                "slug": "klinik-nyeri-terpadu",
+                "status": "draft",
+                "url": "http://rspkudev.test/?post_type=poliklinik&p=20749"
             },
             {
                 "id": 16983,
@@ -1028,6 +1077,13 @@
                 "slug": "klinik-syaraf",
                 "status": "publish",
                 "url": "http://rspkudev.test/poliklinik/klinik-syaraf/"
+            },
+            {
+                "id": 20750,
+                "title": "Klinik TB-DOTS",
+                "slug": "klinik-tb-dots",
+                "status": "draft",
+                "url": "http://rspkudev.test/?post_type=poliklinik&p=20750"
             },
             {
                 "id": 16993,

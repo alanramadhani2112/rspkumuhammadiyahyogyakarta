@@ -1,0 +1,5 @@
+PASS
+Batch 1 approval rows set allow_term_create=false and allow_term_assign=false.
+Apply command rejects any batch 1 create-draft row where either flag is true.
+Apply command contains no term creation, update, deletion, merge, or assignment API call.
+No spesialisasi-dokter cleanup is included.

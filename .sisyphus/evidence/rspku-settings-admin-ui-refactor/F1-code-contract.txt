@@ -1,0 +1,34 @@
+VERDICT: APPROVE
+
+Scope: F1 Code Contract Verdict rerun with corrected generated CSS freshness check
+Plugin working directory: wp-content/plugins/rspku-settings
+Generated CSS file path: wp-content/plugins/rspku-settings/assets/admin.css
+Source CSS path: wp-content/plugins/rspku-settings/assets/admin.source.css
+
+Required command sequence executed:
+1. php -l includes/class-rspku-settings-admin.php
+   Exit status: 0
+   Output summary: No syntax errors detected in includes/class-rspku-settings-admin.php
+
+2. npm run build:css
+   Exit status: 0
+   Output summary: tailwindcss rebuilt ./assets/admin.source.css to ./assets/admin.css with --minify; Browserslist caniuse-lite outdated warning appeared; Done in 433ms.
+
+3. npm test
+   Exit status: 0
+   Output summary: node tests/admin-css.test.mjs passed CSS syntax and required admin CSS contract checks. Output was long/truncated by runner after passing checks.
+
+4. Second rebuild idempotence check
+   Command: before=(SHA256 assets/admin.css); npm run build:css; after=(SHA256 assets/admin.css); compare before/after
+   Exit status: 0
+   before: 43DF1FF8E670E4036BF60A61DD9A780672577D02B1EF6AA8B8AA85CE2186EAD6
+   after:  43DF1FF8E670E4036BF60A61DD9A780672577D02B1EF6AA8B8AA85CE2186EAD6
+   Result: IDEMPOTENT: yes; second rebuild did not change wp-content/plugins/rspku-settings/assets/admin.css.
+   Output summary: Browserslist caniuse-lite outdated warning appeared; Done in 436ms.
+
+Corrected freshness rationale:
+- `git diff --exit-code -- wp-content/plugins/rspku-settings/assets/admin.css` compares generated CSS against HEAD.
+- That is not a valid freshness test for this branch because the plan intentionally changed CSS source/generated output, so a HEAD diff is expected.
+- Correct generated CSS freshness here is rebuild idempotence: after one `npm run build:css`, a second rebuild must leave wp-content/plugins/rspku-settings/assets/admin.css unchanged.
+
+Reason: PHP lint passed, CSS build passed, npm tests passed, and generated CSS was idempotent after rebuild.

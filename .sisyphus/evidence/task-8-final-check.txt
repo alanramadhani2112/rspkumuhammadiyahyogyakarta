@@ -1,0 +1,8 @@
+﻿Task 8 final check
+check-native-doctor-schedule: ok=true doctor_count=100 scheduled_count=75 error_count=0 warning_count=0
+corruption evidence: task-8-corruption-detected-ok then restored clean
+build: npm run build passed
+php lint: schedule scripts passed
+lsp: scripts and rspku-cpt includes error=0
+diff check: only LF/CRLF warnings
+secret scan: docs/plan diff no secret hits

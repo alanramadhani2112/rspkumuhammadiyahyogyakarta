@@ -532,28 +532,66 @@ final class ContentRepository
     }
 
     /**
-     * @return array<string,mixed>|null
-     */
-    public function findManagement(int $postId): ?array
-    {
-        $post = get_post($postId);
-        if (!$post instanceof WP_Post || $post->post_type !== 'manajemen-rs') {
-            return null;
-        }
-
-        $item = $this->normalizeManagement($post);
-        $item['content'] = apply_filters('the_content', $post->post_content);
-
-        return $item;
-    }
-
-    /**
      * @param array<int,WP_Post> $posts
      * @return array<int,array<string,mixed>>
      */
     public function managementItems(array $posts): array
     {
         return array_values(array_map(fn (WP_Post $post): array => $this->normalizeManagement($post), $posts));
+    }
+
+    /**
+     * @param array<int,array<string,mixed>> $items
+     * @return array<int,array{title:string,items:array<int,array<string,mixed>>}>
+     */
+    public function managementSections(array $items): array
+    {
+        $sections = [
+            'Badan Pembina Harian RS PKU Muhammadiyah Yogyakarta' => [],
+            'Direksi RS PKU Muhammadiyah Yogyakarta Periode 2026-2030' => [],
+        ];
+
+        foreach ($items as $index => $item) {
+            $position = strtolower((string) ($item['position'] ?? ''));
+            $section = str_contains($position, 'badan pembina harian')
+                ? 'Badan Pembina Harian RS PKU Muhammadiyah Yogyakarta'
+                : 'Direksi RS PKU Muhammadiyah Yogyakarta Periode 2026-2030';
+
+            $sections[$section][] = ['index' => $index, 'item' => $item];
+        }
+
+        $rankedSort = function (array $ranks): callable {
+            return function (array $left, array $right) use ($ranks): int {
+                $leftPosition = strtolower((string) ($left['item']['position'] ?? ''));
+                $rightPosition = strtolower((string) ($right['item']['position'] ?? ''));
+                $leftRank = count($ranks);
+                $rightRank = count($ranks);
+
+                foreach ($ranks as $rank => $needle) {
+                    if (str_contains($leftPosition, $needle)) {
+                        $leftRank = $rank;
+                    }
+
+                    if (str_contains($rightPosition, $needle)) {
+                        $rightRank = $rank;
+                    }
+                }
+
+                return [$leftRank, $left['index']] <=> [$rightRank, $right['index']];
+            };
+        };
+
+        usort($sections['Badan Pembina Harian RS PKU Muhammadiyah Yogyakarta'], $rankedSort(['ketua', 'sekretaris', 'anggota']));
+        usort($sections['Direksi RS PKU Muhammadiyah Yogyakarta Periode 2026-2030'], $rankedSort(['direktur utama']));
+
+        return array_values(array_map(
+            fn (string $title, array $sectionItems): array => [
+                'title' => $title,
+                'items' => array_column($sectionItems, 'item'),
+            ],
+            array_keys($sections),
+            $sections
+        ));
     }
 
     /**

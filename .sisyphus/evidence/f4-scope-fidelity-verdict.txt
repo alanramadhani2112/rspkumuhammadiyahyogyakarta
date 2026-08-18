@@ -1,0 +1,27 @@
+VERDICT: APPROVE
+
+Scope compared:
+- Plan target: minimal production-readiness fixes for RSPKU theme/plugin only, no redesign, no new dependencies, no commit/staging.
+- Changed source files from `git diff --name-only -- ':!node_modules'`: `wp-content/plugins/rspku-core/rspku-core.php`, `wp-content/themes/rspku-theme/app/Services/DoctorSearch.php`, `wp-content/themes/rspku-theme/app/Setup/Assets.php`, `wp-content/themes/rspku-theme/resources/js/app.js`, `wp-content/themes/rspku-theme/resources/views/components/hero.twig`, `wp-content/themes/rspku-theme/resources/views/layouts/base.twig`, `wp-content/themes/rspku-theme/resources/views/pages/front-page.twig`.
+- Expected inherited source list also mentioned `wp-config.php`; it is not currently dirty, which is acceptable for final source scope because Task 1 evidence records config verification separately.
+
+Checks performed:
+- `git diff --stat -- ':!node_modules'` shows only 7 tracked source files changed, all within intended RSPKU plugin/theme scope.
+- `git status --short` shows those 7 modified source files plus untracked `.sisyphus/` planning evidence only.
+- `git diff --name-only --cached` returned no output; nothing is staged.
+- Package file diff check returned no output for root/theme/plugin package manifests and locks; no dependency additions detected.
+- `wp-content/themes/rspku-theme/node_modules` exists locally, but `git status --short` does not report `node_modules`; it is not tracked/staged.
+- `rspkudev\.test` grep only found documented migration-guide references, not changed production source.
+- `|raw` grep still shows existing trusted/content sinks; changed hero title sink moved from `title|raw` to `title|wp_kses_post`, so no new raw sink was introduced.
+
+Fidelity conclusions:
+- Source changes match plan scope: debug/build evidence, hero title escaping, trusted client IP/rate limit hardening, doctor search frontend error handling, REST per-page/rate-limit hardening, manifest failure handling, and footer dev URL removal.
+- No redesign detected: footer link change is limited to replacing the hardcoded E-Career dev URL with `{{ site.url }}/karir/`; layout/classes/design remain unchanged.
+- Public REST endpoints remain public: Task 6 evidence confirms `/site` and `/home` still return anonymous HTTP 200, `/search` and collection routes keep response shape while adding caps/throttling.
+- `.sisyphus` additions are planning/evidence artifacts required by this workflow and are allowed.
+- No commit, branch, staging, deploy, settings UI, or dependency update was performed.
+
+T8 blocker handling:
+- Speed gate remains explicitly documented, not silently accepted.
+- Task 8 evidence and issues notepad classify homepage speed as blocked outside proven RSPKU theme/plugin source scope: RSPKU handler/theme costs are small after bootstrap, generic WordPress endpoints are similarly slow with all plugins active, and temporary restored isolation drops homepage below 2s when third-party plugins are filtered out.
+- Recommended follow-up is separate local-only third-party plugin isolation/optimization pass, outside this RSPKU production-readiness source scope.

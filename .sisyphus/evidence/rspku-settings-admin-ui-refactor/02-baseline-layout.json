@@ -1,0 +1,77 @@
+{
+  "generatedAt": "2026-08-17T20:18:00+07:00",
+  "task": "Task 1.2 Baseline Layout Overlay Dan Width",
+  "targetUrl": "http://rspkudev.test/wp-admin/admin.php?page=rspku-settings",
+  "readOnly": true,
+  "probe": {
+    "browserAutomation": "attempted with local Chrome headless / Chrome DevTools Protocol",
+    "httpCheck": {
+      "command": "Invoke-WebRequest -Uri \"http://rspkudev.test/wp-admin/admin.php?page=rspku-settings\" -MaximumRedirection 0 -UseBasicParsing",
+      "status": 302,
+      "location": "http://rspkudev.test/404/"
+    },
+    "browserToolAvailability": {
+      "browser-use": "not installed or not on PATH",
+      "chrome": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+    },
+    "notes": "Fresh unauthenticated browser profile could not access wp-admin settings page. Direct admin URL redirects to /404/. No DOM measurements were faked."
+  },
+  "viewports": [
+    {
+      "viewport": [1440, 900],
+      "url": "http://rspkudev.test/404/",
+      "title": null,
+      "hasSettingsPage": false,
+      "actions": null,
+      "lastField": null,
+      "maxWidthInput": null,
+      "actionsPosition": null,
+      "actionsZIndex": null,
+      "inputCount": 0,
+      "blocked": "redirected-to-404",
+      "notes": "Target admin URL returned HTTP 302 Location http://rspkudev.test/404/ before authenticated settings DOM was available; baseline measurement unavailable for this viewport."
+    },
+    {
+      "viewport": [1024, 900],
+      "url": "http://rspkudev.test/404/",
+      "title": null,
+      "hasSettingsPage": false,
+      "actions": null,
+      "lastField": null,
+      "maxWidthInput": null,
+      "actionsPosition": null,
+      "actionsZIndex": null,
+      "inputCount": 0,
+      "blocked": "redirected-to-404",
+      "notes": "Target admin URL returned HTTP 302 Location http://rspkudev.test/404/ before authenticated settings DOM was available; baseline measurement unavailable for this viewport."
+    },
+    {
+      "viewport": [782, 900],
+      "url": "http://rspkudev.test/404/",
+      "title": null,
+      "hasSettingsPage": false,
+      "actions": null,
+      "lastField": null,
+      "maxWidthInput": null,
+      "actionsPosition": null,
+      "actionsZIndex": null,
+      "inputCount": 0,
+      "blocked": "redirected-to-404",
+      "notes": "Target admin URL returned HTTP 302 Location http://rspkudev.test/404/ before authenticated settings DOM was available; baseline measurement unavailable for this viewport."
+    },
+    {
+      "viewport": [360, 900],
+      "url": "http://rspkudev.test/404/",
+      "title": null,
+      "hasSettingsPage": false,
+      "actions": null,
+      "lastField": null,
+      "maxWidthInput": null,
+      "actionsPosition": null,
+      "actionsZIndex": null,
+      "inputCount": 0,
+      "blocked": "redirected-to-404",
+      "notes": "Target admin URL returned HTTP 302 Location http://rspkudev.test/404/ before authenticated settings DOM was available; baseline measurement unavailable for this viewport."
+    }
+  ]
+}

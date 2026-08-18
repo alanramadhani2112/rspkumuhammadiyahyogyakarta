@@ -1,0 +1,32 @@
+VERDICT: APPROVE
+
+Scope reviewed: changed source files only, excluding node_modules.
+
+Changed source files reviewed:
+- wp-content/plugins/rspku-core/rspku-core.php
+- wp-content/themes/rspku-theme/app/Services/DoctorSearch.php
+- wp-content/themes/rspku-theme/app/Setup/Assets.php
+- wp-content/themes/rspku-theme/resources/js/app.js
+- wp-content/themes/rspku-theme/resources/views/components/hero.twig
+- wp-content/themes/rspku-theme/resources/views/layouts/base.twig
+- wp-content/themes/rspku-theme/resources/views/pages/front-page.twig
+
+Required review points:
+- wp-config.php debug constants are production-safe: WP_DEBUG=false, WP_DEBUG_DISPLAY=false, WP_DEBUG_LOG=false, WP_DISABLE_FATAL_ERROR_HANDLER=false.
+- rspku-core.php keeps public REST endpoints public by plan, caps search and collection per_page at 50, rate-limits search and collections, and trusts forwarded IP headers only when REMOTE_ADDR matches RSPKU_TRUSTED_PROXY_IPS or rspku_trusted_proxy_ips.
+- DoctorSearch.php uses the same REMOTE_ADDR-first trusted proxy policy for AJAX and REST throttling.
+- Assets.php fails open for missing manifest entries, logs via error_log, and shows escaped admin notices only to manage_options or switch_themes users.
+- app.js checks response.ok before trusting AJAX success, parses JSON safely, renders error messages with textContent, and leaves innerHTML only for server-rendered escaped doctor result HTML.
+- hero.twig and front-page.twig use wp_kses_post for hero titles; base.twig fallback career URL uses site.url /karir/ and no rspkudev.test dev URL remains in changed files.
+
+Risk pattern check:
+- Required grep pattern found no TODO, FIXME, HACK, console.log, @ts-ignore, as any, or rspkudev.test in changed plugin/app files.
+- Existing |raw usages remain in Twig templates for trusted/server-rendered content; no new blocker found in changed hero title/base URL work.
+
+Verification:
+- git diff --stat -- ':!node_modules' showed 7 changed source files, no node_modules.
+- git status --short showed no node_modules.
+- lsp_diagnostics clean for wp-config.php, rspku-core.php, DoctorSearch.php, Assets.php, and app.js.
+- php -l passed for wp-config.php, rspku-core.php, DoctorSearch.php, and Assets.php.
+
+Blockers: none.

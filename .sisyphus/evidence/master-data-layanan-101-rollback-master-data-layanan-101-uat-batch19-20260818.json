@@ -1,0 +1,72 @@
+{
+    "import": "master-data-layanan-medis-101",
+    "batch_id": "master-data-layanan-101-uat-batch19-20260818",
+    "source_sha256": "D7F3F839594CBFD71F5D9BAC32CFE2F813074A9748C14395048C4B72249CD48A",
+    "apply_manifest": "/home/dev-rspkujogja/htdocs/dev-rspkujogja.com/.sisyphus/evidence/master-data-layanan-101-apply-master-data-layanan-101-uat-batch19-20260818.json",
+    "created": [
+        {
+            "source_id": "hub-2",
+            "post_id": 20954,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20954,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Uronephrology Centre",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 21:36:54",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "",
+                    "_rspku_source_name_raw": "Uronephrology Centre",
+                    "_rspku_source_category_raw": "Hub Layanan Unggulan",
+                    "_rspku_source_parent_raw": "Pusat Layanan Unggulan",
+                    "_rspku_source_identity_key": "layanan|uronephrology centre|hub layanan unggulan|pusat layanan unggulan",
+                    "_rspku_source_hash": "9bd0a588d27bb863ea734817d800d04907d4ba6b4c97200dd199c04d27b5bdaa",
+                    "_rspku_verified_title": "Uronephrology Centre",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20954 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "hub-3",
+            "post_id": 20955,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20955,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Emergency and Critical Care",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-18 21:36:54",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "",
+                    "_rspku_source_name_raw": "Emergency and Critical Care",
+                    "_rspku_source_category_raw": "Hub Layanan Unggulan",
+                    "_rspku_source_parent_raw": "Pusat Layanan Unggulan",
+                    "_rspku_source_identity_key": "layanan|emergency and critical care|hub layanan unggulan|pusat layanan unggulan",
+                    "_rspku_source_hash": "21fce61c46e02fd2e30a44352f2706689df12bb01805cc666c0c26e3f9841a88",
+                    "_rspku_verified_title": "Emergency and Critical Care",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20955 only if rollback is explicitly approved for this failed or applied batch."
+        }
+    ],
+    "updated": [],
+    "assigned": [],
+    "deleted_existing_count": 0,
+    "rollback_notes": "Created drafts may be deleted only by explicit rollback approval; existing posts restore audit meta or master-layanan-medis terms from prior_values."
+}

@@ -1,0 +1,21 @@
+# F1 Testing Evidence Audit Verdict 2026-07-31
+
+Verdict: APPROVE_AFTER_ARTIFACT_REMEDIATION
+
+## Oracle Content Audit
+
+Oracle session `ses_047542bb5ffes4PHZagCwTM1xF` rejected only because this verdict artifact was missing under the read/search-only constraint.
+
+Content findings from Oracle:
+- Plan T1-T10 top-level checkboxes complete: yes.
+- Required evidence files exist: yes, all 10 expected files present.
+- Final summary decision honest: yes, `Decision: BLOCKED_BY_PERFORMANCE`.
+- Blocked items hidden: no.
+
+## Remediation
+
+This file records the missing F1 evidence artifact in the approved evidence folder.
+
+## Decision
+
+APPROVE F1 evidence audit content. Testing result remains `BLOCKED_BY_PERFORMANCE`, not go-live clear.

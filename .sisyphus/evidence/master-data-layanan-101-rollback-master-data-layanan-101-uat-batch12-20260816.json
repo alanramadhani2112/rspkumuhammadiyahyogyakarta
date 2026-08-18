@@ -1,0 +1,312 @@
+{
+    "import": "master-data-layanan-medis-101",
+    "batch_id": "master-data-layanan-101-uat-batch12-20260816",
+    "source_sha256": "D7F3F839594CBFD71F5D9BAC32CFE2F813074A9748C14395048C4B72249CD48A",
+    "apply_manifest": "/home/dev-rspkujogja/htdocs/dev-rspkujogja.com/.sisyphus/evidence/master-data-layanan-101-apply-master-data-layanan-101-uat-batch12-20260816.json",
+    "created": [
+        {
+            "source_id": "xlsx-row-32",
+            "post_id": 20878,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20878,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Nyeri Terpadu",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 16:36:11",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "32",
+                    "_rspku_source_name_raw": "Klinik Nyeri Terpadu",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "poliklinik|klinik nyeri terpadu|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "2bd0a92df2ec2928e9bd3a81739cf38c9048f82fe1787b55019f585ec6e624a6",
+                    "_rspku_verified_title": "Klinik Nyeri Terpadu",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20878 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-34",
+            "post_id": 20879,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20879,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik TB-DOTS",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 16:36:11",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "34",
+                    "_rspku_source_name_raw": "Klinik TB-DOTS",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "poliklinik|klinik tb-dots|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "9cf625b7324be66c3d907b3e0aeb3a7a8918f8d0971ac2e71fd70dc5d0204c4d",
+                    "_rspku_verified_title": "Klinik TB-DOTS",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20879 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-36",
+            "post_id": 20880,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20880,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Gizi",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 16:36:11",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "36",
+                    "_rspku_source_name_raw": "Klinik Gizi",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "poliklinik|klinik gizi|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "3138d2946411286bf33ffb7500c2d40530b763aea476cc62885b3b2358f60c40",
+                    "_rspku_verified_title": "Klinik Gizi",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20880 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-37",
+            "post_id": 20881,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20881,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Vaksin",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 16:36:11",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "37",
+                    "_rspku_source_name_raw": "Klinik Vaksin",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "poliklinik|klinik vaksin|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "c1531e5adbb608456851dcc14ce3de1f1bebe101066c58ff146dd85f640a1abf",
+                    "_rspku_verified_title": "Klinik Vaksin",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20881 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-38",
+            "post_id": 20882,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20882,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Medical Check Up (MCU)",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 16:36:11",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "38",
+                    "_rspku_source_name_raw": "Klinik Medical Check Up (MCU)",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "poliklinik|klinik medical check up (mcu)|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "864ae629abe0a44a7c0e4ddcdf3def56ce1d87e7d8c9c91a9d9503de8e8db621",
+                    "_rspku_verified_title": "Klinik Medical Check Up (MCU)",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20882 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-39",
+            "post_id": 20883,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20883,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Berhenti Merokok",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 16:36:11",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "39",
+                    "_rspku_source_name_raw": "Klinik Berhenti Merokok",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "poliklinik|klinik berhenti merokok|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "aeb894fe8fc64d15cf29290b1bf0835691ad87528c9a8ab6ee537cfe5587ba29",
+                    "_rspku_verified_title": "Klinik Berhenti Merokok",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20883 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-40",
+            "post_id": 20884,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20884,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Keluarga Sakinah",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 16:36:12",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "40",
+                    "_rspku_source_name_raw": "Klinik Keluarga Sakinah",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "poliklinik|klinik keluarga sakinah|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "37b5bf5de94f60383eaf4eef5fb518e71d17862f2de03a3ffad911315085d655",
+                    "_rspku_verified_title": "Klinik Keluarga Sakinah",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20884 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-41",
+            "post_id": 20885,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20885,
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_title": "Klinik Laktasi",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 16:36:12",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "41",
+                    "_rspku_source_name_raw": "Klinik Laktasi",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "poliklinik|klinik laktasi|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "9f12669061d43c0eb45b11aebed45485f5e690fc019d9b6c257c64ae031c3594",
+                    "_rspku_verified_title": "Klinik Laktasi",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20885 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-42",
+            "post_id": 20886,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20886,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "Ayna Skin Care",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 16:36:12",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "42",
+                    "_rspku_source_name_raw": "Ayna Skin Care",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "layanan|ayna skin care|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "b41d4937a678223139d6799057bb2695bf306aa9f3866a287889cebbe1561db0",
+                    "_rspku_verified_title": "Ayna Skin Care",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20886 only if rollback is explicitly approved for this failed or applied batch."
+        },
+        {
+            "source_id": "xlsx-row-43",
+            "post_id": 20887,
+            "status": "draft",
+            "prior_values": null,
+            "new_values": {
+                "id": 20887,
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_title": "One Day Care",
+                "post_name": "",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_date": "2026-08-16 16:36:12",
+                "post_date_gmt": "0000-00-00 00:00:00",
+                "meta_input": {
+                    "_rspku_source_import": "master-data-layanan-medis-101",
+                    "_rspku_source_row_number": "43",
+                    "_rspku_source_name_raw": "One Day Care",
+                    "_rspku_source_category_raw": "Layanan Rawat Jalan",
+                    "_rspku_source_parent_raw": "Layanan Rawat Jalan Lainnya",
+                    "_rspku_source_identity_key": "layanan|one day care|layanan rawat jalan|layanan rawat jalan lainnya",
+                    "_rspku_source_hash": "edc7693d3bc65e709ae42008d6eb9cab254df3bad8eae894b61da4853a055805",
+                    "_rspku_verified_title": "One Day Care",
+                    "_rspku_source_title_correction": ""
+                },
+                "terms": []
+            },
+            "rollback_notes": "Delete draft post 20887 only if rollback is explicitly approved for this failed or applied batch."
+        }
+    ],
+    "updated": [],
+    "assigned": [],
+    "deleted_existing_count": 0,
+    "rollback_notes": "Created drafts may be deleted only by explicit rollback approval; existing posts restore audit meta or master-layanan-medis terms from prior_values."
+}

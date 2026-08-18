@@ -1,0 +1,1280 @@
+{
+    "mode": "dry-run",
+    "generated_at": "2026-08-14T05:36:47+00:00",
+    "doctor_count": 100,
+    "state_checksum": "a2b1751b9b03c628e4b5bde782e713c7",
+    "doctors": [
+        {
+            "id": 19259,
+            "title": "dr. Rano Irmawan, Sp.JP",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 329,
+                    "name": "Jantung"
+                },
+                {
+                    "id": 330,
+                    "name": "Penyakit Jantung dan Pembuluh Darah"
+                }
+            ]
+        },
+        {
+            "id": 19275,
+            "title": "dr. Khairina Hashifah, Sp.OG",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 333,
+                    "name": "Kandungan"
+                },
+                {
+                    "id": 334,
+                    "name": "Obsgyn / Kebidanan &amp; Kandungan"
+                }
+            ]
+        },
+        {
+            "id": 19283,
+            "title": "dr. Sulistiari Retnowati, Sp.OG",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 333,
+                    "name": "Kandungan"
+                },
+                {
+                    "id": 334,
+                    "name": "Obsgyn / Kebidanan &amp; Kandungan"
+                }
+            ]
+        },
+        {
+            "id": 19285,
+            "title": "dr. Anis Widyasari, Sp.OG, Subsp. Urogin-RE",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 333,
+                    "name": "Kandungan"
+                },
+                {
+                    "id": 334,
+                    "name": "Obsgyn / Kebidanan &amp; Kandungan"
+                }
+            ]
+        },
+        {
+            "id": 19287,
+            "title": "dr. Muhammad Fandi Ghozali, Sp.Rad., M.Med.Sc.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 312,
+                    "name": "Penunjang &amp; Terapi"
+                },
+                {
+                    "id": 313,
+                    "name": "Radiologi"
+                }
+            ]
+        },
+        {
+            "id": 19310,
+            "title": "dr. Arum Linangkung, Sp.B, Subsp. BD(K)., M.Sc.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 324,
+                    "name": "Bedah Digestif"
+                }
+            ]
+        },
+        {
+            "id": 20350,
+            "title": "dr. H. Zamroni, Sp.N",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 297,
+                    "name": "Penyakit Saraf"
+                },
+                {
+                    "id": 296,
+                    "name": "Saraf"
+                }
+            ]
+        },
+        {
+            "id": 20351,
+            "title": "Dr. dr. Hj. Tri Wahyuliati, Sp.N, M.Kes.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 297,
+                    "name": "Penyakit Saraf"
+                },
+                {
+                    "id": 296,
+                    "name": "Saraf"
+                }
+            ]
+        },
+        {
+            "id": 20352,
+            "title": "dr. Hj. Sekar Satiti, Sp.N, Subsp. N.K.I(K)",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 297,
+                    "name": "Penyakit Saraf"
+                },
+                {
+                    "id": 296,
+                    "name": "Saraf"
+                }
+            ]
+        },
+        {
+            "id": 20353,
+            "title": "dr. Andrianto Selohandono, Sp.N M.Sc.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 297,
+                    "name": "Penyakit Saraf"
+                },
+                {
+                    "id": 296,
+                    "name": "Saraf"
+                }
+            ]
+        },
+        {
+            "id": 20354,
+            "title": "dr. Arif Budi Prakoso, Sp.N, MMR",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 297,
+                    "name": "Penyakit Saraf"
+                },
+                {
+                    "id": 296,
+                    "name": "Saraf"
+                }
+            ]
+        },
+        {
+            "id": 20355,
+            "title": "dr. H. Adnan Abdullah, Sp.THT-KL, M.Kes.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 299,
+                    "name": "Penyakit THT"
+                },
+                {
+                    "id": 298,
+                    "name": "THT"
+                }
+            ]
+        },
+        {
+            "id": 20356,
+            "title": "dr. Deoni Daniswara, Sp.THT-KL",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 299,
+                    "name": "Penyakit THT"
+                },
+                {
+                    "id": 298,
+                    "name": "THT"
+                }
+            ]
+        },
+        {
+            "id": 20357,
+            "title": "dr. Aufaa Shafira Widowati, Sp.M",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 300,
+                    "name": "Mata"
+                },
+                {
+                    "id": 301,
+                    "name": "Penyakit Mata"
+                }
+            ]
+        },
+        {
+            "id": 20358,
+            "title": "dr. Hj. Nafiah Chusniati, Sp.DVE, M.Sc.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 302,
+                    "name": "Kulit &amp; Kelamin"
+                },
+                {
+                    "id": 303,
+                    "name": "Kulit dan Kelamin"
+                }
+            ]
+        },
+        {
+            "id": 20359,
+            "title": "dr. Siti Aminah, Sp.DVE, M.Kes.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 302,
+                    "name": "Kulit &amp; Kelamin"
+                },
+                {
+                    "id": 303,
+                    "name": "Kulit dan Kelamin"
+                }
+            ]
+        },
+        {
+            "id": 20360,
+            "title": "dr. Ayu Wikan Sayekti, Sp.DVE, M.Sc.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 302,
+                    "name": "Kulit &amp; Kelamin"
+                },
+                {
+                    "id": 303,
+                    "name": "Kulit dan Kelamin"
+                }
+            ]
+        },
+        {
+            "id": 20361,
+            "title": "drg. Hj. Zarah Himawaty, Sp.KG",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 304,
+                    "name": "Gigi"
+                },
+                {
+                    "id": 305,
+                    "name": "Gigi Endodonsi"
+                }
+            ]
+        },
+        {
+            "id": 20362,
+            "title": "drg. Ratih Andini, Sp.KG",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 304,
+                    "name": "Gigi"
+                },
+                {
+                    "id": 305,
+                    "name": "Gigi Endodonsi"
+                }
+            ]
+        },
+        {
+            "id": 20363,
+            "title": "Dr. drg. Hj. Ika Andriani, Sp.Perio., M.DSc.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 304,
+                    "name": "Gigi"
+                },
+                {
+                    "id": 306,
+                    "name": "Gigi Periodonti"
+                }
+            ]
+        },
+        {
+            "id": 20364,
+            "title": "Dr. dr. Hj. Dahlia Herawati, Sp.Perio(K)",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 304,
+                    "name": "Gigi"
+                },
+                {
+                    "id": 306,
+                    "name": "Gigi Periodonti"
+                }
+            ]
+        },
+        {
+            "id": 20365,
+            "title": "drg. Amalia Perwitasari, Sp.Perio",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 304,
+                    "name": "Gigi"
+                },
+                {
+                    "id": 306,
+                    "name": "Gigi Periodonti"
+                }
+            ]
+        },
+        {
+            "id": 20366,
+            "title": "drg. Hj. Siti Rahayu, Sp.KGA",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 304,
+                    "name": "Gigi"
+                },
+                {
+                    "id": 307,
+                    "name": "Gigi Pedodonti"
+                }
+            ]
+        },
+        {
+            "id": 20367,
+            "title": "drg. Hj. Pipiet Setyaningsih, Sp.Ort., MPH",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 304,
+                    "name": "Gigi"
+                },
+                {
+                    "id": 308,
+                    "name": "Gigi Ortodonti"
+                }
+            ]
+        },
+        {
+            "id": 20368,
+            "title": "drg. Winda Susra",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 304,
+                    "name": "Gigi"
+                },
+                {
+                    "id": 309,
+                    "name": "Gigi Umum"
+                }
+            ]
+        },
+        {
+            "id": 20369,
+            "title": "drg. Hj. Indria Nehriasari, Sp.BM, M.Kes",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 311,
+                    "name": "Bedah Mulut"
+                }
+            ]
+        },
+        {
+            "id": 20370,
+            "title": "drg. Mochamad Agus Artono, Sp.BM",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 311,
+                    "name": "Bedah Mulut"
+                }
+            ]
+        },
+        {
+            "id": 20371,
+            "title": "dr. H. Ahmad Faesol, Sp.Rad., M.Kes., MMR",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 312,
+                    "name": "Penunjang &amp; Terapi"
+                },
+                {
+                    "id": 313,
+                    "name": "Radiologi"
+                }
+            ]
+        },
+        {
+            "id": 20372,
+            "title": "dr. Dewi Ari Mulyani, Sp.Rad., M.Sc.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 312,
+                    "name": "Penunjang &amp; Terapi"
+                },
+                {
+                    "id": 313,
+                    "name": "Radiologi"
+                }
+            ]
+        },
+        {
+            "id": 20373,
+            "title": "dr. Anggita Putri Kantilaras, Sp.Rad(K) RI",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 312,
+                    "name": "Penunjang &amp; Terapi"
+                },
+                {
+                    "id": 313,
+                    "name": "Radiologi"
+                }
+            ]
+        },
+        {
+            "id": 20375,
+            "title": "Prof. Dr. dr. Usi Sukorini, M.Kes., Sp.PK. Subsp. H.K(K), Subsp. B.D.K.T(K)",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 314,
+                    "name": "Patologi Klinik"
+                },
+                {
+                    "id": 312,
+                    "name": "Penunjang &amp; Terapi"
+                }
+            ]
+        },
+        {
+            "id": 20376,
+            "title": "dr. H. Suryanto, Sp.PK., Subsp.HK(K), FIHFAA",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 314,
+                    "name": "Patologi Klinik"
+                },
+                {
+                    "id": 312,
+                    "name": "Penunjang &amp; Terapi"
+                }
+            ]
+        },
+        {
+            "id": 20377,
+            "title": "dr. Amanatus Solikhah, M.Sc., Sp.PK",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 314,
+                    "name": "Patologi Klinik"
+                },
+                {
+                    "id": 312,
+                    "name": "Penunjang &amp; Terapi"
+                }
+            ]
+        },
+        {
+            "id": 20378,
+            "title": "dr. Hj. Budi Pratiti, Sp.KJ",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 315,
+                    "name": "Jiwa"
+                },
+                {
+                    "id": 316,
+                    "name": "Kesehatan Jiwa"
+                }
+            ]
+        },
+        {
+            "id": 20379,
+            "title": "dr. Windy Aristiani, MMR, Sp.KJ",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 315,
+                    "name": "Jiwa"
+                },
+                {
+                    "id": 316,
+                    "name": "Kesehatan Jiwa"
+                }
+            ]
+        },
+        {
+            "id": 20380,
+            "title": "Rahma Kusuma Fitri, M.Psi., Psikolog",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 315,
+                    "name": "Jiwa"
+                },
+                {
+                    "id": 317,
+                    "name": "Psikolog Klinis"
+                }
+            ]
+        },
+        {
+            "id": 20381,
+            "title": "Mufliha Fahmi, M.Psi.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 315,
+                    "name": "Jiwa"
+                },
+                {
+                    "id": 317,
+                    "name": "Psikolog Klinis"
+                }
+            ]
+        },
+        {
+            "id": 20382,
+            "title": "Rifka Nur&#8217;aini Oktaviani, M.Psi., Psikolog",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 315,
+                    "name": "Jiwa"
+                },
+                {
+                    "id": 317,
+                    "name": "Psikolog Klinis"
+                }
+            ]
+        },
+        {
+            "id": 20383,
+            "title": "dr. H. Adi Sihono, Sp.B",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 318,
+                    "name": "Bedah Umum"
+                }
+            ]
+        },
+        {
+            "id": 20384,
+            "title": "Dr. dr. H. Sagiran, Sp.B(K) KL., M.Kes.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 318,
+                    "name": "Bedah Umum"
+                }
+            ]
+        },
+        {
+            "id": 20385,
+            "title": "dr. Taufiek Hikmawan Y. B. S., Sp.B",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 318,
+                    "name": "Bedah Umum"
+                }
+            ]
+        },
+        {
+            "id": 20386,
+            "title": "dr. Azzam Hizbur Rahman, Sp.B",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 318,
+                    "name": "Bedah Umum"
+                }
+            ]
+        },
+        {
+            "id": 20387,
+            "title": "dr. H. Kuncahyo Kamal Arifin, Sp.OT",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 319,
+                    "name": "Bedah Tulang (Orthopedi)"
+                }
+            ]
+        },
+        {
+            "id": 20388,
+            "title": "dr. Marda Ade Saputra, Sp.OT",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 319,
+                    "name": "Bedah Tulang (Orthopedi)"
+                }
+            ]
+        },
+        {
+            "id": 20389,
+            "title": "dr. Wahyu Setyawan, Sp.OT(K)",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 319,
+                    "name": "Bedah Tulang (Orthopedi)"
+                }
+            ]
+        },
+        {
+            "id": 20390,
+            "title": "Dr. dr. H. Rahmat Andi Hartanto, Sp.BS ( K ), Subsp. N. Onko",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 320,
+                    "name": "Bedah Saraf"
+                }
+            ]
+        },
+        {
+            "id": 20391,
+            "title": "dr. Rakyan Artha Dewi Rachmat, Sp.BS",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 320,
+                    "name": "Bedah Saraf"
+                }
+            ]
+        },
+        {
+            "id": 20392,
+            "title": "Dr. dr. Ahmad Zulfan Hendri, Sp.U(K)",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 321,
+                    "name": "Bedah Urologi"
+                }
+            ]
+        },
+        {
+            "id": 20393,
+            "title": "dr. Wikan Kurniawan, Sp.U",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 321,
+                    "name": "Bedah Urologi"
+                }
+            ]
+        },
+        {
+            "id": 20394,
+            "title": "dr. Muhammad Anwar Irzan, Sp.U",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 321,
+                    "name": "Bedah Urologi"
+                }
+            ]
+        },
+        {
+            "id": 20395,
+            "title": "Dr. dr. Akhmad Makhmudi, Sp.B, Sp.BA, Subsp. D.A(K)",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 322,
+                    "name": "Anak"
+                },
+                {
+                    "id": 323,
+                    "name": "Bedah Anak"
+                }
+            ]
+        },
+        {
+            "id": 20396,
+            "title": "dr. Hafni Zuchra Noor, MM., Sp.BA",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 322,
+                    "name": "Anak"
+                },
+                {
+                    "id": 323,
+                    "name": "Bedah Anak"
+                }
+            ]
+        },
+        {
+            "id": 20398,
+            "title": "dr. Helmanu Kurniadi, Sp.B, Subsp. Onk(K)",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 310,
+                    "name": "Bedah"
+                },
+                {
+                    "id": 325,
+                    "name": "Bedah Onkologi"
+                }
+            ]
+        },
+        {
+            "id": 20399,
+            "title": "dr. H. Muhammad Iqbal, Sp.PD., M.Kes.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 326,
+                    "name": "Penyakit Dalam"
+                }
+            ]
+        },
+        {
+            "id": 20400,
+            "title": "dr. Hj. Niarna Lusi, Sp.PD",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 326,
+                    "name": "Penyakit Dalam"
+                }
+            ]
+        },
+        {
+            "id": 20401,
+            "title": "dr. H. Mohamad Wibowo, Sp.PD",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 326,
+                    "name": "Penyakit Dalam"
+                }
+            ]
+        },
+        {
+            "id": 20402,
+            "title": "dr. Maya Um Husna, Sp.PD",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 326,
+                    "name": "Penyakit Dalam"
+                }
+            ]
+        },
+        {
+            "id": 20403,
+            "title": "dr. Sisca Wulandari, Sp.PD",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 326,
+                    "name": "Penyakit Dalam"
+                }
+            ]
+        },
+        {
+            "id": 20404,
+            "title": "dr. Riska Amalia Ambarwati, Sp.PD",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 326,
+                    "name": "Penyakit Dalam"
+                }
+            ]
+        },
+        {
+            "id": 20405,
+            "title": "dr. Dandy Firmansyah, Sp.PD, AIFO-K",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 326,
+                    "name": "Penyakit Dalam"
+                }
+            ]
+        },
+        {
+            "id": 20406,
+            "title": "dr. H. Barkah Djaka Purwanto, SpPD-KGH, SubSp GH (K), FINASIM",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 327,
+                    "name": "Ginjal Hipertensi"
+                },
+                {
+                    "id": 326,
+                    "name": "Penyakit Dalam"
+                }
+            ]
+        },
+        {
+            "id": 20407,
+            "title": "dr. Mardiah Suci Hardianti, Sp.PD-KHOM, Ph.D.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 328,
+                    "name": "Hemato Onkologi"
+                },
+                {
+                    "id": 326,
+                    "name": "Penyakit Dalam"
+                }
+            ]
+        },
+        {
+            "id": 20408,
+            "title": "dr. Irsyad Andi Arso, Sp.PD, Sp.JP(K), M.Sc.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 329,
+                    "name": "Jantung"
+                },
+                {
+                    "id": 330,
+                    "name": "Penyakit Jantung dan Pembuluh Darah"
+                }
+            ]
+        },
+        {
+            "id": 20410,
+            "title": "dr. Evita Devi Noor Rahmawati, Sp.JP(K)",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 329,
+                    "name": "Jantung"
+                },
+                {
+                    "id": 330,
+                    "name": "Penyakit Jantung dan Pembuluh Darah"
+                }
+            ]
+        },
+        {
+            "id": 20411,
+            "title": "dr. Ardorisye Saptati Fornia, Sp.P., M.Kes.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 331,
+                    "name": "Paru"
+                },
+                {
+                    "id": 332,
+                    "name": "Penyakit Paru"
+                }
+            ]
+        },
+        {
+            "id": 20412,
+            "title": "dr. H. Yusrizal Djam&#8217;an Shaleh, Sp.P(K), FCCP, FISR",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 331,
+                    "name": "Paru"
+                },
+                {
+                    "id": 332,
+                    "name": "Penyakit Paru"
+                }
+            ]
+        },
+        {
+            "id": 20413,
+            "title": "dr. H. Munawar Gani, Sp.P(K)",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 331,
+                    "name": "Paru"
+                },
+                {
+                    "id": 332,
+                    "name": "Penyakit Paru"
+                }
+            ]
+        },
+        {
+            "id": 20414,
+            "title": "dr. Ramaniya Kirana, Sp.P",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 331,
+                    "name": "Paru"
+                },
+                {
+                    "id": 332,
+                    "name": "Penyakit Paru"
+                }
+            ]
+        },
+        {
+            "id": 20418,
+            "title": "dr. Brian Prima Artha, Sp.OG(K)-Onk",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 335,
+                    "name": "Ginekologi Onkologi"
+                },
+                {
+                    "id": 333,
+                    "name": "Kandungan"
+                }
+            ]
+        },
+        {
+            "id": 20419,
+            "title": "dr. H. Mohammad Komarudin, Sp.A",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 322,
+                    "name": "Anak"
+                },
+                {
+                    "id": 336,
+                    "name": "Penyakit Anak Imunisasi &amp; Tumbuh Kembang Anak"
+                }
+            ]
+        },
+        {
+            "id": 20420,
+            "title": "dr. Muriana Novariani, Sp.A, M.Kes.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 322,
+                    "name": "Anak"
+                },
+                {
+                    "id": 336,
+                    "name": "Penyakit Anak Imunisasi &amp; Tumbuh Kembang Anak"
+                }
+            ]
+        },
+        {
+            "id": 20421,
+            "title": "dr. Yanantri Binga Ramsif, Sp.A, M.Med.Sc.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 322,
+                    "name": "Anak"
+                },
+                {
+                    "id": 336,
+                    "name": "Penyakit Anak Imunisasi &amp; Tumbuh Kembang Anak"
+                }
+            ]
+        },
+        {
+            "id": 20422,
+            "title": "dr. Nadya Arafuri, Sp.A, Subsp. Kardio(K)",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 322,
+                    "name": "Anak"
+                },
+                {
+                    "id": 337,
+                    "name": "Penyakit Jantung Anak"
+                }
+            ]
+        },
+        {
+            "id": 20427,
+            "title": "dr. Hj. Pujiatun, Sp.KFR",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 312,
+                    "name": "Penunjang &amp; Terapi"
+                },
+                {
+                    "id": 342,
+                    "name": "Rehabilitasi Medis"
+                }
+            ]
+        },
+        {
+            "id": 20428,
+            "title": "dr. Petrina Theda Philotra, Sp.KFR, M.Med.Klin.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 312,
+                    "name": "Penunjang &amp; Terapi"
+                },
+                {
+                    "id": 342,
+                    "name": "Rehabilitasi Medis"
+                }
+            ]
+        },
+        {
+            "id": 20717,
+            "title": "dr. Safiqulatif Abdillah, MMR, Sp.PA",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 343,
+                    "name": "Patologi Anatomi"
+                }
+            ]
+        },
+        {
+            "id": 20718,
+            "title": "dr. Fitria Puspita Dewi, MMR, Sp.PA",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 343,
+                    "name": "Patologi Anatomi"
+                }
+            ]
+        },
+        {
+            "id": 20719,
+            "title": "dr. Dwi Ditha Emelia",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20720,
+            "title": "dr. Joko Murdiyanto, sp.An., MPH",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 345,
+                    "name": "Anestesiologi"
+                }
+            ]
+        },
+        {
+            "id": 20724,
+            "title": "dr. Aras Amila Husna, Sp.T.H.T.B.K.L",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 346,
+                    "name": "Telinga, Hidung, Tenggorokan"
+                }
+            ]
+        },
+        {
+            "id": 20725,
+            "title": "drg. Yuninda Lintang, Sp. KG",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 347,
+                    "name": "Kedokteran Gigi"
+                }
+            ]
+        },
+        {
+            "id": 20726,
+            "title": "dr. Tuti Wardani, MMR",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20727,
+            "title": "dr. Desita Dyah Mukti Adityaningrum, M.Sc.",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20728,
+            "title": "dr. Mahda Adil Aufa, MMR",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20729,
+            "title": "dr. Fitri Prawaitasari, MMR",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20730,
+            "title": "dr. Elmira Apriliani, MMR",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20731,
+            "title": "dr. Dhia Clarissa Putri",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20732,
+            "title": "dr. Muhammad Salsabil Lasarik",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20733,
+            "title": "dr. Ihsana Khoirun Nisa",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20734,
+            "title": "dr. Muhammad Ainun Rosydz",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20735,
+            "title": "dr. Ardiyuga Pratitapraya",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20736,
+            "title": "dr. Miftakhul Huda Fadhlullah",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20737,
+            "title": "dr. Muhammad Faris Novadityarahman, MMR",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20738,
+            "title": "dr. Maharani Zulfa Maz Uda",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20739,
+            "title": "dr. Jihan Izzatun Nisa",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20740,
+            "title": "dr. Khansa Maria Salsabila",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20741,
+            "title": "dr. Muhammad Afif Nadirrafi",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20742,
+            "title": "dr. Bella Indah Normalita",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20743,
+            "title": "dr. Zarifa Nurinnisa",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        },
+        {
+            "id": 20744,
+            "title": "dr. Muhammad Asyam Fawwaz",
+            "spesialisasi_dokter_terms": [
+                {
+                    "id": 344,
+                    "name": "Dokter Umum / Instalasi Gawat Darurat (IGD)"
+                }
+            ]
+        }
+    ]
+}

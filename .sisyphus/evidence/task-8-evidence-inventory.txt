@@ -1,0 +1,28 @@
+﻿Task 8 Evidence Inventory
+Generated: 2026-07-31T17:40:28.4088796+07:00
+
+PASS task-1-production-debug.txt
+PASS task-1-production-debug-lint.txt
+PASS task-2-build.txt
+PASS task-2-manifest.txt
+PASS task-3-hero-checks.txt
+PASS task-3-hero-xss.html
+PASS task-3-hero-safe.html
+PASS task-4-checks.txt
+PASS task-4-ip-trusted.txt
+PASS task-4-ip-spoof.txt
+PASS task-5-doctor-search-error.txt
+PASS task-6-core-rest.txt
+PASS task-7-manifest-missing.txt
+PASS task-7-dev-url.html
+PASS task-8-homepage-curl.txt
+PASS task-8-browser-smoke.txt
+PASS task-8-debug-log-tail.txt
+PASS task-8-evidence-inventory.txt
+
+Continuation verification commands:
+PASS php -l wp-content\plugins\rspku-core\rspku-core.php
+PASS php -l wp-content\themes\rspku-theme\app\Controllers\TemplateController.php
+PASS lsp_diagnostics rspku-core.php and TemplateController.php: No diagnostics found
+INFO npm run build not rerun in continuation because no persistent source/frontend files were modified
+PASS temporary mu-plugin isolation probe removed after measurement

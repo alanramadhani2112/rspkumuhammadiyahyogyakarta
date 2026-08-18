@@ -1,0 +1,17 @@
+Browser smoke: 2026-07-31T10:26:02.478Z
+Chrome: C:\Program Files\Google\Chrome\Application\chrome.exe
+URL: http://rspkudev.test/
+Loaded URL: http://rspkudev.test/
+Title: Beranda - RS PKU Muhammadiyah Yogyakarta
+Status: 200
+Console fatal/error count: 0
+URL: http://rspkudev.test/dokter/
+Loaded URL: http://rspkudev.test/dokter/
+Title: Dokter Arsip - RS PKU Muhammadiyah Yogyakarta
+Status: 200
+Console fatal/error count: 0
+URL: http://rspkudev.test/berita-artikel/
+Loaded URL: http://rspkudev.test/berita-artikel/
+Title: Berita & Artikel - RS PKU Muhammadiyah Yogyakarta
+Status: 200
+Console fatal/error count: 0

@@ -1,0 +1,82 @@
+{
+  "batch_id": "master-data-layanan-101-uat-batch12-20260816",
+  "operation": "taxonomy-assign",
+  "applied_at": "2026-08-16T16:26:16Z",
+  "taxonomy": "master-layanan-medis",
+  "backup": ".sisyphus/backups/master-data-layanan-101-uat-pre-taxonomy-batch12-20260816.sql",
+  "created_term_ids": [],
+  "assignments": [
+    {
+      "post_id": 20878,
+      "term_ids": [
+        348,
+        351
+      ]
+    },
+    {
+      "post_id": 20879,
+      "term_ids": [
+        348,
+        351
+      ]
+    },
+    {
+      "post_id": 20880,
+      "term_ids": [
+        348,
+        351
+      ]
+    },
+    {
+      "post_id": 20881,
+      "term_ids": [
+        348,
+        351
+      ]
+    },
+    {
+      "post_id": 20882,
+      "term_ids": [
+        348,
+        351
+      ]
+    },
+    {
+      "post_id": 20883,
+      "term_ids": [
+        348,
+        351
+      ]
+    },
+    {
+      "post_id": 20884,
+      "term_ids": [
+        348,
+        351
+      ]
+    },
+    {
+      "post_id": 20885,
+      "term_ids": [
+        348,
+        351
+      ]
+    },
+    {
+      "post_id": 20886,
+      "term_ids": [
+        348,
+        351
+      ]
+    },
+    {
+      "post_id": 20887,
+      "term_ids": [
+        348,
+        351
+      ]
+    }
+  ],
+  "published_count": 0,
+  "rollback": "Remove term IDs 348 and 351 from listed posts. Do not delete existing terms. DB restore is last resort."
+}

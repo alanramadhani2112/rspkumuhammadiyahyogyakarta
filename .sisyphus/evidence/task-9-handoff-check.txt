@@ -1,0 +1,7 @@
+PASS
+Batch ID present: source-2026-batch1-20260814
+Touched IDs present: 20749, 20750, 20751, 20752, 20753, 20754, 20755, 20756
+Statuses present: all draft
+Counts present: pre/post published and draft counts
+Rollback section present: explicit approval, fresh backup, batch/status guard, eight IDs only
+Production gate present: production not touched; explicit approval required

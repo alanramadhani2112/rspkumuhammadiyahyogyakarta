@@ -86,10 +86,10 @@ Alpine.data('searchableSelect', () => ({
     this.query = '';
   },
   next() {
-    this.highlightedIndex = Math.min(this.highlightedIndex + 1, this.filteredOptions.length - 1);
+    this.highlightedIndex = Math.min(this.highlightedIndex + 1, Math.max(this.filteredOptions.length - 1, 0));
   },
   previous() {
-    this.highlightedIndex = Math.max(this.highlightedIndex - 1, 0);
+    this.highlightedIndex = Math.min(Math.max(this.highlightedIndex - 1, 0), Math.max(this.filteredOptions.length - 1, 0));
   },
   chooseHighlighted() {
     const option = this.filteredOptions[this.highlightedIndex] || this.filteredOptions[0];

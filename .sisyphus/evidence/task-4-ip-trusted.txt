@@ -1,0 +1,7 @@
+untrusted proxy remote
+theme=10.0.0.10
+plugin=10.0.0.10
+trusted proxy remote
+theme=8.8.8.8
+plugin=8.8.8.8
+expected untrusted=10.0.0.10 trusted=8.8.8.8

@@ -1,0 +1,5 @@
+PASS
+Command: php -l .sisyphus/tools/reconcile-source-2026.php
+Result: No syntax errors detected.
+
+LSP diagnostics: zero errors in `.sisyphus` JSON files and reconciliation PHP script.

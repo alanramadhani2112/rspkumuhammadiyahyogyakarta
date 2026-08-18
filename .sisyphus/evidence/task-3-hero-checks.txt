@@ -1,0 +1,27 @@
+﻿Task 3 - Remove Raw Hero Title XSS Sink
+
+Changes:
+- Replaced `{{ rspku.hero_title|raw }}` with `{{ rspku.hero_title|wp_kses_post }}` in `wp-content/themes/rspku-theme/resources/views/pages/front-page.twig`.
+- Replaced `{{ title|raw }}` with `{{ title|wp_kses_post }}` in `wp-content/themes/rspku-theme/resources/views/components/hero.twig`.
+- No PHP files changed in final diff; Timber already provides `wp_kses_post` filter.
+
+Verification:
+- `grep "(hero_title|title)\\|raw" wp-content/themes/rspku-theme/resources/views`: no matches.
+- `grep "hero_title\\|wp_kses_post|title\\|wp_kses_post" wp-content/themes/rspku-theme/resources/views`: two target sinks use `wp_kses_post`.
+- `lsp_diagnostics` on `wp-content/themes/rspku-theme/app/Setup/TimberSetup.php`: no diagnostics.
+- `lsp_diagnostics` on Twig files: unavailable, no `.twig` LSP configured.
+- `php -l wp-content/themes/rspku-theme/app/Setup/TimberSetup.php`: no syntax errors.
+- Safe payload status: 200.
+- Safe payload `<strong>RS PKU</strong><br>Yogyakarta` present in homepage HTML.
+- Safe payload `<h1>` count: 1.
+- XSS payload status: 200.
+- XSS payload `<script>alert(1)</script>` present: false.
+- XSS payload `<strong>Aman</strong>` present: true.
+- XSS payload `<h1>` count: 1.
+- Original `rspku_settings.hero_title` restored after QA: `Pelayanan kesehatan <span class="text-hospital-600">terpercaya</span> untuk keluarga Anda`.
+
+Evidence:
+- `.sisyphus/evidence/task-3-hero-safe.html`
+- `.sisyphus/evidence/task-3-hero-xss.html`
+- `npm run build` from `wp-content/themes/rspku-theme`: exit 0.
+- `git diff --check`: no whitespace errors; Git emitted CRLF warning only.

@@ -1,0 +1,4 @@
+spoofed forwarded header ignored
+theme=1.1.1.1
+plugin=1.1.1.1
+expected=1.1.1.1

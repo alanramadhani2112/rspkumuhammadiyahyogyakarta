@@ -82,8 +82,7 @@
             {% for item in article_landing.items %}
               {% include 'components/content-card.twig' with {
                 item: item|merge({
-                  badge: 'Berita & Artikel',
-                  show_link: false
+                  badge: 'Berita & Artikel'
                 })
               } %}
             {% endfor %}

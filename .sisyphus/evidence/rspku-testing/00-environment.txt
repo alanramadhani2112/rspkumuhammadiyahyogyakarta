@@ -1,0 +1,31 @@
+﻿# T1 Environment and Service Readiness 2026-07-31T21:29:22.2532413+07:00
+## curl homepage
+200 4.802308 
+
+## DB port
+
+
+ComputerName     : 127.0.0.1
+RemoteAddress    : 127.0.0.1
+RemotePort       : 3306
+InterfaceAlias   : Loopback Pseudo-Interface 1
+SourceAddress    : 127.0.0.1
+TcpTestSucceeded : True
+
+
+
+
+## processes
+
+ProcessName    Id Path                                                       
+-----------    -- ----                                                       
+httpd       24536 C:\laragon\bin\apache\httpd-2.4.54-win64-VS16\bin\httpd.exe
+httpd       25624 C:\laragon\bin\apache\httpd-2.4.54-win64-VS16\bin\httpd.exe
+laragon      4488 C:\laragon\laragon.exe                                     
+mysqld      20672 C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe    
+mysqld      21008 C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe    
+
+
+
+## content check
+PASS: contains RS PKU

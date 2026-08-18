@@ -38,10 +38,10 @@
             "identity_key": "poliklinik|klinik kesehatan anak|layanan rawat jalan|layanan spesialis dan sub spesialis",
             "match_status": "missing",
             "matched_post_id": null,
-            "decision": "skip",
-            "approved_by": null,
-            "approved_at": null,
-            "notes": null
+            "decision": "create",
+            "approved_by": "User approval: execute small UAT preflight batch",
+            "approved_at": "2026-08-15T15:10:00+07:00",
+            "notes": "Small batch preflight candidate; draft-only create if later explicitly approved for apply."
         },
         {
             "source_id": "xlsx-row-3",
@@ -53,10 +53,10 @@
             "identity_key": "poliklinik|klinik tumbuh kembang|layanan rawat jalan|layanan spesialis dan sub spesialis",
             "match_status": "missing",
             "matched_post_id": null,
-            "decision": "skip",
-            "approved_by": null,
-            "approved_at": null,
-            "notes": null
+            "decision": "create",
+            "approved_by": "User approval: execute small UAT preflight batch",
+            "approved_at": "2026-08-15T15:10:00+07:00",
+            "notes": "Small batch preflight candidate; draft-only create if later explicitly approved for apply."
         },
         {
             "source_id": "xlsx-row-4",
@@ -128,10 +128,10 @@
             "identity_key": "poliklinik|klinik bedah saraf|layanan rawat jalan|layanan spesialis dan sub spesialis",
             "match_status": "missing",
             "matched_post_id": null,
-            "decision": "skip",
-            "approved_by": null,
-            "approved_at": null,
-            "notes": null
+            "decision": "create",
+            "approved_by": "User approval: execute small UAT preflight batch",
+            "approved_at": "2026-08-15T15:10:00+07:00",
+            "notes": "Small batch preflight candidate; draft-only create if later explicitly approved for apply."
         },
         {
             "source_id": "xlsx-row-9",
@@ -158,10 +158,10 @@
             "identity_key": "poliklinik|klinik bedah kepala leher|layanan rawat jalan|layanan spesialis dan sub spesialis",
             "match_status": "missing",
             "matched_post_id": null,
-            "decision": "skip",
-            "approved_by": null,
-            "approved_at": null,
-            "notes": null
+            "decision": "create",
+            "approved_by": "User approval: execute small UAT preflight batch",
+            "approved_at": "2026-08-15T15:10:00+07:00",
+            "notes": "Small batch preflight candidate; draft-only create if later explicitly approved for apply."
         },
         {
             "source_id": "xlsx-row-11",
@@ -173,10 +173,10 @@
             "identity_key": "poliklinik|klinik ortopedi|layanan rawat jalan|layanan spesialis dan sub spesialis",
             "match_status": "missing",
             "matched_post_id": null,
-            "decision": "skip",
-            "approved_by": null,
-            "approved_at": null,
-            "notes": null
+            "decision": "create",
+            "approved_by": "User approval: execute small UAT preflight batch",
+            "approved_at": "2026-08-15T15:10:00+07:00",
+            "notes": "Small batch preflight candidate; draft-only create if later explicitly approved for apply."
         },
         {
             "source_id": "xlsx-row-12",
@@ -188,10 +188,10 @@
             "identity_key": "poliklinik|klinik urologi|layanan rawat jalan|layanan spesialis dan sub spesialis",
             "match_status": "missing",
             "matched_post_id": null,
-            "decision": "skip",
-            "approved_by": null,
-            "approved_at": null,
-            "notes": null
+            "decision": "create",
+            "approved_by": "User approval: execute small UAT preflight batch",
+            "approved_at": "2026-08-15T15:10:00+07:00",
+            "notes": "Small batch preflight candidate; draft-only create if later explicitly approved for apply."
         },
         {
             "source_id": "xlsx-row-13",
@@ -248,10 +248,10 @@
             "identity_key": "poliklinik|klinik hemato-onkologi|layanan rawat jalan|layanan spesialis dan sub spesialis",
             "match_status": "missing",
             "matched_post_id": null,
-            "decision": "skip",
-            "approved_by": null,
-            "approved_at": null,
-            "notes": null
+            "decision": "create",
+            "approved_by": "User approval: execute small UAT preflight batch",
+            "approved_at": "2026-08-15T15:10:00+07:00",
+            "notes": "Small batch preflight candidate; draft-only create if later explicitly approved for apply."
         },
         {
             "source_id": "xlsx-row-17",
@@ -263,10 +263,10 @@
             "identity_key": "poliklinik|klinik paru dan respirasi|layanan rawat jalan|layanan spesialis dan sub spesialis",
             "match_status": "missing",
             "matched_post_id": null,
-            "decision": "skip",
-            "approved_by": null,
-            "approved_at": null,
-            "notes": null
+            "decision": "create",
+            "approved_by": "User approval: execute small UAT preflight batch",
+            "approved_at": "2026-08-15T15:10:00+07:00",
+            "notes": "Small batch preflight candidate; draft-only create if later explicitly approved for apply."
         },
         {
             "source_id": "xlsx-row-18",
@@ -278,10 +278,10 @@
             "identity_key": "poliklinik|klinik obstetri dan ginekologi|layanan rawat jalan|layanan spesialis dan sub spesialis",
             "match_status": "missing",
             "matched_post_id": null,
-            "decision": "skip",
-            "approved_by": null,
-            "approved_at": null,
-            "notes": null
+            "decision": "create",
+            "approved_by": "User approval: execute small UAT preflight batch",
+            "approved_at": "2026-08-15T15:10:00+07:00",
+            "notes": "Small batch preflight candidate; draft-only create if later explicitly approved for apply."
         },
         {
             "source_id": "xlsx-row-19",
@@ -308,10 +308,10 @@
             "identity_key": "poliklinik|klinik neurologi / saraf|layanan rawat jalan|layanan spesialis dan sub spesialis",
             "match_status": "missing",
             "matched_post_id": null,
-            "decision": "skip",
-            "approved_by": null,
-            "approved_at": null,
-            "notes": null
+            "decision": "create",
+            "approved_by": "User approval: execute small UAT preflight batch",
+            "approved_at": "2026-08-15T15:10:00+07:00",
+            "notes": "Small batch preflight candidate; draft-only create if later explicitly approved for apply."
         },
         {
             "source_id": "xlsx-row-21",

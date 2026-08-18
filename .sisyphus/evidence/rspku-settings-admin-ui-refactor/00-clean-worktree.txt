@@ -1,0 +1,156 @@
+# Clean Worktree Gate Evidence
+
+Timestamp: 2026-08-17T19:34:14+07:00
+Branch: main
+Gate: FAIL
+
+Plan checked: .sisyphus/plans/rspku-settings-admin-ui-refactor.md
+Relevant plan constraints: no application code changes before implementation gate, preserve option keys and plugin behavior, target plugin wp-content/plugins/rspku-settings.
+
+## Command: git fetch origin
+Exit code: 0
+
+```text
+(no output)
+```
+
+## Command: git status --short
+Exit code: 0
+
+```text
+ M .sisyphus/drafts/master-data-layanan-101-approvals.master-data-layanan-101-local-20260815-0203.json
+ M .sisyphus/evidence/reconcile-dry-run.json
+ M .sisyphus/evidence/source-2026-normalized.json
+ M .sisyphus/evidence/wp-existing-snapshot.json
+ M .sisyphus/plans/rekonsiliasi-data-source-2026.md
+ M wp-content/plugins/rspku-cpt/includes/class-rspku-cpt-doctor-schedule-admin.php
+ M wp-content/plugins/rspku-cpt/includes/class-rspku-cpt-post-types.php
+ M wp-content/plugins/rspku-settings/includes/class-rspku-settings-admin.php
+ M wp-content/plugins/rspku-settings/includes/class-rspku-settings-defaults.php
+ M wp-content/plugins/rspku-settings/includes/class-rspku-settings-registry.php
+ M wp-content/themes/rspku-theme/app/Controllers/TemplateController.php
+ M wp-content/themes/rspku-theme/app/Repositories/ContentRepository.php
+ M wp-content/themes/rspku-theme/app/Repositories/DoctorScheduleRepository.php
+ M wp-content/themes/rspku-theme/app/Setup/ThemeSetup.php
+ M wp-content/themes/rspku-theme/resources/css/app.css
+ M wp-content/themes/rspku-theme/resources/js/app.js
+ M wp-content/themes/rspku-theme/resources/views/components/content-card.twig
+ M wp-content/themes/rspku-theme/resources/views/layouts/base.twig
+ M wp-content/themes/rspku-theme/resources/views/pages/archive-doctor.twig
+ M wp-content/themes/rspku-theme/resources/views/pages/archive-layanan.twig
+ M wp-content/themes/rspku-theme/resources/views/pages/archive-manajemen-rs.twig
+ M wp-content/themes/rspku-theme/resources/views/pages/front-page.twig
+ M wp-content/themes/rspku-theme/resources/views/pages/page-berita-artikel.twig
+ M wp-content/themes/rspku-theme/resources/views/pages/page-jadwal-dokter.twig
+ M wp-content/themes/rspku-theme/resources/views/pages/page-sejarah-kami.twig
+ D wp-content/themes/rspku-theme/resources/views/pages/single-manajemen-rs.twig
+ M wp-content/themes/rspku-theme/resources/views/partials/pagination.twig
+ M wp-content/themes/rspku-theme/resources/views/partials/review-card.twig
+?? .playwright-mcp/
+?? .sisyphus/boulder.json
+?? .sisyphus/drafts/layanan-missing-services-backlog.md
+?? .sisyphus/drafts/layanan-payung-handoff.md
+?? .sisyphus/drafts/master-data-layanan-101-approvals.master-data-layanan-101-uat-batch11-20260816.json
+?? .sisyphus/drafts/master-data-layanan-101-approvals.master-data-layanan-101-uat-batch12-20260816.json
+?? .sisyphus/drafts/master-data-layanan-101-approvals.master-data-layanan-101-uat-batch13-20260816.json
+?? .sisyphus/drafts/master-data-layanan-101-approvals.master-data-layanan-101-uat-batch14-20260817.json
+?? .sisyphus/drafts/master-data-layanan-101-approvals.master-data-layanan-101-uat-batch15-20260817.json
+?? .sisyphus/drafts/report-audit-data-layanan-rspku.md
+?? .sisyphus/drafts/rspku-testing-plan.md
+?? .sisyphus/evidence/f1-plan-compliance-verdict.txt
+?? .sisyphus/evidence/f2-code-quality-verdict.txt
+?? .sisyphus/evidence/f3-runtime-qa-verdict.txt
+?? .sisyphus/evidence/f4-scope-fidelity-verdict.txt
+?? .sisyphus/evidence/history-task-0-source-inventory.md
+?? .sisyphus/evidence/history-task-5a-baseline-qa.md
+?? .sisyphus/evidence/master-data-layanan-101-apply-master-data-layanan-101-uat-batch11-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-apply-master-data-layanan-101-uat-batch12-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-apply-master-data-layanan-101-uat-batch13-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-apply-master-data-layanan-101-uat-batch14-20260817.json
+?? .sisyphus/evidence/master-data-layanan-101-apply-master-data-layanan-101-uat-batch15-20260817.json
+?? .sisyphus/evidence/master-data-layanan-101-mapping-master-data-layanan-101-uat-batch11-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-mapping-master-data-layanan-101-uat-batch12-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-mapping-master-data-layanan-101-uat-batch13-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-mapping-master-data-layanan-101-uat-batch14-20260817.json
+?? .sisyphus/evidence/master-data-layanan-101-mapping-master-data-layanan-101-uat-batch15-20260817.json
+?? .sisyphus/evidence/master-data-layanan-101-preflight-master-data-layanan-101-uat-batch11-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-preflight-master-data-layanan-101-uat-batch12-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-preflight-master-data-layanan-101-uat-batch13-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-preflight-master-data-layanan-101-uat-batch14-20260817.json
+?? .sisyphus/evidence/master-data-layanan-101-preflight-master-data-layanan-101-uat-batch15-20260817.json
+?? .sisyphus/evidence/master-data-layanan-101-rollback-master-data-layanan-101-uat-batch12-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-rollback-master-data-layanan-101-uat-batch13-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-rollback-master-data-layanan-101-uat-batch14-20260817.json
+?? .sisyphus/evidence/master-data-layanan-101-rollback-master-data-layanan-101-uat-batch15-20260817.json
+?? .sisyphus/evidence/master-data-layanan-101-uat-taxonomy-batch11-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-uat-taxonomy-batch12-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-uat-taxonomy-batch13-20260816.json
+?? .sisyphus/evidence/master-data-layanan-101-uat-taxonomy-batch14-20260817.json
+?? .sisyphus/evidence/rspku-settings-admin-ui-refactor/
+?? .sisyphus/evidence/rspku-testing/
+?? .sisyphus/evidence/task-1-doctor-schedule-contract.php
+?? .sisyphus/evidence/task-1-production-debug-lint.txt
+?? .sisyphus/evidence/task-1-production-debug.txt
+?? .sisyphus/evidence/task-1-specialization-audit.json
+?? .sisyphus/evidence/task-1-specialization-backup.json
+?? .sisyphus/evidence/task-2-build.txt
+?? .sisyphus/evidence/task-2-manifest.txt
+?? .sisyphus/evidence/task-3-hero-checks.txt
+?? .sisyphus/evidence/task-3-hero-safe.html
+?? .sisyphus/evidence/task-3-hero-xss.html
+?? .sisyphus/evidence/task-4-checks.txt
+?? .sisyphus/evidence/task-4-doctor-schedule-save.php
+?? .sisyphus/evidence/task-4-ip-spoof.txt
+?? .sisyphus/evidence/task-4-ip-trusted.txt
+?? .sisyphus/evidence/task-5-batch1-handoff.md
+?? .sisyphus/evidence/task-5-doctor-search-error.txt
+?? .sisyphus/evidence/task-6-child-detail-map.txt
+?? .sisyphus/evidence/task-6-core-rest.txt
+?? .sisyphus/evidence/task-6-dry-run-safe.json
+?? .sisyphus/evidence/task-6-import-blocked.php
+?? .sisyphus/evidence/task-6-post-guard-dry-run.json
+?? .sisyphus/evidence/task-6-specialization-sync-apply.json
+?? .sisyphus/evidence/task-6-taxonomy-guards.txt
+?? .sisyphus/evidence/task-7-dev-url.html
+?? .sisyphus/evidence/task-7-manifest-missing.txt
+?? .sisyphus/evidence/task-7-native-frontend.php
+?? .sisyphus/evidence/task-7-php-lint.txt
+?? .sisyphus/evidence/task-7-regression-checks.txt
+?? .sisyphus/evidence/task-8-browser-smoke.txt
+?? .sisyphus/evidence/task-8-build-status.txt
+?? .sisyphus/evidence/task-8-corruption-detected.php
+?? .sisyphus/evidence/task-8-debug-log-tail.txt
+?? .sisyphus/evidence/task-8-evidence-inventory.txt
+?? .sisyphus/evidence/task-8-final-check.txt
+?? .sisyphus/evidence/task-8-homepage-curl.txt
+?? .sisyphus/evidence/task-8-php-lint.txt
+?? .sisyphus/evidence/task-8-pre-qa-audit.json
+?? .sisyphus/evidence/task-8-qa-notes.txt
+?? .sisyphus/evidence/task-9-handoff-check.txt
+?? .sisyphus/evidence/task-9-secret-check.txt
+?? .sisyphus/notepads/
+?? .sisyphus/plans/layanan-payung-rspku.md
+?? .sisyphus/plans/modul-jadwal-dokter-native.md
+?? .sisyphus/plans/production-readiness-rspku-theme.md
+?? .sisyphus/plans/rspku-settings-admin-ui-refactor.md
+?? .sisyphus/plans/rspku-testing-plan.md
+?? .sisyphus/plans/sejarah-kami-gallery-dinamis.md
+?? .sisyphus/plans/spesialisasi-jadwal-dokter.md
+?? .sisyphus/run-continuation/
+?? .sisyphus/searchable-schedule-filter.css
+?? .sisyphus/tools/assign-taxonomy-batch15.php
+?? wp-content/themes/rspku-theme/scripts/audit-doctor-specialization-source.php
+?? wp-content/themes/rspku-theme/scripts/check-history-gallery-contract.php
+?? wp-content/themes/rspku-theme/scripts/check-specialization-source.php
+```
+
+## Command: git rev-parse --abbrev-ref HEAD
+Exit code: 0
+
+```text
+main
+```
+
+## Result
+
+Clean worktree gate failed because git status --short returned dirty files. No cleanup, revert, stage, commit, push, checkout, reset, or stash was run.

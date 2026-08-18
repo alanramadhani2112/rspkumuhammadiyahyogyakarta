@@ -1089,7 +1089,8 @@ svg.lucide {
 
 .rspku-schedule-table {
   width: 100%;
-  min-width: 72rem;
+  min-width: 80rem;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
   background: #ffffff;
@@ -1107,12 +1108,11 @@ svg.lucide {
   font-weight: 700;
   text-align: left;
   white-space: nowrap;
-  transition: background-color 180ms ease, color 180ms ease;
 }
 
-.rspku-schedule-table thead th:hover {
-  background: var(--rspku-brand);
-  color: #ffffff;
+.rspku-schedule-table th:not(.column-doctor),
+.rspku-schedule-table td {
+  width: 11.428571%;
 }
 
 .rspku-schedule-table tbody th,
@@ -1137,11 +1137,8 @@ svg.lucide {
 }
 
 .rspku-schedule-table .column-doctor {
+  width: 20%;
   min-width: 16rem;
-}
-
-.rspku-schedule-table .column-specialization {
-  min-width: 13rem;
 }
 
 .rspku-schedule-badge {
@@ -1151,7 +1148,7 @@ svg.lucide {
   border-radius: 0.7rem;
   border: 1px solid #d5edff;
   background: #f8fbff;
-  padding-inline: 0.65rem;
+  padding: 0.5rem;
   font-size: 0.6875rem;
   font-weight: 500;
   color: #334155;
@@ -1184,25 +1181,15 @@ svg.lucide {
     z-index: 3;
   }
 
-  .rspku-schedule-table thead th.column-doctor,
-  .rspku-schedule-table thead th.column-specialization {
+  .rspku-schedule-table thead th.column-doctor {
     background: var(--rspku-brand-soft);
   }
 
-  .rspku-schedule-table tbody th.column-doctor,
-  .rspku-schedule-table tbody td.column-specialization {
+  .rspku-schedule-table tbody th.column-doctor {
     background: #ffffff;
   }
 
-  .rspku-schedule-table thead th.column-specialization,
-  .rspku-schedule-table tbody td.column-specialization {
-    position: sticky;
-    left: 16rem;
-    z-index: 3;
-  }
-
-  .rspku-schedule-table tbody tr:hover th.column-doctor,
-  .rspku-schedule-table tbody tr:hover td.column-specialization {
+  .rspku-schedule-table tbody tr:hover th.column-doctor {
     background: #f8fbff;
   }
 }

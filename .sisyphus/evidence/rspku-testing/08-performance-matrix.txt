@@ -1,0 +1,31 @@
+﻿# T9 Performance Matrix 2026-07-31T21:52:05.1766254+07:00
+Metric: logged-out HTTP document/API curl time_total, second request after warmup.
+## active plugins before
+advanced-custom-fields-pro-main/acf.php,code-snippets/code-snippets.php,google-site-kit/google-site-kit.php,gtranslate/gtranslate.php,rspku-core/rspku-core.php,rspku-cpt/rspku-cpt.php,rspku-schema/rspku-schema.php,rspku-settings/rspku-settings.php,tablepress/tablepress.php,updraftplus/updraftplus.php,wordpress-seo/wp-seo.php,wp-postviews/wp-postviews.php,wps-hide-login/wps-hide-login.php
+## all plugins
+http://rspkudev.test/ 200 2.714824 173412
+http://rspkudev.test/dokter/ 200 2.611799 113652
+http://rspkudev.test/berita-artikel/ 200 2.942911 81024
+http://rspkudev.test/wp-json/rspku/v1/site 200 2.694312 2182
+http://rspkudev.test/wp-json/rspku/v1/home 200 3.093780 84364
+Created temporary mu-plugins dir
+## isolation mode: rspku-only + tablepress
+rspku-core/rspku-core.php,rspku-cpt/rspku-cpt.php,rspku-schema/rspku-schema.php,rspku-settings/rspku-settings.php,tablepress/tablepress.php
+## rspku-only
+http://rspkudev.test/ 200 1.528451 170234
+http://rspkudev.test/dokter/ 200 1.540039 110821
+http://rspkudev.test/berita-artikel/ 200 1.185946 78295
+http://rspkudev.test/wp-json/rspku/v1/site 200 0.931326 2185
+http://rspkudev.test/wp-json/rspku/v1/home 200 1.199921 84964
+## isolation mode: no plugins
+## no plugins
+http://rspkudev.test/ 200 1.244033 160260
+http://rspkudev.test/dokter/ 200 1.946857 160260
+http://rspkudev.test/berita-artikel/ 200 1.183854 66442
+http://rspkudev.test/wp-json/rspku/v1/site 404 0.803859 121
+http://rspkudev.test/wp-json/rspku/v1/home 404 0.849484 121
+## active plugins after
+advanced-custom-fields-pro-main/acf.php,code-snippets/code-snippets.php,google-site-kit/google-site-kit.php,gtranslate/gtranslate.php,rspku-core/rspku-core.php,rspku-cpt/rspku-cpt.php,rspku-schema/rspku-schema.php,rspku-settings/rspku-settings.php,tablepress/tablepress.php,updraftplus/updraftplus.php,wordpress-seo/wp-seo.php,wp-postviews/wp-postviews.php,wps-hide-login/wps-hide-login.php
+RESTORE_PASS=True
+## classification
+If all-plugins >2s and isolation modes improve, blocker is plugin/runtime-level, not RSPKU source-only.

@@ -1,0 +1,5 @@
+public_homepage_status=200
+current_user_can_manage_options=yes
+admin_notice=RSPKU theme Vite manifest is missing: C:\laragon\www\rspkudev\wp-content\themes\rspku-theme/public/build/.vite/manifest.json
+error_log_tail=
+[31-Jul-2026 10:14:53 UTC] RSPKU theme Vite manifest is missing: C:\laragon\www\rspkudev\wp-content\themes\rspku-theme/public/build/.vite/manifest.json

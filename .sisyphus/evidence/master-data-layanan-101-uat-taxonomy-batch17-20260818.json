@@ -1,0 +1,139 @@
+{
+    "batch_id": "master-data-layanan-101-uat-batch17-20260818",
+    "taxonomy": "master-layanan-medis",
+    "assigned_at": "2026-08-18T05:09:52+00:00",
+    "backup": {
+        "path": ".sisyphus/backups/master-data-layanan-101-uat-pre-taxonomy-batch17-20260818.sql",
+        "size": 83222693
+    },
+    "existing_term_ids": [
+        363,
+        367
+    ],
+    "created_term_ids": [
+        368,
+        369,
+        370
+    ],
+    "term_map": {
+        "Penunjang Medis": 363,
+        "Pemeriksaan Penunjang Lain": 367,
+        "Central Sterile Supply Department (CSSD)": 368,
+        "Layanan Sterilisasi Suhu Tinggi": 369,
+        "Layanan Sterilisasi Suhu Rendah": 370
+    },
+    "assignments": [
+        {
+            "post_id": 20934,
+            "term_ids": [
+                363,
+                367
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Pemeriksaan Penunjang Lain"
+            ]
+        },
+        {
+            "post_id": 20935,
+            "term_ids": [
+                363,
+                367
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Pemeriksaan Penunjang Lain"
+            ]
+        },
+        {
+            "post_id": 20936,
+            "term_ids": [
+                363,
+                367
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Pemeriksaan Penunjang Lain"
+            ]
+        },
+        {
+            "post_id": 20937,
+            "term_ids": [
+                363,
+                367
+            ],
+            "term_names": [
+                "Penunjang Medis",
+                "Pemeriksaan Penunjang Lain"
+            ]
+        },
+        {
+            "post_id": 20938,
+            "term_ids": [
+                368,
+                369
+            ],
+            "term_names": [
+                "Central Sterile Supply Department (CSSD)",
+                "Layanan Sterilisasi Suhu Tinggi"
+            ]
+        },
+        {
+            "post_id": 20939,
+            "term_ids": [
+                368,
+                369
+            ],
+            "term_names": [
+                "Central Sterile Supply Department (CSSD)",
+                "Layanan Sterilisasi Suhu Tinggi"
+            ]
+        },
+        {
+            "post_id": 20940,
+            "term_ids": [
+                368,
+                369
+            ],
+            "term_names": [
+                "Central Sterile Supply Department (CSSD)",
+                "Layanan Sterilisasi Suhu Tinggi"
+            ]
+        },
+        {
+            "post_id": 20941,
+            "term_ids": [
+                368,
+                370
+            ],
+            "term_names": [
+                "Central Sterile Supply Department (CSSD)",
+                "Layanan Sterilisasi Suhu Rendah"
+            ]
+        },
+        {
+            "post_id": 20942,
+            "term_ids": [
+                368,
+                370
+            ],
+            "term_names": [
+                "Central Sterile Supply Department (CSSD)",
+                "Layanan Sterilisasi Suhu Rendah"
+            ]
+        },
+        {
+            "post_id": 20943,
+            "term_ids": [
+                368,
+                370
+            ],
+            "term_names": [
+                "Central Sterile Supply Department (CSSD)",
+                "Layanan Sterilisasi Suhu Rendah"
+            ]
+        }
+    ],
+    "published_count": 0,
+    "rollback": "With explicit approval only: remove listed term assignments from posts 20934-20943; delete only created terms when usage is zero; never delete existing terms 363 or 367; restore backup only as last resort."
+}

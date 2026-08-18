@@ -44,9 +44,9 @@
         </div>
 
         <div class="space-y-2">
-          <label id="schedule-specialization-label" class="block text-sm font-medium text-slate-600">Filter spesialisasi</label>
+          <label id="schedule-specialization-label" for="schedule-specialization" class="block text-sm font-medium text-slate-600">Filter spesialisasi</label>
           <div class="rspku-searchable-select" x-data="searchableSelect">
-            <select id="schedule-specialization" x-model="specialization" x-ref="specialization" @change="filterRows" class="rspku-schedule-select rspku-searchable-select-native" tabindex="-1" aria-hidden="true">
+            <select id="schedule-specialization" x-model="specialization" x-ref="specialization" @change="filterRows" class="rspku-schedule-select rspku-searchable-select-native" tabindex="-1" aria-hidden="true" aria-labelledby="schedule-specialization-label">
               <option value="">Semua spesialisasi</option>
               {% for group in schedule_page.specialization_groups|default([]) %}
                 <optgroup label="{{ group.title }}">
@@ -56,12 +56,12 @@
                 </optgroup>
               {% endfor %}
             </select>
-            <button type="button" class="rspku-searchable-select-trigger rspku-schedule-select" @click="toggle" @keydown.escape.prevent="close" :aria-expanded="open.toString()" aria-haspopup="listbox" aria-labelledby="schedule-specialization-label">
+            <button type="button" class="rspku-searchable-select-trigger rspku-schedule-select" @click="toggle" @keydown.enter.prevent="openList" @keydown.space.prevent="openList" @keydown.arrow-down.prevent="openList" @keydown.arrow-up.prevent="openList" @keydown.escape.prevent="close" :aria-expanded="open.toString()" aria-haspopup="listbox" aria-labelledby="schedule-specialization-label" aria-controls="schedule-specialization-listbox">
               <span x-text="selectedLabel"></span>
             </button>
             <div class="rspku-searchable-select-panel" x-show="open" x-cloak @click.outside="close">
-              <input type="search" class="rspku-searchable-select-search" x-model="query" x-ref="search" @keydown.escape.prevent="close" @keydown.arrow-down.prevent="next" @keydown.arrow-up.prevent="previous" @keydown.enter.prevent="chooseHighlighted" placeholder="Cari spesialisasi">
-              <ul class="rspku-searchable-select-list" role="listbox">
+              <input type="search" class="rspku-searchable-select-search" x-model="query" x-ref="search" @input="highlightedIndex = 0" @keydown.escape.prevent="close" @keydown.arrow-down.prevent="next" @keydown.arrow-up.prevent="previous" @keydown.enter.prevent="chooseHighlighted" placeholder="Cari spesialisasi" aria-labelledby="schedule-specialization-label">
+              <ul id="schedule-specialization-listbox" class="rspku-searchable-select-list" role="listbox" aria-labelledby="schedule-specialization-label">
                 <template x-for="(option, index) in filteredOptions" :key="option.value">
                   <li>
                     <button type="button" class="rspku-searchable-select-option" :class="{ 'is-active': index === highlightedIndex, 'is-selected': option.value === value }" role="option" :aria-selected="(option.value === value).toString()" @mouseenter="highlightedIndex = index" @click="choose(option)" x-text="option.label"></button>

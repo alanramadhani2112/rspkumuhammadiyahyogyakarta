@@ -1,0 +1,2689 @@
+{
+    "mode": "dry-run",
+    "generated_at": "2026-08-14T05:36:47+00:00",
+    "zero_write": true,
+    "checksum_before": "a2b1751b9b03c628e4b5bde782e713c7",
+    "checksum_after": "a2b1751b9b03c628e4b5bde782e713c7",
+    "summary": {
+        "doctor_count": 100,
+        "valid_specialization_terms": 48,
+        "counts": {
+            "missing_schedule_specialization": 0,
+            "invalid_schedule_term": 0,
+            "taxonomy_without_schedule": 25,
+            "schedule_without_taxonomy": 0,
+            "taxonomy_differs_from_schedule": 68,
+            "polyclinic_relation_missing": 25
+        },
+        "sync_counts": {
+            "changed": 93,
+            "unchanged": 7,
+            "skipped_invalid_term": 0,
+            "cleared_no_schedule": 25
+        },
+        "doctor_ids": {
+            "missing_schedule_specialization": [],
+            "invalid_schedule_term": [],
+            "taxonomy_without_schedule": [
+                20717,
+                20718,
+                20719,
+                20720,
+                20724,
+                20725,
+                20726,
+                20727,
+                20728,
+                20729,
+                20730,
+                20731,
+                20732,
+                20733,
+                20734,
+                20735,
+                20736,
+                20737,
+                20738,
+                20739,
+                20740,
+                20741,
+                20742,
+                20743,
+                20744
+            ],
+            "schedule_without_taxonomy": [],
+            "taxonomy_differs_from_schedule": [
+                19259,
+                19275,
+                19283,
+                19285,
+                19287,
+                19310,
+                20350,
+                20351,
+                20352,
+                20353,
+                20354,
+                20355,
+                20356,
+                20357,
+                20358,
+                20359,
+                20360,
+                20361,
+                20362,
+                20363,
+                20364,
+                20365,
+                20366,
+                20367,
+                20368,
+                20369,
+                20370,
+                20371,
+                20372,
+                20373,
+                20375,
+                20376,
+                20377,
+                20378,
+                20379,
+                20380,
+                20381,
+                20382,
+                20383,
+                20384,
+                20385,
+                20386,
+                20387,
+                20388,
+                20389,
+                20390,
+                20391,
+                20392,
+                20393,
+                20394,
+                20395,
+                20396,
+                20398,
+                20406,
+                20407,
+                20408,
+                20410,
+                20411,
+                20412,
+                20413,
+                20414,
+                20418,
+                20419,
+                20420,
+                20421,
+                20422,
+                20427,
+                20428
+            ],
+            "polyclinic_relation_missing": [
+                20717,
+                20718,
+                20719,
+                20720,
+                20724,
+                20725,
+                20726,
+                20727,
+                20728,
+                20729,
+                20730,
+                20731,
+                20732,
+                20733,
+                20734,
+                20735,
+                20736,
+                20737,
+                20738,
+                20739,
+                20740,
+                20741,
+                20742,
+                20743,
+                20744
+            ]
+        }
+    },
+    "doctors": [
+        {
+            "id": 19259,
+            "title": "dr. Rano Irmawan, Sp.JP",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                330
+            ],
+            "taxonomy_term_ids": [
+                329,
+                330
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16970
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    330
+                ]
+            }
+        },
+        {
+            "id": 19275,
+            "title": "dr. Khairina Hashifah, Sp.OG",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 4,
+            "schedule_term_ids": [
+                334
+            ],
+            "taxonomy_term_ids": [
+                333,
+                334
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16972
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    334
+                ]
+            }
+        },
+        {
+            "id": 19283,
+            "title": "dr. Sulistiari Retnowati, Sp.OG",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 6,
+            "schedule_term_ids": [
+                334
+            ],
+            "taxonomy_term_ids": [
+                333,
+                334
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16972
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    334
+                ]
+            }
+        },
+        {
+            "id": 19285,
+            "title": "dr. Anis Widyasari, Sp.OG, Subsp. Urogin-RE",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 5,
+            "schedule_term_ids": [
+                334
+            ],
+            "taxonomy_term_ids": [
+                333,
+                334
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16972
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    334
+                ]
+            }
+        },
+        {
+            "id": 19287,
+            "title": "dr. Muhammad Fandi Ghozali, Sp.Rad., M.Med.Sc.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                313
+            ],
+            "taxonomy_term_ids": [
+                312,
+                313
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16992
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    313
+                ]
+            }
+        },
+        {
+            "id": 19310,
+            "title": "dr. Arum Linangkung, Sp.B, Subsp. BD(K)., M.Sc.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                324
+            ],
+            "taxonomy_term_ids": [
+                310,
+                324
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16937
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    324
+                ]
+            }
+        },
+        {
+            "id": 20350,
+            "title": "dr. H. Zamroni, Sp.N",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                297
+            ],
+            "taxonomy_term_ids": [
+                296,
+                297
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16990
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    297
+                ]
+            }
+        },
+        {
+            "id": 20351,
+            "title": "Dr. dr. Hj. Tri Wahyuliati, Sp.N, M.Kes.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                297
+            ],
+            "taxonomy_term_ids": [
+                296,
+                297
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16990
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    297
+                ]
+            }
+        },
+        {
+            "id": 20352,
+            "title": "dr. Hj. Sekar Satiti, Sp.N, Subsp. N.K.I(K)",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                297
+            ],
+            "taxonomy_term_ids": [
+                296,
+                297
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16990
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    297
+                ]
+            }
+        },
+        {
+            "id": 20353,
+            "title": "dr. Andrianto Selohandono, Sp.N M.Sc.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 4,
+            "schedule_term_ids": [
+                297
+            ],
+            "taxonomy_term_ids": [
+                296,
+                297
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16990
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    297
+                ]
+            }
+        },
+        {
+            "id": 20354,
+            "title": "dr. Arif Budi Prakoso, Sp.N, MMR",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                297
+            ],
+            "taxonomy_term_ids": [
+                296,
+                297
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16990
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    297
+                ]
+            }
+        },
+        {
+            "id": 20355,
+            "title": "dr. H. Adnan Abdullah, Sp.THT-KL, M.Kes.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 6,
+            "schedule_term_ids": [
+                299
+            ],
+            "taxonomy_term_ids": [
+                298,
+                299
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16993
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    299
+                ]
+            }
+        },
+        {
+            "id": 20356,
+            "title": "dr. Deoni Daniswara, Sp.THT-KL",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 6,
+            "schedule_term_ids": [
+                299
+            ],
+            "taxonomy_term_ids": [
+                298,
+                299
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16993
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    299
+                ]
+            }
+        },
+        {
+            "id": 20357,
+            "title": "dr. Aufaa Shafira Widowati, Sp.M",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 4,
+            "schedule_term_ids": [
+                301
+            ],
+            "taxonomy_term_ids": [
+                300,
+                301
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16982
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    301
+                ]
+            }
+        },
+        {
+            "id": 20358,
+            "title": "dr. Hj. Nafiah Chusniati, Sp.DVE, M.Sc.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 8,
+            "schedule_term_ids": [
+                303
+            ],
+            "taxonomy_term_ids": [
+                302,
+                303
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16978
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    303
+                ]
+            }
+        },
+        {
+            "id": 20359,
+            "title": "dr. Siti Aminah, Sp.DVE, M.Kes.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                303
+            ],
+            "taxonomy_term_ids": [
+                302,
+                303
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16978
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    303
+                ]
+            }
+        },
+        {
+            "id": 20360,
+            "title": "dr. Ayu Wikan Sayekti, Sp.DVE, M.Sc.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 5,
+            "schedule_term_ids": [
+                303
+            ],
+            "taxonomy_term_ids": [
+                302,
+                303
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16978
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    303
+                ]
+            }
+        },
+        {
+            "id": 20361,
+            "title": "drg. Hj. Zarah Himawaty, Sp.KG",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 6,
+            "schedule_term_ids": [
+                305
+            ],
+            "taxonomy_term_ids": [
+                304,
+                305
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16950
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    305
+                ]
+            }
+        },
+        {
+            "id": 20362,
+            "title": "drg. Ratih Andini, Sp.KG",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                305
+            ],
+            "taxonomy_term_ids": [
+                304,
+                305
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16950
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    305
+                ]
+            }
+        },
+        {
+            "id": 20363,
+            "title": "Dr. drg. Hj. Ika Andriani, Sp.Perio., M.DSc.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                306
+            ],
+            "taxonomy_term_ids": [
+                304,
+                306
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16958
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    306
+                ]
+            }
+        },
+        {
+            "id": 20364,
+            "title": "Dr. dr. Hj. Dahlia Herawati, Sp.Perio(K)",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 1,
+            "schedule_term_ids": [
+                306
+            ],
+            "taxonomy_term_ids": [
+                304,
+                306
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16958
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    306
+                ]
+            }
+        },
+        {
+            "id": 20365,
+            "title": "drg. Amalia Perwitasari, Sp.Perio",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                306
+            ],
+            "taxonomy_term_ids": [
+                304,
+                306
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16958
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    306
+                ]
+            }
+        },
+        {
+            "id": 20366,
+            "title": "drg. Hj. Siti Rahayu, Sp.KGA",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 5,
+            "schedule_term_ids": [
+                307
+            ],
+            "taxonomy_term_ids": [
+                304,
+                307
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16952
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    307
+                ]
+            }
+        },
+        {
+            "id": 20367,
+            "title": "drg. Hj. Pipiet Setyaningsih, Sp.Ort., MPH",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 5,
+            "schedule_term_ids": [
+                308
+            ],
+            "taxonomy_term_ids": [
+                304,
+                308
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16951
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    308
+                ]
+            }
+        },
+        {
+            "id": 20368,
+            "title": "drg. Winda Susra",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                309
+            ],
+            "taxonomy_term_ids": [
+                304,
+                309
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16960
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    309
+                ]
+            }
+        },
+        {
+            "id": 20369,
+            "title": "drg. Hj. Indria Nehriasari, Sp.BM, M.Kes",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 4,
+            "schedule_term_ids": [
+                311
+            ],
+            "taxonomy_term_ids": [
+                310,
+                311
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16940
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    311
+                ]
+            }
+        },
+        {
+            "id": 20370,
+            "title": "drg. Mochamad Agus Artono, Sp.BM",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                311
+            ],
+            "taxonomy_term_ids": [
+                310,
+                311
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16940
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    311
+                ]
+            }
+        },
+        {
+            "id": 20371,
+            "title": "dr. H. Ahmad Faesol, Sp.Rad., M.Kes., MMR",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 5,
+            "schedule_term_ids": [
+                313
+            ],
+            "taxonomy_term_ids": [
+                312,
+                313
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16992
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    313
+                ]
+            }
+        },
+        {
+            "id": 20372,
+            "title": "dr. Dewi Ari Mulyani, Sp.Rad., M.Sc.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 5,
+            "schedule_term_ids": [
+                313
+            ],
+            "taxonomy_term_ids": [
+                312,
+                313
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16992
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    313
+                ]
+            }
+        },
+        {
+            "id": 20373,
+            "title": "dr. Anggita Putri Kantilaras, Sp.Rad(K) RI",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                313
+            ],
+            "taxonomy_term_ids": [
+                312,
+                313
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16992
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    313
+                ]
+            }
+        },
+        {
+            "id": 20375,
+            "title": "Prof. Dr. dr. Usi Sukorini, M.Kes., Sp.PK. Subsp. H.K(K), Subsp. B.D.K.T(K)",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                314
+            ],
+            "taxonomy_term_ids": [
+                312,
+                314
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16980,
+                16981
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    314
+                ]
+            }
+        },
+        {
+            "id": 20376,
+            "title": "dr. H. Suryanto, Sp.PK., Subsp.HK(K), FIHFAA",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                314
+            ],
+            "taxonomy_term_ids": [
+                312,
+                314
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16980,
+                16981
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    314
+                ]
+            }
+        },
+        {
+            "id": 20377,
+            "title": "dr. Amanatus Solikhah, M.Sc., Sp.PK",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                314
+            ],
+            "taxonomy_term_ids": [
+                312,
+                314
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16980,
+                16981
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    314
+                ]
+            }
+        },
+        {
+            "id": 20378,
+            "title": "dr. Hj. Budi Pratiti, Sp.KJ",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                316
+            ],
+            "taxonomy_term_ids": [
+                315,
+                316
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16969
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    316
+                ]
+            }
+        },
+        {
+            "id": 20379,
+            "title": "dr. Windy Aristiani, MMR, Sp.KJ",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 4,
+            "schedule_term_ids": [
+                316
+            ],
+            "taxonomy_term_ids": [
+                315,
+                316
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16969
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    316
+                ]
+            }
+        },
+        {
+            "id": 20380,
+            "title": "Rahma Kusuma Fitri, M.Psi., Psikolog",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                317
+            ],
+            "taxonomy_term_ids": [
+                315,
+                317
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16991
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    317
+                ]
+            }
+        },
+        {
+            "id": 20381,
+            "title": "Mufliha Fahmi, M.Psi.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                317
+            ],
+            "taxonomy_term_ids": [
+                315,
+                317
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16991
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    317
+                ]
+            }
+        },
+        {
+            "id": 20382,
+            "title": "Rifka Nur&#8217;aini Oktaviani, M.Psi., Psikolog",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 4,
+            "schedule_term_ids": [
+                317
+            ],
+            "taxonomy_term_ids": [
+                315,
+                317
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16991
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    317
+                ]
+            }
+        },
+        {
+            "id": 20383,
+            "title": "dr. H. Adi Sihono, Sp.B",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                318
+            ],
+            "taxonomy_term_ids": [
+                310,
+                318
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16948
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    318
+                ]
+            }
+        },
+        {
+            "id": 20384,
+            "title": "Dr. dr. H. Sagiran, Sp.B(K) KL., M.Kes.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 1,
+            "schedule_term_ids": [
+                318
+            ],
+            "taxonomy_term_ids": [
+                310,
+                318
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16948
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    318
+                ]
+            }
+        },
+        {
+            "id": 20385,
+            "title": "dr. Taufiek Hikmawan Y. B. S., Sp.B",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                318
+            ],
+            "taxonomy_term_ids": [
+                310,
+                318
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16948
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    318
+                ]
+            }
+        },
+        {
+            "id": 20386,
+            "title": "dr. Azzam Hizbur Rahman, Sp.B",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                318
+            ],
+            "taxonomy_term_ids": [
+                310,
+                318
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16948
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    318
+                ]
+            }
+        },
+        {
+            "id": 20387,
+            "title": "dr. H. Kuncahyo Kamal Arifin, Sp.OT",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                319
+            ],
+            "taxonomy_term_ids": [
+                310,
+                319
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16944
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    319
+                ]
+            }
+        },
+        {
+            "id": 20388,
+            "title": "dr. Marda Ade Saputra, Sp.OT",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                319
+            ],
+            "taxonomy_term_ids": [
+                310,
+                319
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16944
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    319
+                ]
+            }
+        },
+        {
+            "id": 20389,
+            "title": "dr. Wahyu Setyawan, Sp.OT(K)",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                319
+            ],
+            "taxonomy_term_ids": [
+                310,
+                319
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16944
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    319
+                ]
+            }
+        },
+        {
+            "id": 20390,
+            "title": "Dr. dr. H. Rahmat Andi Hartanto, Sp.BS ( K ), Subsp. N. Onko",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                320
+            ],
+            "taxonomy_term_ids": [
+                310,
+                320
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16990
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    320
+                ]
+            }
+        },
+        {
+            "id": 20391,
+            "title": "dr. Rakyan Artha Dewi Rachmat, Sp.BS",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 1,
+            "schedule_term_ids": [
+                320
+            ],
+            "taxonomy_term_ids": [
+                310,
+                320
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16990
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    320
+                ]
+            }
+        },
+        {
+            "id": 20392,
+            "title": "Dr. dr. Ahmad Zulfan Hendri, Sp.U(K)",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 4,
+            "schedule_term_ids": [
+                321
+            ],
+            "taxonomy_term_ids": [
+                310,
+                321
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16949
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    321
+                ]
+            }
+        },
+        {
+            "id": 20393,
+            "title": "dr. Wikan Kurniawan, Sp.U",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                321
+            ],
+            "taxonomy_term_ids": [
+                310,
+                321
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16949
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    321
+                ]
+            }
+        },
+        {
+            "id": 20394,
+            "title": "dr. Muhammad Anwar Irzan, Sp.U",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                321
+            ],
+            "taxonomy_term_ids": [
+                310,
+                321
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16949
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    321
+                ]
+            }
+        },
+        {
+            "id": 20395,
+            "title": "Dr. dr. Akhmad Makhmudi, Sp.B, Sp.BA, Subsp. D.A(K)",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 6,
+            "schedule_term_ids": [
+                323
+            ],
+            "taxonomy_term_ids": [
+                322,
+                323
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16936
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    323
+                ]
+            }
+        },
+        {
+            "id": 20396,
+            "title": "dr. Hafni Zuchra Noor, MM., Sp.BA",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 4,
+            "schedule_term_ids": [
+                323
+            ],
+            "taxonomy_term_ids": [
+                322,
+                323
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16936
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    323
+                ]
+            }
+        },
+        {
+            "id": 20398,
+            "title": "dr. Helmanu Kurniadi, Sp.B, Subsp. Onk(K)",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                325
+            ],
+            "taxonomy_term_ids": [
+                310,
+                325
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16941
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    325
+                ]
+            }
+        },
+        {
+            "id": 20399,
+            "title": "dr. H. Muhammad Iqbal, Sp.PD., M.Kes.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                326
+            ],
+            "taxonomy_term_ids": [
+                326
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16989
+            ],
+            "categories": [],
+            "sync": {
+                "will_change": false,
+                "target_term_ids": [
+                    326
+                ]
+            }
+        },
+        {
+            "id": 20400,
+            "title": "dr. Hj. Niarna Lusi, Sp.PD",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                326
+            ],
+            "taxonomy_term_ids": [
+                326
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16989
+            ],
+            "categories": [],
+            "sync": {
+                "will_change": false,
+                "target_term_ids": [
+                    326
+                ]
+            }
+        },
+        {
+            "id": 20401,
+            "title": "dr. H. Mohamad Wibowo, Sp.PD",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                326
+            ],
+            "taxonomy_term_ids": [
+                326
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16989
+            ],
+            "categories": [],
+            "sync": {
+                "will_change": false,
+                "target_term_ids": [
+                    326
+                ]
+            }
+        },
+        {
+            "id": 20402,
+            "title": "dr. Maya Um Husna, Sp.PD",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                326
+            ],
+            "taxonomy_term_ids": [
+                326
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16989
+            ],
+            "categories": [],
+            "sync": {
+                "will_change": false,
+                "target_term_ids": [
+                    326
+                ]
+            }
+        },
+        {
+            "id": 20403,
+            "title": "dr. Sisca Wulandari, Sp.PD",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 4,
+            "schedule_term_ids": [
+                326
+            ],
+            "taxonomy_term_ids": [
+                326
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16989
+            ],
+            "categories": [],
+            "sync": {
+                "will_change": false,
+                "target_term_ids": [
+                    326
+                ]
+            }
+        },
+        {
+            "id": 20404,
+            "title": "dr. Riska Amalia Ambarwati, Sp.PD",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                326
+            ],
+            "taxonomy_term_ids": [
+                326
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16989
+            ],
+            "categories": [],
+            "sync": {
+                "will_change": false,
+                "target_term_ids": [
+                    326
+                ]
+            }
+        },
+        {
+            "id": 20405,
+            "title": "dr. Dandy Firmansyah, Sp.PD, AIFO-K",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                326
+            ],
+            "taxonomy_term_ids": [
+                326
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16989
+            ],
+            "categories": [],
+            "sync": {
+                "will_change": false,
+                "target_term_ids": [
+                    326
+                ]
+            }
+        },
+        {
+            "id": 20406,
+            "title": "dr. H. Barkah Djaka Purwanto, SpPD-KGH, SubSp GH (K), FINASIM",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                327
+            ],
+            "taxonomy_term_ids": [
+                326,
+                327
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16961
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    327
+                ]
+            }
+        },
+        {
+            "id": 20407,
+            "title": "dr. Mardiah Suci Hardianti, Sp.PD-KHOM, Ph.D.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                328
+            ],
+            "taxonomy_term_ids": [
+                326,
+                328
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16962
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    328
+                ]
+            }
+        },
+        {
+            "id": 20408,
+            "title": "dr. Irsyad Andi Arso, Sp.PD, Sp.JP(K), M.Sc.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                330
+            ],
+            "taxonomy_term_ids": [
+                329,
+                330
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16970
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    330
+                ]
+            }
+        },
+        {
+            "id": 20410,
+            "title": "dr. Evita Devi Noor Rahmawati, Sp.JP(K)",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 6,
+            "schedule_term_ids": [
+                330
+            ],
+            "taxonomy_term_ids": [
+                329,
+                330
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16970
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    330
+                ]
+            }
+        },
+        {
+            "id": 20411,
+            "title": "dr. Ardorisye Saptati Fornia, Sp.P., M.Kes.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 6,
+            "schedule_term_ids": [
+                332
+            ],
+            "taxonomy_term_ids": [
+                331,
+                332
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16983
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    332
+                ]
+            }
+        },
+        {
+            "id": 20412,
+            "title": "dr. H. Yusrizal Djam&#8217;an Shaleh, Sp.P(K), FCCP, FISR",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                332
+            ],
+            "taxonomy_term_ids": [
+                331,
+                332
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16983
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    332
+                ]
+            }
+        },
+        {
+            "id": 20413,
+            "title": "dr. H. Munawar Gani, Sp.P(K)",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                332
+            ],
+            "taxonomy_term_ids": [
+                331,
+                332
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16983
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    332
+                ]
+            }
+        },
+        {
+            "id": 20414,
+            "title": "dr. Ramaniya Kirana, Sp.P",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                332
+            ],
+            "taxonomy_term_ids": [
+                331,
+                332
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16983
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    332
+                ]
+            }
+        },
+        {
+            "id": 20418,
+            "title": "dr. Brian Prima Artha, Sp.OG(K)-Onk",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                335
+            ],
+            "taxonomy_term_ids": [
+                333,
+                335
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16959,
+                16972
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    335
+                ]
+            }
+        },
+        {
+            "id": 20419,
+            "title": "dr. H. Mohammad Komarudin, Sp.A",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 9,
+            "schedule_term_ids": [
+                336
+            ],
+            "taxonomy_term_ids": [
+                322,
+                336
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                15638
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    336
+                ]
+            }
+        },
+        {
+            "id": 20420,
+            "title": "dr. Muriana Novariani, Sp.A, M.Kes.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                336
+            ],
+            "taxonomy_term_ids": [
+                322,
+                336
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                15638
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    336
+                ]
+            }
+        },
+        {
+            "id": 20421,
+            "title": "dr. Yanantri Binga Ramsif, Sp.A, M.Med.Sc.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                336
+            ],
+            "taxonomy_term_ids": [
+                322,
+                336
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                15638
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    336
+                ]
+            }
+        },
+        {
+            "id": 20422,
+            "title": "dr. Nadya Arafuri, Sp.A, Subsp. Kardio(K)",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 3,
+            "schedule_term_ids": [
+                337
+            ],
+            "taxonomy_term_ids": [
+                322,
+                337
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16971
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    337
+                ]
+            }
+        },
+        {
+            "id": 20427,
+            "title": "dr. Hj. Pujiatun, Sp.KFR",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 4,
+            "schedule_term_ids": [
+                342
+            ],
+            "taxonomy_term_ids": [
+                312,
+                342
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16998
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    342
+                ]
+            }
+        },
+        {
+            "id": 20428,
+            "title": "dr. Petrina Theda Philotra, Sp.KFR, M.Med.Klin.",
+            "schedule_source": "_rspku_doctor_schedule",
+            "schedule_rows": 2,
+            "schedule_term_ids": [
+                342
+            ],
+            "taxonomy_term_ids": [
+                312,
+                342
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [
+                16998
+            ],
+            "categories": [
+                "taxonomy_differs_from_schedule"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": [
+                    342
+                ]
+            }
+        },
+        {
+            "id": 20717,
+            "title": "dr. Safiqulatif Abdillah, MMR, Sp.PA",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                343
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20718,
+            "title": "dr. Fitria Puspita Dewi, MMR, Sp.PA",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                343
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20719,
+            "title": "dr. Dwi Ditha Emelia",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20720,
+            "title": "dr. Joko Murdiyanto, sp.An., MPH",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                345
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20724,
+            "title": "dr. Aras Amila Husna, Sp.T.H.T.B.K.L",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                346
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20725,
+            "title": "drg. Yuninda Lintang, Sp. KG",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                347
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20726,
+            "title": "dr. Tuti Wardani, MMR",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20727,
+            "title": "dr. Desita Dyah Mukti Adityaningrum, M.Sc.",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20728,
+            "title": "dr. Mahda Adil Aufa, MMR",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20729,
+            "title": "dr. Fitri Prawaitasari, MMR",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20730,
+            "title": "dr. Elmira Apriliani, MMR",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20731,
+            "title": "dr. Dhia Clarissa Putri",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20732,
+            "title": "dr. Muhammad Salsabil Lasarik",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20733,
+            "title": "dr. Ihsana Khoirun Nisa",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20734,
+            "title": "dr. Muhammad Ainun Rosydz",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20735,
+            "title": "dr. Ardiyuga Pratitapraya",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20736,
+            "title": "dr. Miftakhul Huda Fadhlullah",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20737,
+            "title": "dr. Muhammad Faris Novadityarahman, MMR",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20738,
+            "title": "dr. Maharani Zulfa Maz Uda",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20739,
+            "title": "dr. Jihan Izzatun Nisa",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20740,
+            "title": "dr. Khansa Maria Salsabila",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20741,
+            "title": "dr. Muhammad Afif Nadirrafi",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20742,
+            "title": "dr. Bella Indah Normalita",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20743,
+            "title": "dr. Zarifa Nurinnisa",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        },
+        {
+            "id": 20744,
+            "title": "dr. Muhammad Asyam Fawwaz",
+            "schedule_source": "none",
+            "schedule_rows": 0,
+            "schedule_term_ids": [],
+            "taxonomy_term_ids": [
+                344
+            ],
+            "missing_schedule_specialization_rows": [],
+            "invalid_schedule_term_rows": [],
+            "polyclinic_relation_ids": [],
+            "categories": [
+                "taxonomy_without_schedule",
+                "polyclinic_relation_missing"
+            ],
+            "sync": {
+                "will_change": true,
+                "target_term_ids": []
+            }
+        }
+    ]
+}

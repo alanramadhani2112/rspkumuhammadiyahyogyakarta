@@ -1,0 +1,152 @@
+{
+    "batch_id": "master-data-layanan-101-uat-batch18-20260818",
+    "taxonomy": "master-layanan-medis",
+    "assigned_at": "2026-08-18T12:22:06+00:00",
+    "backup": {
+        "path": ".sisyphus/backups/master-data-layanan-101-uat-pre-taxonomy-batch18-20260818.sql",
+        "size": 82968545
+    },
+    "created_terms": [
+        {
+            "term_id": 371,
+            "name": "Layanan Unggulan Lainnya"
+        },
+        {
+            "term_id": 372,
+            "name": "Ambulan"
+        },
+        {
+            "term_id": 373,
+            "name": "Layanan Lainnya"
+        },
+        {
+            "term_id": 374,
+            "name": "Hub Layanan Unggulan"
+        },
+        {
+            "term_id": 375,
+            "name": "Pusat Layanan Unggulan"
+        }
+    ],
+    "created_term_ids": [
+        371,
+        372,
+        373,
+        374,
+        375
+    ],
+    "assignments": [
+        {
+            "post_id": 20944,
+            "term_ids": [
+                371,
+                372
+            ],
+            "term_names": [
+                "Layanan Unggulan Lainnya",
+                "Ambulan"
+            ]
+        },
+        {
+            "post_id": 20945,
+            "term_ids": [
+                371,
+                372
+            ],
+            "term_names": [
+                "Layanan Unggulan Lainnya",
+                "Ambulan"
+            ]
+        },
+        {
+            "post_id": 20946,
+            "term_ids": [
+                371,
+                372
+            ],
+            "term_names": [
+                "Layanan Unggulan Lainnya",
+                "Ambulan"
+            ]
+        },
+        {
+            "post_id": 20947,
+            "term_ids": [
+                371,
+                372
+            ],
+            "term_names": [
+                "Layanan Unggulan Lainnya",
+                "Ambulan"
+            ]
+        },
+        {
+            "post_id": 20948,
+            "term_ids": [
+                371,
+                372
+            ],
+            "term_names": [
+                "Layanan Unggulan Lainnya",
+                "Ambulan"
+            ]
+        },
+        {
+            "post_id": 20949,
+            "term_ids": [
+                371,
+                373
+            ],
+            "term_names": [
+                "Layanan Unggulan Lainnya",
+                "Layanan Lainnya"
+            ]
+        },
+        {
+            "post_id": 20950,
+            "term_ids": [
+                371,
+                373
+            ],
+            "term_names": [
+                "Layanan Unggulan Lainnya",
+                "Layanan Lainnya"
+            ]
+        },
+        {
+            "post_id": 20951,
+            "term_ids": [
+                371,
+                373
+            ],
+            "term_names": [
+                "Layanan Unggulan Lainnya",
+                "Layanan Lainnya"
+            ]
+        },
+        {
+            "post_id": 20952,
+            "term_ids": [
+                371,
+                373
+            ],
+            "term_names": [
+                "Layanan Unggulan Lainnya",
+                "Layanan Lainnya"
+            ]
+        },
+        {
+            "post_id": 20953,
+            "term_ids": [
+                374,
+                375
+            ],
+            "term_names": [
+                "Hub Layanan Unggulan",
+                "Pusat Layanan Unggulan"
+            ]
+        }
+    ],
+    "published_count": 0,
+    "rollback": "Only with explicit approval: remove these assignments from posts 20944-20953; delete created terms only when usage is zero; restore the DB backup only as a last resort."
+}

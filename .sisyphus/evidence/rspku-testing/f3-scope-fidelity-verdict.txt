@@ -1,0 +1,16 @@
+# F3 Scope Fidelity Verdict 2026-07-31
+
+Verdict: APPROVE
+
+## Findings
+
+- No staged files found: `git diff --cached --name-status` returned no output.
+- No `.playwright-mcp/page-*.yml` snapshots remain.
+- No `wp-content/mu-plugins/**` probe file remains.
+- `node_modules` is not tracked: `git ls-files node_modules` returned no output.
+- Current status contains only allowed `.sisyphus/` plan/evidence artifacts plus seven pre-existing production-readiness source diffs.
+- `.sisyphus/plans/rspku-testing-plan.md` keeps F1-F3 unchecked pending reviewer completion, as required.
+
+## Decision
+
+APPROVE F3 scope fidelity after remediation.

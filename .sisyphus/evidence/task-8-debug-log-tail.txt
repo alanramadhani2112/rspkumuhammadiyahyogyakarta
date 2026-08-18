@@ -1,0 +1,130 @@
+﻿Task 8 debug.log tail after continuation retest
+Generated: 2026-07-31T17:40:28.2463137+07:00
+
+[25-May-2026 02:00:01 UTC] Automatic updates complete.
+[31-Jul-2026 02:15:14 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\laragon\www\rspkudev\wp-settings.php:16) in C:\laragon\www\rspkudev\wp-content\db-error.php on line 3
+[31-Jul-2026 02:15:14 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\laragon\www\rspkudev\wp-settings.php:16) in C:\laragon\www\rspkudev\wp-content\db-error.php on line 4
+[31-Jul-2026 02:15:14 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at C:\laragon\www\rspkudev\wp-settings.php:16) in C:\laragon\www\rspkudev\wp-content\db-error.php on line 5
+[31-Jul-2026 02:22:10 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:22:10 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:22:11 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:22:11 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:22:11 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:22:11 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:22:11 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:22:11 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:22:12 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:22:12 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:23:10 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:23:10 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:23:10 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:23:10 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:23:10 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:23:21 UTC] Automatic updates starting...
+[31-Jul-2026 02:23:28 UTC]   Automatic plugin updates starting...
+[31-Jul-2026 02:23:28 UTC]   Automatic plugin updates complete.
+[31-Jul-2026 02:23:30 UTC]   Automatic theme updates starting...
+[31-Jul-2026 02:23:30 UTC]   Automatic theme updates complete.
+[31-Jul-2026 02:23:30 UTC] Automatic updates complete.
+[31-Jul-2026 02:23:40 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:23:40 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:23:40 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:23:40 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:23:40 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:24:09 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:24:09 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:24:09 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:24:09 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:24:09 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:24:12 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:24:12 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:24:12 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:24:12 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:24:12 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:24:12 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:24:12 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:24:12 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:24:12 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:24:12 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:25:00 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:25:00 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:25:00 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:25:00 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:25:00 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:26:30 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:26:30 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:26:30 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:26:30 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:26:30 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:26:30 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:26:30 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:26:30 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:26:30 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:26:31 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:26:33 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:26:33 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:26:33 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:26:33 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:26:33 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:26:37 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:26:37 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:26:37 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:26:37 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:26:37 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:26:37 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:26:37 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:26:37 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:26:38 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:26:38 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:26:46 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:26:46 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:26:46 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:26:46 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:26:46 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:26:54 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:26:54 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:26:54 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:26:54 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:26:54 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:27:01 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:27:02 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:27:02 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:27:02 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:27:02 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:28:31 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:28:31 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:28:31 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:28:31 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:28:31 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:28:31 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:28:31 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:28:31 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:28:31 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:28:32 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:31:28 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:31:28 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:31:28 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:31:28 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:31:28 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:36:59 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:36:59 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:36:59 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:36:59 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:36:59 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:37:33 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:37:33 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:37:33 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:37:33 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:37:33 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+[31-Jul-2026 02:37:48 UTC] PHP Deprecated:  Creation of dynamic property ACF::$fields is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\fields.php on line 117
+[31-Jul-2026 02:37:48 UTC] PHP Deprecated:  Creation of dynamic property ACF::$loop is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\loop.php on line 231
+[31-Jul-2026 02:37:48 UTC] PHP Deprecated:  Creation of dynamic property ACF::$revisions is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\revisions.php on line 418
+[31-Jul-2026 02:37:48 UTC] PHP Deprecated:  Creation of dynamic property ACF::$validation is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\validation.php on line 195
+[31-Jul-2026 02:37:48 UTC] PHP Deprecated:  Creation of dynamic property ACF::$form_front is deprecated in C:\laragon\www\rspkudev\wp-content\plugins\advanced-custom-fields-pro-main\includes\forms\form-front.php on line 549
+
+Summary:
+Fatal error count: 0
+Parse error count: 0
+PHP Warning count: 3
+PHP Deprecated count: 110
+Latest new fatal/parse errors after continuation tests: none observed in tail

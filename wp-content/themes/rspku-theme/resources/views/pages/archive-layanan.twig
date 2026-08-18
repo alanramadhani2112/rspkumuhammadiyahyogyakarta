@@ -26,14 +26,15 @@
                 <span class="text-sm font-semibold text-slate-950">{{ service_archive.total }}</span>
                 <span class="text-sm text-slate-500">layanan tersedia</span>
               </div>
-              <a href="{{ site.url }}/poliklinik/" class="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-hospital-300 hover:text-hospital-700">
-                {{ icon('stethoscope', { class: 'h-4 w-4' }) }}
-                <span>Lihat poliklinik</span>
-              </a>
-              <a href="{{ site.url }}/dokter/" class="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-hospital-300 hover:text-hospital-700">
-                {{ icon('search', { class: 'h-4 w-4' }) }}
-                <span>Cari dokter</span>
-              </a>
+              {% for cta in service_archive.cta|default([
+                { title: 'Lihat poliklinik', url: site.url ~ '/poliklinik/', icon: 'stethoscope' },
+                { title: 'Cari dokter', url: site.url ~ '/dokter/', icon: 'search' }
+              ]) %}
+                <a href="{{ cta.url }}" class="inline-flex items-center gap-2 rounded-sm border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-hospital-300 hover:text-hospital-700">
+                  {{ icon(cta.icon, { class: 'h-4 w-4' }) }}
+                  <span>{{ cta.title }}</span>
+                </a>
+              {% endfor %}
             </div>
           </div>
 
@@ -75,8 +76,65 @@
       </div>
     </section>
 
-    {# Service Grid #}
-    {% if service_archive.items %}
+    {% if service_archive.groups is defined %}
+      <section class="py-12">
+        <div class="rspku-container space-y-10">
+          {% for group in service_archive.groups %}
+            {% if group.items|length %}
+              <section class="scroll-mt-24">
+                <div class="mb-5 flex flex-col gap-3 border-b border-slate-200 pb-4 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <h2 class="text-xl font-bold text-slate-950 sm:text-2xl">{{ group.title }}</h2>
+                    <p class="mt-1 max-w-2xl text-sm leading-relaxed text-slate-600">{{ group.description }}</p>
+                  </div>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <span class="inline-flex items-center rounded-sm bg-hospital-50 px-3 py-1.5 text-sm font-semibold text-hospital-700">{{ group.items|length }} layanan</span>
+                    <span class="inline-flex items-center gap-2 text-sm font-medium text-slate-500">
+                      <span>Pilih layanan</span>
+                      {{ icon('arrow-down', { class: 'h-4 w-4' }) }}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {% for item in group.items %}
+                    <a href="{{ item.url }}" class="group flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:border-hospital-300 focus-visible:border-hospital-300">
+                      <div class="relative aspect-[16/9] overflow-hidden bg-slate-100">
+                        {% if item.image and item.image.url %}
+                          <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+                        {% else %}
+                          <div class="grid h-full w-full place-items-center bg-hospital-50/30">
+                            <div class="grid h-14 w-14 place-items-center rounded-sm border border-hospital-200 bg-white text-hospital-700">
+                              {{ icon('hospital', { class: 'h-6 w-6' }) }}
+                            </div>
+                          </div>
+                        {% endif %}
+                        <div class="absolute left-3 top-3">
+                          <span class="inline-block rounded-sm bg-white/90 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700 backdrop-blur-sm">{{ item.badge }}</span>
+                        </div>
+                      </div>
+
+                      <div class="flex flex-1 flex-col p-5">
+                        <h3 class="text-base font-semibold leading-snug text-slate-950 transition group-hover:text-hospital-700 group-focus-visible:text-hospital-700">{{ item.title }}</h3>
+                        {% if item.excerpt %}
+                          <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-600">{{ item.excerpt }}</p>
+                        {% endif %}
+                        <div class="mt-auto flex items-center justify-between gap-3 pt-4">
+                          <span class="text-xs font-semibold uppercase tracking-wide text-hospital-700">Lihat detail</span>
+                          <span class="grid h-7 w-7 place-items-center rounded-sm bg-hospital-50 text-hospital-700 transition group-hover:bg-hospital-600 group-hover:text-white group-focus-visible:bg-hospital-600 group-focus-visible:text-white">
+                            {{ icon('arrow-up-right', { class: 'h-3.5 w-3.5 transition group-hover:text-white group-focus-visible:text-white' }) }}
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  {% endfor %}
+                </div>
+              </section>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </section>
+    {% elseif service_archive.items %}
       <section class="py-12">
         <div class="rspku-container">
           <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -142,6 +200,12 @@
               url: site.url ~ '/dokter/',
               variant: 'primary',
               icon: 'search'
+            } only %}
+            {% include 'components/button.twig' with {
+              text: 'Lihat Jadwal Dokter',
+              url: site.url ~ '/jadwal-dokter/',
+              variant: 'secondary',
+              icon: 'calendar'
             } only %}
             {% include 'components/button.twig' with {
               text: 'Hubungi Kami',

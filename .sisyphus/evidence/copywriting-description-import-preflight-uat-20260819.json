@@ -1,0 +1,1144 @@
+{
+  "task": "copywriting-description-import-preflight",
+  "mode": "read-only",
+  "source_txt": "D:\\Dev Ops\\RSPKU Muhammadiyah Yogyakarta\\Revisi Web\\Copywriting Layanan RS PKU Jogja & Layanan Unggulan.txt",
+  "mapping_artifact": ".sisyphus/evidence/master-data-layanan-101-mapping-master-data-layanan-101-uat-description-current-20260819.json",
+  "target_field": "post_content",
+  "rendering": "findService/findPolyclinic/findRoom render detail meta with post_content fallback; single templates output content|raw",
+  "rules": {
+    "auto_apply": "one draft matched-by-identity target, content_len 0, non-ambiguous alias",
+    "review": "published possible-title, multiple targets, duplicate semantic headings, unmatched sections"
+  },
+  "mappings": [
+    {
+      "heading": "Klinik Saraf",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Klinik Neurologi / Saraf",
+          "post_id": 20867,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Saraf",
+      "source_heading_line": 43,
+      "source_content_line": 45,
+      "source_content": "Klinik Saraf menyediakan layanan diagnosis dan tata laksana berbagai gangguan sistem saraf pusat maupun perifer, termasuk stroke, epilepsi, migrain, neuropati, serta gangguan keseimbangan dan koordinasi. Pelayanan dilakukan oleh dokter spesialis neurologi dengan dukungan pemeriksaan penunjang neurofisiologi dan pencitraan otak (brain imaging) yang tersedia di rumah sakit.",
+      "source_content_length": 374,
+      "source_content_sha256": "151a8855504e88e05a6ea250482f5149b3dc07b0181a701e368973c1fe253878",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Telinga Hidung dan Tenggorokan (THT)",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Klinik Telinga, Hidung, Tenggorokan, dan Kepala Leher",
+          "post_id": 20869,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Telinga Hidung dan Tenggorokan (THT)",
+      "source_heading_line": 50,
+      "source_content_line": 53,
+      "source_content": "Klinik THT menyediakan layanan pemeriksaan dan tata laksana gangguan pada telinga, hidung, dan tenggorokan secara komprehensif. Pelayanan mencakup penanganan infeksi saluran napas atas, gangguan pendengaran, sinusitis, vertigo, serta kondisi THT lainnya, yang dilakukan oleh dokter spesialis THT dengan peralatan diagnostik endoskopi dan audiometri yang memadai.",
+      "source_content_length": 362,
+      "source_content_sha256": "1a05064310ad67425e563f8c3783491b3ba60eabac8d1e8fec9c4cc2a8c23e0f",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Mata",
+      "confidence": "possible-title-published",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Mata",
+          "post_id": 16982,
+          "cpt": "poliklinik",
+          "status": "publish",
+          "match_status": "possible-existing-title",
+          "content_len": null
+        }
+      ],
+      "source_heading": "Klinik Mata",
+      "source_heading_line": 58,
+      "source_content_line": 60,
+      "source_content": "Klinik Mata menyediakan layanan pemeriksaan dan penanganan berbagai kondisi pada organ penglihatan, meliputi gangguan refraksi, katarak, glaukoma, kelainan retina, dan penyakit mata lainnya. Pelayanan dilakukan oleh dokter spesialis mata dengan dukungan peralatan diagnostik oftalmologi modern untuk memastikan ketepatan diagnosis dan rencana terapi yang sesuai.",
+      "source_content_length": 362,
+      "source_content_sha256": "50e82ec40496501b806213e828a5045dadf715cf74078775ce186b6e8f524a5e",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Kesehatan Jiwa (Psikiatri)",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Klinik Psikiatri / Kesehatan Jiwa",
+          "post_id": 20868,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Kesehatan Jiwa (Psikiatri)",
+      "source_heading_line": 80,
+      "source_content_line": 82,
+      "source_content": "Klinik Kesehatan Jiwa menyediakan layanan konsultasi, diagnosis, dan tata laksana gangguan mental secara holistik dan berbasis evidens. Pelayanan dilakukan oleh dokter spesialis kedokteran jiwa (psikiater) dengan pendekatan bio-psiko-sosial, meliputi penanganan depresi, ansietas, gangguan psikotik, adiksi, serta kondisi kejiwaan lainnya.",
+      "source_content_length": 339,
+      "source_content_sha256": "4473e01de7d37d4f3af0df4b2283d7bd2014aaa61ee529871e446d00dfe5bd25",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Penyakit Dalam",
+      "confidence": "possible-title-published",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Penyakit Dalam",
+          "post_id": 16989,
+          "cpt": "poliklinik",
+          "status": "publish",
+          "match_status": "possible-existing-title",
+          "content_len": null
+        }
+      ],
+      "source_heading": "Klinik Penyakit Dalam",
+      "source_heading_line": 87,
+      "source_content_line": 89,
+      "source_content": "Klinik Penyakit Dalam menyediakan layanan konsultasi dan tata laksana berbagai penyakit organ dalam, termasuk diabetes melitus, hipertensi, penyakit saluran cerna, infeksi, dan gangguan metabolik. Pelayanan dilakukan oleh dokter spesialis penyakit dalam yang berpengalaman dengan pendekatan tata laksana yang terstruktur dan berbasis standar medis terkini.",
+      "source_content_length": 356,
+      "source_content_sha256": "e93c771f727ff5f54d08dfc06650ec2854793f76b599ab8bd795e142a7ad6e7b",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Paru",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Klinik Paru dan Respirasi",
+          "post_id": 20865,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Paru",
+      "source_heading_line": 94,
+      "source_content_line": 96,
+      "source_content": "Klinik Paru menyediakan layanan diagnosis dan tata laksana penyakit saluran napas dan paru-paru, mencakup asma bronkial, PPOK, tuberkulosis, pneumonia, dan gangguan pernapasan lainnya. Pelayanan dilakukan oleh dokter spesialis paru dengan dukungan fasilitas spirometri dan pemeriksaan radiologi toraks yang tersedia di rumah sakit.",
+      "source_content_length": 331,
+      "source_content_sha256": "80a43e031ba83c8b35a810969626fc3c2792d676d3f767ccb4474292deb27a4a",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Obstetri dan Ginekologi (Kebidanan dan Kandungan)",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Klinik Obstetri dan Ginekologi",
+          "post_id": 20866,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Obstetri dan Ginekologi (Kebidanan dan Kandungan)",
+      "source_heading_line": 101,
+      "source_content_line": 104,
+      "source_content": "Klinik Obstetri dan Ginekologi menyediakan layanan kesehatan reproduksi wanita secara menyeluruh, meliputi pemeriksaan kehamilan, persalinan, penanganan gangguan menstruasi, mioma uteri, kista ovarium, serta kondisi ginekologi lainnya. Pelayanan dilakukan oleh dokter spesialis obstetri dan ginekologi dengan dukungan fasilitas USG obstetri dan sarana maternal yang lengkap.",
+      "source_content_length": 374,
+      "source_content_sha256": "08b3457ababc6fa23e52d9064f73d00c65d19d0b28b5a62be38cd03e078c00e4",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Bedah Umum",
+      "confidence": "possible-title-published",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Bedah Umum",
+          "post_id": 16948,
+          "cpt": "poliklinik",
+          "status": "publish",
+          "match_status": "possible-existing-title",
+          "content_len": null
+        }
+      ],
+      "source_heading": "Klinik Bedah Umum",
+      "source_heading_line": 132,
+      "source_content_line": 134,
+      "source_content": "Klinik Bedah Umum menyediakan layanan konsultasi dan tindakan operatif untuk berbagai kondisi yang memerlukan intervensi bedah, mencakup prosedur elektif maupun semi-elektif. Pelayanan dilakukan melalui pendekatan yang terencana dan berbasis standar keselamatan bedah, didukung fasilitas kamar operasi yang memadai serta tim bedah dan anestesi yang berpengalaman.",
+      "source_content_length": 363,
+      "source_content_sha256": "53748d5f01c0f82dd2384188359e59e6757b767dda5d7d17365f0b7e1bdeddcb",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Bedah Saraf",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Klinik Bedah Saraf",
+          "post_id": 20860,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Bedah Saraf",
+      "source_heading_line": 146,
+      "source_content_line": 148,
+      "source_content": "Klinik Bedah Saraf menyediakan layanan konsultasi dan tindakan bedah pada kondisi yang melibatkan sistem saraf pusat dan perifer, termasuk tumor otak, herniasi diskus, perdarahan otak akibat trauma atau non-trauma, dan cedera tulang belakang. Pelayanan dilakukan oleh dokter spesialis bedah saraf dengan pendekatan pembedahan yang terstandar, termasuk teknik minimal invasif sesuai indikasi klinis.",
+      "source_content_length": 398,
+      "source_content_sha256": "d5f6e83ce3156cf80fcb4b5c5f5d8f09f5b687e2774d778f636e29420200e617",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Bedah Anak",
+      "confidence": "possible-title-published",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Bedah Anak",
+          "post_id": 16936,
+          "cpt": "poliklinik",
+          "status": "publish",
+          "match_status": "possible-existing-title",
+          "content_len": null
+        }
+      ],
+      "source_heading": "Klinik Bedah Anak",
+      "source_heading_line": 160,
+      "source_content_line": 162,
+      "source_content": "Klinik Bedah Anak menyediakan layanan konsultasi dan tindakan bedah yang dikhususkan bagi pasien bayi, anak, dan remaja dengan kondisi yang memerlukan intervensi operatif. Pelayanan dilakukan oleh dokter spesialis bedah anak yang memiliki kompetensi dan pengalaman dalam prosedur pembedahan pediatri, dengan mempertimbangkan keamanan dan kekhususan fisiologi pasien anak.",
+      "source_content_length": 371,
+      "source_content_sha256": "46d31543e54da0916830249492bc4b44fda8893fb3d8111d0ac85dc935425731",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Bedah Onkologi",
+      "confidence": "ambiguous",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Bedah Onkologi",
+          "post_id": 16941,
+          "cpt": "poliklinik",
+          "status": "publish",
+          "match_status": "possible-existing-title",
+          "content_len": null
+        },
+        {
+          "title": "Bedah Onkologi",
+          "post_id": 20907,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Bedah Onkologi",
+      "source_heading_line": 167,
+      "source_content_line": 169,
+      "source_content": "Klinik Bedah Onkologi menyediakan layanan konsultasi dan tindakan bedah pada pasien dengan kondisi keganasan (kanker), mencakup tumor payudara, tiroid, kulit, dan tumor padat lainnya. Pelayanan dilakukan oleh dokter spesialis bedah onkologi tersertifikasi sebagai bagian dari pendekatan tatalaksana kanker multidisiplin yang terkoordinasi bersama tim onkologi rumah sakit.",
+      "source_content_length": 372,
+      "source_content_sha256": "66eb4066b68326115c8810ecbeca43259187f6e11b59887e9462142fae7aa6e4",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Ginjal & Hipertensi",
+      "confidence": "possible-title-published",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Ginjal dan Hipertensi",
+          "post_id": 16961,
+          "cpt": "poliklinik",
+          "status": "publish",
+          "match_status": "possible-existing-title",
+          "content_len": null
+        }
+      ],
+      "source_heading": "Klinik Ginjal & Hipertensi",
+      "source_heading_line": 174,
+      "source_content_line": 176,
+      "source_content": "Klinik Ginjal dan Hipertensi menyediakan layanan diagnosis dan tatalaksana penyakit ginjal kronik, sindrom nefrotik, nefropati diabetik, serta hipertensi resisten dan sekunder. Pelayanan dilakukan oleh dokter spesialis nefrologi-hipertensi dengan pendekatan tata laksana yang komprehensif, termasuk optimalisasi terapi dan edukasi pasien untuk memperlambat progresivitas penyakit.",
+      "source_content_length": 380,
+      "source_content_sha256": "3215cc7d2fbf507aefa4fa694c20f3abc291eb163f088ffbc1028b9e7a40cebe",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Hematologi Onkologi",
+      "confidence": "ambiguous",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Hemato-Onkologi",
+          "post_id": 20864,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        },
+        {
+          "title": "Hemato Onkologi",
+          "post_id": 20909,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Hematologi Onkologi",
+      "source_heading_line": 181,
+      "source_content_line": 183,
+      "source_content": "Klinik Hematologi Onkologi menyediakan layanan diagnosis dan tata laksana kelainan darah dan keganasan hematologi, meliputi leukemia, limfoma, mieloma multipel, anemia aplastik, dan gangguan hemostasis. Pelayanan dilakukan oleh dokter spesialis penyakit dalam konsultan hematologi-onkologi medik, dengan dukungan laboratorium hematologi dan fasilitas kemoterapi yang memadai.",
+      "source_content_length": 375,
+      "source_content_sha256": "79a2f23bdea28b5cb0844b188c867baf411c944d87fbf84fe1628d9ee4c5d011",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Ginekologi Onkologi",
+      "confidence": "ambiguous",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Ginekologi Onkologi",
+          "post_id": 16959,
+          "cpt": "poliklinik",
+          "status": "publish",
+          "match_status": "possible-existing-title",
+          "content_len": null
+        },
+        {
+          "title": "Ginekologi Onkologi",
+          "post_id": 20908,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Ginekologi Onkologi",
+      "source_heading_line": 188,
+      "source_content_line": 190,
+      "source_content": "Klinik Ginekologi Onkologi menyediakan layanan terpadu untuk diagnosis, tata laksana, dan pemantauan kanker pada organ reproduksi wanita, meliputi kanker serviks, ovarium, endometrium, dan vulva. Pelayanan dilakukan oleh dokter spesialis obstetri dan ginekologi konsultan onkologi, melalui pendekatan multidisiplin yang mencakup tindakan bedah, kemoterapi, dan pemantauan berkala.",
+      "source_content_length": 380,
+      "source_content_sha256": "cb5219955e59dddb901c35fdc789d47e06f526c542ca4e17e7ffe4255a66e019",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Jantung Anak",
+      "confidence": "possible-title-published",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Jantung Anak",
+          "post_id": 16971,
+          "cpt": "poliklinik",
+          "status": "publish",
+          "match_status": "possible-existing-title",
+          "content_len": null
+        }
+      ],
+      "source_heading": "Klinik Jantung Anak",
+      "source_heading_line": 202,
+      "source_content_line": 204,
+      "source_content": "Klinik Jantung Anak menyediakan layanan diagnosis dan tata laksana penyakit jantung pada bayi, anak, dan remaja, meliputi penyakit jantung bawaan (kongenital) maupun didapat. Pelayanan dilakukan oleh dokter spesialis anak konsultan kardiologi anak dengan dukungan fasilitas ekokardiografi pediatri dan pemantauan kardiovaskular yang sesuai kebutuhan pasien anak.",
+      "source_content_length": 362,
+      "source_content_sha256": "5f04d24e7d6ec6ac07ca6daa2b8c8aa00ee511c13152a4dee4aaecdb64161a75",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Bedah Digestif",
+      "confidence": "possible-title-published",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Bedah Digesti",
+          "post_id": 16937,
+          "cpt": "poliklinik",
+          "status": "publish",
+          "match_status": "possible-existing-title",
+          "content_len": null
+        }
+      ],
+      "source_heading": "Klinik Bedah Digestif",
+      "source_heading_line": 209,
+      "source_content_line": 211,
+      "source_content": "Klinik Bedah Digestif menyediakan layanan penanganan berbagai kondisi pada saluran pencernaan yang memerlukan tindakan bedah. Pelayanan dilakukan melalui pendekatan yang terencana, sistematis, dan berbasis standar medis, dengan dukungan tim tenaga kesehatan yang berpengalaman di bidangnya. Selain itu, klinik ini dilengkapi dengan fasilitas penunjang yang memadai untuk memastikan ketepatan diagnosis, keamanan tindakan, serta mendukung proses pemulihan pasien secara optimal.",
+      "source_content_length": 477,
+      "source_content_sha256": "61712d6c26d33df5226e69add43438edc18efe95d671a0ac2b94569caf42bd30",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Gigi Umum",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Klinik Gigi dan Mulut",
+          "post_id": 20872,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Gigi Umum",
+      "source_heading_line": 217,
+      "source_content_line": 219,
+      "source_content": "Klinik Gigi Umum menyediakan layanan pemeriksaan dan perawatan gigi dasar yang komprehensif, mencakup penambalan, pencabutan, pembersihan karang gigi (scaling), serta edukasi kesehatan gigi dan mulut. Pelayanan dilakukan oleh dokter gigi yang kompeten dalam lingkungan klinik yang bersih, higienis, dan sesuai standar prosedur operasional yang berlaku.",
+      "source_content_length": 352,
+      "source_content_sha256": "7d1ad081284c4b14768483e69d937828f67fd602794127a4bddd31606fe179bb",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Gigi Spesialis Endodonsi (Konservasi Gigi)",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Klinik Konservasi Gigi",
+          "post_id": 20873,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Gigi Spesialis Endodonsi (Konservasi Gigi)",
+      "source_heading_line": 224,
+      "source_content_line": 227,
+      "source_content": "Klinik Endodonsi menyediakan layanan perawatan dan konservasi gigi yang mengalami kerusakan akibat karies dalam, trauma, atau infeksi pulpa, mencakup perawatan saluran akar (root canal treatment) dan restorasi mahkota gigi. Pelayanan dilakukan oleh dokter gigi spesialis konservasi gigi dengan menggunakan teknik dan instrumen endodontik berstandar untuk mempertahankan fungsi gigi secara optimal.",
+      "source_content_length": 397,
+      "source_content_sha256": "a569640719dfd18b5a4894f48d56144d1af1b9abb6afef0e9fb874f5ea6cf168",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Gigi Spesialis Periodonti",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Klinik Periodonsia",
+          "post_id": 20875,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Gigi Spesialis Periodonti",
+      "source_heading_line": 232,
+      "source_content_line": 234,
+      "source_content": "Klinik Periodonti menyediakan layanan diagnosis dan tata laksana penyakit jaringan pendukung gigi (periodonsium), meliputi gingivitis, periodontitis, serta prosedur bedah periodontal sesuai indikasi. Pelayanan dilakukan oleh dokter gigi spesialis periodonti dengan pendekatan terstruktur untuk memelihara kesehatan gusi dan jaringan penyangga gigi dalam jangka panjang.",
+      "source_content_length": 369,
+      "source_content_sha256": "4602fabed7b13c37e9afc01ab28498db3c6a50e43674ab144ddff5e3d1bde9b6",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Gigi Spesialis Pedodonti (Gigi Anak)",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Klinik Konservasi Gigi Anak",
+          "post_id": 20874,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Gigi Spesialis Pedodonti (Gigi Anak)",
+      "source_heading_line": 239,
+      "source_content_line": 242,
+      "source_content": "Klinik Pedodonti menyediakan layanan perawatan gigi khusus bagi pasien anak, mencakup pemeriksaan gigi sulung dan gigi permanen, penambalan, pencabutan, serta penanganan kelainan gigi pada masa pertumbuhan. Pelayanan dilakukan oleh dokter gigi spesialis kedokteran gigi anak dengan pendekatan yang adaptif dan komunikatif sesuai tahap perkembangan pasien.",
+      "source_content_length": 355,
+      "source_content_sha256": "cc0b7554b97a2ce3934a9e6c95563dfc72959d16896ce18a3f574e9e9eafefe6",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Gigi Spesialis Ortodonti",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Klinik Ortodonsia",
+          "post_id": 20876,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Gigi Spesialis Ortodonti",
+      "source_heading_line": 247,
+      "source_content_line": 249,
+      "source_content": "Klinik Ortodonti menyediakan layanan pemeriksaan dan tatalaksana maloklusi gigi serta ketidakselarasan rahang melalui perawatan ortodontik konvensional maupun aligner. Pelayanan dilakukan oleh dokter gigi spesialis ortodonti dengan perencanaan terapi yang terindividualisasi untuk mencapai keselarasan fungsional dan estetika oklusi secara optimal.",
+      "source_content_length": 348,
+      "source_content_sha256": "a98b87f1a6ec09f45f969bdd253e65c290a98dacbe9e80ca4e27eb67ae919f6a",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Gigi Bedah Mulut",
+      "confidence": "possible-title-published",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Bedah Mulut",
+          "post_id": 16940,
+          "cpt": "poliklinik",
+          "status": "publish",
+          "match_status": "possible-existing-title",
+          "content_len": null
+        }
+      ],
+      "source_heading": "Klinik Gigi Bedah Mulut",
+      "source_heading_line": 254,
+      "source_content_line": 256,
+      "source_content": "Klinik Bedah Mulut menyediakan layanan tindakan bedah pada rongga mulut, rahang, dan wajah, mencakup pencabutan gigi impaksi, eksisi kista dan tumor odontogenik, serta prosedur rekonstruksi maksilofasial. Pelayanan dilakukan oleh dokter gigi spesialis bedah mulut dan maksilofasial dengan standar prosedur bedah yang terstruktur dan berorientasi pada keselamatan pasien.",
+      "source_content_length": 370,
+      "source_content_sha256": "6e668ea4517f0e790901b16a516b09a9ce9a2031795f9c6b5092a2b0390155b9",
+      "review_reasons": []
+    },
+    {
+      "heading": "Laboratorium Klinik 24 Jam",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Laboratorium Patologi Klinik",
+          "post_id": 20923,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Laboratorium Klinik 24 Jam",
+      "source_heading_line": 296,
+      "source_content_line": 298,
+      "source_content": "Laboratorium Klinik RS PKU Muhammadiyah Yogyakarta beroperasi 24 jam dalam menyediakan layanan pemeriksaan penunjang diagnostik, mencakup hematologi, kimia klinik, imunologi, urinalisis, dan pemeriksaan lainnya. Seluruh proses pemeriksaan dilaksanakan oleh analis kesehatan berlisensi dengan sistem penjaminan mutu laboratorium yang terstandar untuk menghasilkan data yang akurat dan dapat dipercaya.",
+      "source_content_length": 400,
+      "source_content_sha256": "39bf52de08662087645d057071ea47e999a68b9dcc74c7fd6a01e87da80c1283",
+      "review_reasons": []
+    },
+    {
+      "heading": "Laboratorium Mikrobiologi",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Laboratorium Mikrobiologi Klinik",
+          "post_id": 20925,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Laboratorium Mikrobiologi",
+      "source_heading_line": 303,
+      "source_content_line": 305,
+      "source_content": "Laboratorium Mikrobiologi menyediakan layanan pemeriksaan identifikasi mikroorganisme penyebab infeksi dan uji kepekaan antimikroba (antibiogram) untuk mendukung tata laksana infeksi secara tepat dan rasional. Pemeriksaan dilaksanakan sesuai standar prosedur laboratorium yang berlaku, dengan tujuan membantu klinisi dalam pemilihan terapi antimikroba yang sesuai dan mendukung pengendalian resistensi antimikroba di rumah sakit.",
+      "source_content_length": 429,
+      "source_content_sha256": "046258846894356b542bf6152e39e61856031b4de69364206d3c2e041b404b26",
+      "review_reasons": []
+    },
+    {
+      "heading": "Laboratorium Patologi Anatomi",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Laboratorium Patologi Anatomi",
+          "post_id": 20924,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Laboratorium Patologi Anatomi",
+      "source_heading_line": 311,
+      "source_content_line": 313,
+      "source_content": "Laboratorium Patologi Anatomi menyediakan layanan pemeriksaan jaringan, sel, dan cairan tubuh secara histopatologi, sitologi, dan imunohistokimia untuk mendukung diagnosis penyakit jaringan, termasuk keganasan. Pemeriksaan dilakukan oleh dokter spesialis patologi anatomi dengan prosedur yang terstandar, menghasilkan laporan diagnostik yang menjadi dasar dalam penentuan diagnosis akhir dan perencanaan terapi.",
+      "source_content_length": 411,
+      "source_content_sha256": "628268cb83a4e4a30636cc543e869fba0abeb7cec2e72f215866289eb0c45ad6",
+      "review_reasons": []
+    },
+    {
+      "heading": "Bank Darah",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Bank Darah",
+          "post_id": 20926,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Bank Darah",
+      "source_heading_line": 319,
+      "source_content_line": 321,
+      "source_content": "Bank Darah RS PKU Muhammadiyah Yogyakarta menyelenggarakan layanan pengelolaan, penyimpanan, pengujian, dan distribusi darah serta komponen darah yang aman untuk kebutuhan transfusi pasien. Seluruh proses dilaksanakan sesuai standar teknis bank darah yang berlaku untuk menjamin keamanan, kompabilitas, dan ketersediaan darah bagi pasien yang memerlukan, termasuk dalam kondisi kegawatdaruratan.",
+      "source_content_length": 395,
+      "source_content_sha256": "a2329e2ea734514c6f091fc4919887d82e0e28b0ca14b118b26c18a820f49542",
+      "review_reasons": []
+    },
+    {
+      "heading": "Layanan Hemodialisis",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Layanan Hemodialisis 24 jam dengan 45 mesin, termasuk layanan infeksi dan VIP",
+          "post_id": 20906,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Layanan Hemodialisis",
+      "source_heading_line": 326,
+      "source_content_line": 328,
+      "source_content": "Layanan Hemodialisis RS PKU Muhammadiyah Yogyakarta menyediakan terapi pengganti fungsi ginjal melalui prosedur cuci darah bagi pasien dengan gagal ginjal kronik maupun akut yang memerlukan hemodialisis rutin. Pelayanan dilaksanakan menggunakan mesin hemodialisis berstandar dengan monitoring klinis yang ketat oleh dokter spesialis nefrologi dan perawat hemodialisis terlatih, dalam lingkungan yang higienis dan terkelola dengan baik.",
+      "source_content_length": 435,
+      "source_content_sha256": "c43de3be20838e78293294d60ee09a9b990040ebaf0e6d151a3a4f5c8ee1c64c",
+      "review_reasons": []
+    },
+    {
+      "heading": "Layanan Home Care",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Layanan Home Care",
+          "post_id": 20893,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Layanan Home Care",
+      "source_heading_line": 342,
+      "source_content_line": 344,
+      "source_content": "Layanan Home Care RS PKU Muhammadiyah Yogyakarta menyediakan pelayanan kesehatan di rumah pasien oleh tenaga kesehatan profesional, meliputi perawatan luka, pemberian obat injeksi, pemantauan tanda vital, fisioterapi, dan layanan medis lainnya sesuai kebutuhan klinis. Layanan ini ditujukan untuk mendukung pemulihan pasca-rawat inap serta pasien dengan kondisi kronis yang memerlukan pemantauan berkala di luar fasilitas rumah sakit.",
+      "source_content_length": 434,
+      "source_content_sha256": "79e41f28eccecbf71fb0b3ab071e17b418a9e932cd22692122bf84a373a7b1fa",
+      "review_reasons": []
+    },
+    {
+      "heading": "Instalasi CSSD",
+      "confidence": "alias-exact",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": null,
+          "post_id": null,
+          "cpt": null,
+          "status": null,
+          "match_status": null,
+          "content_len": null
+        }
+      ],
+      "source_heading": "Instalasi Sterilisasi Sentral (CSSD) RS PKU Muhammadiyah Yogyakarta menyelenggarakan layanan",
+      "source_heading_line": 352,
+      "source_content_line": 354,
+      "source_content": "dekontaminasi, pengemasan, sterilisasi, dan distribusi instrumen serta alat medis steril untuk seluruh unit pelayanan di rumah sakit. Proses sterilisasi dilaksanakan sesuai standar dan regulasi yang berlaku dengan sistem dokumentasi yang tertelusur, guna memastikan ketersediaan alat steril yang aman dan mendukung pencegahan infeksi terkait layanan kesehatan (HAIs). Instalasi Kamar Operasi (OK)",
+      "source_content_length": 396,
+      "source_content_sha256": "cdf58f1ce8f3525b17949533dc0f474ff7f0df71cea0e5a80c55b4cc042d26ab",
+      "review_reasons": [
+        "parser_heading_body_mixed"
+      ]
+    },
+    {
+      "heading": "Ruang Intensive Care Unit (ICU)",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Intensive Care Unit (ICU)",
+          "post_id": 20914,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Ruang Intensive Care Unit (ICU)",
+      "source_heading_line": 376,
+      "source_content_line": 378,
+      "source_content": "Ruang ICU RS PKU Muhammadiyah Yogyakarta menyediakan layanan perawatan intensif bagi pasien dewasa dengan kondisi kritis yang memerlukan pemantauan dan intervensi medis berkelanjutan. Ruangan dilengkapi dengan monitor hemodinamik, ventilator mekanik, dan peralatan life-support lainnya, dengan pengawasan 24 jam oleh dokter intensivis dan perawat ICU yang terlatih sesuai kompetensi perawatan kritis.",
+      "source_content_length": 400,
+      "source_content_sha256": "9575802e822942815860c2ffb4a1376166785de3691529a68913b1259aef896e",
+      "review_reasons": []
+    },
+    {
+      "heading": "Ruang Intensive Cardiac Care Unit (ICCU)",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Intensive Cardiac Care Unit (ICCU)",
+          "post_id": 20915,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Ruang Intensive Cardiac Care Unit (ICCU)",
+      "source_heading_line": 383,
+      "source_content_line": 386,
+      "source_content": "Ruang ICCU RS PKU Muhammadiyah Yogyakarta menyediakan layanan perawatan intensif kardiologi bagi pasien dengan kondisi kardiovaskular kritis, termasuk sindrom koroner akut, aritmia berat, dan gagal jantung dekompensasi. Pemantauan EKG secara kontinu, defibrilasi, dan intervensi kardiologi emergensi dapat dilaksanakan dengan cepat di bawah pengawasan dokter spesialis jantung dan tenaga keperawatan ICCU yang kompeten.",
+      "source_content_length": 419,
+      "source_content_sha256": "d6d80d633b4980e2d0329ad291eeb86b63b15d20f9b4f92cec3a65c8af428299",
+      "review_reasons": []
+    },
+    {
+      "heading": "Ruang Pediatric Intensive Care Unit (PICU)",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Pediatric Intensive Care Unit (PICU)",
+          "post_id": 20916,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Ruang Pediatric Intensive Care Unit (PICU)",
+      "source_heading_line": 392,
+      "source_content_line": 395,
+      "source_content": "Ruang PICU RS PKU Muhammadiyah Yogyakarta menyediakan layanan perawatan intensif bagi pasien bayi dan anak dengan kondisi kritis yang memerlukan pemantauan dan tata laksana medis intensif. Fasilitas dan prosedur pelayanan disesuaikan dengan kekhususan fisiologi pediatri, dikelola oleh dokter spesialis anak dan perawat PICU terlatih dengan dukungan peralatan monitoring dan terapi yang memadai.",
+      "source_content_length": 395,
+      "source_content_sha256": "8d9a3cf7970d769205bd74bbaf471e7faaa275c5b12d267464071e52fa9c06a3",
+      "review_reasons": []
+    },
+    {
+      "heading": "Ruang Neonatal Intensive Care Unit (NICU)",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "NICU",
+          "post_id": 20917,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Ruang Neonatal Intensive Care Unit (NICU)",
+      "source_heading_line": 400,
+      "source_content_line": 403,
+      "source_content": "Ruang NICU RS PKU Muhammadiyah Yogyakarta menyediakan layanan perawatan intensif khusus bagi neonatus berisiko tinggi, termasuk bayi prematur, bayi berat lahir rendah, dan neonatus dengan kondisi medis kritis. Pelayanan dilaksanakan oleh dokter spesialis anak subspesialis perinatologi bersama perawat neonatus terlatih, didukung inkubator, ventilator neonatus, dan sistem monitoring vital yang sesuai kebutuhan perawatan neonatal intensif.",
+      "source_content_length": 440,
+      "source_content_sha256": "ffdfea725c61f3e2250f15a893bd6f8d5956bcb7ed868b1e47c04df13b97180b",
+      "review_reasons": []
+    },
+    {
+      "heading": "Ruang High Care Unit (HCU)",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "High Care Unit (HCU)",
+          "post_id": 20918,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Ruang High Care Unit (HCU)",
+      "source_heading_line": 409,
+      "source_content_line": 411,
+      "source_content": "Ruang HCU RS PKU Muhammadiyah Yogyakarta menyediakan layanan perawatan dengan tingkat observasi dan intervensi di atas bangsal rawat biasa, namun tidak memerlukan fasilitas ICU penuh. Layanan ini diperuntukkan bagi pasien yang membutuhkan pemantauan lebih intensif pasca-ICU atau pasca-operasi besar, dengan rasio perawat-pasien yang lebih tinggi dan dukungan monitoring medis yang memadai.",
+      "source_content_length": 390,
+      "source_content_sha256": "bf100f20c01e6a8a3cd0bce16107040547fa129d383c379df821ddcd3ad80ade",
+      "review_reasons": []
+    },
+    {
+      "heading": "Ruang Rawat Inap kelas III",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Kelas III",
+          "post_id": 20898,
+          "cpt": "rawat-inap",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Ruang Rawat Inap kelas III",
+      "source_heading_line": 416,
+      "source_content_line": 418,
+      "source_content": "Ruang rawat inap kelas III RS PKU Muhammadiyah Yogyakarta menyediakan fasilitas perawatan dengan kapasitas 4 (empat) tempat tidur per kamar, dilengkapi kamar mandi, pendingin ruangan (AC), bed pasien dengan rel pengaman, serta loker penyimpanan barang. Pelayanan keperawatan dilaksanakan secara profesional oleh tenaga perawat terlatih, dalam lingkungan yang bersih, tertib, dan mendukung proses pemulihan pasien.",
+      "source_content_length": 413,
+      "source_content_sha256": "850a46e00ccce90df1fbbd7a7e6c643d3ee644acd07e962228a1004a0db14681",
+      "review_reasons": []
+    },
+    {
+      "heading": "Ruang Rawat Inap kelas II",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Kelas II",
+          "post_id": 20899,
+          "cpt": "rawat-inap",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Ruang Rawat Inap kelas II",
+      "source_heading_line": 424,
+      "source_content_line": 426,
+      "source_content": "Ruang rawat inap kelas II RS PKU Muhammadiyah Yogyakarta menyediakan fasilitas perawatan dengan kapasitas 3 (tiga) tempat tidur, dilengkapi kamar mandi dalam, AC, bed pasien dengan rel pengaman, dan loker penyimpanan barang. Pelayanan keperawatan dilaksanakan secara profesional oleh tenaga perawat terlatih, dalam lingkungan yang bersih, tertib, dan mendukung proses pemulihan pasien.",
+      "source_content_length": 385,
+      "source_content_sha256": "ffa505fbd26e0e6837e2fe9f7db641773316068d1fc239574813fdfd8cc6d474",
+      "review_reasons": []
+    },
+    {
+      "heading": "Ruang Rawat Inap kelas I",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Kelas I",
+          "post_id": 20900,
+          "cpt": "rawat-inap",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Ruang Rawat Inap kelas I",
+      "source_heading_line": 431,
+      "source_content_line": 433,
+      "source_content": "Ruang rawat inap kelas I RS PKU Muhammadiyah Yogyakarta menyediakan kamar dengan kapasitas 2 (dua) tempat tidur, dilengkapi kamar mandi pribadi, AC, bed multifungsi dengan rel pengaman, sofa penunggu, TV, serta akses jaringan WiFi. Fasilitas dirancang untuk memberikan kenyamanan dan privasi yang lebih optimal bagi pasien dan keluarga yang mendampingi selama proses perawatan.",
+      "source_content_length": 377,
+      "source_content_sha256": "4f66e6a836e5ae248b7a9486fae3af96195580d3602a677dd4d3b357a42edb65",
+      "review_reasons": []
+    },
+    {
+      "heading": "Ruang Rawat Inap VIP",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Kelas VIP",
+          "post_id": 20901,
+          "cpt": "rawat-inap",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Ruang Rawat Inap VIP",
+      "source_heading_line": 438,
+      "source_content_line": 440,
+      "source_content": "Ruang rawat inap VIP RS PKU Muhammadiyah Yogyakarta menyediakan kamar rawat inap pribadi dengan fasilitas yang lebih lengkap, meliputi bed pasien canggih dengan pengaturan elektrik, kamar mandi dengan water heater, sofa tamu, bed penunggu, lemari pakaian, kulkas, TV, serta akses WiFi. Ruangan dirancang dengan standar kenyamanan yang tinggi untuk memenuhi kebutuhan pasien yang menginginkan privasi dan fasilitas yang lebih optimal selama masa rawat inap.",
+      "source_content_length": 456,
+      "source_content_sha256": "227bc4ebe90350c306cac6a38f272cc0da4af76ad86b460faa06dc2669a53fac",
+      "review_reasons": []
+    },
+    {
+      "heading": "Ruang Rawat Inap VVIP",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Kelas VVIP",
+          "post_id": 20902,
+          "cpt": "rawat-inap",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Ruang Rawat Inap VVIP",
+      "source_heading_line": 446,
+      "source_content_line": 448,
+      "source_content": "Ruang rawat inap VVIP RS PKU Muhammadiyah Yogyakarta merupakan kelas tertinggi dari fasilitas rawat inap yang tersedia, menyediakan kamar yang lebih luas, bed pasien canggih dengan pengaturan elektrik,",
+      "source_content_length": 201,
+      "source_content_sha256": "2563a889d420df92603c6e9141f5cb11861743228e045ad0533fb6be3f339712",
+      "review_reasons": []
+    },
+    {
+      "heading": "Layanan Uronefrologi",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Uronephrology Centre",
+          "post_id": 20954,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Layanan Uronefrologi",
+      "source_heading_line": 460,
+      "source_content_line": 462,
+      "source_content": "Layanan Uronefrologi RS PKU Muhammadiyah Yogyakarta merupakan layanan terpadu yang mengintegrasikan pelayanan nefrologi (penyakit ginjal) dan urologi (bedah saluran kemih) dalam satu sistem pelayanan yang terkoordinasi. Layanan ini menyediakan evaluasi dan tata laksana komprehensif untuk berbagai kondisi ginjal dan saluran kemih, meliputi gagal ginjal kronik, nefrolitiasis, infeksi saluran kemih berulang, sindrom nefrotik, serta keganasan urologi. Layanan didukung oleh dokter spesialis nefrologi dan urologi yang berpengalaman, fasilitas hemodialisis berstandar, peralatan endourologi, laboratorium, serta modalitas pencitraan urologi yang memadai. Pendekatan tata laksana dilakukan secara berbasis bukti dan berorientasi pada penanganan jangka panjang guna mempertahankan kualitas hidup pasien secara optimal.",
+      "source_content_length": 815,
+      "source_content_sha256": "de383095c969a241498e7e489784b69c6be76920b90f90ac8dafb2868b784d82",
+      "review_reasons": []
+    },
+    {
+      "heading": "Layanan Onkologi (Cancer Centre)",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Cancer Centre",
+          "post_id": 20953,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Layanan Onkologi (Cancer Centre)",
+      "source_heading_line": 471,
+      "source_content_line": 473,
+      "source_content": "Cancer Centre RS PKU Muhammadiyah Yogyakarta menyelenggarakan layanan onkologi komprehensif melalui pendekatan multidisiplin yang melibatkan dokter spesialis bedah onkologi, hematologi-onkologi medik, ginekologi onkologi, radiologi, patologi anatomi, dan gizi klinik dalam satu tim terpadu. Layanan mencakup pemeriksaan diagnostik keganasan (tumor marker, biopsi, pemeriksaan patologi anatomi), tindakan bedah onkologi, kemoterapi One-Day Care (ODC), serta pemantauan dan tindak lanjut pasien kanker secara berkala. Koordinasi antar disiplin dilaksanakan melalui forum multidisciplinary team (MDT) untuk memastikan setiap pasien mendapatkan rencana terapi yang optimal, terstandar, dan berbasis rekomendasi klinis terkini.",
+      "source_content_length": 722,
+      "source_content_sha256": "c97eb69b2ca10602c7c6b5c4652cbe417f405d30bdcb85c58b54bd35ba5d6860",
+      "review_reasons": []
+    },
+    {
+      "heading": "Layanan Medical Check Up",
+      "confidence": "alias-exact",
+      "auto_apply_safe": true,
+      "targets": [
+        {
+          "title": "Medical Check Up",
+          "post_id": 20949,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Layanan Medical Check Up",
+      "source_heading_line": 516,
+      "source_content_line": 518,
+      "source_content": "Layanan Medical Check-Up RS PKU Muhammadiyah Yogyakarta menyediakan pemeriksaan kesehatan menyeluruh yang ditujukan untuk deteksi dini penyakit, penilaian faktor risiko, serta evaluasi status kesehatan secara berkala bagi individu, keluarga, maupun korporasi. Paket pemeriksaan yang tersedia mencakup pemeriksaan fisik oleh dokter, laboratorium darah lengkap (hematologi, kimia klinik, fungsi hati dan ginjal, profil lipid, glukosa darah), foto toraks (X-Ray), EKG, USG abdomen, spirometri, serta pemeriksaan penunjang tambahan sesuai kebutuhan dan indikasi. Hasil pemeriksaan dikonsultasikan langsung kepada peserta oleh dokter dan disertai laporan tertulis yang terstruktur sebagai dasar rekomendasi tindak lanjut kesehatan.",
+      "source_content_length": 726,
+      "source_content_sha256": "1450b68e43798a3d73fc71dea5c55f376c29ac8b424d41feb1d371ab044d92ba",
+      "review_reasons": []
+    },
+    {
+      "heading": "Layanan Emergency/Critical Care Terintegrasi",
+      "confidence": "alias-exact",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Emergency and Critical Care",
+          "post_id": 20955,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "review_reasons": [
+        "missing_source_block"
+      ]
+    },
+    {
+      "heading": "Layanan Vaccine Centre",
+      "confidence": "ambiguous",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Layanan Vaksin",
+          "post_id": 20950,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        },
+        {
+          "title": "Klinik Vaksin",
+          "post_id": 20881,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Layanan Vaccine Centre",
+      "source_heading_line": 505,
+      "source_content_line": 507,
+      "source_content": "Vaccine Centre RS PKU Muhammadiyah Yogyakarta menyelenggarakan layanan imunisasi komprehensif bagi seluruh kelompok usia, mulai dari neonatus, bayi, anak, remaja, dewasa, hingga lansia. Vaksin yang tersedia mencakup imunisasi program pemerintah maupun vaksin pilihan (non-program), antara lain vaksin MMR, Varicella, HPV, Hepatitis A dan B, Typhoid, Meningitis, Influenza, Pneumokokus, dan vaksin perjalanan (travel vaccine). Seluruh layanan dilaksanakan oleh tenaga kesehatan yang terlatih, dengan sistem pengelolaan rantai dingin (cold chain) yang dipantau secara ketat sesuai regulasi penyimpanan vaksin yang berlaku. Tersedia pula layanan konsultasi pra-vaksinasi untuk menilai kondisi pasien dan memberikan rekomendasi imunisasi yang sesuai berdasarkan riwayat dan status kesehatan individu.",
+      "source_content_length": 796,
+      "source_content_sha256": "d223cde403739225e56079eb68686ba83a8baf36abbb5a44604cae4ecad67518",
+      "review_reasons": []
+    },
+    {
+      "heading": "Klinik Medical Check-Up",
+      "confidence": "ambiguous",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Medical Check Up (MCU)",
+          "post_id": 20882,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        },
+        {
+          "title": "Medical Check Up",
+          "post_id": 20949,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Klinik Medical Check-Up",
+      "source_heading_line": 21,
+      "source_content_line": 23,
+      "source_content": "Klinik Medical Check-Up menyediakan layanan pemeriksaan kesehatan menyeluruh yang ditujukan untuk deteksi dini kondisi medis serta penilaian status kesehatan secara komprehensif. Pemeriksaan dilakukan oleh dokter dengan dukungan fasilitas laboratorium, radiologi, dan penunjang diagnostik lainnya, serta disertai konsultasi hasil kepada pasien secara langsung.",
+      "source_content_length": 360,
+      "source_content_sha256": "08a99fae35641bbb2c9c2cd054278c537ffc2d9fa2dcc51dc98174242a3c155a",
+      "review_reasons": []
+    },
+    {
+      "heading": "Vaccine Centre",
+      "confidence": "ambiguous",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Klinik Vaksin",
+          "post_id": 20881,
+          "cpt": "poliklinik",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        },
+        {
+          "title": "Layanan Vaksin",
+          "post_id": 20950,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Vaccine Centre",
+      "source_heading_line": 28,
+      "source_content_line": 30,
+      "source_content": "Vaccine Centre RS PKU Muhammadiyah Yogyakarta menyediakan layanan imunisasi lengkap untuk seluruh kelompok usia, termasuk keperluan international travels, serta ibadah haji dan umroh. Pelayanan vaksinasi dilaksanakan oleh tenaga kesehatan yang tersertifikasi dengan sistem penyimpanan vaksin (cold chain) yang terpantau ketat sesuai standar yang berlaku.",
+      "source_content_length": 354,
+      "source_content_sha256": "6d5de96d3fec07b319d3f6f35dca1b27c96ecdd12e1e6c31019831671ffcd6d3",
+      "review_reasons": []
+    },
+    {
+      "heading": "Layanan Intensive Care",
+      "confidence": "ambiguous",
+      "auto_apply_safe": false,
+      "targets": [
+        {
+          "title": "Emergency and Critical Care",
+          "post_id": 20955,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        },
+        {
+          "title": "Intensive Care Unit (ICU)",
+          "post_id": 20914,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        },
+        {
+          "title": "Intensive Cardiac Care Unit (ICCU)",
+          "post_id": 20915,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        },
+        {
+          "title": "Pediatric Intensive Care Unit (PICU)",
+          "post_id": 20916,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        },
+        {
+          "title": "NICU",
+          "post_id": 20917,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        },
+        {
+          "title": "High Care Unit (HCU)",
+          "post_id": 20918,
+          "cpt": "layanan",
+          "status": "draft",
+          "match_status": "matched-by-identity",
+          "content_len": 0
+        }
+      ],
+      "source_heading": "Layanan Intensive Care",
+      "source_heading_line": 482,
+      "source_content_line": 484,
+      "source_content": "Layanan Intensive Care RS PKU Muhammadiyah Yogyakarta menyelenggarakan perawatan intensif bagi pasien kritis melalui unit-unit yang terintegrasi, meliputi ICU (Intensive Care Unit), ICCU (Intensive Cardiac Care Unit), PICU (Pediatric Intensive Care Unit), NICU (Neonatal Intensive Care Unit), dan HCU (High Care Unit). Kekhususan layanan ini terletak pada tersedianya dokter subspesialis intensive care (intensivist) sebagai konsultan klinis yang memberikan pengawasan dan panduan tata laksana medis bagi pasien kritis secara terstruktur dan berbasis bukti. Seluruh unit dilengkapi dengan monitor hemodinamik canggih, ventilator mekanik, dan peralatan life-support yang memadai, dikelola oleh tim perawat intensive",
+      "source_content_length": 714,
+      "source_content_sha256": "d47e49f768ce40a334b54cd4cfb297a0fae3bde99f7fa80273a0cc6d81be6251",
+      "review_reasons": []
+    }
+  ],
+  "summary": {
+    "total_blocks": 47,
+    "auto_safe": 30,
+    "review": 17,
+    "matched_identity": 92,
+    "possible_title": 12,
+    "missing": 0,
+    "collision": 0
+  },
+  "enriched_at": "2026-08-18T18:16:05.5796203Z"
+}

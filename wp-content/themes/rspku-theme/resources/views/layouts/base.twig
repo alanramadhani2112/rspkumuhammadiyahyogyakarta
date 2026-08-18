@@ -49,27 +49,19 @@
   {# Top Bar - Compact Info #}
   {% if rspku.header_topbar_enabled is not defined or rspku.header_topbar_enabled %}
   <div class="border-b border-slate-200 bg-[#f4f5f2]">
-    <div class="rspku-container flex items-center justify-between gap-4 py-2 text-sm text-slate-600">
-      <div class="flex items-center gap-x-5 gap-y-1">
-        <a href="tel:{{ rspku.phone_igd_link }}" class="inline-flex items-center gap-2 font-medium transition hover:text-hospital-700">
-          {{ icon('phone', { class: 'h-3.5 w-3.5 text-hospital-600' }) }}
-          <span class="hidden sm:inline">Call Center 1:</span>
-          <span class="font-semibold">{{ rspku.phone_igd }}</span>
+    <div class="rspku-container flex items-center justify-between gap-3 py-2 text-sm text-slate-600 sm:gap-4">
+      <div class="flex min-w-0 items-center gap-2 sm:gap-4">
+        <a href="{{ site.url }}/kontak/" class="hidden min-w-0 flex-1 items-center gap-2 whitespace-nowrap font-medium transition hover:text-hospital-700 lg:inline-flex">
+          {{ icon('map-pin', { class: 'h-3.5 w-3.5 shrink-0 text-hospital-600' }) }}
+          <span>Jl. KH. Ahmad Dahlan No.20, Yogyakarta</span>
         </a>
-        <a href="tel:{{ rspku.phone_main_link }}" class="hidden items-center gap-2 font-medium transition hover:text-hospital-700 lg:inline-flex">
-          <span>Call Center 2:</span>
-          <span class="font-semibold">{{ rspku.phone_main }}</span>
-        </a>
-        <a href="tel:{{ rspku.whatsapp_link }}" class="hidden items-center gap-2 font-medium transition hover:text-hospital-700 xl:inline-flex">
-          <span>Call Center 3:</span>
-          <span class="font-semibold">{{ rspku.whatsapp }}</span>
-        </a>
-        <a href="{{ site.url }}/kontak/" class="hidden items-center gap-2 font-medium transition hover:text-hospital-700 md:inline-flex">
-          {{ icon('map-pin', { class: 'h-3.5 w-3.5 text-hospital-600' }) }}
-          <span>{{ rspku.address_street }}, {{ rspku.address_district }}, {{ rspku.address_city }}, {{ rspku.address_province }}</span>
-        </a>
+        <div class="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap font-medium sm:gap-2">
+          {{ icon('phone', { class: 'h-3.5 w-3.5 shrink-0 text-hospital-600' }) }}
+          <span class="hidden sm:inline">Call Center:</span>
+          <a href="tel:{{ rspku.phone_igd_link }}" class="font-semibold transition hover:text-hospital-700" aria-label="Call Center {{ rspku.phone_igd }}">{{ rspku.phone_igd }}</a>
+        </div>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="flex min-w-0 shrink-0 items-center gap-2 sm:gap-4">
         {% if rspku.feature_gtranslate %}
         <div class="gtranslate_wrapper sr-only" aria-hidden="true">{{ function('do_shortcode', '[gtranslate]') }}</div>
         {# Language Switcher - Clean Flags Only #}
@@ -111,13 +103,12 @@
           </a>
         </noscript>
         {% endif %}
-        {# IGD Badge #}
-        {% if rspku.header_emergency_enabled is not defined or rspku.header_emergency_enabled %}
-        <a href="tel:{{ rspku.phone_igd_link }}" class="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-700 transition hover:bg-red-100">
-          {{ icon('siren', { class: 'h-3.5 w-3.5' }) }}
-          <span>{{ rspku.header_emergency_label|default('IGD 24/7') }}</span>
+        <a href="tel:{{ rspku.phone_igd_link }}" class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-white shadow-sm transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-[#f4f5f2] sm:px-2.5" title="IGD 24 Jam Ext. 118" aria-label="IGD 24 Jam {{ rspku.phone_igd }}, Ext. 118">
+          <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 20 20" fill="#ffffff" stroke="none" aria-hidden="true" focusable="false">
+            <path d="M10 2.25 1.8 17h16.4L10 2.25Zm0 4.6c.46 0 .82.36.82.82v4.72a.82.82 0 0 1-1.64 0V7.67c0-.46.36-.82.82-.82Zm0 8.35a1.05 1.05 0 1 1 0-2.1 1.05 1.05 0 0 1 0 2.1Z" fill="#ffffff" stroke="none" />
+          </svg>
+          <span class="whitespace-nowrap">IGD 24 Jam</span>
         </a>
-        {% endif %}
       </div>
     </div>
   </div>
@@ -246,13 +237,13 @@
         </a>
         <p class="max-w-sm text-sm leading-relaxed text-slate-600">{{ rspku.footer_tagline|default('Mendampingi kesehatan Anda dan keluarga dengan pelayanan profesional yang berlandaskan nilai Islami.') }}</p>
 
-        {# Emergency Contact - Prominent #}
+        {# Call Center Contact - Prominent #}
         <a href="tel:{{ rspku.phone_igd_link }}" class="inline-flex items-center gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3 transition hover:bg-red-100">
           <div class="grid h-10 w-10 place-items-center rounded-lg bg-red-600 text-white">
-            {{ icon('siren', { class: 'h-5 w-5' }) }}
+            {{ icon('phone', { class: 'h-5 w-5' }) }}
           </div>
           <div>
-            <p class="text-xs font-semibold uppercase tracking-wider text-red-700">IGD 24 Jam</p>
+            <p class="text-xs font-semibold uppercase tracking-wider text-red-700">Call Center 1</p>
             <p class="text-sm font-bold text-slate-950">{{ rspku.phone_igd }}</p>
           </div>
         </a>
