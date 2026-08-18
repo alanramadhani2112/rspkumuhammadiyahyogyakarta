@@ -11,6 +11,16 @@ final class DoctorRepository
 {
     private const CACHE_GROUP = 'rspku_theme';
     private const CACHE_TTL = 6 * HOUR_IN_SECONDS;
+    private const UNVERIFIED_SPECIALIZATION_SLUGS = [
+        'bedah-vaskuler',
+        'poli-covid',
+        'poli-pcr',
+        'poli-rta',
+        'poli-saliva-pcr',
+        'asy-syifa',
+        'p054',
+        'p082',
+    ];
 
     /**
      * Per-request memo so repeated normalize() calls on the same post
@@ -57,11 +67,15 @@ final class DoctorRepository
         $taxQuery = [];
         $specialization = sanitize_title((string) ($filters['specialization'] ?? ''));
         if ($specialization !== '') {
-            $taxQuery[] = [
-                'taxonomy' => 'spesialisasi-dokter',
-                'field' => 'slug',
-                'terms' => $specialization,
-            ];
+            if (self::isUnverifiedSpecialization($specialization)) {
+                $args['post__in'] = [0];
+            } else {
+                $taxQuery[] = [
+                    'taxonomy' => 'spesialisasi-dokter',
+                    'field' => 'slug',
+                    'terms' => $specialization,
+                ];
+            }
         }
 
         if ($taxQuery !== []) {
@@ -353,14 +367,14 @@ final class DoctorRepository
         return [
             'days' => self::DAYS,
             'specializations' => $scheduleSpecializations !== []
-                ? array_map(
+                ? array_values(array_filter(array_map(
                     static fn (array $item): array => [
                         'id' => 0,
                         'name' => (string) ($item['name'] ?? ''),
                         'slug' => (string) ($item['slug'] ?? ''),
                     ],
                     $scheduleSpecializations
-                )
+                ), static fn (array $item): bool => !self::isUnverifiedSpecialization((string) ($item['slug'] ?? ''))))
                 : $this->terms('spesialisasi-dokter'),
             'services' => $this->posts('layanan'),
         ];
@@ -735,11 +749,16 @@ final class DoctorRepository
             return [];
         }
 
-        return array_map(static fn ($term): array => [
+        return array_values(array_filter(array_map(static fn ($term): array => [
             'id' => (int) $term->term_id,
             'name' => $term->name,
             'slug' => $term->slug,
-        ], $terms);
+        ], $terms), static fn (array $term): bool => !self::isUnverifiedSpecialization((string) ($term['slug'] ?? ''))));
+    }
+
+    private static function isUnverifiedSpecialization(string $slug): bool
+    {
+        return in_array(sanitize_title($slug), self::UNVERIFIED_SPECIALIZATION_SLUGS, true);
     }
 
     /**
