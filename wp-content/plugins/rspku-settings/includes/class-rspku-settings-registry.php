@@ -40,7 +40,7 @@ final class RSPKU_Settings_Registry
                         'title' => 'Nomor Telepon',
                         'description' => 'Nomor yang tampil di topbar, footer, dan halaman kontak.',
                         'fields' => [
-                            ['key' => 'phone_igd', 'label' => 'Call Center 1 (Display)', 'type' => 'text', 'help' => 'Contoh: 0274 512653', 'group' => 'call_center', 'pair' => 'Call Center 1', 'pair_role' => 'display'],
+        ['key' => 'phone_igd', 'label' => 'Call Center 1 (Display)', 'type' => 'text', 'help' => 'Contoh: 0274-512653 (ext. 118)', 'group' => 'call_center', 'pair' => 'Call Center 1', 'pair_role' => 'display'],
                             ['key' => 'phone_igd_link', 'label' => 'Call Center 1 (tel: link)', 'type' => 'text', 'help' => 'Format internasional tanpa spasi. Contoh: +62274512653', 'group' => 'call_center', 'pair' => 'Call Center 1', 'pair_role' => 'tel'],
                             ['key' => 'phone_main', 'label' => 'Call Center 2 (Display)', 'type' => 'text', 'help' => 'Contoh: +62 8886412345', 'group' => 'call_center', 'pair' => 'Call Center 2', 'pair_role' => 'display'],
                             ['key' => 'phone_main_link', 'label' => 'Call Center 2 (tel: link)', 'type' => 'text', 'help' => 'Format internasional tanpa spasi. Contoh: +628886412345', 'group' => 'call_center', 'pair' => 'Call Center 2', 'pair_role' => 'tel'],
