@@ -532,6 +532,22 @@ final class ContentRepository
     }
 
     /**
+     * @return array<string,mixed>|null
+     */
+    public function findManagement(int $postId): ?array
+    {
+        $post = get_post($postId);
+        if (!$post instanceof WP_Post || $post->post_type !== 'manajemen-rs') {
+            return null;
+        }
+
+        $item = $this->normalizeManagement($post);
+        $item['content'] = apply_filters('the_content', $post->post_content);
+
+        return $item;
+    }
+
+    /**
      * @param array<int,WP_Post> $posts
      * @return array<int,array<string,mixed>>
      */
