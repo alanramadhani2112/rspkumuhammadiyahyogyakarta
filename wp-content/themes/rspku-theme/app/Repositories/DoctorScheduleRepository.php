@@ -8,7 +8,7 @@ use WP_Post;
 
 final class DoctorScheduleRepository
 {
-    private const UNVERIFIED_SPECIALIZATION_SLUGS = [
+    public const UNVERIFIED_SPECIALIZATION_SLUGS = [
         'bedah-vaskuler',
         'poli-covid',
         'poli-pcr',
@@ -227,6 +227,10 @@ final class DoctorScheduleRepository
     {
         $postId = (int) $post->ID;
         $terms = $this->doctorSpecializations($postId);
+        if ($terms === []) {
+            return null;
+        }
+
         $primaryTerm = $terms[0] ?? null;
         $specialization = $primaryTerm['name'] ?? '';
         $category = $primaryTerm['category'] ?? 'Lainnya';
@@ -310,6 +314,10 @@ final class DoctorScheduleRepository
 
             $termId = absint($row['specialization_term_id'] ?? 0);
             $term = $termById[$termId] ?? null;
+            if ($termId > 0 && $term === null) {
+                continue;
+            }
+
             $start = (string) ($row['start_time'] ?? $row['jam_mulai'] ?? '');
             $end = (string) ($row['end_time'] ?? $row['jam_selesai'] ?? '');
             $label = trim((string) ($row['label'] ?? ''));
@@ -344,6 +352,11 @@ final class DoctorScheduleRepository
         if (!is_array($terms)) {
             return [];
         }
+
+        $terms = array_values(array_filter(
+            $terms,
+            static fn (\WP_Term $term): bool => !self::isUnverifiedSpecialization($term->slug)
+        ));
 
         return array_map(function (\WP_Term $term): array {
             $parent = $term->parent > 0 ? get_term($term->parent, 'spesialisasi-dokter') : null;
@@ -512,7 +525,7 @@ final class DoctorScheduleRepository
         return sprintf('%02d:%02d', $hour, $minute);
     }
 
-    private static function isUnverifiedSpecialization(string $slug): bool
+    public static function isUnverifiedSpecialization(string $slug): bool
     {
         return in_array(sanitize_title($slug), self::UNVERIFIED_SPECIALIZATION_SLUGS, true);
     }

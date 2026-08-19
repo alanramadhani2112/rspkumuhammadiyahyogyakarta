@@ -11,16 +11,7 @@ final class DoctorRepository
 {
     private const CACHE_GROUP = 'rspku_theme';
     private const CACHE_TTL = 6 * HOUR_IN_SECONDS;
-    private const UNVERIFIED_SPECIALIZATION_SLUGS = [
-        'bedah-vaskuler',
-        'poli-covid',
-        'poli-pcr',
-        'poli-rta',
-        'poli-saliva-pcr',
-        'asy-syifa',
-        'p054',
-        'p082',
-    ];
+    private const CACHE_VERSION = 'v2';
 
     /**
      * Per-request memo so repeated normalize() calls on the same post
@@ -64,7 +55,12 @@ final class DoctorRepository
             $args['s'] = $search;
         }
 
-        $taxQuery = [];
+        $taxQuery = [[
+            'taxonomy' => 'spesialisasi-dokter',
+            'field' => 'slug',
+            'terms' => DoctorScheduleRepository::UNVERIFIED_SPECIALIZATION_SLUGS,
+            'operator' => 'NOT IN',
+        ]];
         $specialization = sanitize_title((string) ($filters['specialization'] ?? ''));
         if ($specialization !== '') {
             if (self::isUnverifiedSpecialization($specialization)) {
@@ -398,7 +394,7 @@ final class DoctorRepository
             return $cached;
         }
 
-        $transientKey = 'rspku_doctor_' . $postId;
+        $transientKey = 'rspku_doctor_' . self::CACHE_VERSION . '_' . $postId;
         $persistent = get_transient($transientKey);
         if (is_array($persistent)) {
             wp_cache_set($cacheKey, $persistent, self::CACHE_GROUP, self::CACHE_TTL);
@@ -427,12 +423,13 @@ final class DoctorRepository
 
         wp_cache_delete(self::cacheKey($postId), self::CACHE_GROUP);
         delete_transient('rspku_doctor_' . $postId);
+        delete_transient('rspku_doctor_' . self::CACHE_VERSION . '_' . $postId);
         unset(self::$normalizeMemo[$postId]);
     }
 
     private static function cacheKey(int $postId): string
     {
-        return 'doctor_' . $postId;
+        return 'doctor_' . self::CACHE_VERSION . '_' . $postId;
     }
 
     /**
@@ -450,6 +447,12 @@ final class DoctorRepository
         $photo = $this->doctorPhoto($postId);
         $schedule = $this->schedule($postId);
         $specializations = wp_get_post_terms($postId, 'spesialisasi-dokter', ['fields' => 'all']);
+        if (is_array($specializations)) {
+            $specializations = array_values(array_filter(
+                $specializations,
+                static fn ($term): bool => !DoctorScheduleRepository::isUnverifiedSpecialization((string) ($term->slug ?? ''))
+            ));
+        }
         $primarySpecialization = $this->primarySpecialization($postId, is_array($specializations) ? $specializations : []);
 
         return [
@@ -758,7 +761,7 @@ final class DoctorRepository
 
     private static function isUnverifiedSpecialization(string $slug): bool
     {
-        return in_array(sanitize_title($slug), self::UNVERIFIED_SPECIALIZATION_SLUGS, true);
+        return DoctorScheduleRepository::isUnverifiedSpecialization($slug);
     }
 
     /**

@@ -3,7 +3,7 @@
 {% block content %}
   {% set hero_visual = home.rooms|first ?: home.services|first ?: home.articles|first %}
   {% set service_cards = home.services %}
-  {% set first_feature = home.services|first ?: home.polyclinics|first %}
+  {% set first_feature = home.polyclinics|first ?: home.services|first %}
   {% set home_actions = [
     { title: 'Cari Dokter', text: 'Temukan dokter sesuai kebutuhan Anda.', url: site.url ~ '/dokter/', icon: 'search' },
     { title: 'Layanan', text: 'Temukan layanan dan poliklinik yang tersedia.', url: site.url ~ '/poliklinik/', icon: 'stethoscope' },
@@ -118,7 +118,7 @@
           <h2 class="mx-auto mt-4 max-w-3xl text-3xl font-bold text-slate-950 sm:text-4xl">Temukan Layanan yang Anda Butuhkan</h2>
           <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600">Didukung tim multidisiplin, tenaga medis berpengalaman, dan fasilitas yang terintegrasi untuk memberikan pelayanan yang komprehensif bagi pasien dan keluarga.</p>
         </div>
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {% for item in service_cards|slice(0, 7) %}
             {% include 'components/service-card.twig' with { item: item } only %}
           {% endfor %}

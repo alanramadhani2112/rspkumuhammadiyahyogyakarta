@@ -170,13 +170,6 @@ final class RSPKU_Settings_Registry
                             ['key' => 'home_cta_image', 'label' => 'Gambar CTA "Jaga Kesehatan"', 'type' => 'image', 'help' => 'Tampil di CTA gradient hijau di akhir homepage (rasio 1:1, min 600px). Kosongkan untuk pakai gambar room/service pertama.'],
                         ],
                     ],
-                    'home_featured' => [
-                        'title' => 'Layanan Unggulan',
-                        'description' => 'Pilih maksimal 6 layanan yang ingin ditonjolkan di homepage. Kosongkan untuk auto-populate dari layanan terbaru.',
-                        'fields' => [
-                            ['key' => 'home_featured_services', 'label' => 'Pilih Layanan', 'type' => 'post_picker', 'post_type' => 'layanan', 'max' => 6, 'help' => 'Centang layanan yang akan ditampilkan di homepage.'],
-                        ],
-                    ],
                     'home_doctors' => [
                         'title' => 'Dokter Unggulan',
                         'description' => 'Pilih maksimal 6 dokter yang ingin ditonjolkan di homepage. Kosongkan untuk auto-populate dari dokter terbaru.',
