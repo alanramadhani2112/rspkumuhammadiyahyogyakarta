@@ -1,0 +1,925 @@
+{
+    "task": "copywriting-description-import-backup",
+    "batch": "copywriting-description-uat-20260819-auto-safe-30",
+    "created_at": "2026-08-19T02:30:40+00:00",
+    "artifact_sha256": "4ba99a960f2a2ce2f8f34b8848102381f9b48a90052a6ee927c16f4ee4c69451",
+    "target_ids": [
+        16936,
+        16937,
+        16940,
+        16941,
+        16948,
+        16959,
+        16961,
+        16971,
+        16982,
+        16989,
+        20860,
+        20864,
+        20865,
+        20866,
+        20867,
+        20868,
+        20869,
+        20872,
+        20873,
+        20874,
+        20875,
+        20876,
+        20881,
+        20882,
+        20893,
+        20898,
+        20899,
+        20900,
+        20901,
+        20902,
+        20906,
+        20907,
+        20908,
+        20909,
+        20914,
+        20915,
+        20916,
+        20917,
+        20918,
+        20923,
+        20924,
+        20925,
+        20926,
+        20949,
+        20950,
+        20953,
+        20954,
+        20955
+    ],
+    "records": [
+        {
+            "post": {
+                "ID": "16936",
+                "post_title": "Klinik Bedah Anak",
+                "post_type": "poliklinik",
+                "post_status": "publish",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "klinik-bedah-anak",
+                "post_modified": "2026-02-13 19:50:32",
+                "post_modified_gmt": "2026-02-13 12:50:32"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "16937",
+                "post_title": "Klinik Bedah Digesti",
+                "post_type": "poliklinik",
+                "post_status": "publish",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "klinik-bedah-digesti",
+                "post_modified": "2026-02-13 19:50:19",
+                "post_modified_gmt": "2026-02-13 12:50:19"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "16940",
+                "post_title": "Klinik Bedah Mulut",
+                "post_type": "poliklinik",
+                "post_status": "publish",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "klinik-bedah-mulut",
+                "post_modified": "2026-02-13 19:51:09",
+                "post_modified_gmt": "2026-02-13 12:51:09"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "16941",
+                "post_title": "Klinik Bedah Onkologi",
+                "post_type": "poliklinik",
+                "post_status": "publish",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "klinik-bedah-onkologi",
+                "post_modified": "2026-02-13 19:50:58",
+                "post_modified_gmt": "2026-02-13 12:50:58"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "16948",
+                "post_title": "Klinik Bedah Umum",
+                "post_type": "poliklinik",
+                "post_status": "publish",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "klinik-bedah-umum",
+                "post_modified": "2026-02-13 19:58:20",
+                "post_modified_gmt": "2026-02-13 12:58:20"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "16959",
+                "post_title": "Klinik Ginekologi Onkologi",
+                "post_type": "poliklinik",
+                "post_status": "publish",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "klinik-ginekologi-onkologi",
+                "post_modified": "2026-02-13 19:55:39",
+                "post_modified_gmt": "2026-02-13 12:55:39"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "16961",
+                "post_title": "Klinik Ginjal dan Hipertensi",
+                "post_type": "poliklinik",
+                "post_status": "publish",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "klinik-ginjal-dan-hipertensi",
+                "post_modified": "2026-02-13 19:55:19",
+                "post_modified_gmt": "2026-02-13 12:55:19"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "16971",
+                "post_title": "Klinik Jantung Anak",
+                "post_type": "poliklinik",
+                "post_status": "publish",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "klinik-jantung-anak",
+                "post_modified": "2026-02-13 19:54:18",
+                "post_modified_gmt": "2026-02-13 12:54:18"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "16982",
+                "post_title": "Klinik Mata",
+                "post_type": "poliklinik",
+                "post_status": "publish",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "klinik-mata",
+                "post_modified": "2026-01-23 06:59:51",
+                "post_modified_gmt": "2026-01-22 23:59:51"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "16989",
+                "post_title": "Klinik Penyakit Dalam",
+                "post_type": "poliklinik",
+                "post_status": "publish",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "klinik-penyakit-dalam",
+                "post_modified": "2026-01-23 07:00:24",
+                "post_modified_gmt": "2026-01-23 00:00:24"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20860",
+                "post_title": "Klinik Bedah Saraf",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-15 18:07:51",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20864",
+                "post_title": "Klinik Hemato-Onkologi",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-15 18:07:51",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20865",
+                "post_title": "Klinik Paru dan Respirasi",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-15 18:07:51",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20866",
+                "post_title": "Klinik Obstetri dan Ginekologi",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-15 18:07:51",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20867",
+                "post_title": "Klinik Neurologi / Saraf",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-15 18:07:51",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20868",
+                "post_title": "Klinik Psikiatri / Kesehatan Jiwa",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-16 12:34:16",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20869",
+                "post_title": "Klinik Telinga, Hidung, Tenggorokan, dan Kepala Leher",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-16 12:34:16",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20872",
+                "post_title": "Klinik Gigi dan Mulut",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-16 12:34:16",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20873",
+                "post_title": "Klinik Konservasi Gigi",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-16 12:34:16",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20874",
+                "post_title": "Klinik Konservasi Gigi Anak",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-16 12:34:16",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20875",
+                "post_title": "Klinik Periodonsia",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-16 12:34:16",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20876",
+                "post_title": "Klinik Ortodonsia",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-16 12:34:16",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20881",
+                "post_title": "Klinik Vaksin",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-16 16:36:11",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20882",
+                "post_title": "Klinik Medical Check Up (MCU)",
+                "post_type": "poliklinik",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-16 16:36:11",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20893",
+                "post_title": "Layanan Home Care",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 00:50:46",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20898",
+                "post_title": "Kelas III",
+                "post_type": "rawat-inap",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 00:50:47",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20899",
+                "post_title": "Kelas II",
+                "post_type": "rawat-inap",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 00:50:47",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20900",
+                "post_title": "Kelas I",
+                "post_type": "rawat-inap",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 00:50:47",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20901",
+                "post_title": "Kelas VIP",
+                "post_type": "rawat-inap",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 00:50:47",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20902",
+                "post_title": "Kelas VVIP",
+                "post_type": "rawat-inap",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 00:50:47",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20906",
+                "post_title": "Layanan Hemodialisis 24 jam dengan 45 mesin, termasuk layanan infeksi dan VIP",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 09:36:46",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20907",
+                "post_title": "Bedah Onkologi",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 09:36:46",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20908",
+                "post_title": "Ginekologi Onkologi",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 09:36:46",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20909",
+                "post_title": "Hemato Onkologi",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 09:36:46",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20914",
+                "post_title": "Intensive Care Unit (ICU)",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 19:03:08",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20915",
+                "post_title": "Intensive Cardiac Care Unit (ICCU)",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 19:03:08",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20916",
+                "post_title": "Pediatric Intensive Care Unit (PICU)",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 19:03:08",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20917",
+                "post_title": "NICU",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 19:03:09",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20918",
+                "post_title": "High Care Unit (HCU)",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-17 19:03:09",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20923",
+                "post_title": "Laboratorium Patologi Klinik",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-18 08:06:44",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20924",
+                "post_title": "Laboratorium Patologi Anatomi",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-18 08:06:45",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20925",
+                "post_title": "Laboratorium Mikrobiologi Klinik",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-18 08:06:45",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20926",
+                "post_title": "Bank Darah",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-18 08:06:45",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20949",
+                "post_title": "Medical Check Up",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-18 18:41:43",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20950",
+                "post_title": "Layanan Vaksin",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-18 18:41:43",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20953",
+                "post_title": "Cancer Centre",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-18 18:41:43",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20954",
+                "post_title": "Uronephrology Centre",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-18 21:36:54",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        },
+        {
+            "post": {
+                "ID": "20955",
+                "post_title": "Emergency and Critical Care",
+                "post_type": "layanan",
+                "post_status": "draft",
+                "post_content": "",
+                "post_excerpt": "",
+                "post_name": "",
+                "post_modified": "2026-08-18 21:36:54",
+                "post_modified_gmt": "0000-00-00 00:00:00"
+            },
+            "audit_meta": {
+                "_rspku_copywriting_import_batch": "",
+                "_rspku_copywriting_source_heading": "",
+                "_rspku_copywriting_source_sha256": ""
+            }
+        }
+    ],
+    "records_sha256": "195e8b639d8989fdeac5bd70abbf66dbbc711dfb719b944702cead092a19fa6a",
+    "backup_path": "/home/dev-rspkujogja/import-evidence/copywriting-20260819/backup-before-apply-retry.json",
+    "backup_file_sha256": "bbc0c901c5e2dbe98fa092c66b8cfa4620909008ddbf1f00d18667c8f334e55d"
+}
