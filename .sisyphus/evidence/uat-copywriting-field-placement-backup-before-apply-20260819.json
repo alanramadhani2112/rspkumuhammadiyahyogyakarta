@@ -1,0 +1,3500 @@
+{
+    "task": "copywriting-field-placement-backup",
+    "batch": "copywriting-description-uat-20260819-auto-safe-30",
+    "created_at": "2026-08-19T08:00:06+00:00",
+    "post_ids": [
+        20860,
+        20865,
+        20866,
+        20867,
+        20868,
+        20869,
+        20872,
+        20873,
+        20874,
+        20875,
+        20876,
+        20893,
+        20898,
+        20899,
+        20900,
+        20901,
+        20902,
+        20906,
+        20914,
+        20915,
+        20916,
+        20917,
+        20918,
+        20923,
+        20924,
+        20925,
+        20926,
+        20949,
+        20953,
+        20954
+    ],
+    "records": {
+        "posts": [
+            {
+                "ID": "20860",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:36:44",
+                "post_date_gmt": "2026-08-19 06:36:44",
+                "post_content": "Klinik Bedah Saraf menyediakan layanan konsultasi dan tindakan bedah pada kondisi yang melibatkan sistem saraf pusat dan perifer, termasuk tumor otak, herniasi diskus, perdarahan otak akibat trauma atau non-trauma, dan cedera tulang belakang. Pelayanan dilakukan oleh dokter spesialis bedah saraf dengan pendekatan pembedahan yang terstandar, termasuk teknik minimal invasif sesuai indikasi klinis.",
+                "post_title": "Klinik Bedah Saraf",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "klinik-bedah-saraf",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:37:47",
+                "post_modified_gmt": "2026-08-19 06:37:47",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=poliklinik&#038;p=20860",
+                "menu_order": "0",
+                "post_type": "poliklinik",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20865",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:36:43",
+                "post_date_gmt": "2026-08-19 06:36:43",
+                "post_content": "Klinik Paru menyediakan layanan diagnosis dan tata laksana penyakit saluran napas dan paru-paru, mencakup asma bronkial, PPOK, tuberkulosis, pneumonia, dan gangguan pernapasan lainnya. Pelayanan dilakukan oleh dokter spesialis paru dengan dukungan fasilitas spirometri dan pemeriksaan radiologi toraks yang tersedia di rumah sakit.",
+                "post_title": "Klinik Paru dan Respirasi",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "klinik-paru-dan-respirasi",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:36:43",
+                "post_modified_gmt": "2026-08-19 06:36:43",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=poliklinik&#038;p=20865",
+                "menu_order": "0",
+                "post_type": "poliklinik",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20866",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:36:43",
+                "post_date_gmt": "2026-08-19 06:36:43",
+                "post_content": "Klinik Obstetri dan Ginekologi menyediakan layanan kesehatan reproduksi wanita secara menyeluruh, meliputi pemeriksaan kehamilan, persalinan, penanganan gangguan menstruasi, mioma uteri, kista ovarium, serta kondisi ginekologi lainnya. Pelayanan dilakukan oleh dokter spesialis obstetri dan ginekologi dengan dukungan fasilitas USG obstetri dan sarana maternal yang lengkap.",
+                "post_title": "Klinik Obstetri dan Ginekologi",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "klinik-obstetri-dan-ginekologi",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:36:43",
+                "post_modified_gmt": "2026-08-19 06:36:43",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=poliklinik&#038;p=20866",
+                "menu_order": "0",
+                "post_type": "poliklinik",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20867",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:36:43",
+                "post_date_gmt": "2026-08-19 06:36:43",
+                "post_content": "Klinik Saraf menyediakan layanan diagnosis dan tata laksana berbagai gangguan sistem saraf pusat maupun perifer, termasuk stroke, epilepsi, migrain, neuropati, serta gangguan keseimbangan dan koordinasi. Pelayanan dilakukan oleh dokter spesialis neurologi dengan dukungan pemeriksaan penunjang neurofisiologi dan pencitraan otak (brain imaging) yang tersedia di rumah sakit.",
+                "post_title": "Klinik Neurologi / Saraf",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "klinik-neurologi-saraf",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:36:43",
+                "post_modified_gmt": "2026-08-19 06:36:43",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=poliklinik&#038;p=20867",
+                "menu_order": "0",
+                "post_type": "poliklinik",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20868",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:36:42",
+                "post_date_gmt": "2026-08-19 06:36:42",
+                "post_content": "Klinik Kesehatan Jiwa menyediakan layanan konsultasi, diagnosis, dan tata laksana gangguan mental secara holistik dan berbasis evidens. Pelayanan dilakukan oleh dokter spesialis kedokteran jiwa (psikiater) dengan pendekatan bio-psiko-sosial, meliputi penanganan depresi, ansietas, gangguan psikotik, adiksi, serta kondisi kejiwaan lainnya.",
+                "post_title": "Klinik Psikiatri / Kesehatan Jiwa",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "klinik-psikiatri-kesehatan-jiwa",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:36:42",
+                "post_modified_gmt": "2026-08-19 06:36:42",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=poliklinik&#038;p=20868",
+                "menu_order": "0",
+                "post_type": "poliklinik",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20869",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:36:42",
+                "post_date_gmt": "2026-08-19 06:36:42",
+                "post_content": "Klinik THT menyediakan layanan pemeriksaan dan tata laksana gangguan pada telinga, hidung, dan tenggorokan secara komprehensif. Pelayanan mencakup penanganan infeksi saluran napas atas, gangguan pendengaran, sinusitis, vertigo, serta kondisi THT lainnya, yang dilakukan oleh dokter spesialis THT dengan peralatan diagnostik endoskopi dan audiometri yang memadai.",
+                "post_title": "Klinik Telinga, Hidung, Tenggorokan, dan Kepala Leher",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "klinik-telinga-hidung-tenggorokan-dan-kepala-leher",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:36:42",
+                "post_modified_gmt": "2026-08-19 06:36:42",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=poliklinik&#038;p=20869",
+                "menu_order": "0",
+                "post_type": "poliklinik",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20872",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:36:43",
+                "post_date_gmt": "2026-08-19 06:36:43",
+                "post_content": "Klinik Gigi Umum menyediakan layanan pemeriksaan dan perawatan gigi dasar yang komprehensif, mencakup penambalan, pencabutan, pembersihan karang gigi (scaling), serta edukasi kesehatan gigi dan mulut. Pelayanan dilakukan oleh dokter gigi yang kompeten dalam lingkungan klinik yang bersih, higienis, dan sesuai standar prosedur operasional yang berlaku.",
+                "post_title": "Klinik Gigi dan Mulut",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "klinik-gigi-dan-mulut",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:36:43",
+                "post_modified_gmt": "2026-08-19 06:36:43",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=poliklinik&#038;p=20872",
+                "menu_order": "0",
+                "post_type": "poliklinik",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20873",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:36:43",
+                "post_date_gmt": "2026-08-19 06:36:43",
+                "post_content": "Klinik Endodonsi menyediakan layanan perawatan dan konservasi gigi yang mengalami kerusakan akibat karies dalam, trauma, atau infeksi pulpa, mencakup perawatan saluran akar (root canal treatment) dan restorasi mahkota gigi. Pelayanan dilakukan oleh dokter gigi spesialis konservasi gigi dengan menggunakan teknik dan instrumen endodontik berstandar untuk mempertahankan fungsi gigi secara optimal.",
+                "post_title": "Klinik Konservasi Gigi",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "klinik-konservasi-gigi",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:36:43",
+                "post_modified_gmt": "2026-08-19 06:36:43",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=poliklinik&#038;p=20873",
+                "menu_order": "0",
+                "post_type": "poliklinik",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20874",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:36:43",
+                "post_date_gmt": "2026-08-19 06:36:43",
+                "post_content": "Klinik Pedodonti menyediakan layanan perawatan gigi khusus bagi pasien anak, mencakup pemeriksaan gigi sulung dan gigi permanen, penambalan, pencabutan, serta penanganan kelainan gigi pada masa pertumbuhan. Pelayanan dilakukan oleh dokter gigi spesialis kedokteran gigi anak dengan pendekatan yang adaptif dan komunikatif sesuai tahap perkembangan pasien.",
+                "post_title": "Klinik Konservasi Gigi Anak",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "klinik-konservasi-gigi-anak",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:36:43",
+                "post_modified_gmt": "2026-08-19 06:36:43",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=poliklinik&#038;p=20874",
+                "menu_order": "0",
+                "post_type": "poliklinik",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20875",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:36:43",
+                "post_date_gmt": "2026-08-19 06:36:43",
+                "post_content": "Klinik Periodonti menyediakan layanan diagnosis dan tata laksana penyakit jaringan pendukung gigi (periodonsium), meliputi gingivitis, periodontitis, serta prosedur bedah periodontal sesuai indikasi. Pelayanan dilakukan oleh dokter gigi spesialis periodonti dengan pendekatan terstruktur untuk memelihara kesehatan gusi dan jaringan penyangga gigi dalam jangka panjang.",
+                "post_title": "Klinik Periodonsia",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "klinik-periodonsia",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:36:43",
+                "post_modified_gmt": "2026-08-19 06:36:43",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=poliklinik&#038;p=20875",
+                "menu_order": "0",
+                "post_type": "poliklinik",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20876",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:36:43",
+                "post_date_gmt": "2026-08-19 06:36:43",
+                "post_content": "Klinik Ortodonti menyediakan layanan pemeriksaan dan tatalaksana maloklusi gigi serta ketidakselarasan rahang melalui perawatan ortodontik konvensional maupun aligner. Pelayanan dilakukan oleh dokter gigi spesialis ortodonti dengan perencanaan terapi yang terindividualisasi untuk mencapai keselarasan fungsional dan estetika oklusi secara optimal.",
+                "post_title": "Klinik Ortodonsia",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "klinik-ortodonsia",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:36:43",
+                "post_modified_gmt": "2026-08-19 06:36:43",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=poliklinik&#038;p=20876",
+                "menu_order": "0",
+                "post_type": "poliklinik",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20893",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:42",
+                "post_date_gmt": "2026-08-19 06:32:42",
+                "post_content": "Layanan Home Care RS PKU Muhammadiyah Yogyakarta menyediakan pelayanan kesehatan di rumah pasien oleh tenaga kesehatan profesional, meliputi perawatan luka, pemberian obat injeksi, pemantauan tanda vital, fisioterapi, dan layanan medis lainnya sesuai kebutuhan klinis. Layanan ini ditujukan untuk mendukung pemulihan pasca-rawat inap serta pasien dengan kondisi kronis yang memerlukan pemantauan berkala di luar fasilitas rumah sakit.",
+                "post_title": "Layanan Home Care",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "layanan-home-care",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:42",
+                "post_modified_gmt": "2026-08-19 06:32:42",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20893",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20898",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:42:27",
+                "post_date_gmt": "2026-08-19 06:42:27",
+                "post_content": "Ruang rawat inap kelas III RS PKU Muhammadiyah Yogyakarta menyediakan fasilitas perawatan dengan kapasitas 4 (empat) tempat tidur per kamar, dilengkapi kamar mandi, pendingin ruangan (AC), bed pasien dengan rel pengaman, serta loker penyimpanan barang. Pelayanan keperawatan dilaksanakan secara profesional oleh tenaga perawat terlatih, dalam lingkungan yang bersih, tertib, dan mendukung proses pemulihan pasien.",
+                "post_title": "Kelas III",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "kelas-iii",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:42:27",
+                "post_modified_gmt": "2026-08-19 06:42:27",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=rawat-inap&#038;p=20898",
+                "menu_order": "0",
+                "post_type": "rawat-inap",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20899",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:42:27",
+                "post_date_gmt": "2026-08-19 06:42:27",
+                "post_content": "Ruang rawat inap kelas II RS PKU Muhammadiyah Yogyakarta menyediakan fasilitas perawatan dengan kapasitas 3 (tiga) tempat tidur, dilengkapi kamar mandi dalam, AC, bed pasien dengan rel pengaman, dan loker penyimpanan barang. Pelayanan keperawatan dilaksanakan secara profesional oleh tenaga perawat terlatih, dalam lingkungan yang bersih, tertib, dan mendukung proses pemulihan pasien.",
+                "post_title": "Kelas II",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "kelas-ii",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:42:27",
+                "post_modified_gmt": "2026-08-19 06:42:27",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=rawat-inap&#038;p=20899",
+                "menu_order": "0",
+                "post_type": "rawat-inap",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20900",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:42:27",
+                "post_date_gmt": "2026-08-19 06:42:27",
+                "post_content": "Ruang rawat inap kelas I RS PKU Muhammadiyah Yogyakarta menyediakan kamar dengan kapasitas 2 (dua) tempat tidur, dilengkapi kamar mandi pribadi, AC, bed multifungsi dengan rel pengaman, sofa penunggu, TV, serta akses jaringan WiFi. Fasilitas dirancang untuk memberikan kenyamanan dan privasi yang lebih optimal bagi pasien dan keluarga yang mendampingi selama proses perawatan.",
+                "post_title": "Kelas I",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "kelas-i",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:42:27",
+                "post_modified_gmt": "2026-08-19 06:42:27",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=rawat-inap&#038;p=20900",
+                "menu_order": "0",
+                "post_type": "rawat-inap",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20901",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:42:27",
+                "post_date_gmt": "2026-08-19 06:42:27",
+                "post_content": "Ruang rawat inap VIP RS PKU Muhammadiyah Yogyakarta menyediakan kamar rawat inap pribadi dengan fasilitas yang lebih lengkap, meliputi bed pasien canggih dengan pengaturan elektrik, kamar mandi dengan water heater, sofa tamu, bed penunggu, lemari pakaian, kulkas, TV, serta akses WiFi. Ruangan dirancang dengan standar kenyamanan yang tinggi untuk memenuhi kebutuhan pasien yang menginginkan privasi dan fasilitas yang lebih optimal selama masa rawat inap.",
+                "post_title": "Kelas VIP",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "kelas-vip",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:42:27",
+                "post_modified_gmt": "2026-08-19 06:42:27",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=rawat-inap&#038;p=20901",
+                "menu_order": "0",
+                "post_type": "rawat-inap",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20902",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:42:27",
+                "post_date_gmt": "2026-08-19 06:42:27",
+                "post_content": "Ruang rawat inap VVIP RS PKU Muhammadiyah Yogyakarta merupakan kelas tertinggi dari fasilitas rawat inap yang tersedia, menyediakan kamar yang lebih luas, bed pasien canggih dengan pengaturan elektrik,",
+                "post_title": "Kelas VVIP",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "kelas-vvip",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:42:27",
+                "post_modified_gmt": "2026-08-19 06:42:27",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=rawat-inap&#038;p=20902",
+                "menu_order": "0",
+                "post_type": "rawat-inap",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20906",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:42",
+                "post_date_gmt": "2026-08-19 06:32:42",
+                "post_content": "Layanan Hemodialisis RS PKU Muhammadiyah Yogyakarta menyediakan terapi pengganti fungsi ginjal melalui prosedur cuci darah bagi pasien dengan gagal ginjal kronik maupun akut yang memerlukan hemodialisis rutin. Pelayanan dilaksanakan menggunakan mesin hemodialisis berstandar dengan monitoring klinis yang ketat oleh dokter spesialis nefrologi dan perawat hemodialisis terlatih, dalam lingkungan yang higienis dan terkelola dengan baik.",
+                "post_title": "Layanan Hemodialisis 24 jam dengan 45 mesin, termasuk layanan infeksi dan VIP",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "layanan-hemodialisis-24-jam-dengan-45-mesin-termasuk-layanan-infeksi-dan-vip",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:42",
+                "post_modified_gmt": "2026-08-19 06:32:42",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20906",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20914",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:41",
+                "post_date_gmt": "2026-08-19 06:32:41",
+                "post_content": "Ruang ICU RS PKU Muhammadiyah Yogyakarta menyediakan layanan perawatan intensif bagi pasien dewasa dengan kondisi kritis yang memerlukan pemantauan dan intervensi medis berkelanjutan. Ruangan dilengkapi dengan monitor hemodinamik, ventilator mekanik, dan peralatan life-support lainnya, dengan pengawasan 24 jam oleh dokter intensivis dan perawat ICU yang terlatih sesuai kompetensi perawatan kritis.",
+                "post_title": "Intensive Care Unit (ICU)",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "intensive-care-unit-icu",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:41",
+                "post_modified_gmt": "2026-08-19 06:32:41",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20914",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20915",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:41",
+                "post_date_gmt": "2026-08-19 06:32:41",
+                "post_content": "Ruang ICCU RS PKU Muhammadiyah Yogyakarta menyediakan layanan perawatan intensif kardiologi bagi pasien dengan kondisi kardiovaskular kritis, termasuk sindrom koroner akut, aritmia berat, dan gagal jantung dekompensasi. Pemantauan EKG secara kontinu, defibrilasi, dan intervensi kardiologi emergensi dapat dilaksanakan dengan cepat di bawah pengawasan dokter spesialis jantung dan tenaga keperawatan ICCU yang kompeten.",
+                "post_title": "Intensive Cardiac Care Unit (ICCU)",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "intensive-cardiac-care-unit-iccu",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:41",
+                "post_modified_gmt": "2026-08-19 06:32:41",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20915",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20916",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:41",
+                "post_date_gmt": "2026-08-19 06:32:41",
+                "post_content": "Ruang PICU RS PKU Muhammadiyah Yogyakarta menyediakan layanan perawatan intensif bagi pasien bayi dan anak dengan kondisi kritis yang memerlukan pemantauan dan tata laksana medis intensif. Fasilitas dan prosedur pelayanan disesuaikan dengan kekhususan fisiologi pediatri, dikelola oleh dokter spesialis anak dan perawat PICU terlatih dengan dukungan peralatan monitoring dan terapi yang memadai.",
+                "post_title": "Pediatric Intensive Care Unit (PICU)",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "pediatric-intensive-care-unit-picu",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:41",
+                "post_modified_gmt": "2026-08-19 06:32:41",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20916",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20917",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:41",
+                "post_date_gmt": "2026-08-19 06:32:41",
+                "post_content": "Ruang NICU RS PKU Muhammadiyah Yogyakarta menyediakan layanan perawatan intensif khusus bagi neonatus berisiko tinggi, termasuk bayi prematur, bayi berat lahir rendah, dan neonatus dengan kondisi medis kritis. Pelayanan dilaksanakan oleh dokter spesialis anak subspesialis perinatologi bersama perawat neonatus terlatih, didukung inkubator, ventilator neonatus, dan sistem monitoring vital yang sesuai kebutuhan perawatan neonatal intensif.",
+                "post_title": "NICU",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "nicu",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:41",
+                "post_modified_gmt": "2026-08-19 06:32:41",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20917",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20918",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:41",
+                "post_date_gmt": "2026-08-19 06:32:41",
+                "post_content": "Ruang HCU RS PKU Muhammadiyah Yogyakarta menyediakan layanan perawatan dengan tingkat observasi dan intervensi di atas bangsal rawat biasa, namun tidak memerlukan fasilitas ICU penuh. Layanan ini diperuntukkan bagi pasien yang membutuhkan pemantauan lebih intensif pasca-ICU atau pasca-operasi besar, dengan rasio perawat-pasien yang lebih tinggi dan dukungan monitoring medis yang memadai.",
+                "post_title": "High Care Unit (HCU)",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "high-care-unit-hcu",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:41",
+                "post_modified_gmt": "2026-08-19 06:32:41",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20918",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20923",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:41",
+                "post_date_gmt": "2026-08-19 06:32:41",
+                "post_content": "Laboratorium Klinik RS PKU Muhammadiyah Yogyakarta beroperasi 24 jam dalam menyediakan layanan pemeriksaan penunjang diagnostik, mencakup hematologi, kimia klinik, imunologi, urinalisis, dan pemeriksaan lainnya. Seluruh proses pemeriksaan dilaksanakan oleh analis kesehatan berlisensi dengan sistem penjaminan mutu laboratorium yang terstandar untuk menghasilkan data yang akurat dan dapat dipercaya.",
+                "post_title": "Laboratorium Patologi Klinik",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "laboratorium-patologi-klinik",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:41",
+                "post_modified_gmt": "2026-08-19 06:32:41",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20923",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20924",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:40",
+                "post_date_gmt": "2026-08-19 06:32:40",
+                "post_content": "Laboratorium Patologi Anatomi menyediakan layanan pemeriksaan jaringan, sel, dan cairan tubuh secara histopatologi, sitologi, dan imunohistokimia untuk mendukung diagnosis penyakit jaringan, termasuk keganasan. Pemeriksaan dilakukan oleh dokter spesialis patologi anatomi dengan prosedur yang terstandar, menghasilkan laporan diagnostik yang menjadi dasar dalam penentuan diagnosis akhir dan perencanaan terapi.",
+                "post_title": "Laboratorium Patologi Anatomi",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "laboratorium-patologi-anatomi",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:40",
+                "post_modified_gmt": "2026-08-19 06:32:40",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20924",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20925",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:40",
+                "post_date_gmt": "2026-08-19 06:32:40",
+                "post_content": "Laboratorium Mikrobiologi menyediakan layanan pemeriksaan identifikasi mikroorganisme penyebab infeksi dan uji kepekaan antimikroba (antibiogram) untuk mendukung tata laksana infeksi secara tepat dan rasional. Pemeriksaan dilaksanakan sesuai standar prosedur laboratorium yang berlaku, dengan tujuan membantu klinisi dalam pemilihan terapi antimikroba yang sesuai dan mendukung pengendalian resistensi antimikroba di rumah sakit.",
+                "post_title": "Laboratorium Mikrobiologi Klinik",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "laboratorium-mikrobiologi-klinik",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:40",
+                "post_modified_gmt": "2026-08-19 06:32:40",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20925",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20926",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:40",
+                "post_date_gmt": "2026-08-19 06:32:40",
+                "post_content": "Bank Darah RS PKU Muhammadiyah Yogyakarta menyelenggarakan layanan pengelolaan, penyimpanan, pengujian, dan distribusi darah serta komponen darah yang aman untuk kebutuhan transfusi pasien. Seluruh proses dilaksanakan sesuai standar teknis bank darah yang berlaku untuk menjamin keamanan, kompabilitas, dan ketersediaan darah bagi pasien yang memerlukan, termasuk dalam kondisi kegawatdaruratan.",
+                "post_title": "Bank Darah",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "bank-darah",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:40",
+                "post_modified_gmt": "2026-08-19 06:32:40",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20926",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20949",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:38",
+                "post_date_gmt": "2026-08-19 06:32:38",
+                "post_content": "Layanan Medical Check-Up RS PKU Muhammadiyah Yogyakarta menyediakan pemeriksaan kesehatan menyeluruh yang ditujukan untuk deteksi dini penyakit, penilaian faktor risiko, serta evaluasi status kesehatan secara berkala bagi individu, keluarga, maupun korporasi. Paket pemeriksaan yang tersedia mencakup pemeriksaan fisik oleh dokter, laboratorium darah lengkap (hematologi, kimia klinik, fungsi hati dan ginjal, profil lipid, glukosa darah), foto toraks (X-Ray), EKG, USG abdomen, spirometri, serta pemeriksaan penunjang tambahan sesuai kebutuhan dan indikasi. Hasil pemeriksaan dikonsultasikan langsung kepada peserta oleh dokter dan disertai laporan tertulis yang terstruktur sebagai dasar rekomendasi tindak lanjut kesehatan.",
+                "post_title": "Medical Check Up",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "medical-check-up",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:38",
+                "post_modified_gmt": "2026-08-19 06:32:38",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20949",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20953",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:38",
+                "post_date_gmt": "2026-08-19 06:32:38",
+                "post_content": "Cancer Centre RS PKU Muhammadiyah Yogyakarta menyelenggarakan layanan onkologi komprehensif melalui pendekatan multidisiplin yang melibatkan dokter spesialis bedah onkologi, hematologi-onkologi medik, ginekologi onkologi, radiologi, patologi anatomi, dan gizi klinik dalam satu tim terpadu. Layanan mencakup pemeriksaan diagnostik keganasan (tumor marker, biopsi, pemeriksaan patologi anatomi), tindakan bedah onkologi, kemoterapi One-Day Care (ODC), serta pemantauan dan tindak lanjut pasien kanker secara berkala. Koordinasi antar disiplin dilaksanakan melalui forum multidisciplinary team (MDT) untuk memastikan setiap pasien mendapatkan rencana terapi yang optimal, terstandar, dan berbasis rekomendasi klinis terkini.",
+                "post_title": "Cancer Centre",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "cancer-centre",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:38",
+                "post_modified_gmt": "2026-08-19 06:32:38",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20953",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            },
+            {
+                "ID": "20954",
+                "post_author": "3",
+                "post_date": "2026-08-19 13:32:38",
+                "post_date_gmt": "2026-08-19 06:32:38",
+                "post_content": "Layanan Uronefrologi RS PKU Muhammadiyah Yogyakarta merupakan layanan terpadu yang mengintegrasikan pelayanan nefrologi (penyakit ginjal) dan urologi (bedah saluran kemih) dalam satu sistem pelayanan yang terkoordinasi. Layanan ini menyediakan evaluasi dan tata laksana komprehensif untuk berbagai kondisi ginjal dan saluran kemih, meliputi gagal ginjal kronik, nefrolitiasis, infeksi saluran kemih berulang, sindrom nefrotik, serta keganasan urologi. Layanan didukung oleh dokter spesialis nefrologi dan urologi yang berpengalaman, fasilitas hemodialisis berstandar, peralatan endourologi, laboratorium, serta modalitas pencitraan urologi yang memadai. Pendekatan tata laksana dilakukan secara berbasis bukti dan berorientasi pada penanganan jangka panjang guna mempertahankan kualitas hidup pasien secara optimal.",
+                "post_title": "Uronephrology Centre",
+                "post_excerpt": "",
+                "post_status": "publish",
+                "comment_status": "closed",
+                "ping_status": "closed",
+                "post_password": "",
+                "post_name": "uronephrology-centre",
+                "to_ping": "",
+                "pinged": "",
+                "post_modified": "2026-08-19 13:32:38",
+                "post_modified_gmt": "2026-08-19 06:32:38",
+                "post_content_filtered": "",
+                "post_parent": "0",
+                "guid": "https://dev-web.rspkujogja.com/?post_type=layanan&#038;p=20954",
+                "menu_order": "0",
+                "post_type": "layanan",
+                "post_mime_type": "",
+                "comment_count": "0"
+            }
+        ],
+        "postmeta": [
+            {
+                "meta_id": "91262",
+                "post_id": "20860",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91263",
+                "post_id": "20860",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "8"
+            },
+            {
+                "meta_id": "91264",
+                "post_id": "20860",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Klinik Bedah Saraf"
+            },
+            {
+                "meta_id": "91265",
+                "post_id": "20860",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Rawat Jalan"
+            },
+            {
+                "meta_id": "91266",
+                "post_id": "20860",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Spesialis dan Sub Spesialis"
+            },
+            {
+                "meta_id": "91267",
+                "post_id": "20860",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "poliklinik|klinik bedah saraf|layanan rawat jalan|layanan spesialis dan sub spesialis"
+            },
+            {
+                "meta_id": "91268",
+                "post_id": "20860",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "0f0b41dc05c4082241ae68cb33493becce53074156e8c783c1e7351810e3ecca"
+            },
+            {
+                "meta_id": "91269",
+                "post_id": "20860",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Klinik Bedah Saraf"
+            },
+            {
+                "meta_id": "92099",
+                "post_id": "20860",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92100",
+                "post_id": "20860",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Klinik Bedah Saraf"
+            },
+            {
+                "meta_id": "92101",
+                "post_id": "20860",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "d5f6e83ce3156cf80fcb4b5c5f5d8f09f5b687e2774d778f636e29420200e617"
+            },
+            {
+                "meta_id": "92347",
+                "post_id": "20860",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-15"
+            },
+            {
+                "meta_id": "92348",
+                "post_id": "20860",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "92351",
+                "post_id": "20860",
+                "meta_key": "_edit_lock",
+                "meta_value": "1787121357:3"
+            },
+            {
+                "meta_id": "92352",
+                "post_id": "20860",
+                "meta_key": "gambar_poli",
+                "meta_value": ""
+            },
+            {
+                "meta_id": "92353",
+                "post_id": "20860",
+                "meta_key": "_gambar_poli",
+                "meta_value": "field_6880641c9e7aa"
+            },
+            {
+                "meta_id": "92354",
+                "post_id": "20860",
+                "meta_key": "nama_poli",
+                "meta_value": ""
+            },
+            {
+                "meta_id": "92355",
+                "post_id": "20860",
+                "meta_key": "_nama_poli",
+                "meta_value": "field_688063b182ba7"
+            },
+            {
+                "meta_id": "92356",
+                "post_id": "20860",
+                "meta_key": "deskripsi_singkat",
+                "meta_value": "Klinik Bedah Saraf menyediakan layanan konsultasi dan tindakan bedah pada kondisi yang melibatkan sistem saraf pusat dan perifer, termasuk tumor otak, herniasi diskus, perdarahan otak akibat trauma atau non-trauma, dan cedera tulang belakang. Pelayanan dilakukan oleh dokter spesialis bedah saraf dengan pendekatan pembedahan yang terstandar, termasuk teknik minimal invasif sesuai indikasi klinis."
+            },
+            {
+                "meta_id": "92357",
+                "post_id": "20860",
+                "meta_key": "_deskripsi_singkat",
+                "meta_value": "field_68807999f9aa4"
+            },
+            {
+                "meta_id": "92358",
+                "post_id": "20860",
+                "meta_key": "detail_poli",
+                "meta_value": ""
+            },
+            {
+                "meta_id": "92359",
+                "post_id": "20860",
+                "meta_key": "_detail_poli",
+                "meta_value": "field_68806409564fa"
+            },
+            {
+                "meta_id": "92360",
+                "post_id": "20860",
+                "meta_key": "_yoast_wpseo_primary_master-layanan-medis",
+                "meta_value": ""
+            },
+            {
+                "meta_id": "92361",
+                "post_id": "20860",
+                "meta_key": "_yoast_wpseo_content_score",
+                "meta_value": "60"
+            },
+            {
+                "meta_id": "92362",
+                "post_id": "20860",
+                "meta_key": "_yoast_wpseo_estimated-reading-time-minutes",
+                "meta_value": "0"
+            },
+            {
+                "meta_id": "91302",
+                "post_id": "20865",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91303",
+                "post_id": "20865",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "17"
+            },
+            {
+                "meta_id": "91304",
+                "post_id": "20865",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Klinik Paru dan Respirasi"
+            },
+            {
+                "meta_id": "91305",
+                "post_id": "20865",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Rawat Jalan"
+            },
+            {
+                "meta_id": "91306",
+                "post_id": "20865",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Spesialis dan Sub Spesialis"
+            },
+            {
+                "meta_id": "91307",
+                "post_id": "20865",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "poliklinik|klinik paru dan respirasi|layanan rawat jalan|layanan spesialis dan sub spesialis"
+            },
+            {
+                "meta_id": "91308",
+                "post_id": "20865",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "c45c158868e88a7d841df86d07c79b9b1e3c776c447ff63d10c2fa9a180491f0"
+            },
+            {
+                "meta_id": "91309",
+                "post_id": "20865",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Klinik Paru dan Respirasi"
+            },
+            {
+                "meta_id": "92093",
+                "post_id": "20865",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92094",
+                "post_id": "20865",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Klinik Paru"
+            },
+            {
+                "meta_id": "92095",
+                "post_id": "20865",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "80a43e031ba83c8b35a810969626fc3c2792d676d3f767ccb4474292deb27a4a"
+            },
+            {
+                "meta_id": "92337",
+                "post_id": "20865",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-15"
+            },
+            {
+                "meta_id": "92338",
+                "post_id": "20865",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91310",
+                "post_id": "20866",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91311",
+                "post_id": "20866",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "18"
+            },
+            {
+                "meta_id": "91312",
+                "post_id": "20866",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Klinik Obstetri dan Ginekologi"
+            },
+            {
+                "meta_id": "91313",
+                "post_id": "20866",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Rawat Jalan"
+            },
+            {
+                "meta_id": "91314",
+                "post_id": "20866",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Spesialis dan Sub Spesialis"
+            },
+            {
+                "meta_id": "91315",
+                "post_id": "20866",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "poliklinik|klinik obstetri dan ginekologi|layanan rawat jalan|layanan spesialis dan sub spesialis"
+            },
+            {
+                "meta_id": "91316",
+                "post_id": "20866",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "70ac7430f05cf4c3e2461c508753de16d7281a14328bf1c6d6417001f2f412fa"
+            },
+            {
+                "meta_id": "91317",
+                "post_id": "20866",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Klinik Obstetri dan Ginekologi"
+            },
+            {
+                "meta_id": "92096",
+                "post_id": "20866",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92097",
+                "post_id": "20866",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Klinik Obstetri dan Ginekologi (Kebidanan dan Kandungan)"
+            },
+            {
+                "meta_id": "92098",
+                "post_id": "20866",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "08b3457ababc6fa23e52d9064f73d00c65d19d0b28b5a62be38cd03e078c00e4"
+            },
+            {
+                "meta_id": "92335",
+                "post_id": "20866",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-15"
+            },
+            {
+                "meta_id": "92336",
+                "post_id": "20866",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91318",
+                "post_id": "20867",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91319",
+                "post_id": "20867",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "20"
+            },
+            {
+                "meta_id": "91320",
+                "post_id": "20867",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Klinik Neurologi / Saraf"
+            },
+            {
+                "meta_id": "91321",
+                "post_id": "20867",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Rawat Jalan"
+            },
+            {
+                "meta_id": "91322",
+                "post_id": "20867",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Spesialis dan Sub Spesialis"
+            },
+            {
+                "meta_id": "91323",
+                "post_id": "20867",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "poliklinik|klinik neurologi / saraf|layanan rawat jalan|layanan spesialis dan sub spesialis"
+            },
+            {
+                "meta_id": "91324",
+                "post_id": "20867",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "c552e15b98a870d4e61f1e56190c15313a55c2db6fa99bc2bc4eb21b73adf985"
+            },
+            {
+                "meta_id": "91325",
+                "post_id": "20867",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Klinik Neurologi / Saraf"
+            },
+            {
+                "meta_id": "92084",
+                "post_id": "20867",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92085",
+                "post_id": "20867",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Klinik Saraf"
+            },
+            {
+                "meta_id": "92086",
+                "post_id": "20867",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "151a8855504e88e05a6ea250482f5149b3dc07b0181a701e368973c1fe253878"
+            },
+            {
+                "meta_id": "92333",
+                "post_id": "20867",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-15"
+            },
+            {
+                "meta_id": "92334",
+                "post_id": "20867",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91326",
+                "post_id": "20868",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91327",
+                "post_id": "20868",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "21"
+            },
+            {
+                "meta_id": "91328",
+                "post_id": "20868",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Klinik Psikiatri / Kesehatan Jiwa"
+            },
+            {
+                "meta_id": "91329",
+                "post_id": "20868",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Rawat Jalan"
+            },
+            {
+                "meta_id": "91330",
+                "post_id": "20868",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Spesialis dan Sub Spesialis"
+            },
+            {
+                "meta_id": "91331",
+                "post_id": "20868",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "poliklinik|klinik psikiatri / kesehatan jiwa|layanan rawat jalan|layanan spesialis dan sub spesialis"
+            },
+            {
+                "meta_id": "91332",
+                "post_id": "20868",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "d3c64f90a290447be777eb961e576f9471e0a4747dff9a01d02d5b26ebab1d91"
+            },
+            {
+                "meta_id": "91333",
+                "post_id": "20868",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Klinik Psikiatri / Kesehatan Jiwa"
+            },
+            {
+                "meta_id": "92090",
+                "post_id": "20868",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92091",
+                "post_id": "20868",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Klinik Kesehatan Jiwa (Psikiatri)"
+            },
+            {
+                "meta_id": "92092",
+                "post_id": "20868",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "4473e01de7d37d4f3af0df4b2283d7bd2014aaa61ee529871e446d00dfe5bd25"
+            },
+            {
+                "meta_id": "92313",
+                "post_id": "20868",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-16"
+            },
+            {
+                "meta_id": "92314",
+                "post_id": "20868",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91334",
+                "post_id": "20869",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91335",
+                "post_id": "20869",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "23"
+            },
+            {
+                "meta_id": "91336",
+                "post_id": "20869",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Klinik Telinga, Hidung, Tenggorokan, dan Kepala Leher"
+            },
+            {
+                "meta_id": "91337",
+                "post_id": "20869",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Rawat Jalan"
+            },
+            {
+                "meta_id": "91338",
+                "post_id": "20869",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Spesialis dan Sub Spesialis"
+            },
+            {
+                "meta_id": "91339",
+                "post_id": "20869",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "poliklinik|klinik telinga, hidung, tenggorokan, dan kepala leher|layanan rawat jalan|layanan spesialis dan sub spesialis"
+            },
+            {
+                "meta_id": "91340",
+                "post_id": "20869",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "6cdb29d24ae2864debf4b1c9c7ad77a36342471c4b532bcf793e6ae93cfbbfff"
+            },
+            {
+                "meta_id": "91341",
+                "post_id": "20869",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Klinik Telinga, Hidung, Tenggorokan, dan Kepala Leher"
+            },
+            {
+                "meta_id": "92087",
+                "post_id": "20869",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92088",
+                "post_id": "20869",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Klinik Telinga Hidung dan Tenggorokan (THT)"
+            },
+            {
+                "meta_id": "92089",
+                "post_id": "20869",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "1a05064310ad67425e563f8c3783491b3ba60eabac8d1e8fec9c4cc2a8c23e0f"
+            },
+            {
+                "meta_id": "92315",
+                "post_id": "20869",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-16"
+            },
+            {
+                "meta_id": "92316",
+                "post_id": "20869",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91358",
+                "post_id": "20872",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91359",
+                "post_id": "20872",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "26"
+            },
+            {
+                "meta_id": "91360",
+                "post_id": "20872",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Klinik Gigi dan Mulut"
+            },
+            {
+                "meta_id": "91361",
+                "post_id": "20872",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Rawat Jalan"
+            },
+            {
+                "meta_id": "91362",
+                "post_id": "20872",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Gigi dan Gigi Spesialis"
+            },
+            {
+                "meta_id": "91363",
+                "post_id": "20872",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "poliklinik|klinik gigi dan mulut|layanan rawat jalan|layanan gigi dan gigi spesialis"
+            },
+            {
+                "meta_id": "91364",
+                "post_id": "20872",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "1c64bb8eb23d85c5cff6765bbd1accfb7457383ea75ba644c63673d6ebbec631"
+            },
+            {
+                "meta_id": "91365",
+                "post_id": "20872",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Klinik Gigi dan Mulut"
+            },
+            {
+                "meta_id": "92102",
+                "post_id": "20872",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92103",
+                "post_id": "20872",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Klinik Gigi Umum"
+            },
+            {
+                "meta_id": "92104",
+                "post_id": "20872",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "7d1ad081284c4b14768483e69d937828f67fd602794127a4bddd31606fe179bb"
+            },
+            {
+                "meta_id": "92321",
+                "post_id": "20872",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-16"
+            },
+            {
+                "meta_id": "92322",
+                "post_id": "20872",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91366",
+                "post_id": "20873",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91367",
+                "post_id": "20873",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "28"
+            },
+            {
+                "meta_id": "91368",
+                "post_id": "20873",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Klinik Konservasi Gigi"
+            },
+            {
+                "meta_id": "91369",
+                "post_id": "20873",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Rawat Jalan"
+            },
+            {
+                "meta_id": "91370",
+                "post_id": "20873",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Gigi dan Gigi Spesialis"
+            },
+            {
+                "meta_id": "91371",
+                "post_id": "20873",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "poliklinik|klinik konservasi gigi|layanan rawat jalan|layanan gigi dan gigi spesialis"
+            },
+            {
+                "meta_id": "91372",
+                "post_id": "20873",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "613aaa72cd914e4c8e3d394e1b4c3648c18120b9338b1cc8dea4bf2f4b0254f3"
+            },
+            {
+                "meta_id": "91373",
+                "post_id": "20873",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Klinik Konservasi Gigi"
+            },
+            {
+                "meta_id": "92105",
+                "post_id": "20873",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92106",
+                "post_id": "20873",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Klinik Gigi Spesialis Endodonsi (Konservasi Gigi)"
+            },
+            {
+                "meta_id": "92107",
+                "post_id": "20873",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "a569640719dfd18b5a4894f48d56144d1af1b9abb6afef0e9fb874f5ea6cf168"
+            },
+            {
+                "meta_id": "92323",
+                "post_id": "20873",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-16"
+            },
+            {
+                "meta_id": "92324",
+                "post_id": "20873",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91374",
+                "post_id": "20874",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91375",
+                "post_id": "20874",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "29"
+            },
+            {
+                "meta_id": "91376",
+                "post_id": "20874",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Klinik Konservasi Gigi Anak"
+            },
+            {
+                "meta_id": "91377",
+                "post_id": "20874",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Rawat Jalan"
+            },
+            {
+                "meta_id": "91378",
+                "post_id": "20874",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Gigi dan Gigi Spesialis"
+            },
+            {
+                "meta_id": "91379",
+                "post_id": "20874",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "poliklinik|klinik konservasi gigi anak|layanan rawat jalan|layanan gigi dan gigi spesialis"
+            },
+            {
+                "meta_id": "91380",
+                "post_id": "20874",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "e178452cf023557419335c73c412da9550677aafd8c8eabc80694c70ec1506b1"
+            },
+            {
+                "meta_id": "91381",
+                "post_id": "20874",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Klinik Konservasi Gigi Anak"
+            },
+            {
+                "meta_id": "92111",
+                "post_id": "20874",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92112",
+                "post_id": "20874",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Klinik Gigi Spesialis Pedodonti (Gigi Anak)"
+            },
+            {
+                "meta_id": "92113",
+                "post_id": "20874",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "cc0b7554b97a2ce3934a9e6c95563dfc72959d16896ce18a3f574e9e9eafefe6"
+            },
+            {
+                "meta_id": "92325",
+                "post_id": "20874",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-16"
+            },
+            {
+                "meta_id": "92326",
+                "post_id": "20874",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91382",
+                "post_id": "20875",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91383",
+                "post_id": "20875",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "30"
+            },
+            {
+                "meta_id": "91384",
+                "post_id": "20875",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Klinik Periodonsia"
+            },
+            {
+                "meta_id": "91385",
+                "post_id": "20875",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Rawat Jalan"
+            },
+            {
+                "meta_id": "91386",
+                "post_id": "20875",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Gigi dan Gigi Spesialis"
+            },
+            {
+                "meta_id": "91387",
+                "post_id": "20875",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "poliklinik|klinik periodonsia|layanan rawat jalan|layanan gigi dan gigi spesialis"
+            },
+            {
+                "meta_id": "91388",
+                "post_id": "20875",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "e3167e0398d48e8aa7db31e40c05eee995204c5b488a58a1b29d328c195b8172"
+            },
+            {
+                "meta_id": "91389",
+                "post_id": "20875",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Klinik Periodonsia"
+            },
+            {
+                "meta_id": "92108",
+                "post_id": "20875",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92109",
+                "post_id": "20875",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Klinik Gigi Spesialis Periodonti"
+            },
+            {
+                "meta_id": "92110",
+                "post_id": "20875",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "4602fabed7b13c37e9afc01ab28498db3c6a50e43674ab144ddff5e3d1bde9b6"
+            },
+            {
+                "meta_id": "92327",
+                "post_id": "20875",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-16"
+            },
+            {
+                "meta_id": "92328",
+                "post_id": "20875",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91390",
+                "post_id": "20876",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91391",
+                "post_id": "20876",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "31"
+            },
+            {
+                "meta_id": "91392",
+                "post_id": "20876",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Klinik Ortodonsia"
+            },
+            {
+                "meta_id": "91393",
+                "post_id": "20876",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Rawat Jalan"
+            },
+            {
+                "meta_id": "91394",
+                "post_id": "20876",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Gigi dan Gigi Spesialis"
+            },
+            {
+                "meta_id": "91395",
+                "post_id": "20876",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "poliklinik|klinik ortodonsia|layanan rawat jalan|layanan gigi dan gigi spesialis"
+            },
+            {
+                "meta_id": "91396",
+                "post_id": "20876",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "ded816b8743c8fe8d0d4cf588c75fd0c69aa21ac8cba9afcd5bbf8c88b334094"
+            },
+            {
+                "meta_id": "91397",
+                "post_id": "20876",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Klinik Ortodonsia"
+            },
+            {
+                "meta_id": "92114",
+                "post_id": "20876",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92115",
+                "post_id": "20876",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Klinik Gigi Spesialis Ortodonti"
+            },
+            {
+                "meta_id": "92116",
+                "post_id": "20876",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "a98b87f1a6ec09f45f969bdd253e65c290a98dacbe9e80ca4e27eb67ae919f6a"
+            },
+            {
+                "meta_id": "92329",
+                "post_id": "20876",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-16"
+            },
+            {
+                "meta_id": "92330",
+                "post_id": "20876",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91496",
+                "post_id": "20893",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91497",
+                "post_id": "20893",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "44"
+            },
+            {
+                "meta_id": "91498",
+                "post_id": "20893",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Layanan Home Care"
+            },
+            {
+                "meta_id": "91499",
+                "post_id": "20893",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Rawat Jalan"
+            },
+            {
+                "meta_id": "91500",
+                "post_id": "20893",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Rawat Jalan Lainnya"
+            },
+            {
+                "meta_id": "91501",
+                "post_id": "20893",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|layanan home care|layanan rawat jalan|layanan rawat jalan lainnya"
+            },
+            {
+                "meta_id": "91502",
+                "post_id": "20893",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "824e9f2c73986c20064bc7f149df861710a65deb2cea9c06668098ba23171394"
+            },
+            {
+                "meta_id": "91503",
+                "post_id": "20893",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Layanan Home Care"
+            },
+            {
+                "meta_id": "92132",
+                "post_id": "20893",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92133",
+                "post_id": "20893",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Layanan Home Care"
+            },
+            {
+                "meta_id": "92134",
+                "post_id": "20893",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "79e41f28eccecbf71fb0b3ab071e17b418a9e932cd22692122bf84a373a7b1fa"
+            },
+            {
+                "meta_id": "92287",
+                "post_id": "20893",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-17"
+            },
+            {
+                "meta_id": "92288",
+                "post_id": "20893",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91536",
+                "post_id": "20898",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91537",
+                "post_id": "20898",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "49"
+            },
+            {
+                "meta_id": "91538",
+                "post_id": "20898",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Kelas III"
+            },
+            {
+                "meta_id": "91539",
+                "post_id": "20898",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Bangsal Rawat Inap"
+            },
+            {
+                "meta_id": "91540",
+                "post_id": "20898",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Bangsal Rawat Inap"
+            },
+            {
+                "meta_id": "91541",
+                "post_id": "20898",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "rawat-inap|kelas iii|bangsal rawat inap|bangsal rawat inap"
+            },
+            {
+                "meta_id": "91542",
+                "post_id": "20898",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "d261e17bdfcf40af79979f735a9c647a668975d2ab11516e7539ac14507ebdb9"
+            },
+            {
+                "meta_id": "91543",
+                "post_id": "20898",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Kelas III"
+            },
+            {
+                "meta_id": "92150",
+                "post_id": "20898",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92151",
+                "post_id": "20898",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Ruang Rawat Inap kelas III"
+            },
+            {
+                "meta_id": "92152",
+                "post_id": "20898",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "850a46e00ccce90df1fbbd7a7e6c643d3ee644acd07e962228a1004a0db14681"
+            },
+            {
+                "meta_id": "92371",
+                "post_id": "20898",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-17"
+            },
+            {
+                "meta_id": "92372",
+                "post_id": "20898",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91544",
+                "post_id": "20899",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91545",
+                "post_id": "20899",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "50"
+            },
+            {
+                "meta_id": "91546",
+                "post_id": "20899",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Kelas II"
+            },
+            {
+                "meta_id": "91547",
+                "post_id": "20899",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Bangsal Rawat Inap"
+            },
+            {
+                "meta_id": "91548",
+                "post_id": "20899",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Bangsal Rawat Inap"
+            },
+            {
+                "meta_id": "91549",
+                "post_id": "20899",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "rawat-inap|kelas ii|bangsal rawat inap|bangsal rawat inap"
+            },
+            {
+                "meta_id": "91550",
+                "post_id": "20899",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "06d9cb08e741173160d8201cd0ee0f854717b98f32a8a2c2cf12838d19d24c69"
+            },
+            {
+                "meta_id": "91551",
+                "post_id": "20899",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Kelas II"
+            },
+            {
+                "meta_id": "92153",
+                "post_id": "20899",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92154",
+                "post_id": "20899",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Ruang Rawat Inap kelas II"
+            },
+            {
+                "meta_id": "92155",
+                "post_id": "20899",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "ffa505fbd26e0e6837e2fe9f7db641773316068d1fc239574813fdfd8cc6d474"
+            },
+            {
+                "meta_id": "92373",
+                "post_id": "20899",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-17"
+            },
+            {
+                "meta_id": "92374",
+                "post_id": "20899",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91552",
+                "post_id": "20900",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91553",
+                "post_id": "20900",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "51"
+            },
+            {
+                "meta_id": "91554",
+                "post_id": "20900",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Kelas I"
+            },
+            {
+                "meta_id": "91555",
+                "post_id": "20900",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Bangsal Rawat Inap"
+            },
+            {
+                "meta_id": "91556",
+                "post_id": "20900",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Bangsal Rawat Inap"
+            },
+            {
+                "meta_id": "91557",
+                "post_id": "20900",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "rawat-inap|kelas i|bangsal rawat inap|bangsal rawat inap"
+            },
+            {
+                "meta_id": "91558",
+                "post_id": "20900",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "4de3b59a9b09fdf8a9d65c000dcfdcfbd4869c732a05bc067891bb201b38831e"
+            },
+            {
+                "meta_id": "91559",
+                "post_id": "20900",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Kelas I"
+            },
+            {
+                "meta_id": "92156",
+                "post_id": "20900",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92157",
+                "post_id": "20900",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Ruang Rawat Inap kelas I"
+            },
+            {
+                "meta_id": "92158",
+                "post_id": "20900",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "4f66e6a836e5ae248b7a9486fae3af96195580d3602a677dd4d3b357a42edb65"
+            },
+            {
+                "meta_id": "92375",
+                "post_id": "20900",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-17"
+            },
+            {
+                "meta_id": "92376",
+                "post_id": "20900",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91560",
+                "post_id": "20901",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91561",
+                "post_id": "20901",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "52"
+            },
+            {
+                "meta_id": "91562",
+                "post_id": "20901",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Kelas VIP"
+            },
+            {
+                "meta_id": "91563",
+                "post_id": "20901",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Bangsal Rawat Inap"
+            },
+            {
+                "meta_id": "91564",
+                "post_id": "20901",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Bangsal Rawat Inap"
+            },
+            {
+                "meta_id": "91565",
+                "post_id": "20901",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "rawat-inap|kelas vip|bangsal rawat inap|bangsal rawat inap"
+            },
+            {
+                "meta_id": "91566",
+                "post_id": "20901",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "c652d7070dadfb2dae88df09c17e3b71fb5c53dce5ab6555bdb9621709656cac"
+            },
+            {
+                "meta_id": "91567",
+                "post_id": "20901",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Kelas VIP"
+            },
+            {
+                "meta_id": "92159",
+                "post_id": "20901",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92160",
+                "post_id": "20901",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Ruang Rawat Inap VIP"
+            },
+            {
+                "meta_id": "92161",
+                "post_id": "20901",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "227bc4ebe90350c306cac6a38f272cc0da4af76ad86b460faa06dc2669a53fac"
+            },
+            {
+                "meta_id": "92377",
+                "post_id": "20901",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-17"
+            },
+            {
+                "meta_id": "92378",
+                "post_id": "20901",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91568",
+                "post_id": "20902",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91569",
+                "post_id": "20902",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "53"
+            },
+            {
+                "meta_id": "91570",
+                "post_id": "20902",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Kelas VVIP"
+            },
+            {
+                "meta_id": "91571",
+                "post_id": "20902",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Bangsal Rawat Inap"
+            },
+            {
+                "meta_id": "91572",
+                "post_id": "20902",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Bangsal Rawat Inap"
+            },
+            {
+                "meta_id": "91573",
+                "post_id": "20902",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "rawat-inap|kelas vvip|bangsal rawat inap|bangsal rawat inap"
+            },
+            {
+                "meta_id": "91574",
+                "post_id": "20902",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "d45b1b85eea3ab683a0d5f3510ba2f111839b247efe68f1d9853021e0fe08f38"
+            },
+            {
+                "meta_id": "91575",
+                "post_id": "20902",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Kelas VVIP"
+            },
+            {
+                "meta_id": "92162",
+                "post_id": "20902",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92163",
+                "post_id": "20902",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Ruang Rawat Inap VVIP"
+            },
+            {
+                "meta_id": "92164",
+                "post_id": "20902",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "2563a889d420df92603c6e9141f5cb11861743228e045ad0533fb6be3f339712"
+            },
+            {
+                "meta_id": "92379",
+                "post_id": "20902",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-17"
+            },
+            {
+                "meta_id": "92380",
+                "post_id": "20902",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91600",
+                "post_id": "20906",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91601",
+                "post_id": "20906",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "57"
+            },
+            {
+                "meta_id": "91602",
+                "post_id": "20906",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Layanan Hemodialisis 24 jam dengan 45 mesin, termasuk layanan infeksi dan VIP"
+            },
+            {
+                "meta_id": "91603",
+                "post_id": "20906",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Uronephrology Centre"
+            },
+            {
+                "meta_id": "91604",
+                "post_id": "20906",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Uronefrologi"
+            },
+            {
+                "meta_id": "91605",
+                "post_id": "20906",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|layanan hemodialisis 24 jam dengan 45 mesin, termasuk layanan infeksi dan vip|uronephrology centre|layanan uronefrologi"
+            },
+            {
+                "meta_id": "91606",
+                "post_id": "20906",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "91b84b8e7fe591589f3bf1a252ad952993cf691f6d301662c1c25a51130ebe64"
+            },
+            {
+                "meta_id": "91607",
+                "post_id": "20906",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Layanan Hemodialisis 24 jam dengan 45 mesin, termasuk layanan infeksi dan VIP"
+            },
+            {
+                "meta_id": "92129",
+                "post_id": "20906",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92130",
+                "post_id": "20906",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Layanan Hemodialisis"
+            },
+            {
+                "meta_id": "92131",
+                "post_id": "20906",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "c43de3be20838e78293294d60ee09a9b990040ebaf0e6d151a3a4f5c8ee1c64c"
+            },
+            {
+                "meta_id": "92273",
+                "post_id": "20906",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-17"
+            },
+            {
+                "meta_id": "92274",
+                "post_id": "20906",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91664",
+                "post_id": "20914",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91665",
+                "post_id": "20914",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "65"
+            },
+            {
+                "meta_id": "91666",
+                "post_id": "20914",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Intensive Care Unit (ICU)"
+            },
+            {
+                "meta_id": "91667",
+                "post_id": "20914",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Emergency and Critical Care"
+            },
+            {
+                "meta_id": "91668",
+                "post_id": "20914",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Perawatan Intensif"
+            },
+            {
+                "meta_id": "91669",
+                "post_id": "20914",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|intensive care unit (icu)|emergency and critical care|perawatan intensif"
+            },
+            {
+                "meta_id": "91670",
+                "post_id": "20914",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "34bc0829c02b1929944b0bb9f653655531de0188e063068dad98af20687b5ce9"
+            },
+            {
+                "meta_id": "91671",
+                "post_id": "20914",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Intensive Care Unit (ICU)"
+            },
+            {
+                "meta_id": "92135",
+                "post_id": "20914",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92136",
+                "post_id": "20914",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Ruang Intensive Care Unit (ICU)"
+            },
+            {
+                "meta_id": "92137",
+                "post_id": "20914",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "9575802e822942815860c2ffb4a1376166785de3691529a68913b1259aef896e"
+            },
+            {
+                "meta_id": "92255",
+                "post_id": "20914",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-17"
+            },
+            {
+                "meta_id": "92256",
+                "post_id": "20914",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91672",
+                "post_id": "20915",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91673",
+                "post_id": "20915",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "66"
+            },
+            {
+                "meta_id": "91674",
+                "post_id": "20915",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Intensive Cardiac Care Unit (ICCU)"
+            },
+            {
+                "meta_id": "91675",
+                "post_id": "20915",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Emergency and Critical Care"
+            },
+            {
+                "meta_id": "91676",
+                "post_id": "20915",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Perawatan Intensif"
+            },
+            {
+                "meta_id": "91677",
+                "post_id": "20915",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|intensive cardiac care unit (iccu)|emergency and critical care|perawatan intensif"
+            },
+            {
+                "meta_id": "91678",
+                "post_id": "20915",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "134beb21b86cd78bde09f31135357a732b6e527ee176674bbef42e18c7738b25"
+            },
+            {
+                "meta_id": "91679",
+                "post_id": "20915",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Intensive Cardiac Care Unit (ICCU)"
+            },
+            {
+                "meta_id": "92138",
+                "post_id": "20915",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92139",
+                "post_id": "20915",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Ruang Intensive Cardiac Care Unit (ICCU)"
+            },
+            {
+                "meta_id": "92140",
+                "post_id": "20915",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "d6d80d633b4980e2d0329ad291eeb86b63b15d20f9b4f92cec3a65c8af428299"
+            },
+            {
+                "meta_id": "92253",
+                "post_id": "20915",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-17"
+            },
+            {
+                "meta_id": "92254",
+                "post_id": "20915",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91680",
+                "post_id": "20916",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91681",
+                "post_id": "20916",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "67"
+            },
+            {
+                "meta_id": "91682",
+                "post_id": "20916",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Pediatric Intensive Care Unit (PICU)"
+            },
+            {
+                "meta_id": "91683",
+                "post_id": "20916",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Emergency and Critical Care"
+            },
+            {
+                "meta_id": "91684",
+                "post_id": "20916",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Perawatan Intensif"
+            },
+            {
+                "meta_id": "91685",
+                "post_id": "20916",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|pediatric intensive care unit (picu)|emergency and critical care|perawatan intensif"
+            },
+            {
+                "meta_id": "91686",
+                "post_id": "20916",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "944c91a0c0f6016e8db5007943c02b57507180bcdac24c94ee3658ce223fb2bf"
+            },
+            {
+                "meta_id": "91687",
+                "post_id": "20916",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Pediatric Intensive Care Unit (PICU)"
+            },
+            {
+                "meta_id": "92141",
+                "post_id": "20916",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92142",
+                "post_id": "20916",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Ruang Pediatric Intensive Care Unit (PICU)"
+            },
+            {
+                "meta_id": "92143",
+                "post_id": "20916",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "8d9a3cf7970d769205bd74bbaf471e7faaa275c5b12d267464071e52fa9c06a3"
+            },
+            {
+                "meta_id": "92251",
+                "post_id": "20916",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-17"
+            },
+            {
+                "meta_id": "92252",
+                "post_id": "20916",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91688",
+                "post_id": "20917",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91689",
+                "post_id": "20917",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "68"
+            },
+            {
+                "meta_id": "91690",
+                "post_id": "20917",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Neonatal Intensive Care Unit (PICU)"
+            },
+            {
+                "meta_id": "91691",
+                "post_id": "20917",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Emergency and Critical Care"
+            },
+            {
+                "meta_id": "91692",
+                "post_id": "20917",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Perawatan Intensif"
+            },
+            {
+                "meta_id": "91693",
+                "post_id": "20917",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|neonatal intensive care unit (picu)|emergency and critical care|perawatan intensif"
+            },
+            {
+                "meta_id": "91694",
+                "post_id": "20917",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "0d769545bda2d3678534dd12906fde27c9b141cc36391503596d84b19439c7d7"
+            },
+            {
+                "meta_id": "91695",
+                "post_id": "20917",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "NICU"
+            },
+            {
+                "meta_id": "91696",
+                "post_id": "20917",
+                "meta_key": "_rspku_source_title_correction",
+                "meta_value": "{\"from\":\"Neonatal Intensive Care Unit (PICU)\",\"to\":\"NICU\",\"reason\":\"verified acronym correction: neonatal intensive care unit is NICU, not PICU\"}"
+            },
+            {
+                "meta_id": "92144",
+                "post_id": "20917",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92145",
+                "post_id": "20917",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Ruang Neonatal Intensive Care Unit (NICU)"
+            },
+            {
+                "meta_id": "92146",
+                "post_id": "20917",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "ffdfea725c61f3e2250f15a893bd6f8d5956bcb7ed868b1e47c04df13b97180b"
+            },
+            {
+                "meta_id": "92249",
+                "post_id": "20917",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-17"
+            },
+            {
+                "meta_id": "92250",
+                "post_id": "20917",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "92293",
+                "post_id": "20917",
+                "meta_key": "_edit_lock",
+                "meta_value": "1787121094:3"
+            },
+            {
+                "meta_id": "91697",
+                "post_id": "20918",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91698",
+                "post_id": "20918",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "69"
+            },
+            {
+                "meta_id": "91699",
+                "post_id": "20918",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "High Care Unit (HCU)"
+            },
+            {
+                "meta_id": "91700",
+                "post_id": "20918",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Emergency and Critical Care"
+            },
+            {
+                "meta_id": "91701",
+                "post_id": "20918",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Perawatan Intensif"
+            },
+            {
+                "meta_id": "91702",
+                "post_id": "20918",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|high care unit (hcu)|emergency and critical care|perawatan intensif"
+            },
+            {
+                "meta_id": "91703",
+                "post_id": "20918",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "f5cafc549a79db216c9f3e9e224e475c0cfdc78bb7288fdb73296cbe68a44e1b"
+            },
+            {
+                "meta_id": "91704",
+                "post_id": "20918",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "High Care Unit (HCU)"
+            },
+            {
+                "meta_id": "92147",
+                "post_id": "20918",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92148",
+                "post_id": "20918",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Ruang High Care Unit (HCU)"
+            },
+            {
+                "meta_id": "92149",
+                "post_id": "20918",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "bf100f20c01e6a8a3cd0bce16107040547fa129d383c379df821ddcd3ad80ade"
+            },
+            {
+                "meta_id": "92247",
+                "post_id": "20918",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-17"
+            },
+            {
+                "meta_id": "92248",
+                "post_id": "20918",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91737",
+                "post_id": "20923",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91738",
+                "post_id": "20923",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "74"
+            },
+            {
+                "meta_id": "91739",
+                "post_id": "20923",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Laboratorium Patologi Klinik"
+            },
+            {
+                "meta_id": "91740",
+                "post_id": "20923",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Penunjang Medis"
+            },
+            {
+                "meta_id": "91741",
+                "post_id": "20923",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Laboratorium Medis"
+            },
+            {
+                "meta_id": "91742",
+                "post_id": "20923",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|laboratorium patologi klinik|penunjang medis|laboratorium medis"
+            },
+            {
+                "meta_id": "91743",
+                "post_id": "20923",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "e95cabed832455a930533cafb366b6b396511c013e911d4765c4f5c8fd00bf77"
+            },
+            {
+                "meta_id": "91744",
+                "post_id": "20923",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Laboratorium Patologi Klinik"
+            },
+            {
+                "meta_id": "92117",
+                "post_id": "20923",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92118",
+                "post_id": "20923",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Laboratorium Klinik 24 Jam"
+            },
+            {
+                "meta_id": "92119",
+                "post_id": "20923",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "39bf52de08662087645d057071ea47e999a68b9dcc74c7fd6a01e87da80c1283"
+            },
+            {
+                "meta_id": "92174",
+                "post_id": "20923",
+                "meta_key": "_edit_lock",
+                "meta_value": "1787122538:3"
+            },
+            {
+                "meta_id": "92237",
+                "post_id": "20923",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-18"
+            },
+            {
+                "meta_id": "92238",
+                "post_id": "20923",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91745",
+                "post_id": "20924",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91746",
+                "post_id": "20924",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "75"
+            },
+            {
+                "meta_id": "91747",
+                "post_id": "20924",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Laboratorium Patologi Anatomi"
+            },
+            {
+                "meta_id": "91748",
+                "post_id": "20924",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Penunjang Medis"
+            },
+            {
+                "meta_id": "91749",
+                "post_id": "20924",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Laboratorium Medis"
+            },
+            {
+                "meta_id": "91750",
+                "post_id": "20924",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|laboratorium patologi anatomi|penunjang medis|laboratorium medis"
+            },
+            {
+                "meta_id": "91751",
+                "post_id": "20924",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "e0701b385b28ecd1683852326cd27db97c2a2991a43c57d463ff35e360e4369e"
+            },
+            {
+                "meta_id": "91752",
+                "post_id": "20924",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Laboratorium Patologi Anatomi"
+            },
+            {
+                "meta_id": "92123",
+                "post_id": "20924",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92124",
+                "post_id": "20924",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Laboratorium Patologi Anatomi"
+            },
+            {
+                "meta_id": "92125",
+                "post_id": "20924",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "628268cb83a4e4a30636cc543e869fba0abeb7cec2e72f215866289eb0c45ad6"
+            },
+            {
+                "meta_id": "92235",
+                "post_id": "20924",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-18"
+            },
+            {
+                "meta_id": "92236",
+                "post_id": "20924",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91753",
+                "post_id": "20925",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91754",
+                "post_id": "20925",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "76"
+            },
+            {
+                "meta_id": "91755",
+                "post_id": "20925",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Laboratorium Mikrobiologi Klinik"
+            },
+            {
+                "meta_id": "91756",
+                "post_id": "20925",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Penunjang Medis"
+            },
+            {
+                "meta_id": "91757",
+                "post_id": "20925",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Laboratorium Medis"
+            },
+            {
+                "meta_id": "91758",
+                "post_id": "20925",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|laboratorium mikrobiologi klinik|penunjang medis|laboratorium medis"
+            },
+            {
+                "meta_id": "91759",
+                "post_id": "20925",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "5e9e8236e050148f82c8b9c7229d7aea15b1c47a3e983424c71e671a5740269f"
+            },
+            {
+                "meta_id": "91760",
+                "post_id": "20925",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Laboratorium Mikrobiologi Klinik"
+            },
+            {
+                "meta_id": "92120",
+                "post_id": "20925",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92121",
+                "post_id": "20925",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Laboratorium Mikrobiologi"
+            },
+            {
+                "meta_id": "92122",
+                "post_id": "20925",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "046258846894356b542bf6152e39e61856031b4de69364206d3c2e041b404b26"
+            },
+            {
+                "meta_id": "92223",
+                "post_id": "20925",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-18"
+            },
+            {
+                "meta_id": "92224",
+                "post_id": "20925",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91761",
+                "post_id": "20926",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91762",
+                "post_id": "20926",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "77"
+            },
+            {
+                "meta_id": "91763",
+                "post_id": "20926",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Bank Darah"
+            },
+            {
+                "meta_id": "91764",
+                "post_id": "20926",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Penunjang Medis"
+            },
+            {
+                "meta_id": "91765",
+                "post_id": "20926",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Laboratorium Medis"
+            },
+            {
+                "meta_id": "91766",
+                "post_id": "20926",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|bank darah|penunjang medis|laboratorium medis"
+            },
+            {
+                "meta_id": "91767",
+                "post_id": "20926",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "aa93383c0fe5b1aba1fb5d776e4798c9bf433afa032bb103c20badc04a704802"
+            },
+            {
+                "meta_id": "91768",
+                "post_id": "20926",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Bank Darah"
+            },
+            {
+                "meta_id": "92126",
+                "post_id": "20926",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92127",
+                "post_id": "20926",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Bank Darah"
+            },
+            {
+                "meta_id": "92128",
+                "post_id": "20926",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "a2329e2ea734514c6f091fc4919887d82e0e28b0ca14b118b26c18a820f49542"
+            },
+            {
+                "meta_id": "92233",
+                "post_id": "20926",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-18"
+            },
+            {
+                "meta_id": "92234",
+                "post_id": "20926",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91938",
+                "post_id": "20949",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91939",
+                "post_id": "20949",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": "99"
+            },
+            {
+                "meta_id": "91940",
+                "post_id": "20949",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Medical Check Up"
+            },
+            {
+                "meta_id": "91941",
+                "post_id": "20949",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Layanan Unggulan Lainnya"
+            },
+            {
+                "meta_id": "91942",
+                "post_id": "20949",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Layanan Lainnya"
+            },
+            {
+                "meta_id": "91943",
+                "post_id": "20949",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|medical check up|layanan unggulan lainnya|layanan lainnya"
+            },
+            {
+                "meta_id": "91944",
+                "post_id": "20949",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "7caef8feaee2b35be69fad34a31e985ff2b8a1c67bdebb21cbbc5709edfe185c"
+            },
+            {
+                "meta_id": "91945",
+                "post_id": "20949",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Medical Check Up"
+            },
+            {
+                "meta_id": "92171",
+                "post_id": "20949",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92172",
+                "post_id": "20949",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Layanan Medical Check Up"
+            },
+            {
+                "meta_id": "92173",
+                "post_id": "20949",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "1450b68e43798a3d73fc71dea5c55f376c29ac8b424d41feb1d371ab044d92ba"
+            },
+            {
+                "meta_id": "92181",
+                "post_id": "20949",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-18"
+            },
+            {
+                "meta_id": "92182",
+                "post_id": "20949",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91970",
+                "post_id": "20953",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91971",
+                "post_id": "20953",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": null
+            },
+            {
+                "meta_id": "91972",
+                "post_id": "20953",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Cancer Centre"
+            },
+            {
+                "meta_id": "91973",
+                "post_id": "20953",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Hub Layanan Unggulan"
+            },
+            {
+                "meta_id": "91974",
+                "post_id": "20953",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Pusat Layanan Unggulan"
+            },
+            {
+                "meta_id": "91975",
+                "post_id": "20953",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|cancer centre|hub layanan unggulan|pusat layanan unggulan"
+            },
+            {
+                "meta_id": "91976",
+                "post_id": "20953",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "88c67eb53bdc44b239b7cda15ce7b9ea2e931eb1aa42d3a291f5141373faba1d"
+            },
+            {
+                "meta_id": "91977",
+                "post_id": "20953",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Cancer Centre"
+            },
+            {
+                "meta_id": "92168",
+                "post_id": "20953",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92169",
+                "post_id": "20953",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Layanan Onkologi (Cancer Centre)"
+            },
+            {
+                "meta_id": "92170",
+                "post_id": "20953",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "c97eb69b2ca10602c7c6b5c4652cbe417f405d30bdcb85c58b54bd35ba5d6860"
+            },
+            {
+                "meta_id": "92179",
+                "post_id": "20953",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-18"
+            },
+            {
+                "meta_id": "92180",
+                "post_id": "20953",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            },
+            {
+                "meta_id": "91978",
+                "post_id": "20954",
+                "meta_key": "_rspku_source_import",
+                "meta_value": "master-data-layanan-medis-101"
+            },
+            {
+                "meta_id": "91979",
+                "post_id": "20954",
+                "meta_key": "_rspku_source_row_number",
+                "meta_value": null
+            },
+            {
+                "meta_id": "91980",
+                "post_id": "20954",
+                "meta_key": "_rspku_source_name_raw",
+                "meta_value": "Uronephrology Centre"
+            },
+            {
+                "meta_id": "91981",
+                "post_id": "20954",
+                "meta_key": "_rspku_source_category_raw",
+                "meta_value": "Hub Layanan Unggulan"
+            },
+            {
+                "meta_id": "91982",
+                "post_id": "20954",
+                "meta_key": "_rspku_source_parent_raw",
+                "meta_value": "Pusat Layanan Unggulan"
+            },
+            {
+                "meta_id": "91983",
+                "post_id": "20954",
+                "meta_key": "_rspku_source_identity_key",
+                "meta_value": "layanan|uronephrology centre|hub layanan unggulan|pusat layanan unggulan"
+            },
+            {
+                "meta_id": "91984",
+                "post_id": "20954",
+                "meta_key": "_rspku_source_hash",
+                "meta_value": "9bd0a588d27bb863ea734817d800d04907d4ba6b4c97200dd199c04d27b5bdaa"
+            },
+            {
+                "meta_id": "91985",
+                "post_id": "20954",
+                "meta_key": "_rspku_verified_title",
+                "meta_value": "Uronephrology Centre"
+            },
+            {
+                "meta_id": "92165",
+                "post_id": "20954",
+                "meta_key": "_rspku_copywriting_import_batch",
+                "meta_value": "copywriting-description-uat-20260819-auto-safe-30"
+            },
+            {
+                "meta_id": "92166",
+                "post_id": "20954",
+                "meta_key": "_rspku_copywriting_source_heading",
+                "meta_value": "Layanan Uronefrologi"
+            },
+            {
+                "meta_id": "92167",
+                "post_id": "20954",
+                "meta_key": "_rspku_copywriting_source_sha256",
+                "meta_value": "de383095c969a241498e7e489784b69c6be76920b90f90ac8dafb2868b784d82"
+            },
+            {
+                "meta_id": "92177",
+                "post_id": "20954",
+                "meta_key": "_wp_old_date",
+                "meta_value": "2026-08-18"
+            },
+            {
+                "meta_id": "92178",
+                "post_id": "20954",
+                "meta_key": "_edit_last",
+                "meta_value": "3"
+            }
+        ],
+        "term_relationships": [
+            {
+                "object_id": "20860",
+                "term_taxonomy_id": "348",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20860",
+                "term_taxonomy_id": "349",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20865",
+                "term_taxonomy_id": "348",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20865",
+                "term_taxonomy_id": "349",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20866",
+                "term_taxonomy_id": "348",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20866",
+                "term_taxonomy_id": "349",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20867",
+                "term_taxonomy_id": "348",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20867",
+                "term_taxonomy_id": "349",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20868",
+                "term_taxonomy_id": "348",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20868",
+                "term_taxonomy_id": "349",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20869",
+                "term_taxonomy_id": "348",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20869",
+                "term_taxonomy_id": "349",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20872",
+                "term_taxonomy_id": "348",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20872",
+                "term_taxonomy_id": "350",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20873",
+                "term_taxonomy_id": "348",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20873",
+                "term_taxonomy_id": "350",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20874",
+                "term_taxonomy_id": "348",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20874",
+                "term_taxonomy_id": "350",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20875",
+                "term_taxonomy_id": "348",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20875",
+                "term_taxonomy_id": "350",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20876",
+                "term_taxonomy_id": "348",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20876",
+                "term_taxonomy_id": "350",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20893",
+                "term_taxonomy_id": "348",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20893",
+                "term_taxonomy_id": "351",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20898",
+                "term_taxonomy_id": "355",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20899",
+                "term_taxonomy_id": "355",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20900",
+                "term_taxonomy_id": "355",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20901",
+                "term_taxonomy_id": "355",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20902",
+                "term_taxonomy_id": "355",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20906",
+                "term_taxonomy_id": "356",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20906",
+                "term_taxonomy_id": "357",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20914",
+                "term_taxonomy_id": "360",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20914",
+                "term_taxonomy_id": "362",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20915",
+                "term_taxonomy_id": "360",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20915",
+                "term_taxonomy_id": "362",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20916",
+                "term_taxonomy_id": "360",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20916",
+                "term_taxonomy_id": "362",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20917",
+                "term_taxonomy_id": "360",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20917",
+                "term_taxonomy_id": "362",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20918",
+                "term_taxonomy_id": "360",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20918",
+                "term_taxonomy_id": "362",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20923",
+                "term_taxonomy_id": "363",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20923",
+                "term_taxonomy_id": "365",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20924",
+                "term_taxonomy_id": "363",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20924",
+                "term_taxonomy_id": "365",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20925",
+                "term_taxonomy_id": "363",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20925",
+                "term_taxonomy_id": "365",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20926",
+                "term_taxonomy_id": "363",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20926",
+                "term_taxonomy_id": "365",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20949",
+                "term_taxonomy_id": "371",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20949",
+                "term_taxonomy_id": "373",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20953",
+                "term_taxonomy_id": "374",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20953",
+                "term_taxonomy_id": "375",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20954",
+                "term_taxonomy_id": "374",
+                "term_order": "0"
+            },
+            {
+                "object_id": "20954",
+                "term_taxonomy_id": "375",
+                "term_order": "0"
+            }
+        ]
+    }
+}

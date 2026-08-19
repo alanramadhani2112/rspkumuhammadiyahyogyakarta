@@ -1,0 +1,376 @@
+{
+    "ok": true,
+    "verified_at": "2026-08-19T08:04:32+00:00",
+    "environment": "https:\/\/dev-web.rspkujogja.com",
+    "summary": {
+        "total": 30,
+        "detail_poli_ok": 11,
+        "detail_layanan_ok": 14,
+        "deskripsi_ok": 5,
+        "post_content_preserved": 30,
+        "unggulan_terms": 11,
+        "penunjang_terms": 0,
+        "category_review_ids": [
+            20893,
+            20953,
+            20954
+        ],
+        "fix_audit_meta_rows": 90,
+        "apply_evidence_sha256": "d222a28b76b005aadecb9c0d6c3ebe31332478098abeb5c8f735b42b4aed908e",
+        "backup_sha256": "5eeabc78c6332ce0f2d7ce234bc809aca1f3ed8b85daa6da1baaf305ef77ccd5"
+    },
+    "rows": [
+        {
+            "ID": 20860,
+            "type": "poliklinik",
+            "title": "Klinik Bedah Saraf",
+            "post_content_sha_ok": true,
+            "target_key": "detail_poli",
+            "target_len": 398,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20865,
+            "type": "poliklinik",
+            "title": "Klinik Paru dan Respirasi",
+            "post_content_sha_ok": true,
+            "target_key": "detail_poli",
+            "target_len": 331,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20866,
+            "type": "poliklinik",
+            "title": "Klinik Obstetri dan Ginekologi",
+            "post_content_sha_ok": true,
+            "target_key": "detail_poli",
+            "target_len": 374,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20867,
+            "type": "poliklinik",
+            "title": "Klinik Neurologi \/ Saraf",
+            "post_content_sha_ok": true,
+            "target_key": "detail_poli",
+            "target_len": 374,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20868,
+            "type": "poliklinik",
+            "title": "Klinik Psikiatri \/ Kesehatan Jiwa",
+            "post_content_sha_ok": true,
+            "target_key": "detail_poli",
+            "target_len": 339,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20869,
+            "type": "poliklinik",
+            "title": "Klinik Telinga, Hidung, Tenggorokan, dan Kepala Leher",
+            "post_content_sha_ok": true,
+            "target_key": "detail_poli",
+            "target_len": 362,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20872,
+            "type": "poliklinik",
+            "title": "Klinik Gigi dan Mulut",
+            "post_content_sha_ok": true,
+            "target_key": "detail_poli",
+            "target_len": 352,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20873,
+            "type": "poliklinik",
+            "title": "Klinik Konservasi Gigi",
+            "post_content_sha_ok": true,
+            "target_key": "detail_poli",
+            "target_len": 397,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20874,
+            "type": "poliklinik",
+            "title": "Klinik Konservasi Gigi Anak",
+            "post_content_sha_ok": true,
+            "target_key": "detail_poli",
+            "target_len": 355,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20875,
+            "type": "poliklinik",
+            "title": "Klinik Periodonsia",
+            "post_content_sha_ok": true,
+            "target_key": "detail_poli",
+            "target_len": 369,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20876,
+            "type": "poliklinik",
+            "title": "Klinik Ortodonsia",
+            "post_content_sha_ok": true,
+            "target_key": "detail_poli",
+            "target_len": 348,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20893,
+            "type": "layanan",
+            "title": "Layanan Home Care",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 434,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20898,
+            "type": "rawat-inap",
+            "title": "Kelas III",
+            "post_content_sha_ok": true,
+            "target_key": "deskripsi",
+            "target_len": 413,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20899,
+            "type": "rawat-inap",
+            "title": "Kelas II",
+            "post_content_sha_ok": true,
+            "target_key": "deskripsi",
+            "target_len": 385,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20900,
+            "type": "rawat-inap",
+            "title": "Kelas I",
+            "post_content_sha_ok": true,
+            "target_key": "deskripsi",
+            "target_len": 377,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20901,
+            "type": "rawat-inap",
+            "title": "Kelas VIP",
+            "post_content_sha_ok": true,
+            "target_key": "deskripsi",
+            "target_len": 456,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20902,
+            "type": "rawat-inap",
+            "title": "Kelas VVIP",
+            "post_content_sha_ok": true,
+            "target_key": "deskripsi",
+            "target_len": 201,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20906,
+            "type": "layanan",
+            "title": "Layanan Hemodialisis 24 jam dengan 45 mesin, termasuk layanan infeksi dan VIP",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 435,
+            "target_sha_ok": true,
+            "kategori_layanan": [
+                "layanan-unggulan"
+            ],
+            "status": "publish"
+        },
+        {
+            "ID": 20914,
+            "type": "layanan",
+            "title": "Intensive Care Unit (ICU)",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 400,
+            "target_sha_ok": true,
+            "kategori_layanan": [
+                "layanan-unggulan"
+            ],
+            "status": "publish"
+        },
+        {
+            "ID": 20915,
+            "type": "layanan",
+            "title": "Intensive Cardiac Care Unit (ICCU)",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 419,
+            "target_sha_ok": true,
+            "kategori_layanan": [
+                "layanan-unggulan"
+            ],
+            "status": "publish"
+        },
+        {
+            "ID": 20916,
+            "type": "layanan",
+            "title": "Pediatric Intensive Care Unit (PICU)",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 395,
+            "target_sha_ok": true,
+            "kategori_layanan": [
+                "layanan-unggulan"
+            ],
+            "status": "publish"
+        },
+        {
+            "ID": 20917,
+            "type": "layanan",
+            "title": "NICU",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 440,
+            "target_sha_ok": true,
+            "kategori_layanan": [
+                "layanan-unggulan"
+            ],
+            "status": "publish"
+        },
+        {
+            "ID": 20918,
+            "type": "layanan",
+            "title": "High Care Unit (HCU)",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 390,
+            "target_sha_ok": true,
+            "kategori_layanan": [
+                "layanan-unggulan"
+            ],
+            "status": "publish"
+        },
+        {
+            "ID": 20923,
+            "type": "layanan",
+            "title": "Laboratorium Patologi Klinik",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 400,
+            "target_sha_ok": true,
+            "kategori_layanan": [
+                "layanan-unggulan"
+            ],
+            "status": "publish"
+        },
+        {
+            "ID": 20924,
+            "type": "layanan",
+            "title": "Laboratorium Patologi Anatomi",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 411,
+            "target_sha_ok": true,
+            "kategori_layanan": [
+                "layanan-unggulan"
+            ],
+            "status": "publish"
+        },
+        {
+            "ID": 20925,
+            "type": "layanan",
+            "title": "Laboratorium Mikrobiologi Klinik",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 429,
+            "target_sha_ok": true,
+            "kategori_layanan": [
+                "layanan-unggulan"
+            ],
+            "status": "publish"
+        },
+        {
+            "ID": 20926,
+            "type": "layanan",
+            "title": "Bank Darah",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 395,
+            "target_sha_ok": true,
+            "kategori_layanan": [
+                "layanan-unggulan"
+            ],
+            "status": "publish"
+        },
+        {
+            "ID": 20949,
+            "type": "layanan",
+            "title": "Medical Check Up",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 726,
+            "target_sha_ok": true,
+            "kategori_layanan": [
+                "layanan-unggulan"
+            ],
+            "status": "publish"
+        },
+        {
+            "ID": 20953,
+            "type": "layanan",
+            "title": "Cancer Centre",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 722,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        },
+        {
+            "ID": 20954,
+            "type": "layanan",
+            "title": "Uronephrology Centre",
+            "post_content_sha_ok": true,
+            "target_key": "detail_layanan",
+            "target_len": 815,
+            "target_sha_ok": true,
+            "kategori_layanan": [],
+            "status": "publish"
+        }
+    ]
+}
