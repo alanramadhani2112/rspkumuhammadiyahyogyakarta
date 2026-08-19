@@ -1,0 +1,151 @@
+{
+    "ok": true,
+    "total": 14,
+    "unggulan": 10,
+    "penunjang": 4,
+    "bad": [],
+    "rows": [
+        {
+            "ID": 20893,
+            "title": "Layanan Home Care",
+            "terms": [
+                "layanan-unggulan"
+            ],
+            "detail_layanan_len": 434,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/layanan-home-care/"
+        },
+        {
+            "ID": 20906,
+            "title": "Layanan Hemodialisis 24 jam dengan 45 mesin, termasuk layanan infeksi dan VIP",
+            "terms": [
+                "layanan-unggulan"
+            ],
+            "detail_layanan_len": 435,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/layanan-hemodialisis-24-jam-dengan-45-mesin-termasuk-layanan-infeksi-dan-vip/"
+        },
+        {
+            "ID": 20914,
+            "title": "Intensive Care Unit (ICU)",
+            "terms": [
+                "layanan-unggulan"
+            ],
+            "detail_layanan_len": 400,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/intensive-care-unit-icu/"
+        },
+        {
+            "ID": 20915,
+            "title": "Intensive Cardiac Care Unit (ICCU)",
+            "terms": [
+                "layanan-unggulan"
+            ],
+            "detail_layanan_len": 419,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/intensive-cardiac-care-unit-iccu/"
+        },
+        {
+            "ID": 20916,
+            "title": "Pediatric Intensive Care Unit (PICU)",
+            "terms": [
+                "layanan-unggulan"
+            ],
+            "detail_layanan_len": 395,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/pediatric-intensive-care-unit-picu/"
+        },
+        {
+            "ID": 20917,
+            "title": "NICU",
+            "terms": [
+                "layanan-unggulan"
+            ],
+            "detail_layanan_len": 440,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/nicu/"
+        },
+        {
+            "ID": 20918,
+            "title": "High Care Unit (HCU)",
+            "terms": [
+                "layanan-unggulan"
+            ],
+            "detail_layanan_len": 390,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/high-care-unit-hcu/"
+        },
+        {
+            "ID": 20923,
+            "title": "Laboratorium Patologi Klinik",
+            "terms": [
+                "layanan-penunjang"
+            ],
+            "detail_layanan_len": 400,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/laboratorium-patologi-klinik/"
+        },
+        {
+            "ID": 20924,
+            "title": "Laboratorium Patologi Anatomi",
+            "terms": [
+                "layanan-penunjang"
+            ],
+            "detail_layanan_len": 411,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/laboratorium-patologi-anatomi/"
+        },
+        {
+            "ID": 20925,
+            "title": "Laboratorium Mikrobiologi Klinik",
+            "terms": [
+                "layanan-penunjang"
+            ],
+            "detail_layanan_len": 429,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/laboratorium-mikrobiologi-klinik/"
+        },
+        {
+            "ID": 20926,
+            "title": "Bank Darah",
+            "terms": [
+                "layanan-penunjang"
+            ],
+            "detail_layanan_len": 395,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/bank-darah/"
+        },
+        {
+            "ID": 20949,
+            "title": "Medical Check Up",
+            "terms": [
+                "layanan-unggulan"
+            ],
+            "detail_layanan_len": 726,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/medical-check-up/"
+        },
+        {
+            "ID": 20953,
+            "title": "Cancer Centre",
+            "terms": [
+                "layanan-unggulan"
+            ],
+            "detail_layanan_len": 722,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/cancer-centre/"
+        },
+        {
+            "ID": 20954,
+            "title": "Uronephrology Centre",
+            "terms": [
+                "layanan-unggulan"
+            ],
+            "detail_layanan_len": 815,
+            "content_preserved": true,
+            "url": "https://dev-web.rspkujogja.com/layanan/uronephrology-centre/"
+        }
+    ],
+    "backup_sha256": "ab13a60a58ea1da9885cb8cf0fdf8f96728a5153c318d79dbd07bc899f3e2677",
+    "apply_sha256": "c42d62297a9ab6b93e3c80fef7b9cf2e7a4cdee6603db81ec9aa145d23e2e0b6"
+}

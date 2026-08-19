@@ -1,0 +1,43 @@
+{
+    "ok": true,
+    "applied_at": "2026-08-19T08:53:22+00:00",
+    "environment": "https://dev-web.rspkujogja.com",
+    "batch": "copywriting-description-uat-20260819-auto-safe-30",
+    "backup_path": "/home/dev-rspkujogja/import-evidence/copywriting-20260819/category-checkbox-backup-before-correction.json",
+    "backup_sha256": "ab13a60a58ea1da9885cb8cf0fdf8f96728a5153c318d79dbd07bc899f3e2677",
+    "db_writes": 11,
+    "to_penunjang": [
+        20923,
+        20924,
+        20925,
+        20926
+    ],
+    "to_unggulan": [
+        20893,
+        20953,
+        20954
+    ],
+    "after": {
+        "20923": [
+            81
+        ],
+        "20924": [
+            81
+        ],
+        "20925": [
+            81
+        ],
+        "20926": [
+            81
+        ],
+        "20893": [
+            80
+        ],
+        "20953": [
+            80
+        ],
+        "20954": [
+            80
+        ]
+    }
+}

@@ -1,0 +1,70 @@
+{
+    "created_at": "2026-08-19T08:53:22+00:00",
+    "environment": "https://dev-web.rspkujogja.com",
+    "batch": "copywriting-description-uat-20260819-auto-safe-30",
+    "terms": {
+        "80": {
+            "term_taxonomy_id": "80",
+            "slug": "layanan-unggulan",
+            "taxonomy": "kategori-layanan"
+        },
+        "81": {
+            "term_taxonomy_id": "81",
+            "slug": "layanan-penunjang",
+            "taxonomy": "kategori-layanan"
+        }
+    },
+    "records": [
+        {
+            "ID": 20923,
+            "title": "Laboratorium Patologi Klinik",
+            "status": "publish",
+            "category_term_taxonomy_ids": [
+                80
+            ]
+        },
+        {
+            "ID": 20924,
+            "title": "Laboratorium Patologi Anatomi",
+            "status": "publish",
+            "category_term_taxonomy_ids": [
+                80
+            ]
+        },
+        {
+            "ID": 20925,
+            "title": "Laboratorium Mikrobiologi Klinik",
+            "status": "publish",
+            "category_term_taxonomy_ids": [
+                80
+            ]
+        },
+        {
+            "ID": 20926,
+            "title": "Bank Darah",
+            "status": "publish",
+            "category_term_taxonomy_ids": [
+                80
+            ]
+        },
+        {
+            "ID": 20893,
+            "title": "Layanan Home Care",
+            "status": "publish",
+            "category_term_taxonomy_ids": []
+        },
+        {
+            "ID": 20953,
+            "title": "Cancer Centre",
+            "status": "publish",
+            "category_term_taxonomy_ids": []
+        },
+        {
+            "ID": 20954,
+            "title": "Uronephrology Centre",
+            "status": "publish",
+            "category_term_taxonomy_ids": []
+        }
+    ],
+    "records_sha256": "9431df03de1f6ae8af978abc77c644c9fa41f6e2c6792fc82a7e518798617b90"
+}
