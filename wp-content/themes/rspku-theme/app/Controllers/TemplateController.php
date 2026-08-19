@@ -965,7 +965,7 @@ final class TemplateController
             $caption = trim((string) rspku_setting($slot . '_caption', ''));
             $alt = trim((string) rspku_setting($slot . '_alt', ''));
 
-            if ($imageId < 1 || !wp_attachment_is_image($imageId) || $year === '' || $title === '' || $caption === '' || $alt === '') {
+            if ($imageId < 1 || !wp_attachment_is_image($imageId)) {
                 continue;
             }
 

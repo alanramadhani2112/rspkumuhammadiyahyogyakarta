@@ -111,7 +111,7 @@ assert_regex(
 assert_contains($source['controller'], '$imageId < 1', 'controller skips missing image IDs');
 assert_contains($source['controller'], '!wp_attachment_is_image($imageId)', 'controller skips invalid image IDs');
 foreach (['year', 'title', 'caption', 'alt'] as $field) {
-    assert_contains($source['controller'], "\${$field} === ''", "controller skips empty {$field}");
+    assert_not_regex($source['controller'], '~\$' . $field . '\s*===\s*[\'\"]{2}~', "controller does not skip empty {$field}");
 }
 
 if (preg_match('/history_/', $source['api']) === 1) {
