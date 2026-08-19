@@ -11,7 +11,7 @@ if (!is_readable($wpLoad)) {
 require $wpLoad;
 
 $apply = in_array('--apply', $argv, true);
-$source = import_live_articles_arg('--source') ?? 'https://rspkujogja.com';
+$source = 'https://rspkujogja.com';
 $after = import_live_articles_arg('--after') ?? '2026-05-06T15:17:42';
 $limit = max(1, min(100, (int) (import_live_articles_arg('--limit') ?? 20)));
 
@@ -25,18 +25,28 @@ foreach ($posts as $post) {
     }
 
     $slug = sanitize_title((string) ($post['slug'] ?? ''));
+    $sourceId = absint($post['id'] ?? 0);
     if ($slug === '') {
         continue;
     }
 
     $local = get_page_by_path($slug, OBJECT, 'post');
-    if ($local instanceof WP_Post) {
+    $importedIds = $sourceId > 0 ? get_posts([
+        'post_type' => 'post',
+        'post_status' => 'any',
+        'posts_per_page' => 1,
+        'fields' => 'ids',
+        'meta_key' => '_rspku_imported_from_live_id',
+        'meta_value' => (string) $sourceId,
+        'no_found_rows' => true,
+    ]) : [];
+    if ($local instanceof WP_Post || $importedIds !== []) {
         $existing[] = $slug;
         continue;
     }
 
     $title = wp_strip_all_tags((string) ($post['title']['rendered'] ?? ''));
-    $content = (string) ($post['content']['rendered'] ?? '');
+    $content = wp_kses_post((string) ($post['content']['rendered'] ?? ''));
     $excerpt = wp_strip_all_tags((string) ($post['excerpt']['rendered'] ?? ''));
     $date = (string) ($post['date'] ?? current_time('mysql'));
     $dateGmt = (string) ($post['date_gmt'] ?? get_gmt_from_date($date));
@@ -48,7 +58,7 @@ foreach ($posts as $post) {
     if ($apply) {
         $postId = wp_insert_post([
             'post_type' => 'post',
-            'post_status' => 'publish',
+            'post_status' => 'draft',
             'post_title' => $title,
             'post_name' => $slug,
             'post_content' => $content,
@@ -63,6 +73,8 @@ foreach ($posts as $post) {
         }
 
         update_post_meta((int) $postId, '_rspku_imported_from_live_url', esc_url_raw((string) ($post['link'] ?? '')));
+        update_post_meta((int) $postId, '_rspku_imported_from_live_id', $sourceId);
+        update_post_meta((int) $postId, '_rspku_imported_from_live_checksum', hash('sha256', $title . "\n" . $content));
         update_post_meta((int) $postId, '_rspku_imported_from_live_at', gmdate(DATE_ATOM));
     }
 
@@ -91,7 +103,7 @@ function import_live_articles_fetch(string $source, string $after, int $limit): 
         '_fields' => 'id,date,date_gmt,slug,link,title,content,excerpt',
     ], rtrim($source, '/') . '/wp-json/wp/v2/posts');
 
-    $response = wp_remote_get($url, ['timeout' => 30]);
+    $response = wp_safe_remote_get($url, ['timeout' => 30]);
     if (is_wp_error($response)) {
         fwrite(STDERR, $response->get_error_message() . "\n");
         exit(2);
