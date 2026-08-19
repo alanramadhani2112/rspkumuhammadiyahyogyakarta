@@ -4,7 +4,17 @@
 
 Do not commit `wp-content/themes/rspku-theme/public/build/`.
 
-Deploy must build frontend assets on the server:
+When user says `deploy`, execute:
+
+```powershell
+pwsh -NoProfile -File scripts/deploy.ps1
+```
+
+Do not ask credentials again unless the PuTTY key is missing or invalid. Never expose password, private key, or credential content. Use `pwsh -NoProfile -File scripts/deploy.ps1 -DryRun` to validate prerequisites and print the exact plan without remote mutation.
+
+Deploy packages `origin/audit-review-fixes`, builds frontend assets locally because production has no Node.js, uploads the archive with PuTTY PSCP, backs up the production DB plus deployed custom theme/plugins outside document root under `/home/pkujogja/deploy-backups/<stamp>` with private permissions, installs Composer dependencies in the staged theme as the site owner, installs only custom code, preserves ownership, verifies the Vite manifest, then runs HTTP smoke checks.
+
+Legacy deploy guidance if running manually:
 
 ```bash
 git pull
