@@ -507,7 +507,69 @@ final class ContentRepository
         $item['gallery'] = $this->gallery($postId);
         $item['views'] = (int) get_post_meta($postId, 'views', true);
 
+        if (!$this->hasRoomDetails($item)) {
+            $item = array_replace($item, $this->fallbackRoomDetails($post));
+        }
+
         return $item;
+    }
+
+    /**
+     * @param array<string,mixed> $item
+     */
+    private function hasRoomDetails(array $item): bool
+    {
+        foreach (['image', 'category', 'bed_count', 'size', 'rate', 'features', 'included', 'gallery'] as $key) {
+            if (!empty($item[$key])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return array<string,mixed>
+     */
+    private function fallbackRoomDetails(WP_Post $post): array
+    {
+        $category = preg_replace('/^Kelas\s+/i', '', get_the_title($post));
+        if (!is_string($category) || trim($category) === '') {
+            return [];
+        }
+
+        $query = new WP_Query([
+            'post_type' => 'rawat-inap',
+            'post_status' => 'publish',
+            'posts_per_page' => 1,
+            'post__not_in' => [(int) $post->ID],
+            'meta_key' => 'kategori_kamar',
+            'meta_value' => trim($category),
+            'orderby' => [
+                'menu_order' => 'ASC',
+                'title' => 'ASC',
+            ],
+            'order' => 'ASC',
+            'no_found_rows' => true,
+        ]);
+
+        $fallback = $query->posts[0] ?? null;
+        if (!$fallback instanceof WP_Post) {
+            return [];
+        }
+
+        $fallbackId = (int) $fallback->ID;
+
+        return [
+            'image' => $this->galleryImage($fallbackId),
+            'category' => $this->field($fallbackId, 'kategori_kamar'),
+            'bed_count' => $this->field($fallbackId, 'jumlah_tempat_tidur'),
+            'size' => $this->field($fallbackId, 'luas_kamar_m²'),
+            'rate' => $this->field($fallbackId, 'tarif_per_hari_rp'),
+            'features' => $this->arrayField($fallbackId, 'fasilitas_kamar'),
+            'included' => $this->arrayField($fallbackId, 'sudah_termasuk'),
+            'gallery' => $this->gallery($fallbackId),
+        ];
     }
 
     /**
