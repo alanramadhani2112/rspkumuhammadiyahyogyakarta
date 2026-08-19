@@ -1,0 +1,54 @@
+<section class="rspku-section pb-10">
+  <div class="rspku-container space-y-10">
+    {% include 'partials/breadcrumb.twig' with { items: breadcrumb_items } only %}
+
+    {% block before_grid %}{% endblock %}
+
+    <div class="{{ grid_class|default('grid gap-10 xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start') }}">
+      {% block leading_sidebar %}{% endblock %}
+
+      <article class="min-w-0 space-y-8">
+        <header class="space-y-4">
+          <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ eyebrow }}</span>
+          <h1 class="text-3xl font-bold leading-tight text-slate-950 sm:text-4xl">{{ title }}</h1>
+          {% if excerpt %}
+            <p class="max-w-3xl text-base leading-relaxed text-slate-600">{{ excerpt }}</p>
+          {% endif %}
+        </header>
+
+        {% block after_header %}{% endblock %}
+
+        {% if image and image.url %}
+          <div class="overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
+            <img src="{{ image.url }}" alt="{{ image.alt|default(title) }}" loading="lazy" class="{{ image_class|default('aspect-[16/9]') }} w-full object-cover">
+          </div>
+        {% elseif fallback_icon|default('') %}
+          <div class="overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
+            <div class="grid {{ image_class|default('aspect-[16/9]') }} place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(0,158,230,0.18),_transparent_35%),linear-gradient(180deg,#f8fbff_0%,#eaf6ff_100%)] p-8 text-center">
+              <div class="space-y-4">
+                <div class="mx-auto grid h-16 w-16 place-items-center rounded-2xl border border-hospital-200 bg-white text-hospital-700">
+                  {{ icon(fallback_icon, { class: 'h-8 w-8' }) }}
+                </div>
+                <p class="text-lg font-semibold text-slate-700">{{ title }}</p>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+        {% block before_content %}{% endblock %}
+
+        {% if content %}
+          <div class="rspku-prose max-w-none">{{ content|raw }}</div>
+        {% endif %}
+
+        {% block after_content %}{% endblock %}
+      </article>
+
+      <aside class="{{ sidebar_class|default('space-y-5 xl:sticky xl:top-28 xl:self-start') }}">
+        {% block sidebar %}{% endblock %}
+      </aside>
+    </div>
+
+    {% block related %}{% endblock %}
+  </div>
+</section>
