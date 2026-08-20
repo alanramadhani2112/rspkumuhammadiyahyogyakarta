@@ -2,17 +2,23 @@
 
 {% block content %}
   {% if polyclinic is defined and polyclinic %}
-    <section class="rspku-section pb-10">
-      <div class="rspku-container space-y-10">
-        {% include 'partials/breadcrumb.twig' with {
-          items: [
-            { title: 'Home', url: site.url },
-            { title: 'Poliklinik', url: site.url ~ '/poliklinik/' },
-            { title: polyclinic.title, current: true }
-          ]
-        } only %}
-
-        <details class="rounded-[1.5rem] border border-slate-200 bg-white p-5 xl:hidden">
+    {% embed 'partials/single-cpt-shell.twig' with {
+      breadcrumb_items: [
+        { title: 'Home', url: site.url },
+        { title: 'Poliklinik', url: site.url ~ '/poliklinik/' },
+        { title: polyclinic.title, current: true }
+      ],
+      eyebrow: polyclinic.group,
+      title: polyclinic.title,
+      excerpt: polyclinic.excerpt,
+      image: polyclinic.image,
+      image_class: 'aspect-[16/9]',
+      fallback_icon: 'stethoscope',
+      content: polyclinic.content,
+      grid_class: 'grid gap-10 xl:grid-cols-[16rem_minmax(0,1fr)_22rem] xl:items-start'
+    } %}
+      {% block before_grid %}
+        <details class="rounded-lg border border-slate-200 bg-white p-5 xl:hidden">
           <summary class="cursor-pointer list-none text-base font-semibold text-slate-950">Daftar poliklinik</summary>
           <div class="mt-5 space-y-6">
             {% for group in polyclinic_navigation %}
@@ -20,88 +26,58 @@
                 <h2 class="text-lg font-semibold text-hospital-700">{{ group.title }}</h2>
                 <div class="flex flex-wrap gap-2">
                   {% for item in group.items %}
-                    <a href="{{ item.url }}" class="rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-hospital-300 hover:text-hospital-700 {{ item.id == polyclinic.id ? 'border-hospital-300 bg-hospital-50 text-hospital-700' : '' }}">{{ item.title }}</a>
+                    <a href="{{ item.url }}" class="rounded-sm border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-hospital-300 hover:text-hospital-700 {{ item.id == polyclinic.id ? 'border-hospital-300 bg-hospital-50 text-hospital-700' : '' }}" {{ item.id == polyclinic.id ? 'aria-current="page"' : '' }}>{{ item.title }}</a>
                   {% endfor %}
                 </div>
               </div>
             {% endfor %}
           </div>
         </details>
+      {% endblock %}
 
-        <div class="grid gap-10 xl:grid-cols-[16rem_minmax(0,1fr)_20rem]">
-          <aside class="hidden xl:block">
-            <div class="sticky top-28 max-h-[calc(100vh-8rem)] space-y-8 overflow-y-auto pr-3">
-              {% for group in polyclinic_navigation %}
-                <section class="rspku-side-nav-group {{ loop.first ? 'border-t-0 pt-0' : '' }}">
-                  <h2 class="rspku-side-nav-title">{{ group.title }}</h2>
-                  <div class="mt-4 space-y-3">
-                    {% for item in group.items %}
-                      <a href="{{ item.url }}" class="rspku-side-nav-link {{ item.id == polyclinic.id ? 'is-active' : '' }}">{{ item.title }}</a>
-                    {% endfor %}
-                  </div>
-                </section>
-              {% endfor %}
-            </div>
-          </aside>
-
-          <article class="min-w-0 space-y-8">
-            <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-100">
-              {% if polyclinic.image and polyclinic.image.url %}
-                <img src="{{ polyclinic.image.url }}" alt="{{ polyclinic.title }}" class="aspect-[16/10] w-full object-cover">
-              {% else %}
-              <div class="grid aspect-[16/10] place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(0,158,230,0.18),_transparent_35%),linear-gradient(180deg,#f8fbff_0%,#eaf6ff_100%)] p-8 text-center">
-                  <div class="space-y-4">
-                    <div class="mx-auto grid h-16 w-16 place-items-center rounded-2xl border border-hospital-200 bg-white text-hospital-700">
-                      {{ icon('stethoscope', { class: 'h-8 w-8' }) }}
-                    </div>
-                    <p class="text-lg font-semibold text-slate-700">{{ polyclinic.title }}</p>
-                  </div>
+      {% block leading_sidebar %}
+        <aside class="hidden xl:block">
+          <div class="sticky top-28 max-h-[calc(100vh-8rem)] space-y-8 overflow-y-auto pr-3">
+            {% for group in polyclinic_navigation %}
+              <section class="rspku-side-nav-group {{ loop.first ? 'border-t-0 pt-0' : '' }}">
+                <h2 class="rspku-side-nav-title">{{ group.title }}</h2>
+                <div class="mt-4 space-y-3">
+                  {% for item in group.items %}
+                    <a href="{{ item.url }}" class="rspku-side-nav-link {{ item.id == polyclinic.id ? 'is-active' : '' }}" {{ item.id == polyclinic.id ? 'aria-current="page"' : '' }}>{{ item.title }}</a>
+                  {% endfor %}
                 </div>
-              {% endif %}
-            </div>
+              </section>
+            {% endfor %}
+          </div>
+        </aside>
+      {% endblock %}
 
-            <div class="space-y-4">
-              <span class="inline-block rounded-sm bg-hospital-50 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-hospital-700">{{ polyclinic.group }}</span>
-              <h1 class="text-3xl font-bold leading-tight text-slate-950 sm:text-4xl">{{ polyclinic.title }}</h1>
-              {% if polyclinic.excerpt %}
-                <p class="max-w-3xl text-base leading-relaxed text-slate-600">{{ polyclinic.excerpt }}</p>
-              {% endif %}
-            </div>
-
-            {% if polyclinic.content %}
-              <div class="rspku-divider pt-8">
-                <div class="rspku-prose max-w-none">{{ polyclinic.content|raw }}</div>
-              </div>
-            {% endif %}
-
-            <div class="flex flex-col gap-3 pt-2 sm:flex-row">
-              {% include 'components/button.twig' with {
-                text: 'Cari dokter',
-                url: site.url ~ '/dokter/',
-                variant: 'primary',
-                class: 'px-8'
-              } only %}
-              {% include 'components/button.twig' with {
-                text: 'Lihat jadwal dokter',
-                url: site.url ~ '/jadwal-dokter/',
-                variant: 'secondary',
-                class: 'px-8'
-              } only %}
-            </div>
-          </article>
-
-          <aside>
-            <div class="sticky top-28 space-y-4">
-              {% include 'partials/related-doctors-panel.twig' with {
-                doctors: polyclinic_doctors,
-                eyebrow: 'Dokter terkait',
-                title: 'Jadwal dan profil dokter'
-              } only %}
-            </div>
-          </aside>
+      {% block after_content %}
+        <div class="flex flex-col gap-3 pt-2 sm:flex-row">
+          {% include 'components/button.twig' with {
+            text: 'Cari dokter',
+            url: site.url ~ '/dokter/',
+            variant: 'primary',
+            class: 'px-8'
+          } only %}
+          {% include 'components/button.twig' with {
+            text: 'Lihat jadwal dokter',
+            url: site.url ~ '/jadwal-dokter/',
+            variant: 'secondary',
+            class: 'px-8'
+          } only %}
         </div>
-      </div>
-    </section>
+      {% endblock %}
+
+      {% block sidebar %}
+        {% include 'partials/related-doctors-panel.twig' with {
+          site: site,
+          doctors: polyclinic_doctors,
+          eyebrow: 'Dokter terkait',
+          title: 'Jadwal dan profil dokter'
+        } only %}
+      {% endblock %}
+    {% endembed %}
   {% else %}
     {% include 'partials/content-not-found.twig' with {
       title: 'Poliklinik tidak ditemukan',
