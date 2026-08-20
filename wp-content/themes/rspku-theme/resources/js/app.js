@@ -408,6 +408,8 @@ Alpine.data('promoSlider', () => ({
 
 Alpine.data('reviewsCarousel', () => ({
   dragging: false,
+  hovering: false,
+  focused: false,
   startX: 0,
   startScrollLeft: 0,
   pointerId: null,
@@ -415,23 +417,94 @@ Alpine.data('reviewsCarousel', () => ({
   lastX: 0,
   lastTime: 0,
   momentumId: null,
-  scroll(direction) {
+  autoplayId: null,
+  reducedMotion: false,
+  reducedMotionQuery: null,
+  updateMotion: null,
+  init() {
+    this.reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    this.reducedMotion = this.reducedMotionQuery.matches;
+
+    this.updateMotion = (event) => {
+      this.reducedMotion = event.matches;
+      this.reducedMotion ? this.pauseAutoplay() : this.resumeAutoplay();
+    };
+
+    this.reducedMotionQuery.addEventListener('change', this.updateMotion);
+    this.$el.addEventListener('mouseenter', () => {
+      this.hovering = true;
+      this.pauseAutoplay();
+    });
+    this.$el.addEventListener('mouseleave', () => {
+      this.hovering = false;
+      this.resumeAutoplay();
+    });
+    this.$el.addEventListener('focusin', () => {
+      this.focused = true;
+      this.pauseAutoplay();
+    });
+    this.$el.addEventListener('focusout', () => {
+      this.focused = false;
+      this.resumeAutoplay();
+    });
+    this.resumeAutoplay();
+  },
+  destroy() {
+    this.pauseAutoplay();
+
+    if (this.reducedMotionQuery && this.updateMotion) {
+      this.reducedMotionQuery.removeEventListener('change', this.updateMotion);
+    }
+  },
+  pauseAutoplay() {
+    clearInterval(this.autoplayId);
+    this.autoplayId = null;
+  },
+  resumeAutoplay() {
+    if (this.autoplayId || this.reducedMotion || this.hovering || this.focused || this.dragging) {
+      return;
+    }
+
+    this.autoplayId = setInterval(() => this.autoScroll(), 4500);
+  },
+  autoScroll() {
     const track = this.$refs.track;
     if (!track) {
       return;
     }
 
     const amount = Math.max(track.clientWidth * 0.82, 300);
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    const nextScroll = track.scrollLeft + amount;
+
+    track.scrollTo({
+      left: nextScroll >= maxScroll - 4 ? 0 : nextScroll,
+      behavior: 'smooth',
+    });
+  },
+  scroll(direction) {
+    const track = this.$refs.track;
+    if (!track) {
+      return;
+    }
+
+    this.pauseAutoplay();
+
+    const amount = Math.max(track.clientWidth * 0.82, 300);
     track.scrollBy({
       left: amount * direction,
       behavior: 'smooth',
     });
+
+    this.resumeAutoplay();
   },
   start(event) {
     const track = this.$refs.track;
     if (!track) {
       return;
     }
+
+    this.pauseAutoplay();
 
     // Stop any ongoing momentum
     if (this.momentumId) {
@@ -491,6 +564,8 @@ Alpine.data('reviewsCarousel', () => ({
       // Re-enable scroll-snap after drag completes
       this.restoreSnap(track);
     }
+
+    this.resumeAutoplay();
   },
   applyMomentum(track) {
     let currentVelocity = this.velocity * 16; // Convert to px per frame (~60fps)
