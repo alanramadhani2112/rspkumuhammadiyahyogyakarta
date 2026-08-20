@@ -4,7 +4,7 @@ import '../css/app.css';
 window.Alpine = Alpine;
 
 Alpine.data('siteNavigation', () => ({
-  open: false,
+  menuOpen: false,
   panel: null,
   closeTimer: null,
   openPanel(name) {
@@ -25,12 +25,12 @@ Alpine.data('siteNavigation', () => ({
   },
   close() {
     this.cancelClose();
-    this.open = false;
+    this.menuOpen = false;
     this.panel = null;
   },
   toggle() {
-    this.open = !this.open;
-    if (!this.open) {
+    this.menuOpen = !this.menuOpen;
+    if (!this.menuOpen) {
       this.panel = null;
     }
   },
@@ -40,6 +40,24 @@ Alpine.data('siteNavigation', () => ({
   },
   isPanel(name) {
     return this.panel === name;
+  },
+}));
+
+Alpine.data('siteSearch', () => ({
+  open: false,
+  opener: null,
+  openSearch(event) {
+    this.opener = event?.currentTarget || null;
+    this.open = true;
+    this.$nextTick(() => {
+      this.$refs.query?.focus();
+    });
+  },
+  closeSearch() {
+    this.open = false;
+    this.$nextTick(() => {
+      this.opener?.focus?.();
+    });
   },
 }));
 

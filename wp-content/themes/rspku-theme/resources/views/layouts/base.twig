@@ -46,6 +46,7 @@
 </a>
 
 <header class="{{ rspku.header_sticky is not defined or rspku.header_sticky ? 'sticky top-0' : 'relative' }} z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl" x-data="siteNavigation" @keydown.escape.window="close">
+  <div x-data="siteSearch" @keydown.escape.window="closeSearch()">
   {# Top Bar - Compact Info #}
   {% if rspku.header_topbar_enabled is not defined or rspku.header_topbar_enabled %}
   <div class="border-b border-slate-200 bg-[#f4f5f2]">
@@ -160,6 +161,10 @@
 
     {# Desktop CTA #}
     <div class="hidden items-center gap-3 lg:flex">
+      <button type="button" class="inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-hospital-500 focus:ring-offset-2" @click="openSearch($event)" :aria-expanded="open.toString()" aria-controls="site-search-dialog" aria-label="Buka pencarian situs">
+        {{ icon('search', { class: 'h-4 w-4' }) }}
+        <span>Cari</span>
+      </button>
       <a href="{{ header_cta_href }}" class="rspku-button rspku-button-primary rspku-button-sm gap-2">
         {{ icon('clipboard-list', { class: 'h-4 w-4' }) }}
         <span>{{ rspku.header_cta_text|default('Daftar Online') }}</span>
@@ -167,18 +172,23 @@
     </div>
 
     {# Mobile Hamburger Button #}
-    <button type="button" class="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 lg:hidden" @click="toggle" :aria-expanded="open.toString()" aria-label="Buka menu navigasi">
-      <svg x-show="!open" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-      <svg x-cloak x-show="open" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-      </svg>
-    </button>
+    <div class="flex items-center gap-2 lg:hidden">
+      <button type="button" class="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-hospital-500 focus:ring-offset-2" @click="openSearch($event)" :aria-expanded="open.toString()" aria-controls="site-search-dialog" aria-label="Buka pencarian situs">
+        {{ icon('search', { class: 'h-5 w-5' }) }}
+      </button>
+      <button type="button" class="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 lg:hidden" @click="toggle" :aria-expanded="menuOpen.toString()" aria-label="Buka menu navigasi">
+        <svg x-show="!menuOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg x-cloak x-show="menuOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
   </div>
 
   {# Mobile Menu #}
-  <div class="border-t border-slate-100 bg-white lg:hidden" x-cloak x-show="open" x-transition.opacity>
+  <div class="border-t border-slate-100 bg-white lg:hidden" x-cloak x-show="menuOpen" x-transition.opacity>
     <nav class="rspku-container space-y-1 py-4" aria-label="Menu mobile">
       {% for item in primary_items %}
         {% set title_lower = item.title|lower %}
@@ -215,6 +225,29 @@
         </a>
       </div>
     </nav>
+  </div>
+  <div x-cloak x-show="open" x-transition.opacity class="fixed inset-0 z-[60]">
+    <div class="absolute inset-0 bg-slate-950/50" @click="closeSearch()"></div>
+    <div class="relative flex min-h-full items-start justify-center px-4 py-6 sm:px-6 sm:py-10">
+      <div id="site-search-dialog" role="dialog" aria-modal="true" aria-labelledby="site-search-title" class="w-full max-w-2xl rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-slate-200 sm:p-6">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h2 id="site-search-title" class="text-lg font-bold text-slate-950">Cari situs</h2>
+            <p class="mt-1 text-sm text-slate-600">Cari informasi rumah sakit, layanan, atau berita.</p>
+          </div>
+          <button type="button" class="grid h-10 w-10 place-items-center rounded-full text-slate-500 transition hover:bg-slate-100 hover:text-slate-950" @click="closeSearch()" aria-label="Tutup pencarian">{{ icon('x', { class: 'h-5 w-5' }) }}</button>
+        </div>
+        <form class="mt-5 flex flex-col gap-3 sm:flex-row" method="get" action="{{ site.url }}">
+          <label for="site-search-query" class="sr-only">Masukkan kata kunci pencarian</label>
+          <input id="site-search-query" x-ref="query" type="search" name="s" class="rspku-input flex-1" placeholder="Cari di situs ini" autocomplete="off">
+          <button type="submit" class="rspku-button rspku-button-primary gap-2">
+            {{ icon('search', { class: 'h-4 w-4' }) }}
+            <span>Cari</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
   </div>
 </header>
 
