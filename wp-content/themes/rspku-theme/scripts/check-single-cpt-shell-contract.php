@@ -90,6 +90,7 @@ assert_not_contains($source['rawat'], '{% if room_single.category %}', 'rawat ca
 assert_not_contains($source['rawat'], '{% if room_single.bed_count %}', 'rawat bed count is not conditionally hidden');
 assert_not_contains($source['rawat'], '{% if room_single.size %}', 'rawat size is not conditionally hidden');
 assert_not_contains($source['rawat'], '{% if room_single.rate %}', 'rawat rate is not conditionally hidden');
+assert_not_contains($source['rawat'], 'show_link: false', 'rawat related cards keep default link behavior');
 
 foreach (['polyclinic_navigation', 'polyclinic.group', 'polyclinic_doctors', 'site: site', 'aria-current="page"', 'Lihat jadwal dokter'] as $needle) {
     assert_contains($source['poliklinik'], $needle, "poliklinik keeps feature: {$needle}");
