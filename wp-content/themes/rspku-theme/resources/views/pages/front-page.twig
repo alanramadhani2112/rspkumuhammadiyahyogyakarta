@@ -253,7 +253,7 @@
         </div>
 
         {# Reviews Carousel - 10 cards, 4 visible, overflow out of container #}
-        <div x-data="reviewsCarousel" class="relative lg:-mr-8 xl:-mr-[calc((100vw-76rem)/2)]">
+        <div x-data="reviewsCarousel" class="relative ml-[calc(50%-50vw)] w-screen pl-4 sm:pl-6 lg:pl-8 xl:pl-[calc((100vw-76rem)/2)]">
           <div
             x-ref="track"
             @pointerdown="start($event)"
