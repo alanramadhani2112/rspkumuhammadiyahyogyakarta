@@ -68,17 +68,32 @@ foreach (['x-data="siteSearch"', '@keydown.escape.window="closeSearch()"', 'meth
     assert_contains($source['layout'], $needle, "global search form contract: {$needle}");
 }
 
-assert_contains($source['layout'], 'h-auto max-h-10 max-w-[9rem] w-auto object-contain sm:h-14 sm:max-h-none sm:max-w-none', 'mobile header logo keeps constrained responsive sizing');
+assert_contains($source['layout'], 'h-auto max-h-10 max-w-[10rem] w-auto object-contain sm:h-14 sm:max-h-none sm:max-w-none', 'mobile header logo keeps constrained responsive sizing');
 
-foreach (['@click="openSearch($event)"', ':aria-expanded="open.toString()"', 'aria-controls="site-search-dialog"', 'aria-label="Buka pencarian situs"'] as $needle) {
+foreach (['@click="openSearch($event)"', ':aria-expanded="open.toString()"', 'aria-controls="site-search-panel"', 'aria-label="Buka pencarian situs"'] as $needle) {
     assert_count($source['layout'], $needle, 2, "desktop and mobile search triggers keep accessibility: {$needle}");
 }
 
-foreach (['id="site-search-dialog"', 'role="dialog"', 'aria-modal="true"', 'aria-labelledby="site-search-title"', 'id="site-search-title"', '@click="closeSearch()"', 'aria-label="Tutup pencarian"'] as $needle) {
-    assert_contains($source['layout'], $needle, "search modal contract: {$needle}");
+assert_contains($source['layout'], 'sm:inline-flex" @click="openSearch($event)"', 'desktop search trigger starts at sm breakpoint');
+assert_contains($source['layout'], 'focus:ring-hospital-500 focus:ring-offset-2 sm:hidden" @click="openSearch($event)"', 'mobile search trigger only applies below sm');
+
+foreach (['id="site-search-panel"', ':role="isDesktop() ? null : \'dialog\'"', ':aria-modal="isDesktop() ? null : \'true\'"', 'aria-labelledby="site-search-title"', 'id="site-search-title"', '@click="closeSearch()"', 'aria-label="Tutup pencarian"'] as $needle) {
+    assert_contains($source['layout'], $needle, "responsive search panel accessibility contract: {$needle}");
 }
 
-foreach (['Alpine.data(\'siteSearch\'', 'opener: null', 'openSearch(event)', 'this.opener = event?.currentTarget || null', 'this.open = true', 'this.$refs.query?.focus()', 'closeSearch()', 'this.open = false', 'this.opener?.focus?.()'] as $needle) {
+foreach (['sm:inset-auto', 'sm:w-[26rem]', ':style="popoverStyle()"', '@click.outside="isDesktop() && closeSearch()"'] as $needle) {
+    assert_contains($source['layout'], $needle, "desktop disclosure popover contract: {$needle}");
+}
+
+foreach (['fixed inset-x-4 top-4', 'bg-slate-950/50 backdrop-blur-sm', '@click="closeSearch()"'] as $needle) {
+    assert_contains($source['layout'], $needle, "mobile modal top sheet contract: {$needle}");
+}
+
+foreach (['Tekan Enter untuk mencari · Esc untuk menutup', 'pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400', 'rspku-button rspku-button-primary rspku-button-sm'] as $needle) {
+    assert_contains($source['layout'], $needle, "native search form presentation contract: {$needle}");
+}
+
+foreach (['Alpine.data(\'siteSearch\'', 'opener: null', 'openSearch(event)', 'this.opener = event?.currentTarget || null', 'this.open = true', 'this.$refs.query?.focus()', 'closeSearch()', 'this.open = false', 'this.opener?.focus?.()', 'isDesktop()', "window.matchMedia('(min-width: 640px)').matches", 'popoverStyle()', 'this.opener.getBoundingClientRect()', 'rect.right - width'] as $needle) {
     assert_contains($source['app'], $needle, "siteSearch Alpine behavior: {$needle}");
 }
 
