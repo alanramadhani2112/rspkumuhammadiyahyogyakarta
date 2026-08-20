@@ -59,6 +59,20 @@ Alpine.data('siteSearch', () => ({
       this.opener?.focus?.();
     });
   },
+  isDesktop() {
+    return window.matchMedia('(min-width: 640px)').matches;
+  },
+  popoverStyle() {
+    if (!this.isDesktop() || !this.opener) {
+      return '';
+    }
+
+    const rect = this.opener.getBoundingClientRect();
+    const width = 416;
+    const left = Math.min(Math.max(16, rect.right - width), window.innerWidth - width - 16);
+
+    return `left: ${left}px; top: ${rect.bottom + 8}px; width: ${width}px;`;
+  },
 }));
 
 Alpine.data('searchableSelect', () => ({

@@ -120,7 +120,7 @@
     {# Logo #}
     <a href="{{ site.url }}" class="flex shrink-0 items-center gap-3 text-slate-950">
       {% if site_logo.url %}
-        <img src="{{ site_logo.url }}" alt="{{ site_logo.alt|default(site.name) }}" class="h-auto max-h-10 max-w-[9rem] w-auto object-contain sm:h-14 sm:max-h-none sm:max-w-none">
+        <img src="{{ site_logo.url }}" alt="{{ site_logo.alt|default(site.name) }}" class="h-auto max-h-10 max-w-[10rem] w-auto object-contain sm:h-14 sm:max-h-none sm:max-w-none">
       {% else %}
         <span class="grid h-12 w-12 place-items-center rounded-xl bg-hospital-700 text-lg font-black text-white">PKU</span>
         <span class="max-w-[12rem] text-sm font-bold leading-tight">{{ site.name }}</span>
@@ -159,12 +159,13 @@
       {% endfor %}
     </nav>
 
+    <button type="button" class="hidden min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-hospital-500 focus:ring-offset-2 sm:inline-flex" @click="openSearch($event)" :aria-expanded="open.toString()" aria-controls="site-search-panel" aria-label="Buka pencarian situs">
+      {{ icon('search', { class: 'h-4 w-4' }) }}
+      <span>Cari</span>
+    </button>
+
     {# Desktop CTA #}
     <div class="hidden items-center gap-3 lg:flex">
-      <button type="button" class="inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-hospital-500 focus:ring-offset-2" @click="openSearch($event)" :aria-expanded="open.toString()" aria-controls="site-search-dialog" aria-label="Buka pencarian situs">
-        {{ icon('search', { class: 'h-4 w-4' }) }}
-        <span>Cari</span>
-      </button>
       <a href="{{ header_cta_href }}" class="rspku-button rspku-button-primary rspku-button-sm gap-2">
         {{ icon('clipboard-list', { class: 'h-4 w-4' }) }}
         <span>{{ rspku.header_cta_text|default('Daftar Online') }}</span>
@@ -173,7 +174,7 @@
 
     {# Mobile Hamburger Button #}
     <div class="flex items-center gap-2 lg:hidden">
-      <button type="button" class="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-hospital-500 focus:ring-offset-2" @click="openSearch($event)" :aria-expanded="open.toString()" aria-controls="site-search-dialog" aria-label="Buka pencarian situs">
+      <button type="button" class="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-hospital-500 focus:ring-offset-2 sm:hidden" @click="openSearch($event)" :aria-expanded="open.toString()" aria-controls="site-search-panel" aria-label="Buka pencarian situs">
         {{ icon('search', { class: 'h-5 w-5' }) }}
       </button>
       <button type="button" class="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 lg:hidden" @click="toggle" :aria-expanded="menuOpen.toString()" aria-label="Buka menu navigasi">
@@ -226,26 +227,30 @@
       </div>
     </nav>
   </div>
-  <div x-cloak x-show="open" x-transition.opacity class="fixed inset-0 z-[60]">
-    <div class="absolute inset-0 bg-slate-950/50" @click="closeSearch()"></div>
-    <div class="relative flex min-h-full items-start justify-center px-4 py-6 sm:px-6 sm:py-10">
-      <div id="site-search-dialog" role="dialog" aria-modal="true" aria-labelledby="site-search-title" class="w-full max-w-2xl rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-slate-200 sm:p-6">
-        <div class="flex items-start justify-between gap-4">
-          <div>
-            <h2 id="site-search-title" class="text-lg font-bold text-slate-950">Cari situs</h2>
-            <p class="mt-1 text-sm text-slate-600">Cari informasi rumah sakit, layanan, atau berita.</p>
-          </div>
-          <button type="button" class="grid h-10 w-10 place-items-center rounded-full text-slate-500 transition hover:bg-slate-100 hover:text-slate-950" @click="closeSearch()" aria-label="Tutup pencarian">{{ icon('x', { class: 'h-5 w-5' }) }}</button>
+  <div x-cloak x-show="open" x-transition.opacity class="fixed inset-0 z-[60] pointer-events-none">
+    <div class="absolute inset-0 bg-slate-950/50 backdrop-blur-sm pointer-events-auto sm:hidden" @click="closeSearch()"></div>
+    <div id="site-search-panel" :role="isDesktop() ? null : 'dialog'" :aria-modal="isDesktop() ? null : 'true'" aria-labelledby="site-search-title" class="fixed inset-x-4 top-4 pointer-events-auto rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-slate-200 sm:inset-auto sm:w-[26rem] sm:rounded-xl sm:p-4 sm:shadow-lg" :style="popoverStyle()" @click.outside="isDesktop() && closeSearch()">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h2 id="site-search-title" class="text-lg font-bold text-slate-950 sm:text-base">Cari situs</h2>
+          <p class="mt-1 text-sm text-slate-600">Cari informasi rumah sakit, layanan, atau berita.</p>
         </div>
-        <form class="mt-5 flex flex-col gap-3 sm:flex-row" method="get" action="{{ site.url }}">
-          <label for="site-search-query" class="sr-only">Masukkan kata kunci pencarian</label>
-          <input id="site-search-query" x-ref="query" type="search" name="s" class="rspku-input flex-1" placeholder="Cari di situs ini" autocomplete="off">
-          <button type="submit" class="rspku-button rspku-button-primary gap-2">
+        <button type="button" class="grid h-10 w-10 place-items-center rounded-full text-slate-500 transition hover:bg-slate-100 hover:text-slate-950" @click="closeSearch()" aria-label="Tutup pencarian">{{ icon('x', { class: 'h-5 w-5' }) }}</button>
+      </div>
+      <form class="mt-5 space-y-3" method="get" action="{{ site.url }}">
+        <label for="site-search-query" class="sr-only">Masukkan kata kunci pencarian</label>
+        <div class="relative">
+          {{ icon('search', { class: 'pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400' }) }}
+          <input id="site-search-query" x-ref="query" type="search" name="s" class="rspku-input w-full pl-10 pr-3" placeholder="Cari di situs ini" autocomplete="off">
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <p class="text-xs text-slate-500">Tekan Enter untuk mencari · Esc untuk menutup</p>
+          <button type="submit" class="rspku-button rspku-button-primary rspku-button-sm shrink-0 gap-2">
             {{ icon('search', { class: 'h-4 w-4' }) }}
             <span>Cari</span>
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
   </div>
