@@ -71,8 +71,7 @@
               {% for item in service_related %}
                 {% include 'components/content-card.twig' with {
                   item: item|merge({
-                    badge: 'Layanan medis',
-                    show_link: false
+                    badge: 'Layanan medis'
                   })
                 } %}
               {% endfor %}
