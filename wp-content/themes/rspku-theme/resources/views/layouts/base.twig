@@ -116,11 +116,11 @@
   {% endif %}
 
   {# Main Navigation #}
-  <div class="rspku-container flex min-h-[4.5rem] items-center justify-between gap-6">
+  <div class="rspku-container flex min-h-[4.5rem] items-center justify-between gap-3 sm:gap-6">
     {# Logo #}
     <a href="{{ site.url }}" class="flex shrink-0 items-center gap-3 text-slate-950">
       {% if site_logo.url %}
-        <img src="{{ site_logo.url }}" alt="{{ site_logo.alt|default(site.name) }}" class="h-12 w-auto object-contain sm:h-14">
+        <img src="{{ site_logo.url }}" alt="{{ site_logo.alt|default(site.name) }}" class="h-auto max-h-10 max-w-[9rem] w-auto object-contain sm:h-14 sm:max-h-none sm:max-w-none">
       {% else %}
         <span class="grid h-12 w-12 place-items-center rounded-xl bg-hospital-700 text-lg font-black text-white">PKU</span>
         <span class="max-w-[12rem] text-sm font-bold leading-tight">{{ site.name }}</span>

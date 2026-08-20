@@ -68,6 +68,8 @@ foreach (['x-data="siteSearch"', '@keydown.escape.window="closeSearch()"', 'meth
     assert_contains($source['layout'], $needle, "global search form contract: {$needle}");
 }
 
+assert_contains($source['layout'], 'h-auto max-h-10 max-w-[9rem] w-auto object-contain sm:h-14 sm:max-h-none sm:max-w-none', 'mobile header logo keeps constrained responsive sizing');
+
 foreach (['@click="openSearch($event)"', ':aria-expanded="open.toString()"', 'aria-controls="site-search-dialog"', 'aria-label="Buka pencarian situs"'] as $needle) {
     assert_count($source['layout'], $needle, 2, "desktop and mobile search triggers keep accessibility: {$needle}");
 }
