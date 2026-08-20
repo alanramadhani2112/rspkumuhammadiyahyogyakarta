@@ -544,7 +544,7 @@ Alpine.data('reviewsCarousel', () => ({
 
     track.style.scrollSnapType = 'none';
     const elapsed = this.lastAutoplayTime ? time - this.lastAutoplayTime : 0;
-    track.scrollLeft += elapsed * 0.025;
+    track.scrollLeft += elapsed * 0.12;
     this.normalizeLoopPosition(track);
     this.lastAutoplayTime = time;
     this.autoplayId = requestAnimationFrame((nextTime) => this.autoScroll(nextTime));
@@ -558,10 +558,8 @@ Alpine.data('reviewsCarousel', () => ({
     this.pauseAutoplay();
 
     const amount = Math.max(track.clientWidth * 0.82, 300);
-    track.scrollBy({
-      left: amount * direction,
-      behavior: 'smooth',
-    });
+    track.scrollLeft += amount * direction;
+    this.normalizeLoopPosition(track);
 
     this.resumeAutoplay(900);
   },
