@@ -408,7 +408,6 @@ Alpine.data('promoSlider', () => ({
 
 Alpine.data('reviewsCarousel', () => ({
   dragging: false,
-  hovering: false,
   focused: false,
   startX: 0,
   startScrollLeft: 0,
@@ -418,10 +417,15 @@ Alpine.data('reviewsCarousel', () => ({
   lastTime: 0,
   momentumId: null,
   autoplayId: null,
+  autoplayResumeId: null,
+  lastAutoplayTime: 0,
+  loopWidth: 0,
+  cloneCount: 0,
   reducedMotion: false,
   reducedMotionQuery: null,
   updateMotion: null,
   init() {
+    this.setupLoop();
     this.reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     this.reducedMotion = this.reducedMotionQuery.matches;
 
@@ -431,14 +435,6 @@ Alpine.data('reviewsCarousel', () => ({
     };
 
     this.reducedMotionQuery.addEventListener('change', this.updateMotion);
-    this.$el.addEventListener('mouseenter', () => {
-      this.hovering = true;
-      this.pauseAutoplay();
-    });
-    this.$el.addEventListener('mouseleave', () => {
-      this.hovering = false;
-      this.resumeAutoplay();
-    });
     this.$el.addEventListener('focusin', () => {
       this.focused = true;
       this.pauseAutoplay();
@@ -451,36 +447,107 @@ Alpine.data('reviewsCarousel', () => ({
   },
   destroy() {
     this.pauseAutoplay();
+    this.teardownLoop();
 
     if (this.reducedMotionQuery && this.updateMotion) {
       this.reducedMotionQuery.removeEventListener('change', this.updateMotion);
     }
   },
-  pauseAutoplay() {
-    clearInterval(this.autoplayId);
-    this.autoplayId = null;
-  },
-  resumeAutoplay() {
-    if (this.autoplayId || this.reducedMotion || this.hovering || this.focused || this.dragging) {
+  setupLoop() {
+    const track = this.$refs.track;
+    if (!track || track.dataset.loopReady === 'true') {
       return;
     }
 
-    this.autoplayId = setInterval(() => this.autoScroll(), 4500);
+    const cards = Array.from(track.children);
+    this.cloneCount = cards.length;
+
+    for (const card of cards) {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.dataset.loopClone = 'true';
+      clone.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach((element) => {
+        element.setAttribute('tabindex', '-1');
+      });
+      track.appendChild(clone);
+    }
+
+    track.dataset.loopReady = 'true';
+    requestAnimationFrame(() => this.updateLoopWidth());
   },
-  autoScroll() {
+  teardownLoop() {
     const track = this.$refs.track;
     if (!track) {
       return;
     }
 
-    const amount = Math.max(track.clientWidth * 0.82, 300);
-    const maxScroll = track.scrollWidth - track.clientWidth;
-    const nextScroll = track.scrollLeft + amount;
+    track.querySelectorAll('[data-loop-clone="true"]').forEach((clone) => clone.remove());
+    delete track.dataset.loopReady;
+  },
+  updateLoopWidth() {
+    const track = this.$refs.track;
+    if (!track || !this.cloneCount) {
+      this.loopWidth = 0;
+      return;
+    }
 
-    track.scrollTo({
-      left: nextScroll >= maxScroll - 4 ? 0 : nextScroll,
-      behavior: 'smooth',
-    });
+    const firstClone = track.children[this.cloneCount];
+    this.loopWidth = firstClone ? firstClone.offsetLeft : track.scrollWidth / 2;
+  },
+  normalizeLoopPosition(track) {
+    if (!this.loopWidth) {
+      this.updateLoopWidth();
+    }
+
+    if (this.loopWidth && track.scrollLeft >= this.loopWidth) {
+      track.scrollLeft -= this.loopWidth;
+    }
+  },
+  pauseAutoplay() {
+    cancelAnimationFrame(this.autoplayId);
+    clearTimeout(this.autoplayResumeId);
+    this.autoplayId = null;
+    this.autoplayResumeId = null;
+    this.restoreSnap(this.$refs.track);
+  },
+  resumeAutoplay(delay = 0) {
+    clearTimeout(this.autoplayResumeId);
+    this.autoplayResumeId = null;
+
+    if (delay > 0) {
+      this.autoplayResumeId = setTimeout(() => this.resumeAutoplay(), delay);
+      return;
+    }
+
+    if (this.autoplayId || this.reducedMotion || this.focused || this.dragging) {
+      return;
+    }
+
+    this.lastAutoplayTime = 0;
+    this.autoplayId = requestAnimationFrame((time) => this.autoScroll(time));
+  },
+  autoScroll(time) {
+    const track = this.$refs.track;
+    if (!track) {
+      this.autoplayId = null;
+      return;
+    }
+
+    if (!this.loopWidth) {
+      this.updateLoopWidth();
+    }
+
+    if (!this.loopWidth) {
+      this.autoplayId = requestAnimationFrame((nextTime) => this.autoScroll(nextTime));
+      return;
+    }
+
+    track.style.scrollSnapType = 'none';
+    const elapsed = this.lastAutoplayTime ? time - this.lastAutoplayTime : 0;
+    track.scrollLeft += elapsed * 0.025;
+    this.normalizeLoopPosition(track);
+    this.lastAutoplayTime = time;
+    this.autoplayId = requestAnimationFrame((nextTime) => this.autoScroll(nextTime));
   },
   scroll(direction) {
     const track = this.$refs.track;
@@ -496,7 +563,7 @@ Alpine.data('reviewsCarousel', () => ({
       behavior: 'smooth',
     });
 
-    this.resumeAutoplay();
+    this.resumeAutoplay(900);
   },
   start(event) {
     const track = this.$refs.track;
@@ -534,6 +601,7 @@ Alpine.data('reviewsCarousel', () => ({
 
     const delta = event.clientX - this.startX;
     track.scrollLeft = this.startScrollLeft - delta;
+    this.normalizeLoopPosition(track);
 
     // Track velocity for momentum
     const now = Date.now();
@@ -563,9 +631,8 @@ Alpine.data('reviewsCarousel', () => ({
     } else if (track) {
       // Re-enable scroll-snap after drag completes
       this.restoreSnap(track);
+      this.resumeAutoplay(900);
     }
-
-    this.resumeAutoplay();
   },
   applyMomentum(track) {
     let currentVelocity = this.velocity * 16; // Convert to px per frame (~60fps)
@@ -576,10 +643,12 @@ Alpine.data('reviewsCarousel', () => ({
       if (Math.abs(currentVelocity) < minVelocity) {
         this.momentumId = null;
         this.restoreSnap(track);
+        this.resumeAutoplay(900);
         return;
       }
 
       track.scrollLeft -= currentVelocity;
+      this.normalizeLoopPosition(track);
       currentVelocity *= friction;
       this.momentumId = requestAnimationFrame(step);
     };
@@ -587,6 +656,10 @@ Alpine.data('reviewsCarousel', () => ({
     this.momentumId = requestAnimationFrame(step);
   },
   restoreSnap(track) {
+    if (!track) {
+      return;
+    }
+
     // Restore scroll-snap smoothly
     track.style.scrollSnapType = 'x mandatory';
   },
