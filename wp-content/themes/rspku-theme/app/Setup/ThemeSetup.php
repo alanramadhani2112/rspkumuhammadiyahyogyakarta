@@ -20,9 +20,28 @@ final class ThemeSetup
      */
     public static function registerHooks(): void
     {
+        add_action('pre_get_posts', [self::class, 'configureSearchPostTypes']);
         add_action('template_redirect', [self::class, 'legacyRedirects']);
         add_filter('wpseo_metadesc', [self::class, 'yoastMetaDescription']);
         add_filter('wpseo_robots', [self::class, 'yoastRobots']);
+    }
+
+    public static function configureSearchPostTypes(\WP_Query $query): void
+    {
+        if (is_admin() || !$query->is_main_query() || !$query->is_search()) {
+            return;
+        }
+
+        $query->set('post_type', [
+            'post',
+            'page',
+            'dokter',
+            'poliklinik',
+            'layanan',
+            'jurnal',
+            'manajemen-rs',
+            'rawat-inap',
+        ]);
     }
 
     /**
