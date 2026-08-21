@@ -112,6 +112,7 @@ foreach (['fallbackRoomDetails', 'hasRoomDetails'] as $needle) {
 }
 
 assert_contains($source['controller'], "settingArray('home_featured_services')", 'front page reads selected service IDs');
+assert_contains($source['controller'], 'use WP_Post;', 'front page service normalizer imports WP_Post');
 assert_matches($source['controller'], '/postsByIds\(\s*\$featuredServiceIds\s*,\s*\'layanan\'\s*,\s*fn\s*\([^)]*WP_Post\s+\$post/s', 'front page loads selected layanan posts by ID');
 assert_contains($source['controller'], 'normalizeServicePublic($post)', 'front page normalizes selected services for public cards');
 assert_contains($source['controller'], 'featuredServices(8)', 'front page falls back to eight featured services');

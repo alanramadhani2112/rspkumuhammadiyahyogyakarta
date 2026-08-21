@@ -10,6 +10,7 @@ use Rspku\Repositories\DoctorRepository;
 use Rspku\Repositories\DoctorScheduleRepository;
 use Rspku\Repositories\ReviewRepository;
 use Timber\Timber;
+use WP_Post;
 use WP_Post_Type;
 use WP_Query;
 use WP_Term;
