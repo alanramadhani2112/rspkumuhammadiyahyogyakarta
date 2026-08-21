@@ -50,6 +50,15 @@ function assert_matches(string $haystack, string $pattern, string $message): voi
     pass($message);
 }
 
+function assert_not_contains(string $haystack, string $needle, string $message): void
+{
+    if (str_contains($haystack, $needle)) {
+        fail($message);
+    }
+
+    pass($message);
+}
+
 function assert_class_tokens(string $haystack, string $pattern, array $tokens, string $message): void
 {
     if (preg_match($pattern, $haystack, $matches) !== 1) {
@@ -175,4 +184,49 @@ foreach (["search_view.search_action|default(site.url)", 'type="search" name="s"
 
 foreach (["{% set type_label = {", "post: 'Berita'", "page: 'Halaman'", "dokter: 'Dokter'", "poliklinik: 'Poliklinik'", "layanan: 'Layanan'", "jurnal: 'E-Jurnal'", "'manajemen-rs': 'Manajemen RS'", "'rawat-inap': 'Rawat inap'", "}[item.post_type]|default('Hasil')", 'badge: type_label'] as $needle) {
     assert_contains($source['search'], $needle, "search result type label contract: {$needle}");
+}
+
+foreach (["{% if posts|length > 0 %}", "{% include 'components/empty-state.twig' with {", "title: 'Belum ada hasil ditemukan.'", "description: 'Coba gunakan kata kunci yang lebih umum, periksa ejaan, atau ubah filter pencarian yang sedang dipakai.'", "icon: 'search'", '} only %}'] as $needle) {
+    assert_contains($source['search'], $needle, "search zero results contract: {$needle}");
+}
+
+assert_class_tokens(
+    $source['layout'],
+    '#<nav\b(?=[^>]*aria-label="Menu utama")[^>]*class="(?<class>[^"]*)"#',
+    ['hidden', 'xl:flex'],
+    'header mode contract: desktop nav starts at xl'
+);
+assert_class_tokens(
+    $source['layout'],
+    '#<div\b(?=[^>]*x-show="isPanel\(\'desktop-\{\{ loop\.index \}\}\'\)")[^>]*class="(?<class>[^"]*)"#',
+    ['hidden', 'xl:block'],
+    'header mode contract: desktop dropdown starts at xl'
+);
+assert_class_tokens(
+    $source['layout'],
+    '#<div\b(?=[^>]*class="[^"]*gap-3[^>]*)(?=[^>]*>\s*<a href="\{\{ header_cta_href \}\}")[^>]*class="(?<class>[^"]*)"#s',
+    ['hidden', 'xl:flex'],
+    'header mode contract: desktop CTA starts at xl'
+);
+assert_class_tokens(
+    $source['layout'],
+    '#<div\b(?=[^>]*class="[^"]*gap-2[^>]*)(?=[^>]*>\s*<button\b[^>]*openSearch)[^>]*class="(?<class>[^"]*)"#s',
+    ['flex', 'xl:hidden'],
+    'header mode contract: mobile controls stay through lg'
+);
+assert_class_tokens(
+    $source['layout'],
+    '#<button\b(?=[^>]*aria-label="Buka menu navigasi")[^>]*class="(?<class>[^"]*)"#',
+    ['grid', 'xl:hidden'],
+    'header mode contract: hamburger stays through lg'
+);
+assert_class_tokens(
+    $source['layout'],
+    '#<div\b(?=[^>]*x-show="menuOpen")[^>]*class="(?<class>[^"]*)"#',
+    ['xl:hidden'],
+    'header mode contract: mobile menu stays through lg'
+);
+
+foreach (['gap-0.5 lg:flex', 'pt-2 lg:block', 'gap-3 lg:flex', 'gap-2 lg:hidden', 'text-slate-700 lg:hidden', 'bg-white lg:hidden'] as $needle) {
+    assert_not_contains($source['layout'], $needle, "header mode contract removes old lg visibility token: {$needle}");
 }
