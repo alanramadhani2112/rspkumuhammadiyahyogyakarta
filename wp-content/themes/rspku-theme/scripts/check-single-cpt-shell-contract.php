@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 $theme = dirname(__DIR__);
+$wpContent = dirname(dirname($theme));
 $files = [
     'shell' => $theme . '/resources/views/partials/single-cpt-shell.twig',
     'rawat' => $theme . '/resources/views/pages/single-rawat-inap.twig',
@@ -12,6 +13,7 @@ $files = [
     'controller' => $theme . '/app/Controllers/TemplateController.php',
     'content_repository' => $theme . '/app/Repositories/ContentRepository.php',
     'theme_setup' => $theme . '/app/Setup/ThemeSetup.php',
+    'cpt_plugin' => $wpContent . '/plugins/rspku-cpt/rspku-cpt.php',
 ];
 
 function fail(string $message): void
@@ -122,6 +124,9 @@ assert_contains($source['controller'], "is_singular('manajemen-rs')", 'managemen
 assert_contains($source['management'], 'management_single', 'management singular template consumes context');
 assert_contains($source['management'], "{% extends 'layouts/base.twig' %}", 'management singular template route exists');
 assert_not_contains($source['theme_setup'], "is_singular('manajemen-rs')", 'management singular redirect absent');
+assert_contains($source['cpt_plugin'], "add_filter('request', [self::class, 'resolveManagementSingle'], 1);", 'management detail route filter is registered');
+assert_contains($source['cpt_plugin'], "'#^/manajemen-rs/([a-z0-9-]+)/?$#'", 'management detail route matches profile slugs');
+assert_contains($source['cpt_plugin'], "\$queryVars['post_type'] = 'manajemen-rs';", 'management detail route targets CPT');
 assert_contains($source['theme_setup'], '#^e-journal(/.*)?$#', 'e-journal redirect preserved');
 
 foreach (['polyclinic_navigation', 'polyclinic.group', 'polyclinic_doctors', 'site: site', 'aria-current="page"', 'Lihat jadwal dokter'] as $needle) {

@@ -31,6 +31,29 @@ final class RSPKU_CPT {
         RSPKU_CPT_Taxonomies::register();
         RSPKU_CPT_DoctorFields::register();
         RSPKU_CPT_DoctorScheduleAdmin::register();
+        add_filter('request', [self::class, 'resolveManagementSingle'], 1);
+    }
+
+    /**
+     * Keep the Manajemen RS archive Page while routing profile subpaths to CPT posts.
+     *
+     * @param array<string,mixed> $queryVars
+     * @return array<string,mixed>
+     */
+    public static function resolveManagementSingle(array $queryVars): array {
+        $path = isset($_SERVER['REQUEST_URI'])
+            ? (string) parse_url((string) wp_unslash($_SERVER['REQUEST_URI']), PHP_URL_PATH)
+            : '';
+
+        if (preg_match('#^/manajemen-rs/([a-z0-9-]+)/?$#', $path, $matches) !== 1) {
+            return $queryVars;
+        }
+
+        $queryVars['post_type'] = 'manajemen-rs';
+        $queryVars['name'] = $matches[1];
+        unset($queryVars['pagename'], $queryVars['page_id']);
+
+        return $queryVars;
     }
 
     /**
