@@ -26,25 +26,35 @@ final class Theme
 
         self::$booted = true;
 
-        ThemeSetup::configureTheme();
-        ThemeSetup::registerHooks();
-        TimberSetup::register();
-        AdminExperience::register();
-        Assets::register();
-        LoginPage::register();
+        self::registerThemeServices();
 
         // Post types, taxonomies, and doctor fields now live in the
         // `rspku-cpt` plugin (see wp-content/plugins/rspku-cpt). The
         // theme no longer registers them so switching themes never
         // hides hospital content from wp-admin.
 
-        DoctorSearch::register();
-        DoctorDirectorySync::register();
-        BlockRegistry::register();
+        self::registerContentServices();
 
         self::registerCacheInvalidation();
 
         add_action('after_switch_theme', [self::class, 'flushRewriteRules']);
+    }
+
+    private static function registerThemeServices(): void
+    {
+        ThemeSetup::configureTheme();
+        ThemeSetup::registerHooks();
+        TimberSetup::register();
+        AdminExperience::register();
+        Assets::register();
+        LoginPage::register();
+    }
+
+    private static function registerContentServices(): void
+    {
+        DoctorSearch::register();
+        DoctorDirectorySync::register();
+        BlockRegistry::register();
     }
 
     /**

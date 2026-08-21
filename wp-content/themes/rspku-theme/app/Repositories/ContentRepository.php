@@ -6,6 +6,7 @@ namespace Rspku\Repositories;
 
 use WP_Post;
 use WP_Query;
+use WP_Term;
 
 final class ContentRepository
 {
@@ -290,32 +291,19 @@ final class ContentRepository
      */
     public function findService(int $postId): ?array
     {
-        $post = get_post($postId);
-        if (!$post instanceof WP_Post || $post->post_type !== 'layanan') {
+        $post = $this->postOfType($postId, 'layanan');
+        if (!$post) {
             return null;
         }
 
         $item = $this->normalizeService($post);
-        $terms = wp_get_post_terms($postId, 'kategori-layanan', ['fields' => 'all']);
+        $terms = $this->terms($postId, 'kategori-layanan');
         $primaryCategory = $terms[0] ?? null;
 
         $item['content'] = apply_filters('the_content', $this->field($postId, 'detail_layanan', $post->post_content));
-        $item['views'] = (int) get_post_meta($postId, 'views', true);
-        $item['categories'] = is_array($terms) ? array_map(
-            static fn ($term): array => [
-                'id' => (int) $term->term_id,
-                'name' => (string) $term->name,
-                'slug' => (string) $term->slug,
-                'url' => is_wp_error(get_term_link($term)) ? '' : (string) get_term_link($term),
-            ],
-            $terms
-        ) : [];
-        $item['primary_category'] = $primaryCategory ? [
-            'id' => (int) $primaryCategory->term_id,
-            'name' => (string) $primaryCategory->name,
-            'slug' => (string) $primaryCategory->slug,
-            'url' => is_wp_error(get_term_link($primaryCategory)) ? '' : (string) get_term_link($primaryCategory),
-        ] : null;
+        $item['views'] = $this->views($postId);
+        $item['categories'] = $this->termPayloads($terms);
+        $item['primary_category'] = $primaryCategory ? $this->termPayload($primaryCategory) : null;
 
         return $item;
     }
@@ -391,8 +379,8 @@ final class ContentRepository
      */
     public function findPolyclinic(int $postId): ?array
     {
-        $post = get_post($postId);
-        if (!$post instanceof WP_Post || $post->post_type !== 'poliklinik') {
+        $post = $this->postOfType($postId, 'poliklinik');
+        if (!$post) {
             return null;
         }
 
@@ -436,8 +424,8 @@ final class ContentRepository
      */
     public function findJournal(int $postId): ?array
     {
-        $post = get_post($postId);
-        if (!$post instanceof WP_Post || $post->post_type !== 'jurnal') {
+        $post = $this->postOfType($postId, 'jurnal');
+        if (!$post) {
             return null;
         }
 
@@ -492,8 +480,8 @@ final class ContentRepository
      */
     public function findRoom(int $postId): ?array
     {
-        $post = get_post($postId);
-        if (!$post instanceof WP_Post || $post->post_type !== 'rawat-inap') {
+        $post = $this->postOfType($postId, 'rawat-inap');
+        if (!$post) {
             return null;
         }
 
@@ -505,7 +493,7 @@ final class ContentRepository
         $item['features'] = $this->arrayField($postId, 'fasilitas_kamar');
         $item['included'] = $this->arrayField($postId, 'sudah_termasuk');
         $item['gallery'] = $this->gallery($postId);
-        $item['views'] = (int) get_post_meta($postId, 'views', true);
+        $item['views'] = $this->views($postId);
 
         return $item;
     }
@@ -536,8 +524,8 @@ final class ContentRepository
      */
     public function findManagement(int $postId): ?array
     {
-        $post = get_post($postId);
-        if (!$post instanceof WP_Post || $post->post_type !== 'manajemen-rs') {
+        $post = $this->postOfType($postId, 'manajemen-rs');
+        if (!$post) {
             return null;
         }
 
@@ -781,6 +769,56 @@ final class ContentRepository
             'image' => $photo,
             'photo' => $photo,
             'views' => (int) get_post_meta($postId, 'views', true),
+        ];
+    }
+
+    private function postOfType(int $postId, string $postType): ?WP_Post
+    {
+        $post = get_post($postId);
+
+        if (!$post instanceof WP_Post || $post->post_type !== $postType) {
+            return null;
+        }
+
+        return $post;
+    }
+
+    private function views(int $postId): int
+    {
+        return (int) get_post_meta($postId, 'views', true);
+    }
+
+    /**
+     * @return array<int,WP_Term>
+     */
+    private function terms(int $postId, string $taxonomy): array
+    {
+        $terms = wp_get_post_terms($postId, $taxonomy, ['fields' => 'all']);
+
+        return is_array($terms) ? $terms : [];
+    }
+
+    /**
+     * @param array<int,WP_Term> $terms
+     * @return array<int,array<string,mixed>>
+     */
+    private function termPayloads(array $terms): array
+    {
+        return array_map(fn (WP_Term $term): array => $this->termPayload($term), $terms);
+    }
+
+    /**
+     * @return array<string,mixed>
+     */
+    private function termPayload(WP_Term $term): array
+    {
+        $url = get_term_link($term);
+
+        return [
+            'id' => (int) $term->term_id,
+            'name' => (string) $term->name,
+            'slug' => (string) $term->slug,
+            'url' => is_wp_error($url) ? '' : (string) $url,
         ];
     }
 
