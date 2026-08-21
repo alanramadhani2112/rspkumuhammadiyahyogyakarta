@@ -1159,10 +1159,10 @@ svg.lucide {
 }
 
 .rspku-schedule-slot {
-  display: inline-flex;
+  display: flex;
+  width: 100%;
   min-height: 1.75rem;
   align-items: center;
-  white-space: nowrap;
   border-radius: 0.5rem;
   border: 1px solid #d5edff;
   background: var(--rspku-brand-soft);
@@ -1170,6 +1170,8 @@ svg.lucide {
   font-size: 0.8125rem;
   font-weight: 500;
   line-height: 1.3;
+  white-space: normal;
+  overflow-wrap: anywhere;
   color: var(--rspku-brand-dark);
 }
 
