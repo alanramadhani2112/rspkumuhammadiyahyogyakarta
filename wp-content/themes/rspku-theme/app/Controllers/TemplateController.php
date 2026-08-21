@@ -39,9 +39,14 @@ final class TemplateController
             // Dynamic pickers: use admin-selected IDs if available,
             // otherwise fall back to auto-populated content.
             $featuredDoctorIds = self::settingArray('home_featured_doctors');
+            $featuredServiceIds = self::settingArray('home_featured_services');
             $featuredReviews = self::settingArray('home_featured_reviews');
 
-            $services = self::officialFeaturedServices();
+            $services = $featuredServiceIds !== []
+                ? self::postsByIds($featuredServiceIds, 'layanan', fn (
+                    WP_Post $post
+                ) => $contentRepository->normalizeServicePublic($post))
+                : $contentRepository->featuredServices(8);
 
             $doctors = $featuredDoctorIds !== []
                 ? self::postsByIds($featuredDoctorIds, 'dokter', fn (\WP_Post $p) => $doctorRepository->normalize($p))
@@ -226,6 +231,10 @@ final class TemplateController
 
         if (is_singular('jurnal')) {
             $context['journal'] = $contentRepository->findJournal((int) get_queried_object_id());
+        }
+
+        if (is_singular('manajemen-rs')) {
+            $context['management_single'] = $contentRepository->findManagement((int) get_queried_object_id());
         }
 
         if (is_archive() && !is_post_type_archive('dokter')) {
@@ -1048,40 +1057,4 @@ final class TemplateController
         return array_map($normalizer, $posts);
     }
 
-    /**
-     * @return array<int,array<string,string>>
-     */
-    private static function officialFeaturedServices(): array
-    {
-        return [
-            [
-                'title' => 'Uronefrologi (HoLEP)',
-                'url' => home_url('/poliklinik/klinik-bedah-urologi/'),
-            ],
-            [
-                'title' => 'Onkologi / Cancer Centre',
-                'url' => home_url('/poliklinik/klinik-bedah-onkologi/'),
-            ],
-            [
-                'title' => 'Intensive Care',
-                'url' => home_url('/layanan/'),
-            ],
-            [
-                'title' => 'Emergency / Critical Care Terintegrasi',
-                'url' => home_url('/poliklinik/umum-instalasi-gawat-darurat-igd/'),
-            ],
-            [
-                'title' => 'Vaccine Centre',
-                'url' => home_url('/layanan/vaksin-center/'),
-            ],
-            [
-                'title' => 'Medical Check Up',
-                'url' => home_url('/layanan/medical-check-up-mcu/'),
-            ],
-            [
-                'title' => 'Husnul Khatimah',
-                'url' => home_url('/layanan/husnul-khotimah/'),
-            ],
-        ];
-    }
 }

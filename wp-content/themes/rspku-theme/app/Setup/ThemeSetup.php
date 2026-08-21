@@ -49,11 +49,6 @@ final class ThemeSetup
      */
     public static function legacyRedirects(): void
     {
-        if (is_singular('manajemen-rs')) {
-            wp_safe_redirect(get_post_type_archive_link('manajemen-rs') ?: home_url('/manajemen-rs/'), 301);
-            exit;
-        }
-
         $uri = isset($_SERVER['REQUEST_URI'])
             ? sanitize_text_field((string) wp_unslash($_SERVER['REQUEST_URI']))
             : '';
