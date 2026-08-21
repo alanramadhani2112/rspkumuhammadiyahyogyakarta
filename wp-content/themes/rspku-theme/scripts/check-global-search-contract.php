@@ -9,6 +9,7 @@ $files = [
     'app' => $theme . '/resources/js/app.js',
     'themeSetup' => $theme . '/app/Setup/ThemeSetup.php',
     'search' => $theme . '/resources/views/pages/search.twig',
+    'card' => $theme . '/resources/views/components/content-card.twig',
 ];
 
 function fail(string $message): void
@@ -133,6 +134,15 @@ foreach (['fixed inset-x-4 top-4', 'bg-slate-950/50 backdrop-blur-sm', '@click="
 }
 
 assert_contains($source['layout'], 'Tekan Enter untuk mencari · Esc untuk menutup', 'native search form presentation contract: keyboard hint copy');
+assert_contains($source['layout'], 'flex-col items-stretch gap-3 sm:flex-row', 'mobile search helper and submit stack');
+assert_class_tokens(
+    $source['layout'],
+    '#<button\\b(?=[^>]*type="submit")[^>]*class="(?<class>[^"]*)"#',
+    ['w-full', 'sm:w-auto'],
+    'mobile search submit fills available width'
+);
+assert_contains($source['search'], "card_class: 'border-slate-300 shadow-sm hover:border-hospital-400 hover:shadow-md'", 'search cards use visible thin stroke');
+assert_contains($source['card'], "{{ item.card_class|default('') }}", 'content cards accept scoped visual class');
 assert_class_tokens(
     $source['layout'],
     '#icon\(\'search\', \{ class: \'(?<class>[^\']*)\' \}\)\s*\}\}\s*<input\b[^>]*id="site-search-query"#',
