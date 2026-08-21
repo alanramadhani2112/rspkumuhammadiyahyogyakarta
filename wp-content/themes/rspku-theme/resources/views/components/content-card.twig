@@ -5,7 +5,7 @@
 {% set show_link = item.show_link is not defined or item.show_link %}
 {% set image_class = item.image_class|default('aspect-[16/9]') %}
 
-<article class="group flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:border-hospital-300">
+<article class="group flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:border-hospital-300 {{ item.card_class|default('') }}">
   {% if item.url and show_link %}<a href="{{ item.url }}" class="block overflow-hidden bg-slate-100">{% else %}<div class="block overflow-hidden bg-slate-100">{% endif %}
     {% if item.image.url %}
       <img src="{{ item.image.url }}" alt="{{ item.image.alt|default(item.title) }}" loading="lazy" class="{{ image_class }} h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">

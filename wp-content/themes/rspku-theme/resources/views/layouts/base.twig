@@ -243,9 +243,9 @@
           {{ icon('search', { class: 'pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400' }) }}
           <input id="site-search-query" x-ref="query" type="search" name="s" class="rspku-input rspku-input-with-leading-icon w-full" placeholder="Cari di situs ini" autocomplete="off">
         </div>
-        <div class="flex items-center justify-between gap-3">
-          <p class="text-xs text-slate-500">Tekan Enter untuk mencari · Esc untuk menutup</p>
-          <button type="submit" class="rspku-button rspku-button-primary rspku-button-sm shrink-0 gap-2">
+        <div class="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p class="text-xs leading-relaxed text-slate-500">Tekan Enter untuk mencari · Esc untuk menutup</p>
+          <button type="submit" class="rspku-button rspku-button-primary rspku-button-sm w-full justify-center gap-2 sm:w-auto">
             {{ icon('search', { class: 'h-4 w-4' }) }}
             <span>Cari</span>
           </button>
