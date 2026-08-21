@@ -40,7 +40,7 @@
         </div>
       </div>
 
-      {% if posts %}
+      {% if posts|length > 0 %}
         <div class="rspku-divider"></div>
 
         <div class="grid gap-x-8 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
@@ -84,8 +84,11 @@
         } only %}
       {% else %}
         <div class="rspku-divider pt-8">
-          <p class="text-lg font-semibold text-slate-950">Belum ada hasil ditemukan.</p>
-          <p class="mt-3 max-w-2xl text-base leading-7 text-slate-600">Coba gunakan kata kunci yang lebih umum, periksa ejaan, atau ubah filter pencarian yang sedang dipakai.</p>
+          {% include 'components/empty-state.twig' with {
+            title: 'Belum ada hasil ditemukan.',
+            description: 'Coba gunakan kata kunci yang lebih umum, periksa ejaan, atau ubah filter pencarian yang sedang dipakai.',
+            icon: 'search'
+          } only %}
         </div>
       {% endif %}
     </div>

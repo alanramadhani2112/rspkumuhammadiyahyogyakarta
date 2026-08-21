@@ -128,7 +128,7 @@
     </a>
 
     {# Desktop Nav - Simplified #}
-    <nav class="hidden items-center gap-0.5 lg:flex" aria-label="Menu utama">
+    <nav class="hidden items-center gap-0.5 xl:flex" aria-label="Menu utama">
       {% for item in primary_items %}
         {% set title_lower = item.title|lower %}
         {% set children = item.children is defined and item.children ? item.children : (
@@ -147,7 +147,7 @@
             {% endif %}
           </a>
           {% if has_children %}
-            <div class="absolute left-0 top-full z-20 hidden w-[18rem] pt-2 lg:block" x-cloak x-show="isPanel('desktop-{{ loop.index }}')" x-transition.opacity.scale.origin.top.left.90 @mouseenter="cancelClose()" @mouseleave="scheduleClose()">
+            <div class="absolute left-0 top-full z-20 hidden w-[18rem] pt-2 xl:block" x-cloak x-show="isPanel('desktop-{{ loop.index }}')" x-transition.opacity.scale.origin.top.left.90 @mouseenter="cancelClose()" @mouseleave="scheduleClose()">
               <div class="overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5 shadow-lg">
                 {% for child in children %}
                   <a href="{{ child.link }}" class="block rounded-lg px-4 py-2.5 text-sm text-slate-600 transition hover:bg-slate-50 hover:text-slate-950">{{ child.title }}</a>
@@ -165,7 +165,7 @@
     </button>
 
     {# Desktop CTA #}
-    <div class="hidden items-center gap-3 lg:flex">
+    <div class="hidden items-center gap-3 xl:flex">
       <a href="{{ header_cta_href }}" class="rspku-button rspku-button-primary rspku-button-sm gap-2">
         {{ icon('clipboard-list', { class: 'h-4 w-4' }) }}
         <span>{{ rspku.header_cta_text|default('Daftar Online') }}</span>
@@ -173,11 +173,11 @@
     </div>
 
     {# Mobile Hamburger Button #}
-    <div class="flex items-center gap-2 lg:hidden">
+    <div class="flex items-center gap-2 xl:hidden">
       <button type="button" class="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-hospital-500 focus:ring-offset-2 sm:hidden" @click="openSearch($event)" :aria-expanded="open.toString()" aria-controls="site-search-panel" aria-label="Buka pencarian situs">
         {{ icon('search', { class: 'h-5 w-5' }) }}
       </button>
-      <button type="button" class="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 lg:hidden" @click="toggle" :aria-expanded="menuOpen.toString()" aria-label="Buka menu navigasi">
+      <button type="button" class="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 xl:hidden" @click="toggle" :aria-expanded="menuOpen.toString()" aria-label="Buka menu navigasi">
         <svg x-show="!menuOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
@@ -189,7 +189,7 @@
   </div>
 
   {# Mobile Menu #}
-  <div class="border-t border-slate-100 bg-white lg:hidden" x-cloak x-show="menuOpen" x-transition.opacity>
+  <div class="border-t border-slate-100 bg-white xl:hidden" x-cloak x-show="menuOpen" x-transition.opacity>
     <nav class="rspku-container space-y-1 py-4" aria-label="Menu mobile">
       {% for item in primary_items %}
         {% set title_lower = item.title|lower %}
