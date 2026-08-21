@@ -482,6 +482,10 @@ svg.lucide {
   transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
+.rspku-input-with-leading-icon {
+  padding-left: 2.5rem;
+}
+
 .rspku-input::placeholder {
   color: #9ca3af;
   font-size: 0.9375rem;

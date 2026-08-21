@@ -46,6 +46,7 @@ Alpine.data('siteNavigation', () => ({
 Alpine.data('siteSearch', () => ({
   open: false,
   opener: null,
+  focusableSelector: 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
   openSearch(event) {
     this.opener = event?.currentTarget || null;
     this.open = true;
@@ -54,13 +55,43 @@ Alpine.data('siteSearch', () => ({
     });
   },
   closeSearch() {
+    if (!this.open) {
+      return;
+    }
+
+    const opener = this.opener;
+    this.opener = null;
     this.open = false;
     this.$nextTick(() => {
-      this.opener?.focus?.();
+      opener?.focus?.();
     });
   },
   isDesktop() {
     return window.matchMedia('(min-width: 640px)').matches;
+  },
+  trapFocus(event) {
+    if (!this.open || this.isDesktop()) {
+      return;
+    }
+
+    const focusable = Array.from(event.currentTarget.querySelectorAll(this.focusableSelector))
+      .filter((element) => !element.hasAttribute('disabled') && element.offsetParent !== null);
+
+    if (focusable.length === 0) {
+      event.preventDefault();
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   },
   popoverStyle() {
     if (!this.isDesktop() || !this.opener) {

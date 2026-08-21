@@ -229,7 +229,7 @@
   </div>
   <div x-cloak x-show="open" x-transition.opacity class="fixed inset-0 z-[60] pointer-events-none">
     <div class="absolute inset-0 bg-slate-950/50 backdrop-blur-sm pointer-events-auto sm:hidden" @click="closeSearch()"></div>
-    <div id="site-search-panel" :role="isDesktop() ? null : 'dialog'" :aria-modal="isDesktop() ? null : 'true'" aria-labelledby="site-search-title" class="fixed inset-x-4 top-4 pointer-events-auto rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-slate-200 sm:inset-auto sm:w-[26rem] sm:rounded-xl sm:p-4 sm:shadow-lg" :style="popoverStyle()" @click.outside="isDesktop() && closeSearch()">
+    <div id="site-search-panel" :role="isDesktop() ? null : 'dialog'" :aria-modal="isDesktop() ? null : 'true'" aria-labelledby="site-search-title" class="fixed inset-x-4 top-4 pointer-events-auto rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-slate-200 sm:inset-auto sm:w-[26rem] sm:rounded-xl sm:p-4 sm:shadow-lg" :style="popoverStyle()" @keydown.tab="trapFocus($event)" @click.outside="isDesktop() && closeSearch()">
       <div class="flex items-start justify-between gap-4">
         <div>
           <h2 id="site-search-title" class="text-lg font-bold text-slate-950 sm:text-base">Cari situs</h2>
@@ -241,7 +241,7 @@
         <label for="site-search-query" class="sr-only">Masukkan kata kunci pencarian</label>
         <div class="relative">
           {{ icon('search', { class: 'pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400' }) }}
-          <input id="site-search-query" x-ref="query" type="search" name="s" class="rspku-input w-full pl-10 pr-3" placeholder="Cari di situs ini" autocomplete="off">
+          <input id="site-search-query" x-ref="query" type="search" name="s" class="rspku-input rspku-input-with-leading-icon w-full" placeholder="Cari di situs ini" autocomplete="off">
         </div>
         <div class="flex items-center justify-between gap-3">
           <p class="text-xs text-slate-500">Tekan Enter untuk mencari · Esc untuk menutup</p>
