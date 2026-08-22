@@ -6,7 +6,6 @@ namespace Rspku;
 
 use Rspku\Blocks\Registry as BlockRegistry;
 use Rspku\Controllers\TemplateController;
-use Rspku\Services\DoctorDirectorySync;
 use Rspku\Services\DoctorSearch;
 use Rspku\Setup\AdminExperience;
 use Rspku\Setup\Assets;
@@ -53,7 +52,6 @@ final class Theme
     private static function registerContentServices(): void
     {
         DoctorSearch::register();
-        DoctorDirectorySync::register();
         BlockRegistry::register();
     }
 

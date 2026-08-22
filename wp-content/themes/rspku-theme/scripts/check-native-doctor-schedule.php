@@ -71,7 +71,6 @@ foreach ($doctorNames as $ids) {
 
 $runtimeFiles = [
     $root . '/wp-content/themes/rspku-theme/app/Repositories/DoctorScheduleRepository.php',
-    $root . '/wp-content/themes/rspku-theme/app/Services/DoctorDirectorySync.php',
 ];
 foreach ($runtimeFiles as $file) {
     $source = file_get_contents($file) ?: '';
