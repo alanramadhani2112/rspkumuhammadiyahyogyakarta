@@ -1,34 +1,36 @@
-{% set fallback_icon = 'newspaper' %}
-{% if item.badge|default('')|lower starts with 'manajemen' %}
-  {% set fallback_icon = 'building-2' %}
-{% endif %}
+{% set badge_label = item.badge|default('Berita') %}
+{% set placeholder_label = item.badge|default('Konten') %}
+{% set fallback_icon = badge_label|lower starts with 'manajemen' ? 'building-2' : 'newspaper' %}
 {% set show_link = item.show_link is not defined or item.show_link %}
+{% set has_link = item.url and show_link %}
+{% set has_image = item.image.url|default('') is not empty %}
 {% set image_class = item.image_class|default('aspect-[16/9]') %}
+{% set image_alt = item.image.alt|default(item.title) %}
 
 <article class="group flex h-full flex-col overflow-hidden rounded-md border border-slate-200 bg-white transition hover:border-hospital-300 {{ item.card_class|default('') }}">
-  {% if item.url and show_link %}<a href="{{ item.url }}" class="block overflow-hidden bg-slate-100">{% else %}<div class="block overflow-hidden bg-slate-100">{% endif %}
-    {% if item.image.url %}
-      <img src="{{ item.image.url }}" alt="{{ item.image.alt|default(item.title) }}" loading="lazy" class="{{ image_class }} h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
+  {% if has_link %}<a href="{{ item.url }}" class="block overflow-hidden bg-slate-100">{% else %}<div class="block overflow-hidden bg-slate-100">{% endif %}
+    {% if has_image %}
+      <img src="{{ item.image.url }}" alt="{{ image_alt }}" loading="lazy" class="{{ image_class }} h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]">
     {% else %}
       <div class="grid {{ image_class }} place-items-center bg-[radial-gradient(circle_at_top_right,_rgba(0,158,230,0.16),_transparent_32%),linear-gradient(180deg,#f8fbff_0%,#eaf6ff_100%)] p-8 text-center">
         <div class="space-y-4">
           <div class="mx-auto grid h-14 w-14 place-items-center rounded-sm border border-hospital-200 bg-white text-hospital-700">
             {{ icon(fallback_icon, { class: 'h-7 w-7' }) }}
           </div>
-          <p class="text-sm font-medium text-hospital-700">{{ item.badge|default('Konten') }}</p>
+          <p class="text-sm font-medium text-hospital-700">{{ placeholder_label }}</p>
         </div>
       </div>
     {% endif %}
-  {% if item.url and show_link %}</a>{% else %}</div>{% endif %}
+  {% if has_link %}</a>{% else %}</div>{% endif %}
   <div class="flex flex-1 flex-col space-y-3 p-5">
     <h3 class="text-base font-semibold leading-snug text-slate-950">
-      {% if item.url and show_link %}<a href="{{ item.url }}" class="transition hover:text-hospital-700">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}
+      {% if has_link %}<a href="{{ item.url }}" class="transition hover:text-hospital-700">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}
     </h3>
     {% if item.excerpt %}
       <p class="text-sm leading-relaxed text-slate-600">{{ item.excerpt }}</p>
     {% endif %}
     <div class="mt-auto flex items-center justify-between gap-3 pt-2">
-      <span class="rspku-badge text-hospital-700">{{ item.badge|default('Berita') }}</span>
+      <span class="rspku-badge text-hospital-700">{{ badge_label }}</span>
       {% if item.date %}
         <span class="text-xs text-slate-500">{{ item.date }}</span>
       {% endif %}
