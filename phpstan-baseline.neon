@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Static method RSPKU_CPT_DoctorFields\\:\\:sanitizeSchedule\\(\\) is unused\\.$#"
-			count: 1
-			path: wp-content/plugins/rspku-cpt/includes/class-rspku-cpt-doctor-fields.php
-
-		-
 			message: "#^Static method RSPKU_CPT_DoctorFields\\:\\:scheduleRow\\(\\) is unused\\.$#"
 			count: 1
 			path: wp-content/plugins/rspku-cpt/includes/class-rspku-cpt-doctor-fields.php
@@ -64,36 +59,6 @@ parameters:
 			message: "#^Offset 2 on array\\{string, non\\-falsy\\-string, non\\-falsy\\-string\\} on left side of \\?\\? always exists and is not nullable\\.$#"
 			count: 1
 			path: wp-content/themes/rspku-theme/app/Repositories/DoctorScheduleRepository.php
-
-		-
-			message: "#^Constant Rspku\\\\Services\\\\DoctorDirectorySync\\:\\:HASH_OPTION is unused\\.$#"
-			count: 1
-			path: wp-content/themes/rspku-theme/app/Services/DoctorDirectorySync.php
-
-		-
-			message: "#^Constant Rspku\\\\Services\\\\DoctorDirectorySync\\:\\:SYNC_VERSION is unused\\.$#"
-			count: 1
-			path: wp-content/themes/rspku-theme/app/Services/DoctorDirectorySync.php
-
-		-
-			message: "#^Property WP_Term\\:\\:\\$count \\(int\\) on left side of \\?\\? is not nullable\\.$#"
-			count: 1
-			path: wp-content/themes/rspku-theme/app/Services/DoctorDirectorySync.php
-
-		-
-			message: "#^Property WP_Term\\:\\:\\$slug \\(string\\) on left side of \\?\\? is not nullable\\.$#"
-			count: 1
-			path: wp-content/themes/rspku-theme/app/Services/DoctorDirectorySync.php
-
-		-
-			message: "#^Static method Rspku\\\\Services\\\\DoctorDirectorySync\\:\\:shouldRunSync\\(\\) is unused\\.$#"
-			count: 1
-			path: wp-content/themes/rspku-theme/app/Services/DoctorDirectorySync.php
-
-		-
-			message: "#^Static method Rspku\\\\Services\\\\DoctorDirectorySync\\:\\:sync\\(\\) is unused\\.$#"
-			count: 1
-			path: wp-content/themes/rspku-theme/app/Services/DoctorDirectorySync.php
 
 		-
 			message: "#^Constant RSPKU_THEME_URL not found\\.$#"
