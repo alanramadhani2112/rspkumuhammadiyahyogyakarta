@@ -302,15 +302,6 @@ final class RSPKU_CPT_DoctorFields
     }
 
     /**
-     * @param array<mixed> $rows
-     * @return array<int,array<string,mixed>>
-     */
-    private static function sanitizeSchedule(array $rows): array
-    {
-        return RSPKU_CPT_DoctorSchedule::sanitizeRows($rows);
-    }
-
-    /**
      * @return array<string,string>
      */
     private static function days(): array
