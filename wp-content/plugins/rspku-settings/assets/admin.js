@@ -89,11 +89,11 @@
         <div class="rspku-repeater-row rspku-repeater-row--hours">
           <label class="rspku-repeater-cell">
             <span class="rspku-repeater-cell__label">Unit Layanan</span>
-            <input type="text" name="${name}[${index}][label]" value="" placeholder="IGD">
+            <input type="text" name="${name}[${index}][label]" value="" placeholder="IGD" class="regular-text">
           </label>
           <label class="rspku-repeater-cell">
             <span class="rspku-repeater-cell__label">Jam Operasional</span>
-            <input type="text" name="${name}[${index}][time]" value="" placeholder="24 Jam">
+            <input type="text" name="${name}[${index}][time]" value="" placeholder="24 Jam" class="regular-text">
           </label>
           <label class="rspku-repeater-highlight">
             <input type="checkbox" name="${name}[${index}][highlight]" value="1">
@@ -126,8 +126,8 @@
 
       const html = `
         <div class="rspku-repeater-row rspku-repeater-row--links">
-          <input type="text" name="${name}[${index}][label]" value="" placeholder="Label (mis. Dokter)" aria-label="Label link cepat">
-          <input type="text" name="${name}[${index}][url]" value="" placeholder="URL (mis. /dokter/)" aria-label="URL link cepat">
+          <input type="text" name="${name}[${index}][label]" value="" placeholder="Label (mis. Dokter)" aria-label="Label link cepat" class="regular-text">
+          <input type="text" name="${name}[${index}][url]" value="" placeholder="URL (mis. /dokter/)" aria-label="URL link cepat" class="regular-text">
           <button type="button" class="button-link-delete rspku-repeater-remove" aria-label="Hapus link cepat">Hapus</button>
         </div>
       `;
@@ -143,16 +143,16 @@
 
       const html = `
         <div class="rspku-repeater-row rspku-repeater-row--review">
-          <input type="text" name="${name}[${index}][name]" value="" placeholder="Nama reviewer" aria-label="Nama reviewer">
-          <select name="${name}[${index}][rating]" aria-label="Rating ulasan">
+          <input type="text" name="${name}[${index}][name]" value="" placeholder="Nama reviewer" aria-label="Nama reviewer" class="regular-text">
+          <select name="${name}[${index}][rating]" aria-label="Rating ulasan" class="regular-text">
             <option value="5">5 ★</option>
             <option value="4">4 ★</option>
             <option value="3">3 ★</option>
             <option value="2">2 ★</option>
             <option value="1">1 ★</option>
           </select>
-          <input type="text" name="${name}[${index}][date_label]" value="" placeholder="Bulan Tahun (mis. Maret 2026)" aria-label="Bulan dan tahun ulasan">
-          <textarea name="${name}[${index}][excerpt]" rows="2" placeholder="Kutipan ulasan..." aria-label="Kutipan ulasan"></textarea>
+          <input type="text" name="${name}[${index}][date_label]" value="" placeholder="Bulan Tahun (mis. Maret 2026)" aria-label="Bulan dan tahun ulasan" class="regular-text">
+          <textarea name="${name}[${index}][excerpt]" rows="2" placeholder="Kutipan ulasan..." aria-label="Kutipan ulasan" class="large-text"></textarea>
           <button type="button" class="button-link-delete rspku-repeater-remove" aria-label="Hapus ulasan">Hapus</button>
         </div>
       `;

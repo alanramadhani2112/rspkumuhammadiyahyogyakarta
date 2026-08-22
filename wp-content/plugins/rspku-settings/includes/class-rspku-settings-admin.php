@@ -521,13 +521,8 @@ final class RSPKU_Settings_Admin
         $options = array_merge($defaults, $options);
         ?>
         <div class="wrap rspku-settings-wrap">
-            <div class="rspku-settings-header">
-                <h1>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;opacity:.9"><path d="M22 14h-4.5a2.5 2.5 0 0 0 0 5H20"/><path d="M12 21V10"/><path d="M2 21V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4"/><path d="M2 10h20"/><path d="M8 14v2"/><path d="M16 14v2"/></svg>
-                    RS PKU Settings
-                </h1>
-                <p class="description">Kelola semua konfigurasi theme RS PKU Muhammadiyah Yogyakarta dari satu tempat. Perubahan langsung berlaku setelah klik Simpan.</p>
-            </div>
+            <h1>RS PKU Settings</h1>
+            <p class="description">Kelola konfigurasi theme RS PKU Muhammadiyah Yogyakarta. Perubahan langsung berlaku setelah klik Simpan.</p>
 
             <?php if (isset($_GET['settings-updated']) && $_GET['settings-updated']): ?>
                 <div class="notice notice-success is-dismissible"><p><strong>Perubahan berhasil disimpan.</strong></p></div>
@@ -578,7 +573,7 @@ final class RSPKU_Settings_Admin
                     <?php if ($active_tab !== 'tools'): ?>
                         <?php submit_button('Simpan Perubahan', 'primary large', 'submit', false); ?>
                     <?php else: ?>
-                        <p class="description" style="margin:0;flex:1;">Gunakan tombol Export/Import di atas. Tab ini tidak menyimpan perubahan form utama.</p>
+                        <p class="description rspku-settings-actions__note">Gunakan tombol Export/Import di atas. Tab ini tidak menyimpan perubahan form utama.</p>
                     <?php endif; ?>
                     <a href="<?php echo esc_url(home_url('/')); ?>" target="_blank" class="button button-secondary">
                         <span class="dashicons dashicons-external"></span> Lihat Situs
@@ -597,37 +592,27 @@ final class RSPKU_Settings_Admin
     {
         $adminPost = admin_url('admin-post.php');
         ?>
-        <div class="rs-grid rs-gap-4 rs-max-w-2xl" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-            <div class="rs-p-4 rs-bg-white rs-border rs-border-slate-200 rs-rounded-lg">
-                <h3 class="rs-flex rs-items-center rs-gap-1.5 rs-m-0 rs-mb-2 rs-text-sm rs-font-bold rs-text-slate-900">
-                    <span class="dashicons dashicons-download rs-text-brand-600" style="font-size:16px;width:16px;height:16px;"></span>
-                    Export
-                </h3>
-                <p class="rs-m-0 rs-mb-3 rs-text-xs rs-text-slate-500 rs-leading-relaxed">
-                    Unduh seluruh setting sebagai file JSON. Simpan untuk backup atau pindahkan ke environment lain.
-                </p>
-                <form method="post" action="<?php echo esc_url($adminPost); ?>" class="rs-flex rs-flex-col rs-gap-2 rs-items-start">
+        <div class="rspku-tools-grid">
+            <div class="card rspku-tools-card">
+                <h3><span class="dashicons dashicons-download" aria-hidden="true"></span> Export</h3>
+                <p class="description">Unduh seluruh setting sebagai file JSON. Simpan untuk backup atau pindahkan ke environment lain.</p>
+                <form method="post" action="<?php echo esc_url($adminPost); ?>">
                     <?php wp_nonce_field('rspku_settings_export'); ?>
                     <input type="hidden" name="action" value="rspku_settings_export">
-                    <button type="submit" class="button button-primary rs-text-xs">Download JSON</button>
+                    <button type="submit" class="button button-primary">Download JSON</button>
                 </form>
             </div>
-            <div class="rs-p-4 rs-bg-white rs-border rs-border-slate-200 rs-rounded-lg">
-                <h3 class="rs-flex rs-items-center rs-gap-1.5 rs-m-0 rs-mb-2 rs-text-sm rs-font-bold rs-text-slate-900">
-                    <span class="dashicons dashicons-upload rs-text-brand-600" style="font-size:16px;width:16px;height:16px;"></span>
-                    Import
-                </h3>
-                <p class="rs-m-0 rs-mb-3 rs-text-xs rs-text-slate-500 rs-leading-relaxed">
-                    <strong>Perhatian:</strong> Import akan menimpa semua setting saat ini. Pastikan sudah export backup lebih dulu.
-                </p>
-                <form method="post" action="<?php echo esc_url($adminPost); ?>" enctype="multipart/form-data" class="rs-flex rs-flex-col rs-gap-2 rs-items-start">
+            <div class="card rspku-tools-card">
+                <h3><span class="dashicons dashicons-upload" aria-hidden="true"></span> Import</h3>
+                <p class="description"><strong>Perhatian:</strong> Import akan menimpa semua setting saat ini. Pastikan sudah export backup lebih dulu.</p>
+                <form method="post" action="<?php echo esc_url($adminPost); ?>" enctype="multipart/form-data">
                     <?php wp_nonce_field('rspku_settings_import'); ?>
                     <input type="hidden" name="action" value="rspku_settings_import">
-                    <input type="file" name="settings_file" accept="application/json,.json" required class="rs-text-xs rs-max-w-full">
-                    <button type="submit" class="button button-secondary rs-text-xs">Upload & Terapkan</button>
+                    <input type="file" name="settings_file" accept="application/json,.json" required>
+                    <button type="submit" class="button">Upload & Terapkan</button>
                 </form>
-            </div>
-        </div>
+            </td>
+        </tr>
         <?php
     }
 
@@ -721,7 +706,7 @@ final class RSPKU_Settings_Admin
             $section_id = 'rspku-section-' . sanitize_html_class((string) $section_key);
             $section_body_id = $section_id . '-body';
             ?>
-            <div class="rspku-settings-section" id="<?php echo esc_attr($section_id); ?>" data-section-key="<?php echo esc_attr((string) $section_key); ?>">
+            <div class="card rspku-settings-section" id="<?php echo esc_attr($section_id); ?>" data-section-key="<?php echo esc_attr((string) $section_key); ?>">
                 <div class="rspku-settings-section-header">
                     <div class="rspku-settings-section-title-row">
                         <div class="rspku-settings-section-title-group">
@@ -741,6 +726,8 @@ final class RSPKU_Settings_Admin
                     <?php endif; ?>
                 </div>
                 <div class="rspku-settings-section-body" id="<?php echo esc_attr($section_body_id); ?>">
+                    <table class="form-table" role="presentation">
+                        <tbody>
                     <?php for ($i = 0, $field_total = count($section['fields']); $i < $field_total; $i++): ?>
                         <?php
                         $field = $section['fields'][$i];
@@ -776,6 +763,8 @@ final class RSPKU_Settings_Admin
                         self::renderField($field, $value);
                         ?>
                     <?php endfor; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <?php
@@ -853,21 +842,23 @@ final class RSPKU_Settings_Admin
 
         $first = $fields[0];
         $cardLabel = (string) ($first['card_label'] ?? $first['card'] ?? '');
-        $cardClass = 'rspku-settings-card rspku-settings-card--' . sanitize_html_class((string) ($first['group'] ?? 'field'));
+        $cardClass = 'rspku-settings-field rspku-settings-field--card rspku-settings-card rspku-settings-card--' . sanitize_html_class((string) ($first['group'] ?? 'field'));
         ?>
-        <div class="<?php echo esc_attr($cardClass); ?>" data-card="<?php echo esc_attr((string) ($first['card'] ?? '')); ?>">
-            <div class="rspku-settings-card__header">
-                <h3 class="rspku-settings-card__title"><?php echo esc_html($cardLabel); ?></h3>
-            </div>
-            <div class="rspku-settings-card__body">
-                <?php foreach ($fields as $field): ?>
-                    <?php
-                    $key = $field['key'];
-                    self::renderField($field, $options[$key] ?? $defaults[$key] ?? '');
-                    ?>
-                <?php endforeach; ?>
-            </div>
-        </div>
+        <tr class="<?php echo esc_attr($cardClass); ?>" data-card="<?php echo esc_attr((string) ($first['card'] ?? '')); ?>">
+            <th scope="row"><?php echo esc_html($cardLabel); ?></th>
+            <td>
+                <table class="form-table" role="presentation">
+                    <tbody>
+                        <?php foreach ($fields as $field): ?>
+                            <?php
+                            $key = $field['key'];
+                            self::renderField($field, $options[$key] ?? $defaults[$key] ?? '');
+                            ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
         <?php
     }
 
@@ -875,13 +866,13 @@ final class RSPKU_Settings_Admin
     {
         $pairLabel = (string) ($displayField['pair'] ?? $displayField['label']);
         ?>
-        <div class="rspku-settings-field rspku-settings-field--phone-pair">
-            <div class="rspku-settings-field__label"><?php echo esc_html($pairLabel); ?></div>
-            <div class="rspku-settings-field__control rspku-call-pair">
+        <tr class="rspku-settings-field rspku-settings-field--phone-pair">
+            <th scope="row"><?php echo esc_html($pairLabel); ?></th>
+            <td class="rspku-settings-field__control rspku-call-pair">
                 <?php self::renderPhonePairInput($displayField, $displayValue, 'Display'); ?>
                 <?php self::renderPhonePairInput($telField, $telValue, 'tel: link'); ?>
-            </div>
-        </div>
+            </td>
+        </tr>
         <?php
     }
 
@@ -898,9 +889,9 @@ final class RSPKU_Settings_Admin
                    id="<?php echo esc_attr($id); ?>"
                    name="<?php echo esc_attr($name); ?>"
                    value="<?php echo esc_attr((string) $value); ?>"
-                   class="rspku-settings-input"
+                   class="regular-text rspku-settings-input"
                    <?php if (!empty($field['help'])): ?>aria-describedby="<?php echo esc_attr($descriptionId); ?>"<?php endif; ?>
-                   style="box-shadow: none; transition: border-color 0.15s;">
+                   >
             <?php if (!empty($field['help'])): ?>
                 <p id="<?php echo esc_attr($descriptionId); ?>" class="rspku-settings-field__description rspku-call-pair__description"><?php echo esc_html((string) $field['help']); ?></p>
             <?php endif; ?>
@@ -924,9 +915,9 @@ final class RSPKU_Settings_Admin
         $previewText = (string) $textValue;
         $previewUrl = (string) $urlValue;
         ?>
-        <div class="rspku-settings-field rspku-settings-field--cta-pair">
-            <div class="rspku-settings-field__label"><?php echo esc_html($pairLabel); ?></div>
-            <div class="rspku-settings-field__control">
+        <tr class="rspku-settings-field rspku-settings-field--cta-pair">
+            <th scope="row"><?php echo esc_html($pairLabel); ?></th>
+            <td class="rspku-settings-field__control">
                 <div class="rspku-cta-pair">
                     <?php self::renderCtaPairInput($textField, $textValue, 'Teks tombol'); ?>
                     <?php self::renderCtaPairInput($urlField, $urlValue, 'URL tujuan'); ?>
@@ -934,13 +925,13 @@ final class RSPKU_Settings_Admin
                 <div class="rspku-cta-pair__preview" aria-label="Preview CTA tersimpan">
                     <span class="rspku-cta-pair__preview-label">Preview</span>
                     <?php if ($previewText !== '' && $previewUrl !== ''): ?>
-                        <a href="<?php echo esc_url($previewUrl); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html($previewText); ?></a>
+                        <a href="<?php echo esc_url($previewUrl); ?>" target="_blank" rel="noopener noreferrer" class="button"><?php echo esc_html($previewText); ?></a>
                     <?php else: ?>
                         <span class="rspku-cta-pair__preview-empty">Lengkapi teks dan URL untuk melihat tombol.</span>
                     <?php endif; ?>
                 </div>
-            </div>
-        </div>
+            </td>
+        </tr>
         <?php
     }
 
@@ -957,9 +948,9 @@ final class RSPKU_Settings_Admin
                    id="<?php echo esc_attr($id); ?>"
                    name="<?php echo esc_attr($name); ?>"
                    value="<?php echo esc_attr((string) $value); ?>"
-                   class="rspku-settings-input"
+                   class="regular-text rspku-settings-input"
                    <?php if (!empty($field['help'])): ?>aria-describedby="<?php echo esc_attr($descriptionId); ?>"<?php endif; ?>
-                   style="box-shadow: none; transition: border-color 0.15s;">
+                   >
             <?php if (!empty($field['help'])): ?>
                 <p id="<?php echo esc_attr($descriptionId); ?>" class="rspku-settings-field__description rspku-cta-pair__description"><?php echo esc_html((string) $field['help']); ?></p>
             <?php endif; ?>
@@ -979,29 +970,27 @@ final class RSPKU_Settings_Admin
 
         $wrapperClass = 'rspku-settings-field rspku-settings-field--' . sanitize_html_class($type);
         ?>
-        <div class="<?php echo esc_attr($wrapperClass); ?>">
-            <label for="<?php echo esc_attr($id); ?>"
-                   class="rspku-settings-field__label">
-                <?php echo esc_html($field['label']); ?>
-            </label>
-
-            <div class="rspku-settings-field__control">
+        <tr class="<?php echo esc_attr($wrapperClass); ?>">
+            <th scope="row">
+                <label for="<?php echo esc_attr($id); ?>" class="rspku-settings-field__label"><?php echo esc_html($field['label']); ?></label>
+            </th>
+            <td class="rspku-settings-field__control">
             <?php if ($type === 'text' || $type === 'email' || $type === 'url'): ?>
                 <input type="<?php echo esc_attr($type); ?>"
                        id="<?php echo esc_attr($id); ?>"
                        name="<?php echo esc_attr($name); ?>"
                        value="<?php echo esc_attr((string) $value); ?>"
-                       class="rspku-settings-input"
+                       class="regular-text rspku-settings-input"
                        <?php echo $describedBy; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                       style="box-shadow: none; transition: border-color 0.15s;">
+                       >
 
             <?php elseif ($type === 'textarea'): ?>
                 <textarea id="<?php echo esc_attr($id); ?>"
                           name="<?php echo esc_attr($name); ?>"
                           rows="4"
-                          class="rspku-settings-textarea"
+                          class="large-text rspku-settings-textarea"
                           <?php echo $describedBy; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                          style="box-shadow: none; transition: border-color 0.15s; resize: vertical;"><?php echo esc_textarea((string) $value); ?></textarea>
+                          ><?php echo esc_textarea((string) $value); ?></textarea>
 
             <?php elseif ($type === 'color'): ?>
                 <input type="text"
@@ -1012,41 +1001,18 @@ final class RSPKU_Settings_Admin
                        <?php echo $describedBy; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 
             <?php elseif ($type === 'toggle'): ?>
-                <label class="rs-inline-flex rs-items-center rs-gap-3 rs-cursor-pointer rs-select-none">
+                <label class="rspku-settings-checkbox-label">
                     <input type="checkbox"
                            id="<?php echo esc_attr($id); ?>"
                            name="<?php echo esc_attr($name); ?>"
                            value="1"
-                           class="rs-sr-only rs-peer"
                            <?php echo $describedBy; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                            <?php checked((bool) $value); ?>>
-                    <span class="rs-relative rs-inline-block rs-w-14 rs-h-7 rs-rounded-full rs-border rs-border-slate-300 rs-bg-slate-200
-                                 peer-checked:rs-bg-brand-600 peer-checked:rs-border-brand-700
-                                 peer-focus-visible:rs-outline peer-focus-visible:rs-outline-2 peer-focus-visible:rs-outline-brand-600 peer-focus-visible:rs-outline-offset-2"
-                          style="transition: background 0.18s ease, border-color 0.18s ease;">
-                        <span class="rs-absolute rs-top-0.5 rs-left-0.5 rs-w-6 rs-h-6 rs-rounded-full rs-bg-white"
-                              style="box-shadow: 0 2px 6px rgba(15,23,42,0.18); transition: transform 0.18s ease;"
-                              x-bind:style="'transform: translateX(' + ($el.closest('label').querySelector('input').checked ? '28px' : '0') + ')'">
-                        </span>
-                    </span>
-                    <span class="rs-text-xs rs-font-semibold rs-text-slate-500 peer-checked:rs-text-brand-600 rs-min-w-[52px]"
-                          id="<?php echo esc_attr($id); ?>-label">
-                        <?php echo (bool) $value ? 'Aktif' : 'Nonaktif'; ?>
+                    <span class="rspku-settings-toggle-status" aria-hidden="true">
+                        <span class="rspku-settings-toggle-status__on">Aktif</span>
+                        <span class="rspku-settings-toggle-status__off">Nonaktif</span>
                     </span>
                 </label>
-                <script>
-                (function(){
-                    var cb = document.getElementById('<?php echo esc_js($id); ?>');
-                    if (!cb) return;
-                    var lbl = document.getElementById('<?php echo esc_js($id); ?>-label');
-                    var knob = cb.closest('label').querySelector('span > span');
-                    function sync() {
-                        if (lbl) lbl.textContent = cb.checked ? 'Aktif' : 'Nonaktif';
-                        if (knob) knob.style.transform = 'translateX(' + (cb.checked ? '28px' : '0') + ')';
-                    }
-                    cb.addEventListener('change', sync);
-                })();
-                </script>
 
             <?php elseif ($type === 'image'): ?>
                 <?php
@@ -1079,16 +1045,15 @@ final class RSPKU_Settings_Admin
 
             <?php elseif ($type === 'info'): ?>
                 <?php if ($key === 'logo_note'): ?>
-                    <div class="rs-flex rs-flex-col rs-gap-2 rs-p-3 rs-bg-green-50 rs-border rs-border-green-200 rs-rounded-md rs-max-w-sm">
-                        <p class="rs-m-0 rs-text-xs rs-text-slate-600 rs-italic"><?php echo esc_html($help); ?></p>
-                        <a href="<?php echo esc_url(admin_url('customize.php?autofocus[control]=custom_logo')); ?>"
-                           class="button button-secondary rs-self-start rs-inline-flex rs-items-center rs-gap-1 rs-text-xs">
-                            <span class="dashicons dashicons-format-image" style="font-size:14px;width:14px;height:14px;line-height:1.8;"></span>
+                    <div class="rspku-info-card">
+                        <p class="description"><?php echo esc_html($help); ?></p>
+                        <a href="<?php echo esc_url(admin_url('customize.php?autofocus[control]=custom_logo')); ?>" class="button">
+                            <span class="dashicons dashicons-format-image" aria-hidden="true"></span>
                             Ubah Logo
                         </a>
                     </div>
                 <?php else: ?>
-                    <p class="rs-m-0 rs-text-xs rs-text-slate-500 rs-italic rs-pt-1"><?php echo esc_html($help); ?></p>
+                    <p class="description"><?php echo esc_html($help); ?></p>
                 <?php endif; ?>
                 <?php $help = ''; ?>
 
@@ -1097,7 +1062,7 @@ final class RSPKU_Settings_Admin
                 <?php $help = ''; ?>
 
             <?php elseif ($type === 'repeater_hours'): ?>
-                <div class="rspku-repeater rspku-repeater--hours rs-flex rs-flex-col rs-gap-1.5 rs-max-w-xl" data-field="<?php echo esc_attr($key); ?>">
+                <div class="rspku-repeater rspku-repeater--hours" data-field="<?php echo esc_attr($key); ?>">
                     <div class="rspku-repeater-header" aria-hidden="true">
                         <span>Unit Layanan</span>
                         <span>Jam Operasional</span>
@@ -1113,53 +1078,52 @@ final class RSPKU_Settings_Admin
                     endif;
                     foreach ($rows as $i => $row):
                     ?>
-                        <div class="rspku-repeater-row rspku-repeater-row--hours rs-grid rs-gap-1.5 rs-items-center rs-p-2 rs-bg-slate-50 rs-border rs-border-slate-200 rs-rounded-md">
+                        <div class="rspku-repeater-row rspku-repeater-row--hours">
                             <label class="rspku-repeater-cell">
                                 <span class="rspku-repeater-cell__label">Unit Layanan</span>
                                 <input type="text" name="<?php echo esc_attr($name); ?>[<?php echo $i; ?>][label]"
                                        value="<?php echo esc_attr((string) ($row['label'] ?? '')); ?>"
                                        placeholder="IGD"
-                                       class="rs-border rs-border-slate-300 rs-rounded rs-px-2 rs-py-1.5 rs-text-xs rs-bg-white">
+                                       class="regular-text">
                             </label>
                             <label class="rspku-repeater-cell">
                                 <span class="rspku-repeater-cell__label">Jam Operasional</span>
                                 <input type="text" name="<?php echo esc_attr($name); ?>[<?php echo $i; ?>][time]"
                                        value="<?php echo esc_attr((string) ($row['time'] ?? '')); ?>"
                                        placeholder="24 Jam"
-                                       class="rs-border rs-border-slate-300 rs-rounded rs-px-2 rs-py-1.5 rs-text-xs rs-bg-white">
+                                       class="regular-text">
                             </label>
-                            <label class="rspku-repeater-highlight rs-inline-flex rs-items-center rs-gap-1 rs-text-xs rs-text-slate-500 rs-whitespace-nowrap">
+                            <label class="rspku-repeater-highlight">
                                 <input type="checkbox" name="<?php echo esc_attr($name); ?>[<?php echo $i; ?>][highlight]" value="1" <?php checked(!empty($row['highlight'])); ?>>
                                 <span>Tampilkan sebagai utama</span>
                             </label>
-                            <button type="button" class="button-link-delete rspku-repeater-remove rs-text-red-600 rs-text-xs rs-cursor-pointer rs-whitespace-nowrap" aria-label="Hapus jam operasional">Hapus</button>
+                            <button type="button" class="button-link-delete rspku-repeater-remove" aria-label="Hapus jam operasional">Hapus</button>
                         </div>
                     <?php endforeach; ?>
-                    <button type="button" class="button rspku-repeater-add rs-self-start rs-text-xs rs-mt-1" data-name="<?php echo esc_attr($name); ?>">+ Tambah jam operasional</button>
+                    <button type="button" class="button rspku-repeater-add" data-name="<?php echo esc_attr($name); ?>">+ Tambah jam operasional</button>
                 </div>
 
             <?php elseif ($type === 'repeater_links'): ?>
-                <div class="rspku-repeater rs-flex rs-flex-col rs-gap-1.5 rs-max-w-xl" data-field="<?php echo esc_attr($key); ?>">
+                <div class="rspku-repeater" data-field="<?php echo esc_attr($key); ?>">
                     <?php
                     $rows = is_array($value) ? $value : [];
                     foreach ($rows as $i => $row):
                     ?>
-                        <div class="rspku-repeater-row rspku-repeater-row--links rs-grid rs-gap-1.5 rs-items-center rs-p-2 rs-bg-slate-50 rs-border rs-border-slate-200 rs-rounded-md"
-                             style="grid-template-columns: 1fr 1.5fr auto;">
+                        <div class="rspku-repeater-row rspku-repeater-row--links">
                             <input type="text" name="<?php echo esc_attr($name); ?>[<?php echo $i; ?>][label]"
                                    value="<?php echo esc_attr((string) ($row['label'] ?? '')); ?>"
                                    placeholder="Label (mis. Dokter)"
                                    aria-label="Label link cepat"
-                                   class="rs-border rs-border-slate-300 rs-rounded rs-px-2 rs-py-1.5 rs-text-xs rs-bg-white">
+                                   class="regular-text">
                             <input type="text" name="<?php echo esc_attr($name); ?>[<?php echo $i; ?>][url]"
                                    value="<?php echo esc_attr((string) ($row['url'] ?? '')); ?>"
                                    placeholder="URL (mis. /dokter/)"
                                    aria-label="URL link cepat"
-                                   class="rs-border rs-border-slate-300 rs-rounded rs-px-2 rs-py-1.5 rs-text-xs rs-bg-white">
-                            <button type="button" class="button-link-delete rspku-repeater-remove rs-text-red-600 rs-text-xs rs-cursor-pointer" aria-label="Hapus link cepat">Hapus</button>
+                                   class="regular-text">
+                            <button type="button" class="button-link-delete rspku-repeater-remove" aria-label="Hapus link cepat">Hapus</button>
                         </div>
                     <?php endforeach; ?>
-                    <button type="button" class="button rspku-repeater-add-link rs-self-start rs-text-xs rs-mt-1" data-name="<?php echo esc_attr($name); ?>">+ Tambah link</button>
+                    <button type="button" class="button rspku-repeater-add-link" data-name="<?php echo esc_attr($name); ?>">+ Tambah link</button>
                 </div>
 
             <?php elseif ($type === 'post_picker'): ?>
@@ -1195,26 +1159,25 @@ final class RSPKU_Settings_Admin
                         <?php endforeach; ?>
                     </div>
                     <?php if (empty($allPosts)): ?>
-                        <p class="rs-mt-2 rs-text-xs rs-text-slate-400">Belum ada <?php echo esc_html($postType); ?> yang dipublikasikan.</p>
+                        <p class="description">Belum ada <?php echo esc_html($postType); ?> yang dipublikasikan.</p>
                     <?php endif; ?>
                 </div>
 
             <?php elseif ($type === 'review_repeater'): ?>
-                <div class="rspku-repeater rspku-review-repeater rs-flex rs-flex-col rs-gap-2 rs-max-w-2xl" data-field="<?php echo esc_attr($key); ?>">
+                <div class="rspku-repeater rspku-review-repeater" data-field="<?php echo esc_attr($key); ?>">
                     <?php
                     $rows = is_array($value) ? $value : [];
                     foreach ($rows as $i => $row):
                     ?>
-                        <div class="rspku-repeater-row rspku-repeater-row--review rs-p-3 rs-bg-slate-50 rs-border rs-border-slate-200 rs-rounded-md rs-grid rs-gap-2"
-                             style="grid-template-columns: 1.2fr 70px 1fr 2fr auto; align-items: start;">
+                        <div class="rspku-repeater-row rspku-repeater-row--review">
                             <input type="text" name="<?php echo esc_attr($name); ?>[<?php echo $i; ?>][name]"
                                    value="<?php echo esc_attr((string) ($row['name'] ?? '')); ?>"
                                    placeholder="Nama reviewer"
                                    aria-label="Nama reviewer"
-                                   class="rs-border rs-border-slate-300 rs-rounded rs-px-2 rs-py-1.5 rs-text-xs rs-bg-white rs-w-full">
+                                   class="regular-text">
                             <select name="<?php echo esc_attr($name); ?>[<?php echo $i; ?>][rating]"
                                     aria-label="Rating ulasan"
-                                    class="rs-border rs-border-slate-300 rs-rounded rs-px-1.5 rs-py-1.5 rs-text-xs rs-bg-white rs-w-full">
+                                    class="regular-text">
                                 <?php for ($r = 5; $r >= 1; $r--): ?>
                                     <option value="<?php echo $r; ?>" <?php selected((int) ($row['rating'] ?? 5), $r); ?>><?php echo $r; ?> ★</option>
                                 <?php endfor; ?>
@@ -1223,16 +1186,16 @@ final class RSPKU_Settings_Admin
                                    value="<?php echo esc_attr((string) ($row['date_label'] ?? '')); ?>"
                                    placeholder="Bulan Tahun"
                                    aria-label="Bulan dan tahun ulasan"
-                                   class="rs-border rs-border-slate-300 rs-rounded rs-px-2 rs-py-1.5 rs-text-xs rs-bg-white rs-w-full">
+                                   class="regular-text">
                             <textarea name="<?php echo esc_attr($name); ?>[<?php echo $i; ?>][excerpt]"
                                       rows="2"
                                       placeholder="Kutipan ulasan..."
                                       aria-label="Kutipan ulasan"
-                                      class="rs-border rs-border-slate-300 rs-rounded rs-px-2 rs-py-1.5 rs-text-xs rs-bg-white rs-w-full rs-resize-y"><?php echo esc_textarea((string) ($row['excerpt'] ?? '')); ?></textarea>
-                            <button type="button" class="button-link-delete rspku-repeater-remove rs-text-red-600 rs-text-xs rs-cursor-pointer rs-whitespace-nowrap rs-self-start rs-mt-1" aria-label="Hapus ulasan">Hapus</button>
+                                      class="large-text"><?php echo esc_textarea((string) ($row['excerpt'] ?? '')); ?></textarea>
+                            <button type="button" class="button-link-delete rspku-repeater-remove" aria-label="Hapus ulasan">Hapus</button>
                         </div>
                     <?php endforeach; ?>
-                    <button type="button" class="button rspku-repeater-add-review rs-self-start rs-text-xs rs-mt-1" data-name="<?php echo esc_attr($name); ?>">+ Tambah ulasan</button>
+                    <button type="button" class="button rspku-repeater-add-review" data-name="<?php echo esc_attr($name); ?>">+ Tambah ulasan</button>
                 </div>
 
             <?php endif; ?>
@@ -1240,8 +1203,8 @@ final class RSPKU_Settings_Admin
             <?php if ($help): ?>
                 <p id="<?php echo esc_attr($descriptionId); ?>" class="rspku-settings-field__description"><?php echo esc_html($help); ?></p>
             <?php endif; ?>
-            </div>
-        </div>
+            </td>
+        </tr>
         <?php
     }
 }
