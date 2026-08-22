@@ -45,6 +45,7 @@ final class TimberSetup
 
         $context['site_logo'] = self::siteLogo();
         $context['labmu_logo'] = self::labmuLogo();
+        $context['navigation'] = self::navigation();
 
         return $context;
     }
@@ -98,6 +99,42 @@ final class TimberSetup
         }
 
         return Timber::get_menu($location);
+    }
+
+    /**
+     * @return array<string,mixed>
+     */
+    private static function navigation(): array
+    {
+        return [
+            'primary_fallback' => [
+                ['title' => 'Beranda', 'link' => home_url('/')],
+                ['title' => 'Layanan', 'link' => home_url('/layanan/')],
+                ['title' => 'Fasilitas', 'link' => home_url('/fasilitas-rawat-inap/')],
+                ['title' => 'Pusat informasi', 'link' => home_url('/berita-artikel/')],
+                ['title' => 'Karir', 'link' => 'https://e-career.rspkujogja.com'],
+                ['title' => 'Kontak', 'link' => home_url('/kontak/')],
+            ],
+            'children' => [
+                'layanan' => [
+                    ['title' => 'Semua layanan medis', 'link' => home_url('/layanan/')],
+                    ['title' => 'Layanan unggulan', 'link' => home_url('/layanan-medis/layanan-unggulan/')],
+                    ['title' => 'Layanan penunjang', 'link' => home_url('/layanan-medis/layanan-penunjang/')],
+                    ['title' => 'Poliklinik', 'link' => home_url('/poliklinik/')],
+                ],
+                'fasilitas' => [
+                    ['title' => 'Fasilitas rawat inap', 'link' => home_url('/fasilitas-rawat-inap/')],
+                    ['title' => 'Manajemen RS', 'link' => home_url('/manajemen-rs/')],
+                    ['title' => 'Kontak rumah sakit', 'link' => home_url('/kontak/')],
+                ],
+                'info' => [
+                    ['title' => 'Berita dan artikel', 'link' => home_url('/berita-artikel/')],
+                    ['title' => 'E-Jurnal', 'link' => home_url('/e-jurnal/')],
+                    ['title' => 'Legalitas', 'link' => home_url('/legalitas/')],
+                    ['title' => 'Sejarah', 'link' => home_url('/sejarah-kami/')],
+                ],
+            ],
+        ];
     }
 
     /**

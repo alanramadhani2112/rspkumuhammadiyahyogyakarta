@@ -13,32 +13,12 @@
 {% set language_id_label = rspku.language_switcher_label_id|default('Bahasa Indonesia') %}
 {% set language_en_label = rspku.language_switcher_label_en|default('English') %}
 
-{% set fallback_primary = [
-  { title: 'Beranda', link: site.url },
-  { title: 'Layanan', link: site.url ~ '/layanan/' },
-  { title: 'Fasilitas', link: site.url ~ '/fasilitas-rawat-inap/' },
-  { title: 'Pusat informasi', link: site.url ~ '/berita-artikel/' },
-  { title: 'Karir', link: 'https://e-career.rspkujogja.com' },
-  { title: 'Kontak', link: site.url ~ '/kontak/' }
-] %}
+{% set fallback_primary = navigation.primary_fallback|default([]) %}
 {% set primary_items = menus.primary and menus.primary.items ? menus.primary.items : fallback_primary %}
-{% set layanan_children = [
-  { title: 'Semua layanan medis', link: site.url ~ '/layanan/' },
-  { title: 'Layanan unggulan', link: site.url ~ '/layanan-medis/layanan-unggulan/' },
-  { title: 'Layanan penunjang', link: site.url ~ '/layanan-medis/layanan-penunjang/' },
-  { title: 'Poliklinik', link: site.url ~ '/poliklinik/' }
-] %}
-{% set fasilitas_children = [
-  { title: 'Fasilitas rawat inap', link: site.url ~ '/fasilitas-rawat-inap/' },
-  { title: 'Manajemen RS', link: site.url ~ '/manajemen-rs/' },
-  { title: 'Kontak rumah sakit', link: site.url ~ '/kontak/' }
-] %}
-{% set info_children = [
-  { title: 'Berita dan artikel', link: site.url ~ '/berita-artikel/' },
-  { title: 'E-Jurnal', link: site.url ~ '/e-jurnal/' },
-  { title: 'Legalitas', link: site.url ~ '/legalitas/' },
-  { title: 'Sejarah', link: site.url ~ '/sejarah-kami/' }
-] %}
+{% set nav_children = navigation.children|default({}) %}
+{% set layanan_children = nav_children.layanan|default([]) %}
+{% set fasilitas_children = nav_children.fasilitas|default([]) %}
+{% set info_children = nav_children.info|default([]) %}
 
 <a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:inline-flex focus:items-center focus:gap-2 focus:rounded-md focus:border-2 focus:border-hospital-600 focus:bg-white focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-hospital-700 focus:shadow-lg focus:outline-none" href="#main">
   {{ icon('arrow-right', { class: 'h-4 w-4' }) }}
