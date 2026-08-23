@@ -844,21 +844,15 @@ final class RSPKU_Settings_Admin
         $cardLabel = (string) ($first['card_label'] ?? $first['card'] ?? '');
         $cardClass = 'rspku-settings-field rspku-settings-field--card rspku-settings-card rspku-settings-card--' . sanitize_html_class((string) ($first['group'] ?? 'field'));
         ?>
-        <tr class="<?php echo esc_attr($cardClass); ?>" data-card="<?php echo esc_attr((string) ($first['card'] ?? '')); ?>">
-            <th scope="row"><?php echo esc_html($cardLabel); ?></th>
-            <td>
-                <table class="form-table" role="presentation">
-                    <tbody>
-                        <?php foreach ($fields as $field): ?>
-                            <?php
-                            $key = $field['key'];
-                            self::renderField($field, $options[$key] ?? $defaults[$key] ?? '');
-                            ?>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </td>
+        <tr class="<?php echo esc_attr($cardClass); ?> rspku-settings-field--card-heading" data-card="<?php echo esc_attr((string) ($first['card'] ?? '')); ?>">
+            <th colspan="2"><?php echo esc_html($cardLabel); ?></th>
         </tr>
+        <?php foreach ($fields as $field): ?>
+            <?php
+            $key = $field['key'];
+            self::renderField($field, $options[$key] ?? $defaults[$key] ?? '');
+            ?>
+        <?php endforeach; ?>
         <?php
     }
 

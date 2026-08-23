@@ -79,12 +79,10 @@
   margin-top: 8px;
 }
 
-.rspku-settings-field--card > td {
-  padding-top: 10px;
-}
-
-.rspku-settings-field--card > td > .form-table {
-  margin-top: 0;
+.rspku-settings-field--card-heading th {
+  border-top: 1px solid #c3c4c7;
+  padding-top: 16px;
+  padding-bottom: 6px;
 }
 
 .rspku-settings-field--phone-pair > th,
@@ -399,17 +397,6 @@
   flex: 1;
   margin: 0;
 }
-
-/* Post picker legacy hooks retained for existing JS/backward compatibility. */
-.rspku-post-picker { max-width: 560px; position: relative; }
-.rspku-post-picker-selected { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; min-height: 24px; }
-.rspku-post-picker-tag { display: inline-flex; align-items: center; gap: 3px; background: #f6f7f7; border: 1px solid #dcdcde; padding: 3px 7px; }
-.rspku-post-picker-remove { background: none; border: none; color: #646970; cursor: pointer; font-size: 14px; line-height: 1; padding: 0 2px; }
-.rspku-post-picker-remove:hover { color: #b32d2e; }
-.rspku-post-picker-dropdown { position: absolute; top: 100%; left: 0; right: 0; z-index: 100; background: #fff; border: 1px solid #dcdcde; box-shadow: 0 2px 8px rgba(0,0,0,.12); max-height: 180px; overflow-y: auto; margin-top: 3px; }
-.rspku-post-picker-option { padding: 7px 10px; cursor: pointer; }
-.rspku-post-picker-option:hover { background: #f6f7f7; }
-.rspku-post-picker-empty { padding: 10px; color: #646970; text-align: center; }
 
 @media (max-width: 782px) {
   .rspku-settings-section-title-row,
