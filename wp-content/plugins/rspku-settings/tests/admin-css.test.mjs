@@ -68,9 +68,12 @@ assert(!css.includes('.rspku-settings-header'), 'No custom header CSS');
 assert(!css.includes('border-radius:999px') && !css.includes('border-radius: 999px'), 'No pill visual rules');
 assert(!css.includes('button-primary{background') && !css.includes('.button-primary{background'), 'Core primary button color not overridden');
 assert(!adminPhp.includes('class="card <?php echo esc_attr($cardClass); ?>"'), 'Nested custom field card shell removed');
+assert(!adminPhp.includes('<th colspan="2" scope="row">'), 'Full-width field card heading does not use row scope');
+assert(adminPhp.includes('<th colspan="2"><?php echo esc_html($cardLabel); ?></th>'), 'Full-width field card heading keeps valid spanning header cell');
 assert(css.includes('.rspku-settings-section.card'), 'Section card hook styled around WP card');
 assert(css.includes('.rspku-settings-section.is-collapsed .rspku-settings-section-body'), 'Collapse CSS retained');
 assert(css.includes('.rspku-settings-checkbox-label input[type=checkbox]:checked~.rspku-settings-toggle-status .rspku-settings-toggle-status__on'), 'Native checkbox toggle status guard retained');
+assert(css.includes('.rspku-settings-field--card-heading th') && css.includes('border-top:1px solid #c3c4c7'), 'Field card headings use restrained WP-native separation');
 
 console.log('\n📋 Special Hooks Preserved');
 const specialHooks = [
@@ -90,8 +93,6 @@ const specialHooks = [
   '.rspku-checkbox-picker-item.is-selected',
   '.rspku-image-upload',
   '.rspku-image-preview.hidden',
-  '.rspku-post-picker',
-  '.rspku-post-picker-dropdown',
   '.rspku-info-card',
   '.rspku-tools-grid',
   '.rspku-tools-card',
@@ -111,6 +112,9 @@ const jsHooks = [
   'is-collapsed',
 ];
 for (const hook of jsHooks) assert(adminJs.includes(hook), `Admin JS keeps ${hook}`);
+assert(!css.includes('.rspku-post-picker'), 'Legacy post picker CSS removed');
+assert(!adminJs.includes('rspku-post-picker'), 'Legacy post picker JS removed');
+assert(adminPhp.includes('rspku-checkbox-picker'), 'Native checkbox picker retained');
 assert(adminJs.includes('class="regular-text"'), 'Dynamic repeater rows use native text inputs');
 assert(adminJs.includes('class="large-text"'), 'Dynamic review textareas use native textarea class');
 
