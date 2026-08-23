@@ -85,6 +85,7 @@ assert(/if \(\$active_tab === 'tools'\): \?>[\s\S]*self::renderTabContent\(\$tab
 assert((exportImportRenderer.match(/<form method="post"/g) ?? []).length === 2, 'Export/import renderer keeps exactly two admin-post forms');
 assert(!exportImportRenderer.includes('</td>') && !exportImportRenderer.includes('</tr>'), 'Export/import renderer does not close parent table cells or rows');
 assert(!adminPhp.includes("<?php if ($active_tab !== 'tools'): ?>"), 'Save nonce/action controls are not conditionally duplicated inside main form');
+assert(/<div class="rspku-settings-section-body" id="<\?php echo esc_attr\(\$section_body_id\); \?>">\s*<\?php if \(count\(\$section\['fields'\]\) === 1 && \(\(\$section\['fields'\]\[0\]\['type'\] \?\? ''\) === 'export_import'\)\): \?>\s*<\?php self::renderExportImportField\(\); \?>\s*<\?php else: \?>\s*<table class="form-table" role="presentation">/.test(adminPhp), 'Single export_import section bypasses WordPress form-table wrapper');
 
 console.log('\n📋 Special Hooks Preserved');
 const specialHooks = [

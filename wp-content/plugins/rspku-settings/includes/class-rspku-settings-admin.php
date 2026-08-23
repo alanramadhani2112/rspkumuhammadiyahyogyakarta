@@ -733,6 +733,9 @@ final class RSPKU_Settings_Admin
                     <?php endif; ?>
                 </div>
                 <div class="rspku-settings-section-body" id="<?php echo esc_attr($section_body_id); ?>">
+                    <?php if (count($section['fields']) === 1 && (($section['fields'][0]['type'] ?? '') === 'export_import')): ?>
+                        <?php self::renderExportImportField(); ?>
+                    <?php else: ?>
                     <table class="form-table" role="presentation">
                         <tbody>
                     <?php for ($i = 0, $field_total = count($section['fields']); $i < $field_total; $i++): ?>
@@ -772,6 +775,7 @@ final class RSPKU_Settings_Admin
                     <?php endfor; ?>
                         </tbody>
                     </table>
+                    <?php endif; ?>
                 </div>
             </div>
             <?php
