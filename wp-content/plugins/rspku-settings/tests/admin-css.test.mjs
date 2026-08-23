@@ -74,6 +74,17 @@ assert(css.includes('.rspku-settings-section.card'), 'Section card hook styled a
 assert(css.includes('.rspku-settings-section.is-collapsed .rspku-settings-section-body'), 'Collapse CSS retained');
 assert(css.includes('.rspku-settings-checkbox-label input[type=checkbox]:checked~.rspku-settings-toggle-status .rspku-settings-toggle-status__on'), 'Native checkbox toggle status guard retained');
 assert(css.includes('.rspku-settings-field--card-heading th') && css.includes('border-top:1px solid #c3c4c7'), 'Field card headings use restrained WP-native separation');
+assert(css.includes('.rspku-tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))'), 'Tools grid cannot force mobile root overflow below 260px');
+
+console.log('\n📋 Tools Form Structure');
+const exportImportRenderer = adminPhp.slice(
+  adminPhp.indexOf('private static function renderExportImportField'),
+  adminPhp.indexOf('public static function handleExport'),
+);
+assert(/if \(\$active_tab === 'tools'\): \?>[\s\S]*self::renderTabContent\(\$tabs\[\$active_tab\], \$options, \$defaults\);[\s\S]*<\?php else: \?>[\s\S]*class="rspku-settings-form"/.test(adminPhp), 'Tools tab renders outside the main save form branch');
+assert((exportImportRenderer.match(/<form method="post"/g) ?? []).length === 2, 'Export/import renderer keeps exactly two admin-post forms');
+assert(!exportImportRenderer.includes('</td>') && !exportImportRenderer.includes('</tr>'), 'Export/import renderer does not close parent table cells or rows');
+assert(!adminPhp.includes("<?php if ($active_tab !== 'tools'): ?>"), 'Save nonce/action controls are not conditionally duplicated inside main form');
 
 console.log('\n📋 Special Hooks Preserved');
 const specialHooks = [

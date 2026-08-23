@@ -562,24 +562,31 @@ final class RSPKU_Settings_Admin
                 <?php endforeach; ?>
             </nav>
 
-            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="rspku-settings-form">
-                <?php wp_nonce_field('rspku_settings_save', '_rspku_nonce'); ?>
-                <input type="hidden" name="action" value="rspku_settings_save">
-                <input type="hidden" name="active_tab" value="<?php echo esc_attr($active_tab); ?>">
-
+            <?php if ($active_tab === 'tools'): ?>
                 <?php self::renderTabContent($tabs[$active_tab], $options, $defaults); ?>
 
                 <div class="rspku-settings-actions">
-                    <?php if ($active_tab !== 'tools'): ?>
-                        <?php submit_button('Simpan Perubahan', 'primary large', 'submit', false); ?>
-                    <?php else: ?>
-                        <p class="description rspku-settings-actions__note">Gunakan tombol Export/Import di atas. Tab ini tidak menyimpan perubahan form utama.</p>
-                    <?php endif; ?>
+                    <p class="description rspku-settings-actions__note">Gunakan tombol Export/Import di atas. Tab ini tidak menyimpan perubahan form utama.</p>
                     <a href="<?php echo esc_url(home_url('/')); ?>" target="_blank" class="button button-secondary">
                         <span class="dashicons dashicons-external"></span> Lihat Situs
                     </a>
                 </div>
-            </form>
+            <?php else: ?>
+                <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="rspku-settings-form">
+                    <?php wp_nonce_field('rspku_settings_save', '_rspku_nonce'); ?>
+                    <input type="hidden" name="action" value="rspku_settings_save">
+                    <input type="hidden" name="active_tab" value="<?php echo esc_attr($active_tab); ?>">
+
+                    <?php self::renderTabContent($tabs[$active_tab], $options, $defaults); ?>
+
+                    <div class="rspku-settings-actions">
+                        <?php submit_button('Simpan Perubahan', 'primary large', 'submit', false); ?>
+                        <a href="<?php echo esc_url(home_url('/')); ?>" target="_blank" class="button button-secondary">
+                            <span class="dashicons dashicons-external"></span> Lihat Situs
+                        </a>
+                    </div>
+                </form>
+            <?php endif; ?>
         </div>
         <?php
     }
@@ -611,8 +618,8 @@ final class RSPKU_Settings_Admin
                     <input type="file" name="settings_file" accept="application/json,.json" required>
                     <button type="submit" class="button">Upload & Terapkan</button>
                 </form>
-            </td>
-        </tr>
+            </div>
+        </div>
         <?php
     }
 
