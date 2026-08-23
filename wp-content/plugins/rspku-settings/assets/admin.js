@@ -160,74 +160,6 @@
       $(this).before(html);
     });
 
-    // Post picker: search + select (debounced)
-    let pickerTimer = null;
-    $(document).on('input', '.rspku-post-picker-search', function () {
-      const $input = $(this);
-      clearTimeout(pickerTimer);
-      pickerTimer = setTimeout(function () {
-        const $picker = $input.closest('.rspku-post-picker');
-        const $dropdown = $picker.find('.rspku-post-picker-dropdown');
-        const postType = $picker.data('post-type');
-        const query = $input.val().trim();
-
-        if (query.length < 2) {
-          $dropdown.hide().empty();
-          return;
-        }
-
-        $dropdown.html('<div class="rspku-post-picker-empty">Mencari...</div>').show();
-
-        $.ajax({
-          url: ajaxurl,
-          data: { action: 'rspku_search_posts', post_type: postType, q: query, _wpnonce: (typeof rspkuSettingsNonce !== 'undefined' ? rspkuSettingsNonce : '') },
-          success: function (response) {
-            if (!response.success || !response.data) {
-              $dropdown.html('<div class="rspku-post-picker-empty">Gagal memuat</div>').show();
-              return;
-            }
-            const currentIds = ($picker.find('.rspku-post-picker-value').val() || '').split(',').map(Number);
-            let html = '';
-            response.data.forEach(function (item) {
-              if (currentIds.includes(item.id)) return;
-              html += `<div class="rspku-post-picker-option" data-id="${item.id}" data-title="${item.title}">${item.title}</div>`;
-            });
-            $dropdown.html(html || '<div class="rspku-post-picker-empty">Tidak ditemukan</div>').show();
-          },
-          error: function () {
-            $dropdown.html('<div class="rspku-post-picker-empty">Error — cek console</div>').show();
-          }
-        });
-      }, 300);
-    });
-
-    $(document).on('click', '.rspku-post-picker-option', function () {
-      const $picker = $(this).closest('.rspku-post-picker');
-      const $value = $picker.find('.rspku-post-picker-value');
-      const $selected = $picker.find('.rspku-post-picker-selected');
-      const id = $(this).data('id');
-      const title = $(this).data('title');
-
-      const current = $value.val() ? $value.val().split(',').filter(Boolean) : [];
-      current.push(String(id));
-      $value.val(current.join(','));
-
-      $selected.append(`<span class="rspku-post-picker-tag" data-id="${id}">${title}<button type="button" class="rspku-post-picker-remove" aria-label="Hapus">&times;</button></span>`);
-      $picker.find('.rspku-post-picker-search').val('');
-      $picker.find('.rspku-post-picker-dropdown').hide().empty();
-    });
-
-    $(document).on('click', '.rspku-post-picker-remove', function () {
-      const $tag = $(this).closest('.rspku-post-picker-tag');
-      const $picker = $tag.closest('.rspku-post-picker');
-      const $value = $picker.find('.rspku-post-picker-value');
-      const removeId = String($tag.data('id'));
-
-      const current = $value.val().split(',').filter(v => v !== removeId && v !== '');
-      $value.val(current.join(','));
-      $tag.remove();
-    });
-
     // Section collapse: progressive enhancement only. Inputs stay in the DOM.
     $(document).on('click', '.rspku-settings-section-toggle', function () {
       const $button = $(this);
@@ -239,11 +171,5 @@
       $button.text(collapsed ? 'Tampilkan' : 'Sembunyikan');
     });
 
-    // Hide dropdown on outside click
-    $(document).on('click', function (e) {
-      if (!$(e.target).closest('.rspku-post-picker').length) {
-        $('.rspku-post-picker-dropdown').hide();
-      }
-    });
   });
 })(jQuery);
