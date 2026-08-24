@@ -61,6 +61,8 @@ for (const needle of nativePhpContracts) assert(adminPhp.includes(needle), `Admi
 assert(!adminPhp.includes('rspku-settings-header'), 'Custom gradient header markup removed');
 assert(!adminPhp.includes('style='), 'Admin renderer has no inline styles');
 assert(!adminPhp.includes('rs-'), 'Tailwind utility classes removed from renderer');
+assert(adminPhp.includes("self::assetVersion('assets/admin.css')") && adminPhp.includes("self::assetVersion('assets/admin.js')"), 'Admin assets use file-based cache busting');
+assert(adminPhp.includes('filemtime(RSPKU_SETTINGS_PATH . \'/\' . $relativePath)'), 'Asset cache version follows deployed file modification time');
 
 console.log('\n📋 Neutral CSS Shell');
 assert(!css.includes('linear-gradient'), 'No gradient shell styling');

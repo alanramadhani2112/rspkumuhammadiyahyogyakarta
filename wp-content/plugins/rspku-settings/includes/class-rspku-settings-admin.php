@@ -150,7 +150,7 @@ final class RSPKU_Settings_Admin
             'rspku-settings-admin',
             RSPKU_SETTINGS_URL . 'assets/admin.css',
             [],
-            RSPKU_SETTINGS_VERSION
+            self::assetVersion('assets/admin.css')
         );
 
         wp_enqueue_script('wp-color-picker');
@@ -160,7 +160,7 @@ final class RSPKU_Settings_Admin
             'rspku-settings-admin',
             RSPKU_SETTINGS_URL . 'assets/admin.js',
             ['jquery', 'wp-color-picker'],
-            RSPKU_SETTINGS_VERSION,
+            self::assetVersion('assets/admin.js'),
             true
         );
 
@@ -621,6 +621,13 @@ final class RSPKU_Settings_Admin
             </div>
         </div>
         <?php
+    }
+
+    private static function assetVersion(string $relativePath): string
+    {
+        $modifiedAt = filemtime(RSPKU_SETTINGS_PATH . '/' . $relativePath);
+
+        return $modifiedAt === false ? RSPKU_SETTINGS_VERSION : (string) $modifiedAt;
     }
 
     public static function handleExport(): void
