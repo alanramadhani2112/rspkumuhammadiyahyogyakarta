@@ -177,6 +177,13 @@ final class RSPKU_Settings_Registry
                             ['key' => 'home_featured_doctors', 'label' => 'Pilih Dokter', 'type' => 'post_picker', 'post_type' => 'dokter', 'max' => 6, 'help' => 'Centang dokter yang akan ditampilkan di homepage.'],
                         ],
                     ],
+                    'home_services' => [
+                        'title' => 'Layanan Unggulan',
+                        'description' => 'Pilih maksimal 8 layanan yang ingin ditonjolkan di homepage. Kosongkan untuk auto-populate dari layanan terbaru.',
+                        'fields' => [
+                            ['key' => 'home_featured_services', 'label' => 'Pilih Layanan', 'type' => 'post_picker', 'post_type' => 'layanan', 'max' => 8, 'help' => 'Centang layanan yang akan ditampilkan di homepage.'],
+                        ],
+                    ],
                     'home_reviews' => [
                         'title' => 'Ulasan Terbaik',
                         'description' => 'Kurasi ulasan Google Maps yang ingin ditampilkan di homepage.',
