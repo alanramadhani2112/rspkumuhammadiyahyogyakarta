@@ -70,7 +70,7 @@ assert(!css.includes('button-primary{background') && !css.includes('.button-prim
 assert(!adminPhp.includes('class="card <?php echo esc_attr($cardClass); ?>"'), 'Nested custom field card shell removed');
 assert(!adminPhp.includes('<th colspan="2" scope="row">'), 'Full-width field card heading does not use row scope');
 assert(adminPhp.includes('<th colspan="2"><?php echo esc_html($cardLabel); ?></th>'), 'Full-width field card heading keeps valid spanning header cell');
-assert(css.includes('.rspku-settings-section.card'), 'Section card hook styled around WP card');
+assert(css.includes('.rspku-settings-wrap .rspku-settings-section.card') && css.includes('width:100%') && css.includes('box-sizing:border-box'), 'Section cards fill the settings content width');
 assert(css.includes('.rspku-settings-section.is-collapsed .rspku-settings-section-body'), 'Collapse CSS retained');
 assert(css.includes('.rspku-settings-checkbox-label input[type=checkbox]:checked~.rspku-settings-toggle-status .rspku-settings-toggle-status__on'), 'Native checkbox toggle status guard retained');
 assert(css.includes('.rspku-settings-field--card-heading th') && css.includes('border-top:1px solid #c3c4c7'), 'Field card headings use restrained WP-native separation');
