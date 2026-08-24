@@ -58,6 +58,8 @@ const nativePhpContracts = [
 ];
 for (const needle of nativePhpContracts) assert(adminPhp.includes(needle), `Admin PHP contains ${needle}`);
 
+assert(registryPhp.includes("'key' => 'home_featured_services'") && registryPhp.includes("'post_type' => 'layanan'") && registryPhp.includes("'max' => 8"), 'Homepage registry exposes dynamic featured services picker');
+
 assert(!adminPhp.includes('rspku-settings-header'), 'Custom gradient header markup removed');
 assert(!adminPhp.includes('style='), 'Admin renderer has no inline styles');
 assert(!adminPhp.includes('rs-'), 'Tailwind utility classes removed from renderer');
