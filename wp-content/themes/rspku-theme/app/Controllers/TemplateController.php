@@ -515,6 +515,9 @@ final class TemplateController
 
         $post = get_post($postId);
         $rendered = $post instanceof \WP_Post ? apply_filters('the_content', $post->post_content) : '';
+        $rendered = is_string($rendered) && $rendered !== ''
+            ? self::stripLeadingDuplicateHeroImage($rendered, $postId)
+            : $rendered;
         $toc = is_string($rendered) && $rendered !== ''
             ? \Rspku\Helpers\TocGenerator::fromHtml($rendered)
             : ['html' => '', 'items' => []];
@@ -545,6 +548,28 @@ final class TemplateController
                 ? \Rspku\Helpers\ReadingTime::calculate($post->post_content)
                 : 0,
         ];
+    }
+
+    /**
+     * Remove a leading inline image that duplicates the featured image.
+     *
+     * The single-post template already renders the featured image as the hero.
+     * When the content itself starts with the same image, it shows twice.
+     * Only strips the opening <figure>/<img> block carrying the wp-image-{id}
+     * class of the featured image; everything else stays untouched.
+     */
+    private static function stripLeadingDuplicateHeroImage(string $html, int $postId): string
+    {
+        $thumbnailId = (int) get_post_thumbnail_id($postId);
+        if ($thumbnailId <= 0) {
+            return $html;
+        }
+        $pattern = '/\A\s*(?:'
+            . '<figure[^>]*>\s*<img[^>]*\bwp-image-' . $thumbnailId . '\b[^>]*>\s*(?:<figcaption>.*?<\/figcaption>\s*)?<\/figure>'
+            . '|<img[^>]*\bwp-image-' . $thumbnailId . '\b[^>]*>'
+            . ')/s';
+        $stripped = preg_replace($pattern, '', $html, 1);
+        return is_string($stripped) ? $stripped : $html;
     }
 
     private static function defaultArchiveDescription(object|null $queriedObject): string
