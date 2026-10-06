@@ -1,0 +1,66 @@
+{# Floating contact panel milik theme (pengganti widget Smartarget). #}
+<div class="fixed bottom-5 right-5 z-40 print:hidden" x-data="{ open: false }" @keydown.escape.window="open = false">
+  {# Panel kontak #}
+  <div
+    x-show="open"
+    x-transition.opacity.scale.origin.bottom.right.90
+    x-cloak
+    role="dialog"
+    aria-label="Hubungi RS PKU Muhammadiyah Yogyakarta"
+    class="mb-3 w-72 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl"
+  >
+    <div class="bg-hospital-600 px-4 py-3">
+      <p class="text-sm font-bold text-white">Hubungi Kami</p>
+      <p class="text-xs text-white/80">IGD 24 jam setiap hari</p>
+    </div>
+    <div class="space-y-1 p-2">
+      <a
+        href="tel:+62274512653"
+        class="flex items-center gap-3 rounded-lg px-3 py-2.5 transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-hospital-600"
+      >
+        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-hospital-600 text-white" aria-hidden="true">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+          </svg>
+        </span>
+        <span>
+          <span class="block text-sm font-bold text-slate-900">Call Center 1</span>
+          <span class="block text-xs text-slate-500">0274-512653 (ext. 118)</span>
+        </span>
+      </a>
+      <a
+        href="tel:+628886412345"
+        class="flex items-center gap-3 rounded-lg px-3 py-2.5 transition hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-hospital-600"
+      >
+        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-hospital-600 text-white" aria-hidden="true">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+          </svg>
+        </span>
+        <span>
+          <span class="block text-sm font-bold text-slate-900">Call Center 2</span>
+          <span class="block text-xs text-slate-500">+62 888-6412-345</span>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  {# Tombol utama #}
+  <div class="flex justify-end">
+    <button
+      type="button"
+      @click="open = !open"
+      :aria-expanded="open.toString()"
+      aria-label="Buka panel kontak"
+      class="flex h-14 w-14 items-center justify-center rounded-full bg-hospital-600 text-white shadow-xl transition hover:bg-hospital-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-hospital-600 focus-visible:ring-offset-2"
+    >
+      <svg x-show="!open" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+      </svg>
+      <svg x-show="open" x-cloak class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+      <span class="sr-only">Buka panel kontak</span>
+    </button>
+  </div>
+</div>
