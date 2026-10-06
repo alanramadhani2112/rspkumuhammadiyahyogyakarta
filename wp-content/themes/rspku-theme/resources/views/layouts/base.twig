@@ -167,18 +167,18 @@
     </div>
 
     {# Mobile Hamburger Button #}
-    <button type="button" class="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 lg:hidden" @click="toggle" :aria-expanded="open.toString()" aria-label="Buka menu navigasi">
-      <svg x-show="!open" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <button type="button" class="grid h-11 w-11 place-items-center rounded-lg border border-slate-200 bg-white text-slate-700 lg:hidden" @click="toggle" :aria-expanded="menuOpen.toString()" aria-label="Buka menu navigasi">
+      <svg x-show="!menuOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
-      <svg x-cloak x-show="open" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <svg x-cloak x-show="menuOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </button>
   </div>
 
   {# Mobile Menu #}
-  <div class="border-t border-slate-100 bg-white lg:hidden" x-cloak x-show="open" x-transition.opacity>
+  <div class="border-t border-slate-100 bg-white lg:hidden" x-cloak x-show="menuOpen" x-transition.opacity>
     <nav class="rspku-container space-y-1 py-4" aria-label="Menu mobile">
       {% for item in primary_items %}
         {% set title_lower = item.title|lower %}
