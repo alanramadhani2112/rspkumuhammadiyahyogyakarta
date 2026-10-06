@@ -60,8 +60,13 @@ Alpine.data('siteSearch', () => ({
     }
 
     const opener = this.opener;
-    this.opener = null;
     this.open = false;
+    // keep opener until the leave transition ends, else popoverStyle() drops left/top and the card jumps
+    window.setTimeout(() => {
+      if (!this.open) {
+        this.opener = null;
+      }
+    }, 200);
     this.$nextTick(() => {
       opener?.focus?.();
     });
