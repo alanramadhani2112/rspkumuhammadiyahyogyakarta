@@ -39,7 +39,8 @@
         <div class="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap font-medium sm:gap-2">
           {{ icon('phone', { class: 'h-3.5 w-3.5 shrink-0 text-hospital-600' }) }}
           <span class="hidden sm:inline">Call Center:</span>
-          <a href="tel:{{ rspku.phone_igd_link }}" class="font-semibold transition hover:text-hospital-700" aria-label="Call Center {{ rspku.phone_igd }}">{{ rspku.phone_igd }}</a>
+          {# -my-3 py-3: 44px tap height without growing the top bar #}
+          <a href="tel:{{ rspku.phone_igd_link }}" class="-my-3 inline-flex items-center py-3 font-semibold transition hover:text-hospital-700" aria-label="Call Center {{ rspku.phone_igd }}">{{ rspku.phone_igd }}</a>
         </div>
       </div>
       <div class="flex min-w-0 shrink-0 items-center gap-2 sm:gap-4">
@@ -47,11 +48,11 @@
         <div class="gtranslate_wrapper sr-only" aria-hidden="true">{{ function('do_shortcode', '[gtranslate]') }}</div>
         {# Language Switcher - Clean Flags Only #}
         <div class="flex items-center gap-1.5" data-rspku-language-switcher>
-          <button type="button" data-rspku-lang="id" onclick="window.rspkuSwitchLanguage('id'); return false;" class="inline-block h-5 w-5 cursor-pointer overflow-hidden rounded-full border border-slate-200 transition hover:scale-110 hover:border-slate-400" title="{{ language_id_label }}" aria-label="{{ language_id_label }}">
-            <img src="https://cdn.gtranslate.net/flags/svg/id.svg" alt="{{ language_id_label }}" class="h-full w-full object-cover">
+          <button type="button" data-rspku-lang="id" onclick="window.rspkuSwitchLanguage('id'); return false;" class="relative inline-block h-5 w-5 cursor-pointer rounded-full border border-slate-200 transition before:absolute before:-inset-x-1 before:-inset-y-3 before:content-[''] hover:scale-110 hover:border-slate-400" title="{{ language_id_label }}" aria-label="{{ language_id_label }}">
+            <img src="https://cdn.gtranslate.net/flags/svg/id.svg" width="20" height="20" alt="{{ language_id_label }}" class="h-full w-full rounded-full object-cover">
           </button>
-          <button type="button" data-rspku-lang="en" onclick="window.rspkuSwitchLanguage('en'); return false;" class="inline-block h-5 w-5 cursor-pointer overflow-hidden rounded-full border border-slate-200 transition hover:scale-110 hover:border-slate-400" title="{{ language_en_label }}" aria-label="{{ language_en_label }}">
-            <img src="https://cdn.gtranslate.net/flags/svg/en.svg" alt="{{ language_en_label }}" class="h-full w-full object-cover">
+          <button type="button" data-rspku-lang="en" onclick="window.rspkuSwitchLanguage('en'); return false;" class="relative inline-block h-5 w-5 cursor-pointer rounded-full border border-slate-200 transition before:absolute before:-inset-x-1 before:-inset-y-3 before:content-[''] hover:scale-110 hover:border-slate-400" title="{{ language_en_label }}" aria-label="{{ language_en_label }}">
+            <img src="https://cdn.gtranslate.net/flags/svg/en.svg" width="20" height="20" alt="{{ language_en_label }}" class="h-full w-full rounded-full object-cover">
           </button>
         </div>
         <script>
@@ -77,14 +78,14 @@
         </script>
         <noscript>
           <a href="https://translate.google.com/translate?sl=id&tl=id&u={{ site.url|url_encode }}" class="inline-block h-5 w-5 overflow-hidden rounded-full border border-slate-200" title="{{ language_id_label }}" aria-label="{{ language_id_label }}">
-            <img src="https://cdn.gtranslate.net/flags/svg/id.svg" alt="{{ language_id_label }}" class="h-full w-full object-cover">
+            <img src="https://cdn.gtranslate.net/flags/svg/id.svg" width="20" height="20" alt="{{ language_id_label }}" class="h-full w-full rounded-full object-cover">
           </a>
           <a href="https://translate.google.com/translate?sl=id&tl=en&u={{ site.url|url_encode }}" class="inline-block h-5 w-5 overflow-hidden rounded-full border border-slate-200" title="{{ language_en_label }}" aria-label="{{ language_en_label }}">
-            <img src="https://cdn.gtranslate.net/flags/svg/en.svg" alt="{{ language_en_label }}" class="h-full w-full object-cover">
+            <img src="https://cdn.gtranslate.net/flags/svg/en.svg" width="20" height="20" alt="{{ language_en_label }}" class="h-full w-full rounded-full object-cover">
           </a>
         </noscript>
         {% endif %}
-        <a href="tel:{{ rspku.phone_igd_link }}" class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-red-600 px-2 py-1 text-xs font-bold leading-none text-white shadow-sm transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-[#f4f5f2] sm:px-2.5" title="IGD 24 Jam Ext. 118" aria-label="IGD 24 Jam {{ rspku.phone_igd }}, Ext. 118">
+        <a href="tel:{{ rspku.phone_igd_link }}" class="relative inline-flex shrink-0 items-center gap-1.5 rounded-full bg-red-600 px-2 py-1 text-xs before:absolute before:-inset-y-3 before:inset-x-0 before:content-[''] font-bold leading-none text-white shadow-sm transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-[#f4f5f2] sm:px-2.5" title="IGD 24 Jam Ext. 118" aria-label="IGD 24 Jam {{ rspku.phone_igd }}, Ext. 118">
           <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 20 20" fill="#ffffff" stroke="none" aria-hidden="true" focusable="false">
             <path d="M10 2.25 1.8 17h16.4L10 2.25Zm0 4.6c.46 0 .82.36.82.82v4.72a.82.82 0 0 1-1.64 0V7.67c0-.46.36-.82.82-.82Zm0 8.35a1.05 1.05 0 1 1 0-2.1 1.05 1.05 0 0 1 0 2.1Z" fill="#ffffff" stroke="none" />
           </svg>
@@ -100,7 +101,7 @@
     {# Logo #}
     <a href="{{ site.url }}" class="flex shrink-0 items-center gap-3 text-slate-950">
       {% if site_logo.url %}
-        <img src="{{ site_logo.url }}" alt="{{ site_logo.alt|default(site.name) }}" class="h-auto max-h-10 max-w-[10rem] w-auto object-contain sm:h-14 sm:max-h-none sm:max-w-none">
+        <img src="{{ site_logo.url }}"{% if site_logo.srcset %} srcset="{{ site_logo.srcset }}" sizes="(min-width: 640px) 260px, 160px"{% endif %}{% if site_logo.width %} width="{{ site_logo.width }}" height="{{ site_logo.height }}"{% endif %} alt="{{ site_logo.alt|default(site.name) }}" decoding="async" class="h-auto max-h-10 max-w-[10rem] w-auto object-contain sm:h-14 sm:max-h-none sm:max-w-none">
       {% else %}
         <span class="grid h-12 w-12 place-items-center rounded-xl bg-hospital-700 text-lg font-black text-white">PKU</span>
         <span class="max-w-[12rem] text-sm font-bold leading-tight">{{ site.name }}</span>
@@ -248,7 +249,7 @@
       <div class="space-y-5">
         <a href="{{ site.url }}" class="inline-flex items-center gap-3">
           {% if site_logo.url %}
-            <img src="{{ site_logo.url }}" alt="{{ site_logo.alt|default(site.name) }}" class="h-12 w-auto object-contain">
+            <img src="{{ site_logo.url }}"{% if site_logo.srcset %} srcset="{{ site_logo.srcset }}" sizes="260px"{% endif %}{% if site_logo.width %} width="{{ site_logo.width }}" height="{{ site_logo.height }}"{% endif %} alt="{{ site_logo.alt|default(site.name) }}" loading="lazy" decoding="async" class="h-12 w-auto object-contain">
           {% else %}
             <span class="grid h-12 w-12 place-items-center rounded-xl bg-hospital-700 text-lg font-black text-white">PKU</span>
           {% endif %}
@@ -378,7 +379,7 @@
           <span class="shrink-0">Dikembangkan oleh</span>
           <a href="https://labs.muhammadiyah.or.id" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center font-semibold text-slate-700 transition hover:text-hospital-700" title="Muhammadiyah Software Labs (LabMu) — Unit pengembangan teknologi internal Majelis Pustaka dan Informasi PP Muhammadiyah">
             {% if labmu_logo.url is defined and labmu_logo.url %}
-              <img src="{{ labmu_logo.url }}" alt="LabMu — Muhammadiyah Software Labs" class="h-4 w-auto max-w-28 object-contain sm:h-5 sm:max-w-32">
+              <img src="{{ labmu_logo.url }}"{% if labmu_logo.width is defined %} width="{{ labmu_logo.width }}" height="{{ labmu_logo.height }}"{% endif %} alt="LabMu — Muhammadiyah Software Labs" loading="lazy" decoding="async" class="h-4 w-auto max-w-28 object-contain sm:h-5 sm:max-w-32">
             {% else %}
               <span>LabMu</span>
             {% endif %}

@@ -36,6 +36,73 @@ final class ThemeSetup
         add_filter('wpseo_sitemap_exclude_taxonomy', [self::class, 'excludeTagSitemap'], 10, 2);
         add_filter('wpseo_exclude_from_sitemap_by_post_ids', [self::class, 'excludeSamplePageFromSitemap']);
         add_filter('the_content', [self::class, 'cleanLegacyPageContent'], 20);
+        add_filter('wpseo_exclude_from_sitemap_by_term_ids', [self::class, 'excludeThinCategories']);
+        add_filter('wpseo_sitemap_exclude_author', [self::class, 'excludeAuthorsFromSitemap']);
+        add_filter('wpseo_canonical', [self::class, 'blogPageCanonical']);
+        add_filter('rest_endpoints', [self::class, 'hideUsersRoutes']);
+    }
+
+    /** Categories with fewer posts than this are thin listings: noindex and out of the sitemap. */
+    private const THIN_CATEGORY_MAX_POSTS = 4;
+
+    private static function isThinCategory(object $term): bool
+    {
+        return (int) ($term->count ?? 0) <= self::THIN_CATEGORY_MAX_POSTS;
+    }
+
+    /**
+     * @param array<int,int> $ids
+     * @return array<int,int>
+     */
+    public static function excludeThinCategories(array $ids): array
+    {
+        $terms = get_terms(['taxonomy' => 'category', 'hide_empty' => false]);
+        foreach (is_array($terms) ? $terms : [] as $term) {
+            if ($term instanceof \WP_Term && self::isThinCategory($term)) {
+                $ids[] = (int) $term->term_id;
+            }
+        }
+
+        return $ids;
+    }
+
+    /**
+     * Author archives only list "Admin"-type accounts: drop them from the sitemap.
+     *
+     * @param array<int,mixed> $users
+     * @return array<int,mixed>
+     */
+    public static function excludeAuthorsFromSitemap(array $users): array
+    {
+        return [];
+    }
+
+    /** /berita-artikel/page/N/ is its own listing page, not a copy of page 1. */
+    public static function blogPageCanonical(string $canonical): string
+    {
+        $paged = max((int) get_query_var('paged'), (int) get_query_var('page'));
+        if ($paged > 1 && is_page('berita-artikel')) {
+            return trailingslashit((string) get_permalink()) . 'page/' . $paged . '/';
+        }
+
+        return $canonical;
+    }
+
+    /**
+     * Anonymous visitors can list usernames through /wp-json/wp/v2/users; logged-in users keep it.
+     *
+     * @param array<string,mixed> $endpoints
+     * @return array<string,mixed>
+     */
+    public static function hideUsersRoutes(array $endpoints): array
+    {
+        if (is_user_logged_in()) {
+            return $endpoints;
+        }
+
+        unset($endpoints['/wp/v2/users'], $endpoints['/wp/v2/users/(?P<id>[\d]+)']);
+
+        return $endpoints;
     }
 
     /**
@@ -44,16 +111,19 @@ final class ThemeSetup
      */
     public static function cleanLegacyPageContent(string $content): string
     {
-        if (!is_page() || !is_main_query()) {
+        if ((!is_page() && !is_singular('post')) || !is_main_query()) {
             return $content;
         }
 
         $content = str_replace('[yoast_breadcrumb]', '', $content);
+        // Articles always get their H1 from the template, so every content H1 is a duplicate.
+        // Pages: only a content H1 repeating the page title (some pages rely on their own H1).
         $title = self::plain((string) get_the_title());
+        $allDuplicates = is_singular('post');
 
         return (string) preg_replace_callback(
             '#<h1(\s[^>]*)?>(.*?)</h1>#is',
-            static fn (array $m): string => self::plain($m[2]) === $title ? '<h2' . $m[1] . '>' . $m[2] . '</h2>' : $m[0],
+            static fn (array $m): string => $allDuplicates || self::plain($m[2]) === $title ? '<h2' . $m[1] . '>' . $m[2] . '</h2>' : $m[0],
             $content
         );
     }
@@ -238,6 +308,15 @@ final class ThemeSetup
         'manajemen-rs' => 'Manajemen RS',
     ];
 
+    /** "Label [- Halaman N] | brand", with the short brand when the long one passes ~60 chars. */
+    private static function archiveTitle(string $label): string
+    {
+        $paged = (int) get_query_var('paged');
+        $base = $label . ($paged > 1 ? ' - Halaman ' . $paged : '');
+
+        return $base . (mb_strlen($base . self::TITLE_SUFFIX) > 60 ? ' | RS PKU Jogja' : self::TITLE_SUFFIX);
+    }
+
     public static function yoastTitle(string $title): string
     {
         // An editor's own Yoast title always wins.
@@ -251,9 +330,23 @@ final class ThemeSetup
 
         if (is_post_type_archive(array_keys(self::ARCHIVE_TITLES))) {
             $label = self::ARCHIVE_TITLES[(string) get_query_var('post_type')] ?? null;
-            $paged = (int) get_query_var('paged');
 
-            return $label === null ? $title : $label . ($paged > 1 ? ' - Halaman ' . $paged : '') . self::TITLE_SUFFIX;
+            return $label === null ? $title : self::archiveTitle($label);
+        }
+
+        $term = get_queried_object();
+        if ($term instanceof \WP_Term) {
+            if (is_category()) {
+                return self::archiveTitle('Kategori ' . $term->name);
+            }
+            if (is_tax('spesialisasi-dokter')) {
+                $prefix = preg_match('/^(dokter|psikolog)/i', $term->name) === 1 ? '' : 'Dokter ';
+
+                return self::archiveTitle($prefix . $term->name);
+            }
+            if (is_tax('kategori-layanan')) {
+                return self::archiveTitle($term->name);
+            }
         }
 
         $override = self::seoOverride('title');
@@ -338,7 +431,12 @@ final class ThemeSetup
 
     public static function yoastRobots(string $robots): string
     {
-        if (is_search() || is_tag() || is_page(self::NOINDEX_PAGES)) {
+        if (is_search() || is_tag() || is_author() || is_page(self::NOINDEX_PAGES)) {
+            return self::NOINDEX;
+        }
+
+        $term = get_queried_object();
+        if (is_category() && $term instanceof \WP_Term && self::isThinCategory($term)) {
             return self::NOINDEX;
         }
 

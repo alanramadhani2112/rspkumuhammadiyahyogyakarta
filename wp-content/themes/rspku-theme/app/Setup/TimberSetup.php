@@ -148,10 +148,16 @@ final class TimberSetup
 
         $image = wp_get_attachment_image_src($logoId, 'full');
 
+        $srcset = wp_get_attachment_image_srcset($logoId, 'full');
+
         return [
             'id' => $logoId,
             'url' => $image ? $image[0] : wp_get_attachment_url($logoId),
             'alt' => (string) get_post_meta($logoId, '_wp_attachment_image_alt', true),
+            // Intrinsic size + srcset: the logo is 1626 px wide but shown at 160-260 px.
+            'width' => $image ? (int) $image[1] : null,
+            'height' => $image ? (int) $image[2] : null,
+            'srcset' => is_string($srcset) ? $srcset : '',
         ];
     }
 
@@ -161,7 +167,10 @@ final class TimberSetup
     private static function labmuLogo(): array
     {
         return [
-            'url' => get_template_directory_uri() . '/resources/images/labmu-logo.png',
+            // 320 px copy of labmu-logo.png (the original is 2971 px wide, shown at ~65 px).
+            'url' => get_template_directory_uri() . '/resources/images/labmu-logo-sm.png',
+            'width' => 320,
+            'height' => 84,
             'alt' => 'LabMu - Muhammadiyah Software Labs',
         ];
     }
