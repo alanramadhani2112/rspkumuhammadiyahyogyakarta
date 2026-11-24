@@ -6,6 +6,8 @@ namespace Rspku\Setup;
 
 final class ThemeSetup
 {
+    private const NOINDEX = 'noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+
     public static function register(): void
     {
         add_action('after_setup_theme', [self::class, 'configureTheme']);
@@ -24,6 +26,25 @@ final class ThemeSetup
         add_action('template_redirect', [self::class, 'legacyRedirects']);
         add_filter('wpseo_metadesc', [self::class, 'yoastMetaDescription']);
         add_filter('wpseo_robots', [self::class, 'yoastRobots']);
+        add_filter('wpseo_sitemap_exclude_taxonomy', [self::class, 'excludeTagSitemap'], 10, 2);
+        add_filter('wpseo_exclude_from_sitemap_by_post_ids', [self::class, 'excludeSamplePageFromSitemap']);
+    }
+
+    /** Tag archives are thin (most list a single article): keep them out of the sitemap. */
+    public static function excludeTagSitemap(bool $exclude, string $taxonomy): bool
+    {
+        return $exclude || $taxonomy === 'post_tag';
+    }
+
+    /**
+     * @param array<int,int> $ids
+     * @return array<int,int>
+     */
+    public static function excludeSamplePageFromSitemap(array $ids): array
+    {
+        $page = get_page_by_path('sample-page');
+
+        return $page instanceof \WP_Post ? array_merge($ids, [(int) $page->ID]) : $ids;
     }
 
     public static function configureSearchPostTypes(\WP_Query $query): void
@@ -70,6 +91,39 @@ final class ThemeSetup
             wp_safe_redirect(home_url('/e-jurnal' . $suffix), 301);
             exit;
         }
+
+        $target = self::legacyTarget($path);
+        if ($target !== null) {
+            wp_safe_redirect(home_url($target), 301);
+            exit;
+        }
+    }
+
+    /**
+     * Old URL structure -> current URL. Returns null when there is no confident target.
+     */
+    private static function legacyTarget(string $path): ?string
+    {
+        /** @var array<string,string> $map reviewed old path => new path */
+        static $map = null;
+        $map ??= require __DIR__ . '/legacy-redirect-map.php';
+        if (isset($map[$path])) {
+            return $map[$path];
+        }
+
+        if ($path === 'caridokter' || $path === 'dokterku') {
+            return '/cari-dokter/';
+        }
+
+        // /doctors/x -> /dokter/x, /departments/x -> /poliklinik/x, only when the same slug exists now.
+        if (preg_match('#^(doctors|departments)/([^/]+)$#', $path, $m) === 1) {
+            $type = $m[1] === 'doctors' ? 'dokter' : 'poliklinik';
+            if (get_page_by_path($m[2], OBJECT, $type) instanceof \WP_Post) {
+                return '/' . $type . '/' . $m[2] . '/';
+            }
+        }
+
+        return null;
     }
 
     public static function configureTheme(): void
@@ -175,12 +229,12 @@ final class ThemeSetup
 
     public static function yoastRobots(string $robots): string
     {
-        if (is_search()) {
-            return 'noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+        if (is_search() || is_tag() || is_page('sample-page')) {
+            return self::NOINDEX;
         }
 
         if (is_post_type_archive('dokter') && self::hasQueryFilters(['q', 'specialization', 'day', 'service'])) {
-            return 'noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+            return self::NOINDEX;
         }
 
         return $robots;

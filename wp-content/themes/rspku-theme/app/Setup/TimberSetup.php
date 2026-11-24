@@ -130,7 +130,6 @@ final class TimberSetup
                 'info' => [
                     ['title' => 'Berita dan artikel', 'link' => home_url('/berita-artikel/')],
                     ['title' => 'E-Jurnal', 'link' => home_url('/e-jurnal/')],
-                    ['title' => 'Legalitas', 'link' => home_url('/legalitas/')],
                     ['title' => 'Sejarah', 'link' => home_url('/sejarah-kami/')],
                 ],
             ],
