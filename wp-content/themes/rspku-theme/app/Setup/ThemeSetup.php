@@ -8,6 +8,12 @@ final class ThemeSetup
 {
     private const NOINDEX = 'noindex, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
+    /**
+     * Pages kept out of the index and sitemap: WP default sample page, one-line stubs without content yet,
+     * and /cari-dokter/ (301 to /jadwal-dokter/ in legacyTarget, so it must not be listed as a sitemap URL).
+     */
+    private const NOINDEX_PAGES = ['sample-page', 'pusat-informasi', 'e-career', 'cari-dokter'];
+
     public static function register(): void
     {
         add_action('after_setup_theme', [self::class, 'configureTheme']);
@@ -29,6 +35,32 @@ final class ThemeSetup
         add_filter('wpseo_robots', [self::class, 'yoastRobots']);
         add_filter('wpseo_sitemap_exclude_taxonomy', [self::class, 'excludeTagSitemap'], 10, 2);
         add_filter('wpseo_exclude_from_sitemap_by_post_ids', [self::class, 'excludeSamplePageFromSitemap']);
+        add_filter('the_content', [self::class, 'cleanLegacyPageContent'], 20);
+    }
+
+    /**
+     * Legacy page content carries its own <h1> (duplicating the template H1) and a literal
+     * [yoast_breadcrumb] shortcode. Demote the duplicate heading and drop the stray tag.
+     */
+    public static function cleanLegacyPageContent(string $content): string
+    {
+        if (!is_page() || !is_main_query()) {
+            return $content;
+        }
+
+        $content = str_replace('[yoast_breadcrumb]', '', $content);
+        $title = self::plain((string) get_the_title());
+
+        return (string) preg_replace_callback(
+            '#<h1(\s[^>]*)?>(.*?)</h1>#is',
+            static fn (array $m): string => self::plain($m[2]) === $title ? '<h2' . $m[1] . '>' . $m[2] . '</h2>' : $m[0],
+            $content
+        );
+    }
+
+    private static function plain(string $html): string
+    {
+        return mb_strtolower(trim((string) preg_replace('/\s+/', ' ', html_entity_decode(wp_strip_all_tags($html), ENT_QUOTES))));
     }
 
     /** Tag archives are thin (most list a single article): keep them out of the sitemap. */
@@ -43,9 +75,14 @@ final class ThemeSetup
      */
     public static function excludeSamplePageFromSitemap(array $ids): array
     {
-        $page = get_page_by_path('sample-page');
+        foreach (self::NOINDEX_PAGES as $slug) {
+            $page = get_page_by_path($slug);
+            if ($page instanceof \WP_Post) {
+                $ids[] = (int) $page->ID;
+            }
+        }
 
-        return $page instanceof \WP_Post ? array_merge($ids, [(int) $page->ID]) : $ids;
+        return $ids;
     }
 
     public static function configureSearchPostTypes(\WP_Query $query): void
@@ -112,8 +149,9 @@ final class ThemeSetup
             return $map[$path];
         }
 
-        if ($path === 'caridokter' || $path === 'dokterku') {
-            return '/cari-dokter/';
+        // /cari-dokter/ is an empty legacy page (raw shortcode); the working doctor filter lives on /jadwal-dokter/.
+        if ($path === 'caridokter' || $path === 'dokterku' || $path === 'cari-dokter') {
+            return '/jadwal-dokter/';
         }
 
         // /doctors/x -> /dokter/x, /departments/x -> /poliklinik/x, only when the same slug exists now.
@@ -175,7 +213,7 @@ final class ThemeSetup
      */
     private static function seoOverride(string $field): string
     {
-        if (!is_singular('post')) {
+        if (!is_singular()) {
             return '';
         }
 
@@ -184,21 +222,51 @@ final class ThemeSetup
             return '';
         }
 
-        /** @var array<string,array{title:string,desc:string}> $map */
+        /** @var array<string,array{title?:string,desc?:string}> $map key: post slug, or "type:slug" for non-posts */
         static $map = null;
         $map ??= require __DIR__ . '/seo-overrides.php';
+        $key = $post->post_type === 'post' ? $post->post_name : $post->post_type . ':' . $post->post_name;
 
-        return $map[$post->post_name][$field] ?? '';
+        return $map[$key][$field] ?? '';
     }
+
+    private const TITLE_SUFFIX = ' | RS PKU Muhammadiyah Yogyakarta';
+    private const ARCHIVE_TITLES = [
+        'poliklinik' => 'Daftar Poliklinik',
+        'dokter' => 'Daftar Dokter',
+        'layanan' => 'Semua Layanan',
+        'manajemen-rs' => 'Manajemen RS',
+    ];
 
     public static function yoastTitle(string $title): string
     {
-        $override = self::seoOverride('title');
-        if ($override === '' || trim((string) get_post_meta((int) get_queried_object_id(), '_yoast_wpseo_title', true)) !== '') {
-            return $title;
+        // An editor's own Yoast title always wins.
+        // A bare "%%title%%" is Yoast's no-brand placeholder, not an editorial choice.
+        $own = is_singular() ? trim((string) get_post_meta((int) get_queried_object_id(), '_yoast_wpseo_title', true)) : '';
+        $hasOwnTitle = $own !== '' && $own !== '%%title%%';
+
+        if (is_front_page()) {
+            return $hasOwnTitle ? $title : 'RS PKU Muhammadiyah Yogyakarta';
         }
 
-        return $override;
+        if (is_post_type_archive(array_keys(self::ARCHIVE_TITLES))) {
+            $label = self::ARCHIVE_TITLES[(string) get_query_var('post_type')] ?? null;
+            $paged = (int) get_query_var('paged');
+
+            return $label === null ? $title : $label . ($paged > 1 ? ' - Halaman ' . $paged : '') . self::TITLE_SUFFIX;
+        }
+
+        $override = self::seoOverride('title');
+        if ($override !== '' && !$hasOwnTitle) {
+            return $override;
+        }
+
+        // Long clinic names push the default title past ~60 chars: use the short brand suffix.
+        if (!$hasOwnTitle && is_singular('poliklinik') && mb_strlen($title) > 60) {
+            return (string) preg_replace('/\s*[|\-–]\s*RS PKU Muhammadiyah Yogyakarta$/u', ' | RS PKU Jogja', $title);
+        }
+
+        return $title;
     }
 
     public static function yoastMetaDescription(string $description): string
@@ -213,7 +281,7 @@ final class ThemeSetup
         }
 
         if (is_front_page()) {
-            return 'RS PKU Muhammadiyah Yogyakarta menghadirkan layanan kesehatan, dokter spesialis, fasilitas rawat inap, IGD, dan pendaftaran online untuk pasien dan keluarga.';
+            return 'RS PKU Muhammadiyah Yogyakarta menghadirkan layanan kesehatan, dokter spesialis, rawat inap, IGD, dan pendaftaran online untuk pasien dan keluarga.';
         }
 
         if (is_post_type_archive('dokter')) {
@@ -244,7 +312,11 @@ final class ThemeSetup
         }
 
         if (is_singular('poliklinik')) {
-            return 'Informasi ' . (string) get_the_title() . ' RS PKU Muhammadiyah Yogyakarta, layanan rawat jalan, dan dokter terkait.';
+            // "jadwal dokter" only when the page really lists doctors (same lookup the template uses).
+            $hasDoctors = (new \Rspku\Repositories\DoctorRepository())->forPolyclinic((int) get_the_ID(), 1) !== [];
+
+            return (string) get_the_title() . ' RS PKU Muhammadiyah Yogyakarta: '
+                . ($hasDoctors ? 'jadwal dokter spesialis, layanan, dan daftar online.' : 'informasi layanan dan pendaftaran online.');
         }
 
         if (is_singular('layanan')) {
@@ -266,7 +338,7 @@ final class ThemeSetup
 
     public static function yoastRobots(string $robots): string
     {
-        if (is_search() || is_tag() || is_page('sample-page')) {
+        if (is_search() || is_tag() || is_page(self::NOINDEX_PAGES)) {
             return self::NOINDEX;
         }
 

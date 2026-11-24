@@ -55,4 +55,30 @@ return [
         'title' => 'Istitha\'ah Haji: Arti & Kesehatan Calon Haji | RS PKU Jogja',
         'desc' => 'Istitha\'ah haji adalah kemampuan bekal, ilmu manasik, serta sehat fisik dan mental. Pelajari istitha\'ah kesehatan calon haji di RS PKU Yogyakarta.',
     ],
+
+    // Phase 3 (service pages). Key "type:slug" for non-post content. Facts taken from the live pages.
+    'poliklinik:klinik-tht' => [
+        'title' => 'Dokter THT Yogyakarta | Klinik THT RS PKU Jogja',
+        'desc' => 'Cari dokter THT di RS PKU Muhammadiyah Yogyakarta. Lihat jadwal praktik dokter spesialis THT dan daftar online.',
+    ],
+    'poliklinik:klinik-kulit-dan-kelamin' => [
+        'title' => 'Dokter Kulit & Kelamin Yogyakarta | RS PKU Jogja',
+        'desc' => 'Cari dokter spesialis kulit dan kelamin di RS PKU Muhammadiyah Yogyakarta. Lihat jadwal praktik dan daftar online.',
+    ],
+    'page:fasilitas-rawat-inap' => [
+        'title' => 'Fasilitas Rawat Inap | RS PKU Muhammadiyah Yogyakarta',
+        'desc' => 'Pilihan kamar rawat inap RS PKU Muhammadiyah Yogyakarta: Kelas I, II, III, VIP, VVIP, dan VIP Arofah, lengkap dengan fasilitas kamar.',
+    ],
+    'page:sejarah-kami' => [
+        'desc' => 'Sejarah RS PKU Muhammadiyah Yogyakarta: berawal dari PKO tahun 1923 hingga rumah sakit islami modern. Lihat visi, misi, dan nilai kami.',
+    ],
+    'page:e-jurnal' => [
+        'desc' => 'E-Jurnal RS PKU Muhammadiyah Yogyakarta: publikasi kesehatan, pembelajaran klinis, dan inovasi layanan medis.',
+    ],
+    'page:layanan-penunjang' => [
+        'desc' => 'Layanan penunjang medis RS PKU Muhammadiyah Yogyakarta untuk mendukung diagnosis dan perawatan pasien.',
+    ],
+    'page:layanan-unggulan' => [
+        'desc' => 'Layanan unggulan RS PKU Muhammadiyah Yogyakarta untuk pasien dan keluarga.',
+    ],
 ];

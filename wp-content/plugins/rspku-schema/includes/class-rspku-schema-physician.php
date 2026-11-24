@@ -82,7 +82,7 @@ final class RSPKU_Schema_Physician {
     private static function field_text(int $postId, string $key, string $fallback = ''): string {
         $value = self::acf_value($postId, $key);
         if (is_scalar($value)) {
-            $text = trim(wp_strip_all_tags((string) $value));
+            $text = RSPKU_Schema_Helpers::plain_text((string) $value);
             return $text !== '' ? $text : $fallback;
         }
 

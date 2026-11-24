@@ -107,6 +107,16 @@ final class RSPKU_Schema_Helpers {
         return self::compact_node($node);
     }
 
+    /**
+     * HTML -> plain text, keeping a space where paragraphs/line breaks were
+     * (wp_strip_all_tags alone glues "penyakit.Beliau" together).
+     */
+    public static function plain_text(string $html): string {
+        $spaced = (string) preg_replace('#</(p|div|li|h[1-6])>|<br\s*/?>#i', ' ', $html);
+
+        return trim((string) preg_replace('/\s+/', ' ', wp_strip_all_tags($spaced)));
+    }
+
     public static function yoast_active(): bool {
         return defined('WPSEO_VERSION');
     }
@@ -135,7 +145,8 @@ final class RSPKU_Schema_Helpers {
             '@type' => 'PostalAddress',
             'streetAddress' => (string) ($address['street'] ?? ''),
             'addressLocality' => (string) ($address['locality'] ?? ''),
-            'addressRegion' => (string) ($address['region'] ?? ''),
+            // The settings value may carry the postal code ("... Yogyakarta 55122"); it has its own field.
+            'addressRegion' => trim((string) preg_replace('/\s*\d{5}$/', '', (string) ($address['region'] ?? ''))),
             'postalCode' => (string) ($address['postal_code'] ?? ''),
             'addressCountry' => (string) ($address['country'] ?? ''),
         ]);

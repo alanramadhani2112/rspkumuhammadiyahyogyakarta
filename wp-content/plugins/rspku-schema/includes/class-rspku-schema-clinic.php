@@ -24,6 +24,7 @@ final class RSPKU_Schema_Clinic {
         $url = (string) get_permalink($post);
         $name = self::field_text($postId, 'nama_poli', (string) get_the_title($post));
         $organization = RSPKU_Schema_Helpers::organization_id_ref();
+        $org = RSPKU_Schema_Helpers::organization_data();
 
         return RSPKU_Schema_Helpers::compact_node([
             '@type' => 'MedicalClinic',
@@ -32,6 +33,9 @@ final class RSPKU_Schema_Clinic {
             'url' => $url,
             'description' => self::field_text($postId, 'deskripsi_singkat'),
             'image' => self::image_url($postId, 'gambar_poli'),
+            // Same NAP as the hospital node; opening hours stay off until clinic hours are confirmed.
+            'address' => RSPKU_Schema_Helpers::postal_address($org['address'] ?? []),
+            'telephone' => $org['telephone'] ?? null,
             'parentOrganization' => $organization,
             'isPartOf' => $organization,
         ]);
@@ -58,7 +62,7 @@ final class RSPKU_Schema_Clinic {
     private static function field_text(int $postId, string $key, string $fallback = ''): string {
         $value = function_exists('get_field') ? get_field($key, $postId) : get_post_meta($postId, $key, true);
         if (is_scalar($value)) {
-            $text = trim(wp_strip_all_tags((string) $value));
+            $text = RSPKU_Schema_Helpers::plain_text((string) $value);
             return $text !== '' ? $text : $fallback;
         }
 
