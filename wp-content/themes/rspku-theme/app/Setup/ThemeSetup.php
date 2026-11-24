@@ -24,6 +24,7 @@ final class ThemeSetup
     {
         add_action('pre_get_posts', [self::class, 'configureSearchPostTypes']);
         add_action('template_redirect', [self::class, 'legacyRedirects']);
+        add_filter('wpseo_title', [self::class, 'yoastTitle']);
         add_filter('wpseo_metadesc', [self::class, 'yoastMetaDescription']);
         add_filter('wpseo_robots', [self::class, 'yoastRobots']);
         add_filter('wpseo_sitemap_exclude_taxonomy', [self::class, 'excludeTagSitemap'], 10, 2);
@@ -169,10 +170,46 @@ final class ThemeSetup
         $content_width = $content_width ?? 1200;
     }
 
+    /**
+     * Reviewed per-post title/meta from seo-overrides.php. An editor's own Yoast value always wins.
+     */
+    private static function seoOverride(string $field): string
+    {
+        if (!is_singular('post')) {
+            return '';
+        }
+
+        $post = get_queried_object();
+        if (!$post instanceof \WP_Post) {
+            return '';
+        }
+
+        /** @var array<string,array{title:string,desc:string}> $map */
+        static $map = null;
+        $map ??= require __DIR__ . '/seo-overrides.php';
+
+        return $map[$post->post_name][$field] ?? '';
+    }
+
+    public static function yoastTitle(string $title): string
+    {
+        $override = self::seoOverride('title');
+        if ($override === '' || trim((string) get_post_meta((int) get_queried_object_id(), '_yoast_wpseo_title', true)) !== '') {
+            return $title;
+        }
+
+        return $override;
+    }
+
     public static function yoastMetaDescription(string $description): string
     {
         if (trim($description) !== '') {
             return $description;
+        }
+
+        $override = self::seoOverride('desc');
+        if ($override !== '') {
+            return $override;
         }
 
         if (is_front_page()) {
